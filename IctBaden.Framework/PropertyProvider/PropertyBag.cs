@@ -1,8 +1,10 @@
-﻿namespace IctBaden.Framework
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+// ReSharper disable UnusedMember.Global
+
+namespace IctBaden.Framework.PropertyProvider
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
 #if !NET20
     using System.Linq;
 #endif

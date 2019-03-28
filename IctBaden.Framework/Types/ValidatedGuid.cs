@@ -1,4 +1,5 @@
-﻿namespace IctBaden.Framework.Types
+﻿// ReSharper disable UnusedMember.Global
+namespace IctBaden.Framework.Types
 {
     using System;
 
@@ -31,7 +32,7 @@
         /// <summary>
         /// String-Repräsentation
         /// </summary>
-        public string Text { get { return Guid.ToString("D"); } }
+        public string Text => Guid.ToString("D");
 
         /// <summary>
         /// Konstruktor mit automatischer Typerkennung
@@ -47,9 +48,9 @@
                 return;
             }
 
-            if (data is Guid)
+            if (data is Guid guid)
             {
-                Guid = (Guid)data;
+                Guid = guid;
                 IsValid = true;
                 HasValue = true;
                 if (Guid == Guid.Empty)

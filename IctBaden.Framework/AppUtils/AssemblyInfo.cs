@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Resources;
 using System.Text;
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.AppUtils
 {

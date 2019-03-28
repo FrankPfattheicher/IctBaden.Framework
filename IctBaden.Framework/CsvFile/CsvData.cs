@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using IctBaden.Framework.Types;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.CsvFile
 {

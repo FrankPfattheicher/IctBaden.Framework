@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.Types
 {

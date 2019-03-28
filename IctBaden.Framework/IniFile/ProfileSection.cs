@@ -1,4 +1,7 @@
 ﻿using System;
+using IctBaden.Framework.PropertyProvider;
+
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.IniFile
 {

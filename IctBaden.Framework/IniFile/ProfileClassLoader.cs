@@ -1,4 +1,6 @@
-﻿namespace IctBaden.Framework.IniFile
+﻿using IctBaden.Framework.PropertyProvider;
+
+namespace IctBaden.Framework.IniFile
 {
     /// <summary>
     /// Deserializes classes from INI file.

@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.CharacterSet
 {

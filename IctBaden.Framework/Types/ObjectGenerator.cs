@@ -92,7 +92,7 @@ namespace IctBaden.Framework.Types
                     return GenerateCollection(typeof(ArrayList), _usedCollectionSize, createdObjectReferences);
                 }
 
-                if (type.FullName.StartsWith("System.Collections.Generic.List"))
+                if (type.FullName != null && type.FullName.StartsWith("System.Collections.Generic.List"))
                 {
                     return GenerateCollection(type, _usedCollectionSize, createdObjectReferences);
                 }
@@ -215,14 +215,10 @@ namespace IctBaden.Framework.Types
                 return null;
             }
             var result = Activator.CreateInstance(type, parameterValues);
-            if (result == null)
-            {
-                Trace.TraceError("GenerateTuple({0}) failed.", type.Name);
-            }
             return result;
         }
 
-        private bool IsTuple(Type genericTypeDefinition)
+        private static bool IsTuple(Type genericTypeDefinition)
         {
             return genericTypeDefinition == typeof(Tuple<>) ||
                 genericTypeDefinition == typeof(Tuple<,>) ||
@@ -248,16 +244,12 @@ namespace IctBaden.Framework.Types
                 return null;
             }
             var result = Activator.CreateInstance(keyValuePairType, keyObject, valueObject);
-            if (result == null)
-            {
-                Trace.TraceError("GenerateKeyValuePair({0},{1}) failed (Value).", typeK.Name, typeV.Namespace);
-            }
             return result;
         }
 
         private object GenerateArray(Type arrayType, int size, Dictionary<Type, object> createdObjectReferences)
         {
-            var type = arrayType.GetElementType();
+            var type = arrayType.GetElementType() ?? throw new InvalidOperationException();
             var result = Array.CreateInstance(type, size);
             var areAllElementsNull = true;
             for (var i = 0; i < size; i++)
@@ -293,11 +285,11 @@ namespace IctBaden.Framework.Types
                     return null;
                 }
 
-                var containsKey = (bool)containsMethod.Invoke(result, new[] { newKey });
+                var containsKey = containsMethod != null && (bool)containsMethod.Invoke(result, new[] { newKey });
                 if (containsKey)
                     continue;
                 var newValue = GenerateObject(typeV, createdObjectReferences);
-                addMethod.Invoke(result, new[] { newKey, newValue });
+                addMethod?.Invoke(result, new[] {newKey, newValue});
             }
 
             return result;
@@ -335,7 +327,7 @@ namespace IctBaden.Framework.Types
             {
                 var argumentType = typeof(IEnumerable<>).MakeGenericType(queryableType.GetGenericArguments());
                 var asQueryableMethod = typeof(Queryable).GetMethod("AsQueryable", new[] { argumentType });
-                return asQueryableMethod.Invoke(null, new[] { list });
+                return asQueryableMethod?.Invoke(null, new[] { list });
             }
 
             return ((IEnumerable)list).AsQueryable();
@@ -353,7 +345,7 @@ namespace IctBaden.Framework.Types
             {
                 var elementGenerator = new ObjectGenerator(Math.Min(2, _usedCollectionSize - 1));
                 var element = elementGenerator.GenerateObject(type, createdObjectReferences);
-                addMethod.Invoke(result, new[] { element });
+                addMethod?.Invoke(result, new[] { element });
                 areAllElementsNull &= element == null;
             }
 
@@ -373,9 +365,7 @@ namespace IctBaden.Framework.Types
 
         private object GenerateComplexObject(Type type, Dictionary<Type, object> createdObjectReferences)
         {
-            object result;
-
-            if (createdObjectReferences.TryGetValue(type, out result))
+            if (createdObjectReferences.TryGetValue(type, out var result))
             {
                 // The object has been created already, just return it. This will handle the circular reference case.
                 return result;

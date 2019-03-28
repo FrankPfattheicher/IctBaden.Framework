@@ -4,7 +4,7 @@ using System.Linq;
 
 // ReSharper disable UnusedMember.Global
 
-namespace IctBaden.Framework
+namespace IctBaden.Framework.PropertyProvider
 {
     public class CommandlinePropertyProvider : PropertyBag
     {

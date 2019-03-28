@@ -1,9 +1,8 @@
-﻿namespace IctBaden.Framework.Types
+﻿// ReSharper disable UnusedMember.Global
+namespace IctBaden.Framework.Types
 {
     using System;
-#if !NET20
     using System.Linq;
-#endif
 
     /// <summary>
     /// Ermöglicht die einfache Konvertierung zwischen enum- / string- / und numerischer Darstellung

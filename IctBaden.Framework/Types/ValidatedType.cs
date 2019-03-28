@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.Types
 {

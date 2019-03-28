@@ -2,7 +2,7 @@
 using IctBaden.Framework.Tron;
 using IctBaden.Framework.Types;
 
-namespace IctBaden.Framework
+namespace IctBaden.Framework.PropertyProvider
 {
     // ReSharper disable once UnusedMember.Global
     public class ClassPropertyProvider

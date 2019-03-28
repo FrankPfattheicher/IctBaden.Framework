@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+// ReSharper disable UnusedMember.Global
+
 // ReSharper disable BuiltInTypeReferenceStyle
 
-namespace IctBaden.Framework
+namespace IctBaden.Framework.Timer
 {
     public class PassiveTimer : IComparable
     {
         private bool _locked;
         private long _lockedTimer;
         private long _timer;
-        private readonly List<Timer> _callbacks = new List<Timer>();
+        private readonly List<System.Threading.Timer> _callbacks = new List<System.Threading.Timer>();
 
         private static long Now => DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
 
@@ -111,13 +113,13 @@ namespace IctBaden.Framework
 
         public DateTime TimeoutTimeStamp => DateTime.Now + Remaining;
 
-        public Timer SetCallback(TimerCallback callback, object state)
+        public System.Threading.Timer SetCallback(TimerCallback callback, object state)
         {
             var T = Math.Max(0, RemainingMilliseconds);
             Debug.Print("Timer SetCallback {0}", T);
             lock (_callbacks)
             {
-                var callbackTimer = new Timer(callback, state, (uint)T, System.Threading.Timeout.Infinite);
+                var callbackTimer = new System.Threading.Timer(callback, state, (uint)T, System.Threading.Timeout.Infinite);
                 _callbacks.Add(callbackTimer);
                 return callbackTimer;
             }

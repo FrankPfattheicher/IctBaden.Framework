@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IctBaden.Framework
+namespace IctBaden.Framework.PropertyProvider
 {
     public interface IPropertyProvider : IEnumerable<KeyValuePair<string, object>>
     {

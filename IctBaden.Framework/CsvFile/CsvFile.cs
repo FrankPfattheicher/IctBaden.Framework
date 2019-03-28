@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using IctBaden.Framework.Types;
+// ReSharper disable UnusedMember.Global
 
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
