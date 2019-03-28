@@ -33,6 +33,8 @@ namespace IctBaden.Framework.Tron
                 { TraceEventType.Resume, ConsoleColor.Blue },
                 { TraceEventType.Transfer, ConsoleColor.DarkGray }
             };
+
+            Writer = Console.Out;
         }
 
         private void SetColorOnEventType(TraceEventType eventType)
