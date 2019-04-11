@@ -1,5 +1,6 @@
 ﻿using System;
 using IctBaden.Framework.PropertyProvider;
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
 // ReSharper disable UnusedMember.Global
 
@@ -12,14 +13,14 @@ namespace IctBaden.Framework.IniFile
 
     public class ProfileSection : IPropertyProvider
     {
-        private readonly Profile _profile;
+        public Profile Profile { get; private set; }
 
         public const string UnnamedGlobalSectionName = " ";
         public bool IsUnnamedGlobalSection => Name.StartsWith(UnnamedGlobalSectionName);
 
         public ProfileSection(Profile profile, string sectionName)
         {
-            _profile = profile;
+            Profile = profile;
             Name = sectionName;
             Keys = new ProfileKeyCollection();
         }
@@ -63,12 +64,12 @@ namespace IctBaden.Framework.IniFile
 
         public void Remove()
         {
-            _profile.Sections.Remove(_profile[Name]);
+            Profile.Sections.Remove(Profile[Name]);
         }
 
         internal void Save()
         {
-            _profile.Save();
+            Profile.Save();
         }
 
         #region IPropertyProvider Members
