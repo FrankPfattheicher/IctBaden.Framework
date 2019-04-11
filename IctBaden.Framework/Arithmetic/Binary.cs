@@ -1,7 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global
 namespace IctBaden.Framework.Arithmetic
 {
-    public static class ReverseBits
+    public static class Binary
     {
         private static readonly byte[] Data =
         {
@@ -39,9 +39,20 @@ namespace IctBaden.Framework.Arithmetic
           0x1F, 0x9F, 0x5F, 0xDF, 0x3F, 0xBF, 0x7F, 0xFF
         };
 
-        public static byte Reverse(byte source)
+        public static byte ReverseBits(byte source)
         {
             return Data[source];
         }
+
+        public static byte LowByte(ushort source) => (byte) (source & 0xFF);
+        public static byte HighByte(ushort source) => (byte) ((source >> 8) & 0xFF);
+
+        public static ushort MakeWord(byte low, byte high) => (ushort) ((ushort)(high << 8) | low);
+
+        public static ushort ReverseBits(ushort source)
+        {
+            return MakeWord(ReverseBits(HighByte(source)), ReverseBits(LowByte(source)));
+        }
+
     }
 }

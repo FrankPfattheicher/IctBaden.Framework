@@ -1,6 +1,7 @@
 ﻿// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
 using System.Reflection;
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.IniFile
 {
@@ -110,7 +111,7 @@ namespace IctBaden.Framework.IniFile
 
         public static bool NeedsUnicode(string text)
         {
-            var enc = Encoding.Default;
+            var enc = Encoding.ASCII;
             var data = enc.GetBytes(text);
             var ascii = enc.GetString(data);
             return text != ascii;

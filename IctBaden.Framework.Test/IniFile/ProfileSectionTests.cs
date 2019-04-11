@@ -1,25 +1,28 @@
-using System;
 using IctBaden.Framework.IniFile;
 using Xunit;
 
-namespace IctBaden.Framework.Test
+namespace IctBaden.Framework.Test.IniFile
 {
     public class ProfileSectionTests
     {
+        private readonly Profile _profile;
+
+        public ProfileSectionTests()
+        {
+            _profile = new Profile("TestCfg.ini");
+        }
+
         [Fact]
         public void SectionCountsShouldMatchCountGivenInSectionCountEntry()
         {
-            var profile = new Profile("TestCfg.ini");
-            var expected = profile[ProfileSection.UnnamedGlobalSectionName]["SectionCount"].LongValue;
-            Assert.Equal(expected, profile.Sections.Count);
+            var expected = _profile[ProfileSection.UnnamedGlobalSectionName]["SectionCount"].LongValue;
+            Assert.Equal(expected, _profile.Sections.Count);
         }
 
         [Fact]
         public void SectionKeyCountsShouldMatchCountGivenInKeyCountEntry()
         {
-            var profile = new Profile("TestCfg.ini");
-
-            foreach (var section in profile.Sections)
+            foreach (var section in _profile.Sections)
             {
                 var expected = section["KeyCount"].LongValue;
                 Assert.Equal(expected, section.Keys.Count);
