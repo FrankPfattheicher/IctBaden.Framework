@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_IctBaden.Framework.-1562950626.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="IctBaden.Framework" t="IncludeRecursive">
+        <e p="AppUtils" t="Include">
+          <e p="AssemblyContactAttribute.cs" t="Include" />
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="AssemblyReleaseAttribute.cs" t="Include" />
+          <e p="PostMortemDebugging.cs" t="Include" />
+          <e p="SystemInfo.cs" t="Include" />
+        </e>
+        <e p="Arithmetic" t="Include">
+          <e p="AverageSumDouble.cs" t="Include" />
+          <e p="AverageSumLong.cs" t="Include" />
+          <e p="Binary.cs" t="Include" />
+          <e p="Interpolation.cs" t="Include" />
+          <e p="InterpolationPoint.cs" t="Include" />
+        </e>
+        <e p="CharacterSet" t="Include">
+          <e p="GsmCharacterSet.cs" t="Include" />
+          <e p="Ucs2CharacterSet.cs" t="Include" />
+        </e>
+        <e p="CsvFile" t="Include">
+          <e p="CsvData.cs" t="Include" />
+          <e p="CsvFile.cs" t="Include" />
+        </e>
+        <e p="FileSystem" t="Include">
+          <e p="FileEncoding.cs" t="Include" />
+          <e p="FileSystemNaming.cs" t="Include" />
+        </e>
+        <e p="IctBaden.Framework.csproj" t="IncludeRecursive" />
+        <e p="IniFile" t="Include">
+          <e p="Profile.cs" t="Include" />
+          <e p="ProfileClassLoader.cs" t="Include" />
+          <e p="ProfileKey.cs" t="Include" />
+          <e p="ProfileKeyCollection.cs" t="Include" />
+          <e p="ProfileObjectSerializer.cs" t="Include" />
+          <e p="ProfileSection.cs" t="Include" />
+          <e p="ProfileSectionCollection.cs" t="Include" />
+        </e>
+        <e p="Network" t="Include">
+          <e p="NetworkInfo.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="PropertyProvider" t="Include">
+          <e p="ClassPropertyProvider.cs" t="Include" />
+          <e p="CommandlinePropertyProvider.cs" t="Include" />
+          <e p="IPropertyProvider.cs" t="Include" />
+          <e p="PropertyBag.cs" t="Include" />
+          <e p="PropertyProviderCollection.cs" t="Include" />
+        </e>
+        <e p="Resource" t="Include">
+          <e p="ResourceLoader.cs" t="Include" />
+        </e>
+        <e p="Timer" t="Include">
+          <e p="PassiveTimer.cs" t="Include" />
+        </e>
+        <e p="Tron" t="Include">
+          <e p="ColorConsoleTraceListener.cs" t="Include" />
+          <e p="LogFile.cs" t="Include" />
+          <e p="TraceColor.cs" t="Include" />
+          <e p="TronTrace.cs" t="Include" />
+          <e p="TronTraceListener.cs" t="Include" />
+        </e>
+        <e p="Types" t="Include">
+          <e p="ConsoleColorConverter.cs" t="Include" />
+          <e p="EncodingDetector.cs" t="Include" />
+          <e p="NamingConverter.cs" t="Include" />
+          <e p="ObjectGenerator.cs" t="Include" />
+          <e p="TextEscaping.cs" t="Include" />
+          <e p="UniversalConverter.cs" t="Include" />
+          <e p="ValidatedEnum.cs" t="Include" />
+          <e p="ValidatedGuid.cs" t="Include" />
+          <e p="ValidatedType.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+      </e>
+      <e p="IctBaden.Framework.Test" t="IncludeRecursive">
+        <e p="AppUtils" t="Include">
+          <e p="SystemInfoTest.cs" t="Include" />
+        </e>
+        <e p="Arithmetic" t="Include">
+          <e p="ReverseBitsTests.cs" t="Include" />
+        </e>
+        <e p="CharacterSet" t="Include">
+          <e p="Ucs2CharacterSetTests.cs" t="Include" />
+        </e>
+        <e p="IctBaden.Framework.Test.csproj" t="IncludeRecursive" />
+        <e p="IniFile" t="Include">
+          <e p="ProfileSectionTests.cs" t="Include" />
+          <e p="ProfileTests.cs" t="Include" />
+          <e p="TestObject.cs" t="Include" />
+        </e>
+        <e p="TestCfg.ini" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="IctBaden.Framework.Test.AssemblyInfo.cs" t="Include" />
+              <e p="IctBaden.Framework.Test.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="IctBaden.Framework.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
