@@ -2,7 +2,16 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Net.Http" Condition="'$(TargetFramework)' == 'net46'" />
+    <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net46'" />
+  </ItemGroup>
 
 </Project>

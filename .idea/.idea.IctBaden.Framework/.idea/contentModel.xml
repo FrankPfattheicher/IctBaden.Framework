@@ -47,6 +47,10 @@
         </e>
         <e p="Network" t="Include">
           <e p="NetworkInfo.cs" t="Include" />
+          <e p="SimpleHttpProcessor.cs" t="Include" />
+          <e p="SimpleHttpServer.cs" t="Include" />
+          <e p="SocketCommandClient.cs" t="Include" />
+          <e p="SocketCommandLineServer.cs" t="Include" />
         </e>
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
@@ -100,6 +104,11 @@
           <e p="ProfileSectionTests.cs" t="Include" />
           <e p="ProfileTests.cs" t="Include" />
           <e p="TestObject.cs" t="Include" />
+        </e>
+        <e p="Network" t="Include">
+          <e p="SimpleHttpServerTests.cs" t="Include" />
+          <e p="SocketCmdLineTests.cs" t="Include" />
+          <e p="TestHttpServer.cs" t="Include" />
         </e>
         <e p="TestCfg.ini" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
