@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
 namespace IctBaden.Framework.Types
 {
@@ -11,32 +12,32 @@ namespace IctBaden.Framework.Types
         /// <summary>
         /// Kurzer Name des Typs
         /// </summary>
-        public readonly string ShortName;
+        public string ShortName { get; private set; }
 
         /// <summary>
         /// Vollständiger Name des Typs
         /// </summary>
-        public readonly string FullName;
+        public string FullName { get; private set; }
 
         /// <summary>
         /// Vollständige Typinformation
         /// </summary>
-        public readonly Type Type;
+        public Type Type { get; private set; }
 
         /// <summary>
         /// Gibt an, ob ein Objekt des Typs instanziiert werden kann
         /// </summary>
-        public readonly bool CanInstantiate;
+        public bool CanInstantiate { get; private set; }
 
         /// <summary>
         /// Zeigt an, ob der angegebene Typ gültig ist
         /// </summary>
-        public readonly bool IsValid;
+        public bool IsValid { get; private set; }
 
         /// <summary>
         /// Letzte Meldung eines Ausnahmefehlers
         /// </summary>
-        public readonly string Message;
+        public string Message { get; private set; }
 
         public ValidatedType(string shortName)
         {

@@ -8,6 +8,8 @@
     <Authors>Frank Pfattheicher</Authors>
     <Copyright>(C) 2009-2019 ICT Baden GmbH</Copyright>
     <PackageLicenseUrl>https://github.com/FrankPfattheicher/IctBaden.Framework/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Description>Not really a framework but more a application companion...</Description>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">

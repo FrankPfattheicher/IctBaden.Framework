@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using IctBaden.Framework.Tron;
 using IctBaden.Framework.Types;
 
@@ -33,13 +37,26 @@ namespace IctBaden.Framework.PropertyProvider
 
         public void SetProperties(IPropertyProvider propertyValues)
         {
+            SetProperties(propertyValues, CultureInfo.CurrentCulture);
+        }
+        
+        public void SetProperties(IPropertyProvider propertyValues, IFormatProvider provider)
+        {
             var properties = _type.GetProperties();
             foreach (var property in properties)
             {
                 var value = propertyValues.Get<object>(property.Name);
                 if (value != null)
                 {
-                    value = UniversalConverter.ConvertToType(value, property.PropertyType);
+                    // for array and list properties - split value on ';'s
+                    if (property.PropertyType.IsArray
+                        || (property.PropertyType.IsGenericType 
+                            && property.PropertyType.GenericTypeArguments.Length == 1
+                            && property.PropertyType == typeof(List<>).MakeGenericType(property.PropertyType.GenericTypeArguments)))
+                    {
+                        value = value.ToString().Split(';').ToList();
+                    }
+                    value = UniversalConverter.ConvertToType(value, property.PropertyType, provider);
                     property.SetValue(_targetObject, value, null);
                     TronTrace.TraceInformation($"Set({_type.Name}) {property.Name} = {property.GetValue(_targetObject, null)}");
                 }

@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9eadcf85-c018-4174-9010-08cac1a14e96" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/PropertyProvider/ClassPropertyProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/PropertyProvider/ClassPropertyProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Types/UniversalConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Types/UniversalConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,349 +23,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1501">
-              <caret line="85" column="32" selection-start-line="85" selection-start-column="32" selection-end-line="85" selection-end-column="32" />
-              <folding>
-                <marker date="1557839377304" expanded="true" signature="6:146" ph="..." />
-                <marker date="1557839377304" expanded="true" signature="228:3399" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="291:3397" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="457:567" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="598:680" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="736:1281" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="799:1065" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="883:1051" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="1098:1174" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="1344:1947" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="1407:1688" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="1491:1674" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="1721:1797" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2000:2468" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2063:2268" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2147:2254" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2301:2368" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2525:3110" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2638:2905" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2722:2891" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="2938:3014" ph="{...}" />
-                <marker date="1557839377304" expanded="true" signature="3176:3390" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1007">
-              <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-              <folding>
-                <marker date="1557839552637" expanded="true" signature="6:103" ph="..." />
-                <marker date="1557839552637" expanded="true" signature="253:2047" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="302:2045" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="425:2039" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="508:536" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="617:1689" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="763:1086" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="1151:1571" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="1322:1471" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="1592:1675" ph="{...}" />
-                <marker date="1557839552637" expanded="true" signature="1796:2029" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1862">
-              <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
-              <folding>
-                <marker date="1557839621198" expanded="true" signature="6:150" ph="..." />
-                <marker date="1557839621198" expanded="true" signature="193:4813" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="245:4811" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="428:516" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="547:600" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="655:1512" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="1575:2310" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="2162:2225" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="2381:4804" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="2731:3039" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="3159:3467" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="3717:3864" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="4041:4295" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="4120:4281" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="4402:4543" ph="{...}" />
-                <marker date="1557839621198" expanded="true" signature="4585:4647" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-              <folding>
-                <marker date="1557838209908" expanded="false" signature="6:78" ph="..." />
-                <marker date="1557838209908" expanded="true" signature="122:485" ph="{...}" />
-                <marker date="1557838209908" expanded="true" signature="156:483" ph="{...}" />
-                <marker date="1557838209908" expanded="true" signature="234:477" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-              <folding>
-                <marker date="1556873294686" expanded="false" signature="6:46" ph="..." />
-                <marker date="1556873294686" expanded="true" signature="89:888" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="128:886" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="215:286" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="378:563" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="654:879" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="719:869" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2413">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-              <folding>
-                <marker date="1556873294686" expanded="false" signature="6:96" ph="..." />
-                <marker date="1556873294686" expanded="true" signature="139:6005" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="146:220" ph="/// Summary description for UnitTest1 ... " />
-                <marker date="1556873294686" expanded="true" signature="264:6003" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="348:536" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="454:526" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="567:703" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="621:693" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="766:1038" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="1095:1955" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="1210:1484" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="2010:2803" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="2123:2394" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="2868:3684" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="2983:3254" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="3736:3942" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="4007:4541" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="4594:5354" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="4654:4805" ph="{...}" />
-                <marker date="1556873294686" expanded="true" signature="5409:5996" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2147">
-              <caret line="129" selection-start-line="129" selection-end-line="129" />
-              <folding>
-                <marker date="1557838455689" expanded="false" signature="6:158" ph="..." />
-                <marker date="1557838455689" expanded="true" signature="159:256" ph="/* ReSharper disable UnusedMember.Global ... */" />
-                <marker date="1557838455689" expanded="true" signature="294:7713" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="339:7711" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="985:1005" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="1107:1127" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="1176:1315" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="1352:3008" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="1449:1582" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="1615:1713" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="1892:2867" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="1926:2236" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="2057:2218" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="2279:2592" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="2449:2547" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="2640:2703" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="2740:2853" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="3060:3586" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="3181:3398" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="3442:3470" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="3503:3576" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="3615:4483" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="3641:4311" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="3825:4183" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="4344:4448" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="4512:5172" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="4697:4785" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5051:5162" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5234:5748" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5260:5632" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5339:5419" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5665:5738" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5779:6018" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5805:5901" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="5934:6008" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6053:6257" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6144:6216" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6301:6955" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6327:6838" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6439:6806" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6489:6645" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6687:6784" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="6871:6945" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="7000:7704" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="7260:7384" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="7420:7448" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="7492:7520" ph="{...}" />
-                <marker date="1557838455689" expanded="true" signature="7570:7598" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-              <folding>
-                <marker date="1557839168640" expanded="true" signature="6:126" ph="..." />
-                <marker date="1557839168640" expanded="true" signature="127:271" ph="/* ReSharper disable MemberCanBePrivate.Global ... */" />
-                <marker date="1557839168640" expanded="true" signature="309:7118" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="316:357" ph="///  ... " />
-                <marker date="1557839168640" expanded="true" signature="408:7116" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="841:902" ph="/// Milliseconds ... " />
-                <marker date="1557839168640" expanded="true" signature="1044:1263" ph="{...}" />
-                <marker date="1557839168640" expanded="false" signature="1273:1437" ph="IDisposable Members" />
-                <marker date="1557839168640" expanded="true" signature="1331:1417" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="1468:3406" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="1547:1604" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="1657:1759" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="1776:3231" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="2106:2329" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="2368:2508" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="2971:3167" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="3264:3363" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="3528:4131" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="3665:4121" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="3699:3985" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="3769:3872" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="4022:4107" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="4188:4271" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="4327:4468" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="4516:5320" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="4778:5204" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="5237:5310" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="5365:5823" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="5538:5772" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="5572:5658" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="5692:5758" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="5868:7109" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="5930:7065" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="6027:6871" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="6200:6438" ph="{...}" />
-                <marker date="1557839168640" expanded="true" signature="7015:7051" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2375">
-              <caret line="144" column="13" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
-              <folding>
-                <marker date="1557838567789" expanded="true" signature="92:11449" ph="{...}" />
-                <marker date="1557838567789" expanded="false" signature="105:338" ph="..." />
-                <marker date="1557838567789" expanded="true" signature="380:11447" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="1295:1566" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="1603:3280" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="1707:1840" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="1873:1971" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="2157:3132" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="2191:2501" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="2322:2483" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="2544:2857" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="2714:2812" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="2905:2968" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="3005:3118" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="3332:3859" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="3453:3670" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="3714:3742" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="3775:3848" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="3888:4764" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="3914:4592" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="4105:4464" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="4625:4729" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="4793:5711" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="4985:5073" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="5087:5311" ph="/* Trace.TraceInformation(&quot;SocketCommandLineServer Runner canceled = &quot; + runnerCanceled); ... */" />
-                <marker date="1557838567789" expanded="true" signature="5583:5701" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="5773:6287" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="5799:6171" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="5878:5958" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6204:6277" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6318:6557" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6344:6440" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6473:6547" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6592:6835" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6637:6825" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6692:6776" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6879:7533" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="6905:7416" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="7017:7384" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="7067:7223" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="7265:7362" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="7449:7523" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="7578:11192" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="7908:10684" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="7942:9897" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="8064:8201" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="8248:8376" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="8412:8487" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="8696:9879" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="8815:9857" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="9128:9396" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="9484:9743" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="9568:9713" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="9940:10176" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="10033:10131" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="10227:10340" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="10397:10510" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="10557:10670" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="10700:10824" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="10860:10888" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="10932:10960" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="11010:11038" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="11243:11441" ph="{...}" />
-                <marker date="1557838567789" expanded="true" signature="11342:11417" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>[TestMethod]</find>
       <find>60000</find>
+      <find>MakeGenericType</find>
     </findStrings>
     <replaceStrings>
       <replace>[Fact]</replace>
@@ -364,17 +39,36 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpProcessor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/2b/d3824f65/Convert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/83/1100d03f/CultureInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/1e/59096957/RuntimePropertyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/PropertyProvider/ClassPropertyProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/1c/bd712047/TestInvoker`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/DF08C970-064F-4C55-92E8-F511212DF2AC/f2/49a4b1e6/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/35B14027-6B2F-460C-88E9-BBFD32CEFF37/68/d957079f/IList.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKey.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileSection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKeyCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/UniversalConverter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/9e/49823cda/AppDomain.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -385,24 +79,35 @@
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" />
-        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/PropertyProvider/ClassPropertyProvider.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Types/UniversalConverter.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="260" />
-    <option name="y" value="41" />
-    <option name="width" value="2318" />
-    <option name="height" value="1428" />
+    <option name="x" value="498" />
+    <option name="y" value="43" />
+    <option name="width" value="3187" />
+    <option name="height" value="2002" />
   </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <autoscrollFromSource SolutionExplorer="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="FileSystemExplorer" />
       <pane id="AssemblyExplorer" />
       <pane id="SolutionExplorer">
         <subPane>
@@ -420,14 +125,13 @@
               <item name="" type="784c90a0:SolutionExplorerRootNode" />
               <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
               <item name="IctBaden.Framework.Test" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="IniFile" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Network" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
         </subPane>
         <option name="show-all-files" value="false" />
       </pane>
-      <pane id="FileSystemExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -472,11 +176,12 @@
       <workItem from="1557835948448" duration="3937000" />
       <workItem from="1558453293011" duration="540000" />
       <workItem from="1558456450493" duration="512000" />
+      <workItem from="1558463299207" duration="9604000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5471000" />
+    <option name="totallyTimeSpent" value="15075000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -488,9 +193,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="260" y="41" width="2318" height="1428" extended-state="0" />
+    <frame x="285" y="25" width="1821" height="1144" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19982395" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14577425" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -498,7 +203,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32943013" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3978328" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3974855" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -506,10 +211,10 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info active="true" anchor="bottom" id="Unit Tests" order="11" visible="true" weight="0.33359134" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3291829" />
+      <window_info active="true" anchor="bottom" id="Unit Tests" order="11" visible="true" weight="0.29400387" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3288201" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="14" weight="0.32894737" />
+      <window_info anchor="bottom" id="Build" order="14" weight="0.3288201" />
       <window_info anchor="bottom" id="Performance Profiler" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -534,30 +239,17 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs</url>
-          <line>18</line>
-          <properties documentPath="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" initialLine="17">
+          <url>file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs</url>
+          <line>80</line>
+          <properties documentPath="$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" initialLine="80">
             <startOffsets>
-              <option value="480" />
+              <option value="2547" />
             </startOffsets>
             <endOffsets>
-              <option value="524" />
+              <option value="2601" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs</url>
-          <line>31</line>
-          <properties documentPath="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" initialLine="30">
-            <startOffsets>
-              <option value="759" />
-            </startOffsets>
-            <endOffsets>
-              <option value="782" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -630,318 +322,731 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1501">
-          <caret line="85" column="32" selection-start-line="85" selection-start-column="32" selection-end-line="85" selection-end-column="32" />
-          <folding>
-            <marker date="1557839377304" expanded="true" signature="6:146" ph="..." />
-            <marker date="1557839377304" expanded="true" signature="228:3399" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="291:3397" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="457:567" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="598:680" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="736:1281" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="799:1065" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="883:1051" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="1098:1174" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="1344:1947" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="1407:1688" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="1491:1674" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="1721:1797" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2000:2468" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2063:2268" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2147:2254" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2301:2368" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2525:3110" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2638:2905" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2722:2891" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="2938:3014" ph="{...}" />
-            <marker date="1557839377304" expanded="true" signature="3176:3390" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
+        <state relative-caret-position="675">
           <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
           <folding>
-            <marker date="1557839552637" expanded="true" signature="6:103" ph="..." />
-            <marker date="1557839552637" expanded="true" signature="253:2047" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="302:2045" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="425:2039" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="508:536" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="617:1689" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="763:1086" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="1151:1571" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="1322:1471" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="1592:1675" ph="{...}" />
-            <marker date="1557839552637" expanded="true" signature="1796:2029" ph="{...}" />
+            <marker date="1558463194657" expanded="false" signature="6:103" ph="..." />
+            <marker date="1558463194657" expanded="true" signature="253:2047" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="302:2045" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="425:2039" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="508:536" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="617:1689" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="763:1086" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="1151:1571" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="1322:1471" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="1592:1675" ph="{...}" />
+            <marker date="1558463194657" expanded="true" signature="1796:2029" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1862">
+        <state relative-caret-position="1395">
           <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
           <folding>
-            <marker date="1557839621198" expanded="true" signature="6:150" ph="..." />
-            <marker date="1557839621198" expanded="true" signature="193:4813" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="245:4811" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="428:516" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="547:600" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="655:1512" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="1575:2310" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="2162:2225" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="2381:4804" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="2731:3039" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="3159:3467" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="3717:3864" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="4041:4295" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="4120:4281" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="4402:4543" ph="{...}" />
-            <marker date="1557839621198" expanded="true" signature="4585:4647" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding>
-            <marker date="1557838209908" expanded="false" signature="6:78" ph="..." />
-            <marker date="1557838209908" expanded="true" signature="122:485" ph="{...}" />
-            <marker date="1557838209908" expanded="true" signature="156:483" ph="{...}" />
-            <marker date="1557838209908" expanded="true" signature="234:477" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <marker date="1556873294686" expanded="false" signature="6:46" ph="..." />
-            <marker date="1556873294686" expanded="true" signature="89:888" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="128:886" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="215:286" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="378:563" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="654:879" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="719:869" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2147">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
-          <folding>
-            <marker date="1557838455689" expanded="false" signature="6:158" ph="..." />
-            <marker date="1557838455689" expanded="true" signature="159:256" ph="/* ReSharper disable UnusedMember.Global ... */" />
-            <marker date="1557838455689" expanded="true" signature="294:7713" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="339:7711" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="985:1005" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="1107:1127" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="1176:1315" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="1352:3008" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="1449:1582" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="1615:1713" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="1892:2867" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="1926:2236" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="2057:2218" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="2279:2592" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="2449:2547" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="2640:2703" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="2740:2853" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="3060:3586" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="3181:3398" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="3442:3470" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="3503:3576" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="3615:4483" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="3641:4311" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="3825:4183" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="4344:4448" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="4512:5172" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="4697:4785" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5051:5162" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5234:5748" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5260:5632" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5339:5419" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5665:5738" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5779:6018" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5805:5901" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="5934:6008" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6053:6257" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6144:6216" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6301:6955" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6327:6838" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6439:6806" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6489:6645" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6687:6784" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="6871:6945" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="7000:7704" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="7260:7384" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="7420:7448" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="7492:7520" ph="{...}" />
-            <marker date="1557838455689" expanded="true" signature="7570:7598" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-          <folding>
-            <marker date="1557839168640" expanded="true" signature="6:126" ph="..." />
-            <marker date="1557839168640" expanded="true" signature="127:271" ph="/* ReSharper disable MemberCanBePrivate.Global ... */" />
-            <marker date="1557839168640" expanded="true" signature="309:7118" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="316:357" ph="///  ... " />
-            <marker date="1557839168640" expanded="true" signature="408:7116" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="841:902" ph="/// Milliseconds ... " />
-            <marker date="1557839168640" expanded="true" signature="1044:1263" ph="{...}" />
-            <marker date="1557839168640" expanded="false" signature="1273:1437" ph="IDisposable Members" />
-            <marker date="1557839168640" expanded="true" signature="1331:1417" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="1468:3406" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="1547:1604" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="1657:1759" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="1776:3231" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="2106:2329" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="2368:2508" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="2971:3167" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="3264:3363" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="3528:4131" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="3665:4121" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="3699:3985" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="3769:3872" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="4022:4107" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="4188:4271" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="4327:4468" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="4516:5320" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="4778:5204" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="5237:5310" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="5365:5823" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="5538:5772" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="5572:5658" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="5692:5758" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="5868:7109" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="5930:7065" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="6027:6871" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="6200:6438" ph="{...}" />
-            <marker date="1557839168640" expanded="true" signature="7015:7051" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2375">
-          <caret line="144" column="13" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
-          <folding>
-            <marker date="1557838567789" expanded="true" signature="92:11449" ph="{...}" />
-            <marker date="1557838567789" expanded="false" signature="105:338" ph="..." />
-            <marker date="1557838567789" expanded="true" signature="380:11447" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="1295:1566" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="1603:3280" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="1707:1840" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="1873:1971" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="2157:3132" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="2191:2501" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="2322:2483" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="2544:2857" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="2714:2812" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="2905:2968" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="3005:3118" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="3332:3859" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="3453:3670" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="3714:3742" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="3775:3848" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="3888:4764" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="3914:4592" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="4105:4464" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="4625:4729" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="4793:5711" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="4985:5073" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="5087:5311" ph="/* Trace.TraceInformation(&quot;SocketCommandLineServer Runner canceled = &quot; + runnerCanceled); ... */" />
-            <marker date="1557838567789" expanded="true" signature="5583:5701" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="5773:6287" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="5799:6171" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="5878:5958" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6204:6277" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6318:6557" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6344:6440" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6473:6547" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6592:6835" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6637:6825" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6692:6776" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6879:7533" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="6905:7416" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="7017:7384" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="7067:7223" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="7265:7362" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="7449:7523" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="7578:11192" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="7908:10684" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="7942:9897" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="8064:8201" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="8248:8376" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="8412:8487" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="8696:9879" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="8815:9857" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="9128:9396" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="9484:9743" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="9568:9713" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="9940:10176" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="10033:10131" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="10227:10340" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="10397:10510" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="10557:10670" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="10700:10824" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="10860:10888" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="10932:10960" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="11010:11038" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="11243:11441" ph="{...}" />
-            <marker date="1557838567789" expanded="true" signature="11342:11417" ph="{...}" />
+            <marker date="1558463194655" expanded="false" signature="6:150" ph="..." />
+            <marker date="1558463194655" expanded="true" signature="193:4813" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="245:4811" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="428:516" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="547:600" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="655:1512" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="1575:2310" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="2162:2225" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="2381:4804" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="2731:3039" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="3159:3467" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="3717:3864" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="4041:4295" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="4120:4281" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="4402:4543" ph="{...}" />
+            <marker date="1558463194655" expanded="true" signature="4585:4647" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
+        <state relative-caret-position="330">
           <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <marker date="1558463194648" expanded="false" signature="6:78" ph="..." />
+            <marker date="1558463194648" expanded="true" signature="122:485" ph="{...}" />
+            <marker date="1558463194648" expanded="true" signature="156:483" ph="{...}" />
+            <marker date="1558463194648" expanded="true" signature="234:477" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <folding>
+            <marker date="1558463194687" expanded="false" signature="6:126" ph="..." />
+            <marker date="1558463194687" expanded="true" signature="127:271" ph="/* ReSharper disable MemberCanBePrivate.Global ... */" />
+            <marker date="1558463194687" expanded="true" signature="309:7118" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="316:357" ph="///  ... " />
+            <marker date="1558463194687" expanded="true" signature="408:7116" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="841:902" ph="/// Milliseconds ... " />
+            <marker date="1558463194687" expanded="true" signature="1044:1263" ph="{...}" />
+            <marker date="1558463194687" expanded="false" signature="1273:1437" ph="IDisposable Members" />
+            <marker date="1558463194687" expanded="true" signature="1331:1417" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="1468:3406" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="1547:1604" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="1657:1759" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="1776:3231" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="2106:2329" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="2368:2508" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="2971:3167" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="3264:3363" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="3528:4131" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="3665:4121" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="3699:3985" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="3769:3872" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="4022:4107" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="4188:4271" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="4327:4468" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="4516:5320" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="4778:5204" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="5237:5310" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="5365:5823" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="5538:5772" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="5572:5658" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="5692:5758" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="5868:7109" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="5930:7065" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="6027:6871" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="6200:6438" ph="{...}" />
+            <marker date="1558463194687" expanded="true" signature="7015:7051" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="144" column="13" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
+          <folding>
+            <marker date="1558463194688" expanded="true" signature="92:11449" ph="{...}" />
+            <marker date="1558463194688" expanded="false" signature="105:338" ph="..." />
+            <marker date="1558463194688" expanded="true" signature="380:11447" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="1295:1566" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="1603:3280" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="1707:1840" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="1873:1971" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="2157:3132" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="2191:2501" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="2322:2483" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="2544:2857" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="2714:2812" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="2905:2968" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="3005:3118" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="3332:3859" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="3453:3670" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="3714:3742" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="3775:3848" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="3888:4764" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="3914:4592" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="4105:4464" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="4625:4729" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="4793:5711" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="4985:5073" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="5087:5311" ph="/* Trace.TraceInformation(&quot;SocketCommandLineServer Runner canceled = &quot; + runnerCanceled); ... */" />
+            <marker date="1558463194688" expanded="true" signature="5583:5701" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="5773:6287" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="5799:6171" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="5878:5958" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6204:6277" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6318:6557" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6344:6440" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6473:6547" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6592:6835" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6637:6825" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6692:6776" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6879:7533" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="6905:7416" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="7017:7384" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="7067:7223" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="7265:7362" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="7449:7523" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="7578:11192" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="7908:10684" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="7942:9897" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="8064:8201" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="8248:8376" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="8412:8487" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="8696:9879" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="8815:9857" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="9128:9396" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="9484:9743" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="9568:9713" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="9940:10176" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="10033:10131" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="10227:10340" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="10397:10510" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="10557:10670" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="10700:10824" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="10860:10888" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="10932:10960" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="11010:11038" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="11243:11441" ph="{...}" />
+            <marker date="1558463194688" expanded="true" signature="11342:11417" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
+          <folding>
+            <marker date="1558463194686" expanded="false" signature="6:158" ph="..." />
+            <marker date="1558463194686" expanded="true" signature="159:256" ph="/* ReSharper disable UnusedMember.Global ... */" />
+            <marker date="1558463194686" expanded="true" signature="294:7713" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="339:7711" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="985:1005" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="1107:1127" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="1176:1315" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="1352:3008" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="1449:1582" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="1615:1713" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="1892:2867" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="1926:2236" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="2057:2218" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="2279:2592" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="2449:2547" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="2640:2703" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="2740:2853" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="3060:3586" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="3181:3398" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="3442:3470" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="3503:3576" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="3615:4483" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="3641:4311" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="3825:4183" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="4344:4448" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="4512:5172" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="4697:4785" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5051:5162" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5234:5748" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5260:5632" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5339:5419" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5665:5738" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5779:6018" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5805:5901" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="5934:6008" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6053:6257" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6144:6216" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6301:6955" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6327:6838" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6439:6806" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6489:6645" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6687:6784" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="6871:6945" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="7000:7704" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="7260:7384" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="7420:7448" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="7492:7520" ph="{...}" />
+            <marker date="1558463194686" expanded="true" signature="7570:7598" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <marker date="1558463194652" expanded="false" signature="6:46" ph="..." />
+            <marker date="1558463194652" expanded="true" signature="89:888" ph="{...}" />
+            <marker date="1558463194652" expanded="true" signature="128:886" ph="{...}" />
+            <marker date="1558463194652" expanded="true" signature="215:286" ph="{...}" />
+            <marker date="1558463194652" expanded="true" signature="378:563" ph="{...}" />
+            <marker date="1558463194652" expanded="true" signature="654:879" ph="{...}" />
+            <marker date="1558463194652" expanded="true" signature="719:869" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2413">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="420">
+          <caret line="32" selection-start-line="13" selection-end-line="32" />
           <folding>
-            <marker date="1556873294686" expanded="false" signature="6:96" ph="..." />
-            <marker date="1556873294686" expanded="true" signature="139:6005" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="146:220" ph="/// Summary description for UnitTest1 ... " />
-            <marker date="1556873294686" expanded="true" signature="264:6003" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="348:536" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="454:526" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="567:703" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="621:693" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="766:1038" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="1095:1955" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="1210:1484" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="2010:2803" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="2123:2394" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="2868:3684" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="2983:3254" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="3736:3942" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="4007:4541" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="4594:5354" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="4654:4805" ph="{...}" />
-            <marker date="1556873294686" expanded="true" signature="5409:5996" ph="{...}" />
+            <marker date="1558463194653" expanded="false" signature="6:96" ph="..." />
+            <marker date="1558463194653" expanded="true" signature="139:6005" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="146:220" ph="/// Summary description for UnitTest1 ... " />
+            <marker date="1558463194653" expanded="true" signature="264:6003" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="348:536" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="454:526" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="567:703" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="621:693" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="766:1038" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="1095:1955" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="1210:1484" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="2010:2803" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="2123:2394" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="2868:3684" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="2983:3254" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="3736:3942" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="4007:4541" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="4594:5354" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="4654:4805" ph="{...}" />
+            <marker date="1558463194653" expanded="true" signature="5409:5996" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/DF08C970-064F-4C55-92E8-F511212DF2AC/f2/49a4b1e6/Enumerable.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="125" column="10" selection-start-line="125" selection-start-column="10" selection-end-line="125" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKeyCollection.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding>
+            <marker date="1558463194681" expanded="true" signature="51:372" ph="{...}" />
+            <marker date="1558463194681" expanded="false" signature="64:114" ph="..." />
+            <marker date="1558463194681" expanded="true" signature="172:370" ph="{...}" />
+            <marker date="1558463194681" expanded="true" signature="219:364" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKey.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <marker date="1558463194679" expanded="true" signature="65:3655" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="95:3653" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="249:350" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="393:455" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="542:603" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="638:1222" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="694:1212" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="743:892" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="913:1165" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="1257:1532" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="1313:1522" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="1563:2002" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="1589:1756" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="1772:1992" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="2091:2573" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="2117:2294" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="2310:2563" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="2604:3080" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="2630:2840" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="2708:2794" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="2856:3070" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="3193:3259" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="3366:3453" ph="{...}" />
+            <marker date="1558463194679" expanded="true" signature="3560:3647" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileSection.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="91" column="19" lean-forward="true" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="19" />
+          <folding>
+            <marker date="1558463194682" expanded="false" signature="6:56" ph="..." />
+            <marker date="1558463194682" expanded="true" signature="57:154" ph="/* ReSharper disable AutoPropertyCanBeMadeGetOnly.Local ... */" />
+            <marker date="1558463194682" expanded="true" signature="192:3426" ph="{...}" />
+            <marker date="1558463194682" expanded="false" signature="205:302" ph="..." />
+            <marker date="1558463194682" expanded="true" signature="355:3424" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="632:762" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="805:857" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="984:1255" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1010:1245" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1111:1201" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1299:1709" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1325:1699" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1379:1564" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1739:1811" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1841:1889" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="1899:2739" ph="IPropertyProvider Members" />
+            <marker date="1558463194682" expanded="true" signature="1968:2072" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="2109:2170" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="2223:2404" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="2456:2522" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="2562:2618" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="2660:2719" ph="{...}" />
+            <marker date="1558463194682" expanded="false" signature="2750:3417" ph="IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;" />
+            <marker date="1558463194682" expanded="true" signature="2873:3292" ph="{...}" />
+            <marker date="1558463194682" expanded="true" signature="3341:3397" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="46" selection-start-line="10" selection-end-line="46" />
+          <folding>
+            <marker date="1558464756818" expanded="true" signature="6:96" ph="..." />
+            <marker date="1558464756818" expanded="true" signature="139:2623" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="188:2621" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="275:463" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="381:453" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="494:630" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="548:620" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="695:1262" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="848:1079" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="1328:1898" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="1483:1714" ph="{...}" />
+            <marker date="1558464756818" expanded="true" signature="1900:2613" ph="/* [Fact] ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/2b/d3824f65/Convert.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="494" column="55" lean-forward="true" selection-start-line="494" selection-start-column="55" selection-end-line="494" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/35B14027-6B2F-460C-88E9-BBFD32CEFF37/68/d957079f/IList.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/1e/59096957/RuntimePropertyInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="249" column="8" selection-start-line="249" selection-start-column="8" selection-end-line="249" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/1c/bd712047/TestInvoker`1.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="288" column="7" lean-forward="true" selection-start-line="288" selection-start-column="7" selection-end-line="288" selection-end-column="7" />
+          <folding>
+            <marker date="1558464091372" expanded="true" signature="0:359" ph="/* Decompiled with JetBrains decompiler ... */" />
+            <marker date="1558464091372" expanded="false" signature="367:521" ph="..." />
+            <marker date="1558464091372" expanded="true" signature="542:14140" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="547:968" ph="/// A base class that provides default behavior to invoke a test method. This includes ... " />
+            <marker date="1558464091372" expanded="true" signature="1043:14138" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="1113:1993" ph="/// Initializes a new instance of the &lt;see cref=&quot;T:Xunit.Sdk.TestInvoker`1&quot; /&gt; class. ... " />
+            <marker date="1558464091372" expanded="true" signature="2285:2827" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="2833:2952" ph="/// Gets or sets the exception aggregator used to run code and collect exceptions. ... " />
+            <marker date="1558464091372" expanded="true" signature="3017:3135" ph="/// Gets or sets the task cancellation token source, used to cancel the test run. ... " />
+            <marker date="1558464091372" expanded="true" signature="3217:3330" ph="/// Gets or sets the constructor arguments used to construct the test class. ... " />
+            <marker date="1558464091372" expanded="true" signature="3492:3568" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="3508:3562" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="3892:3977" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="3908:3971" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="3983:4097" ph="/// Gets or sets the runtime type of the class that contains the test method. ... " />
+            <marker date="1558464091372" expanded="true" signature="4146:4256" ph="/// Gets or sets the runtime method of the method that contains the test. ... " />
+            <marker date="1558464091372" expanded="true" signature="4312:4431" ph="/// Gets or sets the arguments to pass to the test method when it's being invoked. ... " />
+            <marker date="1558464091372" expanded="true" signature="4494:4589" ph="/// Gets or sets the object which measures execution time. ... " />
+            <marker date="1558464091372" expanded="true" signature="4668:5448" ph="/// Creates the test class, unless the test method is static or there have already been errors. Note that ... " />
+            <marker date="1558464091372" expanded="true" signature="5495:5773" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="5779:6026" ph="/// This method is called just after the test method has finished executing. ... " />
+            <marker date="1558464091372" expanded="true" signature="6083:6131" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="6137:6373" ph="/// This method is called just before the test method is invoked. ... " />
+            <marker date="1558464091372" expanded="true" signature="6431:6479" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="6485:6849" ph="/// This method calls the test method via reflection. This is an available override point ... " />
+            <marker date="1558464091372" expanded="true" signature="6919:7013" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="7019:7433" ph="/// Given an object, will determine if it is an instance of &lt;see cref=&quot;T:System.Threading.Tasks.Task&quot; /&gt; (in whic ... " />
+            <marker date="1558464091372" expanded="true" signature="7486:8344" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="8279:8328" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="8350:8605" ph="/// Creates the test class (if necessary), and invokes the test method. ... " />
+            <marker date="1558464091372" expanded="true" signature="8641:10186" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="8736:10177" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="8864:10128" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="9018:9884" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="9281:9684" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="9483:9606" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="9902:10118" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="10192:10841" ph="/// Invokes the test method on the given test class instance. This method sets up support for &quot;async void&quot; ... " />
+            <marker date="1558464091372" expanded="true" signature="10931:13947" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="11025:13806" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="11233:11340" ph="/* ISSUE: reference to a compiler-generated field ... */" />
+            <marker date="1558464091372" expanded="true" signature="11511:13793" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="11523:11632" ph="/* ISSUE: reference to a compiler-generated field ... */" />
+            <marker date="1558464091372" expanded="true" signature="11757:11986" ph="/* ISSUE: reference to a compiler-generated field ... */" />
+            <marker date="1558464091372" expanded="true" signature="12209:12749" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="12234:12345" ph="/* ISSUE: reference to a compiler-generated field ... */" />
+            <marker date="1558464091372" expanded="true" signature="12764:13783" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="12789:12900" ph="/* ISSUE: reference to a compiler-generated field ... */" />
+            <marker date="1558464091372" expanded="true" signature="13107:13376" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="13393:13771" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="13554:13667" ph="/* ISSUE: reference to a compiler-generated field ... */" />
+            <marker date="1558464091372" expanded="true" signature="13820:13910" ph="{...}" />
+            <marker date="1558464091372" expanded="true" signature="14057:14134" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="46" column="59" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
+          <folding>
+            <marker date="1558466247700" expanded="true" signature="6:84" ph="..." />
+            <marker date="1558466247700" expanded="true" signature="122:1721" ph="{...}" />
+            <marker date="1558466247700" expanded="true" signature="129:205" ph="/// Deserializes classes from INI file. ... " />
+            <marker date="1558466247700" expanded="true" signature="241:1719" ph="{...}" />
+            <marker date="1558466247700" expanded="true" signature="364:384" ph="{...}" />
+            <marker date="1558466247700" expanded="true" signature="444:498" ph="{...}" />
+            <marker date="1558466247700" expanded="true" signature="516:822" ph="/// Loads all properties of the target object ... " />
+            <marker date="1558466247700" expanded="true" signature="890:1014" ph="{...}" />
+            <marker date="1558466247700" expanded="true" signature="1024:1420" ph="/// Loads all properties of the target object ... " />
+            <marker date="1558466247700" expanded="true" signature="1508:1712" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="46" selection-start-line="44" selection-end-line="46" />
+          <folding>
+            <marker date="1558466379457" expanded="true" signature="6:158" ph="..." />
+            <marker date="1558466379457" expanded="true" signature="201:2740" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="258:2738" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="288:750" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="848:1036" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="954:1026" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="1067:1203" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="1121:1193" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="1275:2732" ph="{...}" />
+            <marker date="1558466379457" expanded="true" signature="1390:1967" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/PropertyProvider/ClassPropertyProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+          <folding>
+            <marker date="1558469806918" expanded="true" signature="6:183" ph="..." />
+            <marker date="1558469806918" expanded="true" signature="230:2439" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="321:2437" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="470:576" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="620:1052" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="776:1014" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="1121:1212" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="1315:2431" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="1426:2421" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="1546:2407" ph="{...}" />
+            <marker date="1558469806918" expanded="true" signature="1977:2091" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/9e/49823cda/AppDomain.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="120" column="6" selection-start-line="120" selection-start-column="6" selection-end-line="120" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C43E8601-FD84-4F10-B809-6918FE95DD59/83/1100d03f/CultureInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="870" column="8" selection-start-line="870" selection-start-column="8" selection-end-line="870" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+          <folding>
+            <marker date="1558471211377" expanded="true" signature="0:96" ph="/* ReSharper disable UnusedMember.Global ... */" />
+            <marker date="1558471211377" expanded="true" signature="131:3158" ph="{...}" />
+            <marker date="1558471211377" expanded="false" signature="144:174" ph="..." />
+            <marker date="1558471211377" expanded="true" signature="180:313" ph="/// Ermöglicht die einfache Konvertierung zwischen enum- / string- / und numerischer Darstellung ... " />
+            <marker date="1558471211377" expanded="true" signature="421:3156" ph="{...}" />
+            <marker date="1558471211377" expanded="true" signature="436:528" ph="/// Zeigt an, ob der angegebene Wert gültig ist ... " />
+            <marker date="1558471211377" expanded="true" signature="588:695" ph="/// Zeigt an, ob ein Wert vorhanden ist (nicht zwingend valid) ... " />
+            <marker date="1558471211377" expanded="true" signature="756:814" ph="/// enum-Wert ... " />
+            <marker date="1558471211377" expanded="true" signature="879:944" ph="/// Numerischer Wert ... " />
+            <marker date="1558471211377" expanded="true" signature="1004:1074" ph="/// String-Repräsentation ... " />
+            <marker date="1558471211377" expanded="true" signature="1134:1264" ph="/// Constructor with automatic type inference ... " />
+            <marker date="1558471211377" expanded="true" signature="1326:1346" ph="{...}" />
+            <marker date="1558471211377" expanded="true" signature="1356:1592" ph="/// Constructor with automatic type inference and optional case handling ... " />
+            <marker date="1558471211377" expanded="true" signature="1651:3149" ph="{...}" />
+            <marker date="1558471211377" expanded="true" signature="1718:1941" ph="{...}" />
+            <marker date="1558471211377" expanded="true" signature="2007:2102" ph="{...}" />
+            <marker date="1558471211377" expanded="true" signature="2142:2584" ph="{...}" />
+            <marker date="1558471211377" expanded="true" signature="2396:2570" ph="{...}" />
+            <marker date="1558471211377" expanded="true" signature="2926:3109" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+          <folding>
+            <marker date="1558470575734" expanded="true" signature="6:97" ph="..." />
+            <marker date="1558470575734" expanded="true" signature="138:2424" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="172:2422" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="200:308" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="412:599" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="685:1232" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="1323:1538" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="1621:1840" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="1922:2188" ph="{...}" />
+            <marker date="1558470575734" expanded="true" signature="2281:2398" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Types/UniversalConverter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <marker date="1558471357503" expanded="false" signature="6:183" ph="..." />
+            <marker date="1558471357503" expanded="true" signature="184:271" ph="/* ReSharper disable UnusedMember.Global ... */" />
+            <marker date="1558471357503" expanded="true" signature="307:8427" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="352:8425" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="409:506" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="581:682" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="782:5490" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="1433:1520" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="1937:2024" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="2088:2858" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="2394:2844" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="2503:2826" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="2676:2804" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="3104:3731" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="3371:3594" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="3446:3576" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="3615:3688" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="3828:4653" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="4075:4298" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="4150:4280" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="4319:4392" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="4522:4608" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="4708:5024" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="4871:5010" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5054:5108" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5162:5262" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5292:5346" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5542:5611" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5679:6892" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5705:6306" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5789:5881" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="5951:6228" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="6342:6743" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="6424:6729" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="6784:6849" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="6950:8418" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="7003:7070" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="7387:7592" ph="{...}" />
+            <marker date="1558471357503" expanded="true" signature="7863:8373" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+          <folding>
+            <marker date="1558471357488" expanded="false" signature="6:83" ph="..." />
+            <marker date="1558471357488" expanded="true" signature="84:180" ph="/* ReSharper disable UnusedMember.Global ... */" />
+            <marker date="1558471357488" expanded="true" signature="216:2782" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="249:2780" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="264:333" ph="/// Kurzer Name des Typs ... " />
+            <marker date="1558471357488" expanded="true" signature="397:473" ph="/// Vollständiger Name des Typs ... " />
+            <marker date="1558471357488" expanded="true" signature="536:612" ph="/// Vollständige Typinformation ... " />
+            <marker date="1558471357488" expanded="true" signature="669:774" ph="/// Gibt an, ob ein Objekt des Typs instanziiert werden kann ... " />
+            <marker date="1558471357488" expanded="true" signature="841:932" ph="/// Zeigt an, ob der angegebene Typ gültig ist ... " />
+            <marker date="1558471357488" expanded="true" signature="992:1077" ph="/// Letzte Meldung eines Ausnahmefehlers ... " />
+            <marker date="1558471357488" expanded="true" signature="1177:2088" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="1238:1553" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="1340:1539" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="1604:1715" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="1761:1872" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="1905:2039" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="2149:2663" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="2278:2628" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="2312:2526" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="2565:2614" ph="{...}" />
+            <marker date="1558471357488" expanded="true" signature="2703:2774" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
+          <folding>
+            <marker date="1558471414591" expanded="true" signature="0:96" ph="/* ReSharper disable UnusedMember.Global ... */" />
+            <marker date="1558471414591" expanded="true" signature="131:2082" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="183:2080" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="198:290" ph="/// Zeigt an, ob der angegebene Wert gültig ist ... " />
+            <marker date="1558471414591" expanded="true" signature="350:408" ph="/// Guid-Wert ... " />
+            <marker date="1558471414591" expanded="true" signature="467:574" ph="/// Zeigt an, ob ein Wert vorhanden ist (nicht zwingend valid) ... " />
+            <marker date="1558471414591" expanded="true" signature="636:732" ph="/// Zeigt an, ob es sich um eine Empty Guid handelt ... " />
+            <marker date="1558471414591" expanded="true" signature="797:867" ph="/// String-Repräsentation ... " />
+            <marker date="1558471414591" expanded="true" signature="927:1058" ph="/// Konstruktor mit automatischer Typerkennung ... " />
+            <marker date="1558471414591" expanded="true" signature="1100:2073" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="1140:1296" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="1332:1594" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="1480:1556" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="1680:1741" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="1798:2034" ph="{...}" />
+            <marker date="1558471414591" expanded="true" signature="1919:1995" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="126" column="68" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
+          <folding>
+            <marker date="1558472886931" expanded="false" signature="6:198" ph="..." />
+            <marker date="1558472886931" expanded="true" signature="281:3591" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="344:3589" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="606:766" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="797:879" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="935:1480" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="998:1264" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="1082:1250" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="1297:1373" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="1543:2146" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="1606:1887" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="1690:1873" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="1920:1996" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="2199:2667" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="2262:2467" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="2346:2453" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="2500:2567" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="2724:3309" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="2837:3104" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="2921:3090" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="3137:3213" ph="{...}" />
+            <marker date="1558472886931" expanded="true" signature="3375:3582" ph="{...}" />
           </folding>
         </state>
       </provider>

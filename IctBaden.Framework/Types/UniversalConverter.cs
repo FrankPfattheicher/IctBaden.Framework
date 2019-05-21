@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Framework.Types
 {
@@ -14,6 +18,10 @@ namespace IctBaden.Framework.Types
         }
 
         public static object ConvertToType(object value, Type targetType)
+        {
+            return ConvertToType(value, targetType, CultureInfo.CurrentCulture);
+        }
+        public static object ConvertToType(object value, Type targetType, IFormatProvider provider)
         {
             if (value == null) return null;
 
@@ -62,6 +70,52 @@ namespace IctBaden.Framework.Types
                     }
                 }
             }
+            
+            // handle List<T>
+            if (targetType.IsGenericType 
+                && targetType.GenericTypeArguments.Length == 1
+                && targetType == typeof(List<>).MakeGenericType(targetType.GenericTypeArguments))
+            {
+                var elementType = targetType.GenericTypeArguments[0];
+                var list  = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(targetType.GenericTypeArguments));
+                if(value is IEnumerable enumerableValue)
+                {
+                    foreach (var val in enumerableValue)
+                    {
+                        list.Add(UniversalConverter.ConvertToType(val, elementType));
+                    }
+                }
+                else
+                {
+                    list.Add(value);
+                }
+                return list;
+            }
+            
+            // handle single dimensional arrays
+            if (targetType.IsArray)
+            {
+                var elementType = targetType.GetElementType();
+                var list  = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(new[]{elementType}));
+                if(value is IEnumerable enumerableValue)
+                {
+                    foreach (var val in enumerableValue)
+                    {
+                        list.Add(UniversalConverter.ConvertToType(val, elementType));
+                    }
+                }
+                else
+                {
+                    list.Add(value);
+                }
+                var array = Array.CreateInstance(elementType, list.Count);
+                for(var ix = 0; ix < list.Count; ix++)
+                {
+                    array.SetValue(list[ix], ix);
+                }
+
+                return array;
+            }
 
             // check for Parse method
             try
@@ -81,7 +135,7 @@ namespace IctBaden.Framework.Types
             // Use default converter
             try
             {
-                return Convert.ChangeType(value, targetType);
+                return Convert.ChangeType(value, targetType, provider);
             }
             catch (Exception)
             {

@@ -1,21 +1,26 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using IctBaden.Framework.Network;
 using Xunit;
+using Xunit.Abstractions;
+
 // ReSharper disable StringLiteralTypo
 
 namespace IctBaden.Framework.Test.Network
 {
     public partial class SimpleHttpServerTests : IDisposable
     {
+        private readonly ITestOutputHelper _testOutputHelper;
         private int _testPort = NetworkInfo.GetFreeLocalTcpPort();
         private readonly TestHttpServer _httpServer;
 
-        public SimpleHttpServerTests()
+        public SimpleHttpServerTests(ITestOutputHelper testOutputHelper)
         {
+            _testOutputHelper = testOutputHelper;
             _httpServer = new TestHttpServer(_testPort);
             _httpServer.Start();
         }
@@ -118,10 +123,10 @@ namespace IctBaden.Framework.Test.Network
         [Fact]
         public void MultipleParallelGetRequests()
         {
-            var requests = Enumerable.Range(1, 100)
+            var requests = Enumerable.Range(1, 10)
                 .Select(ix => Task.Run(() => { GetRequestSuccess(); }))
-                .ToList();
-            Task.WhenAll(requests).Wait();
+                .ToArray();
+            Task.WaitAll(requests);
         }
 
     }

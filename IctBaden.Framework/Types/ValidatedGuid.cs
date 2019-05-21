@@ -1,4 +1,5 @@
 ﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 namespace IctBaden.Framework.Types
 {
     using System;
@@ -8,25 +9,25 @@ namespace IctBaden.Framework.Types
         /// <summary>
         /// Zeigt an, ob der angegebene Wert gültig ist
         /// </summary>
-        public readonly bool IsValid;
+        public bool IsValid { get; private set; }
 
         /// <summary>
         /// Guid-Wert
         /// </summary>
-        public readonly Guid Guid;
+        public Guid Guid { get; private set; }
 
 
 
         /// <summary>
         /// Zeigt an, ob ein Wert vorhanden ist (nicht zwingend valid)
         /// </summary>
-        public readonly bool HasValue;
+        public bool HasValue { get; private set; }
 
 
         /// <summary>
         /// Zeigt an, ob es sich um eine Empty Guid handelt
         /// </summary>
-        public readonly bool IsEmptyGuid;
+        public bool IsEmptyGuid { get; private set; }
 
 
         /// <summary>
@@ -65,8 +66,9 @@ namespace IctBaden.Framework.Types
             {
                 HasValue = true;
             }
-            if (Guid.TryParse(text, out Guid))
+            if (Guid.TryParse(text, out var parsedGuid))
             {
+                Guid = parsedGuid;
                 IsValid = true;
                 if (Guid == Guid.Empty)
                 {

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 namespace IctBaden.Framework.Types
 {
     using System;
@@ -13,27 +14,27 @@ namespace IctBaden.Framework.Types
         /// <summary>
         /// Zeigt an, ob der angegebene Wert gültig ist
         /// </summary>
-        public readonly bool IsValid;
+        public bool IsValid { get; private set; }
 
         /// <summary>
         /// Zeigt an, ob ein Wert vorhanden ist (nicht zwingend valid)
         /// </summary>
-        public readonly bool HasValue;
+        public bool HasValue { get; private set; }
 
         /// <summary>
         /// enum-Wert
         /// </summary>
-        public readonly TEnum Enumeration;
+        public TEnum Enumeration { get; private set; }
 
         /// <summary>
         /// Numerischer Wert
         /// </summary>
-        public readonly long Numeric;
+        public long Numeric { get; private set; }
 
         /// <summary>
         /// String-Repräsentation
         /// </summary>
-        public readonly string Text;
+        public string Text { get; private set; }
 
 
         /// <summary>
@@ -63,9 +64,10 @@ namespace IctBaden.Framework.Types
                     break;
             }
 
-            if (long.TryParse(data.ToString(), out Numeric))
+            if (long.TryParse(data.ToString(), out var numeric))
             {
-                data = Numeric;
+                Numeric = numeric;
+                data = numeric;
             }
 
             if (data is long longData)
@@ -84,9 +86,10 @@ namespace IctBaden.Framework.Types
             Text = data.ToString();
             HasValue = !string.IsNullOrEmpty(Text);
             Text = Enum.GetNames(typeof(TEnum)).FirstOrDefault(name => string.Equals(name, Text, ignoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture));
-            if (Enum.TryParse(Text, out Enumeration))
+            if (Enum.TryParse(Text, out TEnum enumeration))
             {
-                Numeric = Convert.ToInt32(Enumeration);
+                Enumeration = enumeration;
+                Numeric = Convert.ToInt32(enumeration);
                 IsValid = true;
                 return;
             }
