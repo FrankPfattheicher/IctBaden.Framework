@@ -19,6 +19,10 @@ namespace IctBaden.Framework.AppUtils
                     MemoryInfo = new MemoryInfoWindows();
                     CpuInfo = new CpuInfoWindows();
                     break;
+                case Platform.Linux:
+                    MemoryInfo = new MemoryInfoLinux();
+                    CpuInfo = new CpuInfoLinux();
+                    break;
                 default:
                     throw new PlatformNotSupportedException("SystemInfo");
             }
