@@ -5,6 +5,10 @@ using System.Drawing;
 
 namespace IctBaden.Framework.Tron
 {
+    /// <summary>
+    /// Listener for System.Trace to send output to TRON window.
+    /// </summary>
+    // ReSharper disable once UnusedMember.Global
     public class TronTraceListener : TraceListener
     {
         private readonly bool _useColor;
