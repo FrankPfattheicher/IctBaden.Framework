@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
 
@@ -12,6 +11,7 @@ namespace IctBaden.Framework.AppUtils
     {
         public enum HandlerMode
         {
+            // ReSharper disable once UnusedMember.Global
             KeepRunning,
             ExitApplication,
             ExitAndRestart
@@ -51,10 +51,10 @@ namespace IctBaden.Framework.AppUtils
                 _dumpReason = (Exception)e.ExceptionObject;
                 _stackTrace = _dumpReason.StackTrace;
 
-                // dump file path
-                var dumpFileName = $"{AssemblyInfo.Default.ExeBaseName}_{DateTime.Now:u}.dmp";
-                dumpFileName = dumpFileName.Replace(' ', '_').Replace(':', '-');
-                dumpFileName = Path.Combine(Path.GetTempPath(), dumpFileName);
+                // error file path
+                var errorFileName = $"{AssemblyInfo.Default.ExeBaseName}_{DateTime.Now:u}.err";
+                errorFileName = errorFileName.Replace(' ', '_').Replace(':', '-');
+                errorFileName = Path.Combine(Path.GetTempPath(), errorFileName);
 
                 // show internal error
                 info.Append("ERROR: ");
@@ -65,16 +65,13 @@ namespace IctBaden.Framework.AppUtils
                 info.Append(Environment.NewLine);
                 info.Append(_stackTrace);
                 info.Append(Environment.NewLine);
-                info.Append(Environment.NewLine);
-                info.Append("DUMP: ");
-                info.Append(dumpFileName);
-
+                
                 // write dump
-                WriteDumpFile(dumpFileName);
+                File.WriteAllText(errorFileName, info.ToString());
             }
             finally
             {
-                var text = $"{AssemblyInfo.Default.Title} - Interner Fehler (terminating={e.IsTerminating})" +
+                var text = $"{AssemblyInfo.Default.Title} - Internal Error (terminating={e.IsTerminating})" +
                            Environment.NewLine + info;
                 
                 Trace.TraceError(text);
@@ -84,58 +81,23 @@ namespace IctBaden.Framework.AppUtils
 
                 if (_restartOnFailure)
                 {
-                    var process = Assembly.GetEntryAssembly().Location;
-                    Trace.TraceInformation($"PostMortemDebugging.CurrentDomainUnhandledException trying to restart {process}");
-                    var restart = new ProcessStartInfo
+                    var process = Assembly.GetEntryAssembly()?.Location;
+                    if (process != null)
                     {
-                        FileName = process,
-                        UseShellExecute = true
-                    };
-                    Process.Start(restart);
+                        Trace.TraceInformation($"PostMortemDebugging.CurrentDomainUnhandledException trying to restart {process}");
+                        var restart = new ProcessStartInfo
+                        {
+                            FileName = process,
+                            UseShellExecute = true
+                        };
+                        Process.Start(restart);
+                    }
                 }
                 if (_exitOnFailure || e.IsTerminating)
                 {
                     Environment.Exit(1);
                 }
             }
-        }
-
-        internal enum MinidumpType
-        {
-            MiniDumpNormal = 0x00000000,
-            MiniDumpWithDataSegs = 0x00000001,
-            MiniDumpWithFullMemory = 0x00000002,
-            MiniDumpWithHandleData = 0x00000004,
-            MiniDumpFilterMemory = 0x00000008,
-            MiniDumpScanMemory = 0x00000010,
-            MiniDumpWithUnloadedModules = 0x00000020,
-            MiniDumpWithIndirectlyReferencedMemory = 0x00000040,
-            MiniDumpFilterModulePaths = 0x00000080,
-            MiniDumpWithProcessThreadData = 0x00000100,
-            MiniDumpWithPrivateReadWriteMemory = 0x00000200,
-            MiniDumpWithoutOptionalData = 0x00000400,
-            MiniDumpWithFullMemoryInfo = 0x00000800,
-            MiniDumpWithThreadInfo = 0x00001000,
-            MiniDumpWithCodeSegs = 0x00002000
-        }
-
-        [DllImport("dbghelp.dll")]
-        static extern bool MiniDumpWriteDump(
-            IntPtr hProcess,
-            Int32 processId,
-            IntPtr hFile,
-            MinidumpType dumpType,
-            IntPtr exceptionParam,
-            IntPtr userStreamParam,
-            IntPtr callackParam);
-
-        static void WriteDumpFile(String fileToDump)
-        {
-            var fsToDump = File.Create(fileToDump);
-            var thisProcess = Process.GetCurrentProcess();
-            if (fsToDump.SafeFileHandle != null)
-                MiniDumpWriteDump(thisProcess.Handle, thisProcess.Id, fsToDump.SafeFileHandle.DangerousGetHandle(), MinidumpType.MiniDumpWithFullMemory, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
-            fsToDump.Close();
         }
 
     }

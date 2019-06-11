@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>Basic Application Framework</Title>
     <Authors>Frank Pfattheicher</Authors>
@@ -10,6 +9,7 @@
     <PackageLicenseUrl>https://github.com/FrankPfattheicher/IctBaden.Framework/blob/master/LICENSE</PackageLicenseUrl>
     <PackageVersion>1.0.1</PackageVersion>
     <Description>Not really a framework but more a application companion...</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">

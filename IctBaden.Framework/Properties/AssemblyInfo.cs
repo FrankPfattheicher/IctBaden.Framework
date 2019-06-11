@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System;
 using System.Resources;
 using IctBaden.Framework.AppUtils;
+// ReSharper disable StringLiteralTypo
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
