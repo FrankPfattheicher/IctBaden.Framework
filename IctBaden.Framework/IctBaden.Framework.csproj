@@ -6,10 +6,10 @@
     <Title>Basic Application Framework</Title>
     <Authors>Frank Pfattheicher</Authors>
     <Copyright>(C) 2009-2019 ICT Baden GmbH</Copyright>
-    <PackageLicenseUrl>https://github.com/FrankPfattheicher/IctBaden.Framework/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageVersion>1.0.1</PackageVersion>
     <Description>Not really a framework but more a application companion...</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageVersion>1.0.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
@@ -19,6 +19,13 @@
   <ItemGroup>
     <Reference Include="System.Net.Http" Condition="'$(TargetFramework)' == 'net46'" />
     <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net46'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

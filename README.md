@@ -1,2 +1,4 @@
 # IctBaden.Framework
-Application framework
+Application Framework - Hiding the bad world...
+
+

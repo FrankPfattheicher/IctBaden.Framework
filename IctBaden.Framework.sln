@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IctBaden.Framework", "IctBaden.Framework\IctBaden.Framework.csproj", "{401793ED-2C19-4290-83E6-CBE2088B0D5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctBaden.Framework.Test", "IctBaden.Framework.Test\IctBaden.Framework.Test.csproj", "{4CB613A4-FE57-4D8C-8271-257F054BB865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IctBaden.Framework.Test", "IctBaden.Framework.Test\IctBaden.Framework.Test.csproj", "{4CB613A4-FE57-4D8C-8271-257F054BB865}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4BFC027F-9E0C-45B5-87C3-B0C4BF8A3EE7}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
