@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Frank\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.reporters.netcoreapp10.dll" t="Include" />
-    <e p="C:\Users\Frank\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.utility.netcoreapp10.dll" t="Include" />
-    <e p="C:\Users\Frank\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="C:\Users\Frank\.Rider2019.1\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Frank\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_IctBaden.Framework.-712481509.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Frank\Documents\ICT Baden\IctBaden.Framework" t="IncludeFlat">
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_IctBaden.Framework.-1562950626.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="IctBaden.Framework" t="IncludeRecursive">
         <e p="AppUtils" t="Include">
           <e p="AssemblyContactAttribute.cs" t="Include" />
           <e p="AssemblyInfo.cs" t="Include" />
           <e p="AssemblyReleaseAttribute.cs" t="Include" />
+          <e p="CpuInfoLinux.cs" t="Include" />
+          <e p="CpuInfoWindows.cs" t="Include" />
+          <e p="ICpuInfo.cs" t="Include" />
+          <e p="IMemoryInfo.cs" t="Include" />
+          <e p="MemoryInfoLinux.cs" t="Include" />
+          <e p="MemoryInfoWindows.cs" t="Include" />
+          <e p="Platform.cs" t="Include" />
           <e p="PostMortemDebugging.cs" t="Include" />
           <e p="SystemInfo.cs" t="Include" />
         </e>
@@ -21,11 +29,25 @@
           <e p="Binary.cs" t="Include" />
           <e p="Interpolation.cs" t="Include" />
           <e p="InterpolationPoint.cs" t="Include" />
+          <e p="ReverseBits.cs" t="Include" />
         </e>
-        <e p="bin" t="ExcludeRecursive" />
+        <e p="Automat" t="Include">
+          <e p="State.cs" t="Include" />
+          <e p="StateMachine.cs" t="Include" />
+          <e p="StateTimeout.cs" t="Include" />
+          <e p="StateTimeoutCollection.cs" t="Include" />
+        </e>
+        <e p="Channels" t="Include">
+          <e p="Modem.cs" t="Include" />
+          <e p="ModemResult.cs" t="Include" />
+          <e p="ModemTrigger.cs" t="Include" />
+        </e>
         <e p="CharacterSet" t="Include">
           <e p="GsmCharacterSet.cs" t="Include" />
           <e p="Ucs2CharacterSet.cs" t="Include" />
+        </e>
+        <e p="Controller" t="Include">
+          <e p="PidController.cs" t="Include" />
         </e>
         <e p="CsvFile" t="Include">
           <e p="CsvData.cs" t="Include" />
@@ -52,7 +74,6 @@
           <e p="SocketCommandClient.cs" t="Include" />
           <e p="SocketCommandLineServer.cs" t="Include" />
         </e>
-        <e p="obj" t="ExcludeRecursive" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
@@ -87,8 +108,9 @@
           <e p="ValidatedGuid.cs" t="Include" />
           <e p="ValidatedType.cs" t="Include" />
         </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
       </e>
-      <e p="IctBaden.Framework.sln" t="IncludeFlat" />
       <e p="IctBaden.Framework.Test" t="IncludeRecursive">
         <e p="AppUtils" t="Include">
           <e p="SystemInfoTest.cs" t="Include" />
@@ -96,7 +118,6 @@
         <e p="Arithmetic" t="Include">
           <e p="ReverseBitsTests.cs" t="Include" />
         </e>
-        <e p="bin" t="ExcludeRecursive" />
         <e p="CharacterSet" t="Include">
           <e p="Ucs2CharacterSetTests.cs" t="Include" />
         </e>
@@ -113,19 +134,24 @@
           <e p="SocketCmdLineTests.cs" t="Include" />
           <e p="TestHttpServer.cs" t="Include" />
         </e>
+        <e p="TestCfg.ini" t="Include" />
+        <e p="Types" t="Include">
+          <e p="ConverterTests.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp2.1" t="Include">
+          <e p="Release" t="Include">
+            <e p="netcoreapp2.2" t="Include">
               <e p="IctBaden.Framework.Test.AssemblyInfo.cs" t="Include" />
               <e p="IctBaden.Framework.Test.Program.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="TestCfg.ini" t="Include" />
-        <e p="Types" t="Include">
-          <e p="ConverterTests.cs" t="Include" />
-        </e>
       </e>
+      <e p="IctBaden.Framework.sln" t="IncludeFlat" />
+      <e p="LICENSE" t="Include" />
+      <e p="README.md" t="Include" />
+      <e p="Solution Items" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>
