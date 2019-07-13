@@ -65,15 +65,14 @@ namespace IctBaden.Framework.Network
 
             try
             {
-                var hostEntry = Dns.GetHostEntry(_commandHost);
+                var hostAddresses = Dns.GetHostAddresses(_commandHost);
 
                 // create an end-point for the first address...
                 IPEndPoint endPoint = null;
-                // ReSharper disable once ForCanBeConvertedToForeach
-                for (var ix = 0; ix < hostEntry.AddressList.Length; ix++)
+                foreach (var hostAddress in hostAddresses)
                 {
-                    if (hostEntry.AddressList[ix].AddressFamily == AddressFamily.InterNetwork)
-                        endPoint = new IPEndPoint(hostEntry.AddressList[ix], _commandPort);
+                    if (hostAddress.AddressFamily == AddressFamily.InterNetwork)
+                        endPoint = new IPEndPoint(hostAddress, _commandPort);
                 }
 
                 if (endPoint == null)
