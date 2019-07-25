@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace IctBaden.Framework.CsvFile
         public string LoadError { get; private set; }
         public char Separator { get; set; }
         public Encoding FileEncoding { get; set; }
+        public CultureInfo CultureInfo { get; set; }
         public List<string> Columns { get; set; }
         public List<CsvData> DataRows { get; set; }
         public List<CsvData> InvalidRows { get; set; }
@@ -29,6 +31,7 @@ namespace IctBaden.Framework.CsvFile
             Separator = '\t';
             RemoveQuotes = false;
             FileEncoding = Encoding.Default;
+            CultureInfo = CultureInfo.InvariantCulture;
             Columns = new List<string>();
             DataRows = new List<CsvData>();
             InvalidRows = new List<CsvData>();
@@ -49,7 +52,8 @@ namespace IctBaden.Framework.CsvFile
             try
             {
                 var lineNumber = 0;
-                using (var fileData = new StreamReader(FileName, FileEncoding, true))
+                using (var fs = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (var fileData = new StreamReader(fs, FileEncoding, true))
                 {
                     while (!fileData.EndOfStream)
                     {
@@ -146,7 +150,7 @@ namespace IctBaden.Framework.CsvFile
         public List<T> LoadData<T>() where T : new()
         {
             return Load()
-                ? DataRows.Select(row => row.GetObject<T>()).ToList()
+                ? DataRows.Select(row => row.GetObject<T>(CultureInfo)).ToList()
                 : new List<T>();
         }
 

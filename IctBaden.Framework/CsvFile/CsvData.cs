@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using IctBaden.Framework.Types;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
@@ -42,6 +43,11 @@ namespace IctBaden.Framework.CsvFile
 
         public T GetObject<T>() where T : new()
         {
+            return GetObject<T>(CultureInfo.InvariantCulture);
+        }
+
+        public T GetObject<T>(CultureInfo cultureInfo) where T : new()
+        {
             var obj = new T();
 
             foreach (var propertyInfo in typeof(T).GetProperties())
@@ -51,7 +57,8 @@ namespace IctBaden.Framework.CsvFile
                 if(columnIndex == -1)
                     continue;
 
-                propertyInfo.SetValue(obj, UniversalConverter.ConvertToType(GetField(Columns[columnIndex]), propertyInfo.PropertyType), null);
+                var value = UniversalConverter.ConvertToType(GetField(Columns[columnIndex]), propertyInfo.PropertyType, cultureInfo);
+                propertyInfo.SetValue(obj, value, null);
             }
 
             return obj;
