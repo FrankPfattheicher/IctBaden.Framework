@@ -1,4 +1,5 @@
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
+// ReSharper disable UnusedMember.Global
 namespace IctBaden.Framework.Network
 {
     using System;
@@ -158,16 +159,21 @@ namespace IctBaden.Framework.Network
                 wait--;
             }
 
-            //Trace.TraceInformation("SocketCommandLineServer Runner canceled = " + runnerCanceled);
-
-            //var state = runner.ThreadState;
-            //Trace.TraceInformation("SocketCommandLineServer Thread state = " + state);
-            
             Debug.Assert(_runner.ThreadState == ThreadState.Stopped, "Should be stopped here.");
 
             Cancel();
-            _runner.Join(TimeSpan.FromSeconds(10));
-            
+            try
+            {
+                if (_runner.IsAlive)
+                {
+                    _runner.Join(TimeSpan.FromSeconds(10));
+                }
+            }
+            catch
+            {
+                // ignore
+            }
+
             _runner = new Thread(RunnerDoWork);
 
             if(!Start())

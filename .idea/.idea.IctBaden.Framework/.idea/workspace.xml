@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9eadcf85-c018-4174-9010-08cac1a14e96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeout.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeoutCollection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IctBaden.Framework.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework.sln.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReleaseNotes.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReleaseNotes.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,264 +16,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="79" column="56" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
-              <folding>
-                <marker date="1562682313176" expanded="true" signature="0:238" ph="/* ReSharper disable UnusedMember.Global ... */" />
-                <marker date="1562682313176" expanded="true" signature="275:2617" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="358:444" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="468:2615" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="588:639" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="649:1110" ph="State methods" />
-                <marker date="1562682313176" expanded="true" signature="709:729" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="780:800" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="838:858" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="909:929" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="984:1029" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="1070:1090" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="1120:1568" ph="GoState()" />
-                <marker date="1562682313176" expanded="true" signature="1194:1273" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="1342:1422" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="1481:1548" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="1609:1667" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="1677:2609" ph="Timeout" />
-                <marker date="1562682313176" expanded="true" signature="1750:2013" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="2089:2174" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="2210:2370" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="2422:2488" ph="{...}" />
-                <marker date="1562682313176" expanded="true" signature="2528:2589" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1691">
-              <caret line="105" column="80" selection-start-line="105" selection-start-column="80" selection-end-line="105" selection-end-column="80" />
-              <folding>
-                <marker date="1562682412898" expanded="true" signature="6:44" ph="..." />
-                <marker date="1562682412898" expanded="true" signature="46:335" ph="/* ReSharper disable MemberCanBePrivate.Global ... */" />
-                <marker date="1562682412898" expanded="true" signature="373:3696" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="414:3693" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="1040:1217" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="1246:1308" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="1405:1487" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="1544:1623" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="1691:1771" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="1829:2571" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="1877:1989" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="2245:2469" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="2486:2561" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="2618:2680" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="2690:3687" ph="Timeouts" />
-                <marker date="1562682412898" expanded="true" signature="2757:2820" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="2859:2916" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="2992:3196" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="3246:3668" ph="{...}" />
-                <marker date="1562682412898" expanded="true" signature="3472:3576" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeout.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-              <folding>
-                <marker date="1562682441073" expanded="true" signature="0:95" ph="/* ReSharper disable ConvertToAutoPropertyWhenPossible ... */" />
-                <marker date="1562682441073" expanded="true" signature="132:1409" ph="{...}" />
-                <marker date="1562682441073" expanded="false" signature="145:196" ph="..." />
-                <marker date="1562682441073" expanded="true" signature="241:1407" ph="{...}" />
-                <marker date="1562682441073" expanded="true" signature="533:715" ph="{...}" />
-                <marker date="1562682441073" expanded="true" signature="747:1098" ph="{...}" />
-                <marker date="1562682441073" expanded="true" signature="839:1004" ph="{...}" />
-                <marker date="1562682441073" expanded="true" signature="1034:1088" ph="{...}" />
-                <marker date="1562682441073" expanded="false" signature="1108:1401" ph="IDisposable Members" />
-                <marker date="1562682441073" expanded="true" signature="1166:1381" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeoutCollection.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-              <folding>
-                <marker date="1562682441077" expanded="true" signature="36:1085" ph="{...}" />
-                <marker date="1562682441077" expanded="false" signature="49:99" ph="..." />
-                <marker date="1562682441077" expanded="true" signature="161:1083" ph="{...}" />
-                <marker date="1562682441077" expanded="true" signature="273:597" ph="{...}" />
-                <marker date="1562682441077" expanded="true" signature="473:573" ph="{...}" />
-                <marker date="1562682441077" expanded="true" signature="648:794" ph="{...}" />
-                <marker date="1562682441077" expanded="true" signature="827:1077" ph="{...}" />
-                <marker date="1562682441077" expanded="true" signature="916:1053" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5814">
-              <caret line="330" column="31" selection-start-line="330" selection-start-column="31" selection-end-line="330" selection-end-column="31" />
-              <folding>
-                <marker date="1562683169618" expanded="true" signature="6:183" ph="..." />
-                <marker date="1562683169618" expanded="true" signature="184:522" ph="/* ReSharper disable AutoPropertyCanBeMadeGetOnly.Local ... */" />
-                <marker date="1562683169618" expanded="true" signature="561:12984" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="586:12982" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="1408:1673" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="1716:1788" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="1816:4829" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="1883:2043" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="2189:2359" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="2427:2504" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="2763:2820" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="2854:2980" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="3030:3156" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="3196:3322" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="3368:3426" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="3685:3742" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="3924:4744" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="3974:4580" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="4071:4410" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="4443:4554" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="4622:4722" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="4858:5594" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="4977:5167" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="5236:5394" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="5426:5481" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="5529:5584" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="5740:6161" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="5919:6077" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="6123:6151" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="6212:8369" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="6372:6472" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="6510:8359" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="6719:7047" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="6834:7025" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="7170:8345" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="7257:8325" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="7329:7905" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="7629:7786" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="7950:8059" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="8091:8303" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="8156:8277" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="8418:8478" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="8531:10085" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="8671:8868" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="8963:9121" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="9255:9358" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="9374:9588" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="9622:9744" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="9792:9914" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="9953:10050" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="10122:10182" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="10235:11519" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="10304:10522" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="10733:11079" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="10816:11020" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="11312:11475" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="11566:11952" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="11747:11928" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="11989:12350" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="12103:12284" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="12426:12500" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="12560:12976" ph="{...}" />
-                <marker date="1562683169618" expanded="true" signature="12627:12783" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
-              <folding>
-                <marker date="1562683202948" expanded="true" signature="14:212" ph="/* ReSharper disable UnusedAutoPropertyAccessor.Global ... */" />
-                <marker date="1562683202948" expanded="true" signature="251:1110" ph="{...}" />
-                <marker date="1562683202948" expanded="true" signature="325:851" ph="{...}" />
-                <marker date="1562683202948" expanded="true" signature="940:1108" ph="{...}" />
-                <marker date="1562683202948" expanded="true" signature="1053:1102" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1881">
-              <caret line="116" column="38" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
-              <folding>
-                <marker date="1562683228133" expanded="true" signature="6:47" ph="..." />
-                <marker date="1562683228133" expanded="true" signature="127:4926" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="161:1176" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="279:388" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="417:491" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="827:1169" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="956:1084" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="1219:4924" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="1369:2844" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="1438:2756" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="2916:3358" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="3067:3237" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="3122:3223" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="3387:3473" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="3522:4918" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="3645:4052" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="3698:3921" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="3960:4038" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="4154:4684" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="4280:4670" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="4535:4652" ph="{...}" />
-                <marker date="1562683228133" expanded="true" signature="4763:4860" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1349">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
-              <folding>
-                <marker date="1562683353204" expanded="true" signature="14:213" ph="/* ReSharper disable UnusedMember.Global ... */" />
-                <marker date="1562683353204" expanded="true" signature="254:2573" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="287:2571" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="832:997" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="1026:1082" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="1128:1247" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="1293:1366" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="1431:2563" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="1611:1700" ph="/* calculate the difference between ... */" />
-                <marker date="1562683353204" expanded="true" signature="2012:2112" ph="/* calculate how much to drive the output in order to get to the ... */" />
-                <marker date="1562683353204" expanded="true" signature="2262:2328" ph="{...}" />
-                <marker date="1562683353204" expanded="true" signature="2366:2432" ph="{...}" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/ReleaseNotes.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="140">
+                <caret line="7" selection-start-line="7" selection-end-line="7" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="76">
-                <caret line="4" selection-start-line="4" selection-end-line="4" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <marker date="1565006399753" expanded="true" signature="36:745" ph="{...}" />
+                <marker date="1565006399753" expanded="false" signature="49:90" ph="..." />
+                <marker date="1565006399753" expanded="true" signature="127:743" ph="{...}" />
+                <marker date="1565006399753" expanded="true" signature="181:430" ph="{...}" />
+                <marker date="1565006399753" expanded="true" signature="479:736" ph="{...}" />
+                <marker date="1565006399753" expanded="true" signature="577:701" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -293,6 +51,8 @@
       <find>[TestMethod]</find>
       <find>60000</find>
       <find>MakeGenericType</find>
+      <find>ping</find>
+      <find>GetFreeLocalTcpPort</find>
     </findStrings>
     <replaceStrings>
       <replace>[Fact]</replace>
@@ -302,49 +62,50 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/PropertyProvider/ClassPropertyProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeout.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeoutCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Tron/TronTrace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeout.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeoutCollection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/TextEscaping.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/UniversalConverter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8B935998-CF94-43EB-824D-D68D33F86C0D/84/f9e3857f/TcpListener.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKeyCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileSection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileSection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKey.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpProcessor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpProcessor.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs" />
-        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" />
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs" />
@@ -364,6 +125,8 @@
         <option value="$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" />
       </list>
     </option>
   </component>
@@ -379,8 +142,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="FileSystemExplorer" />
-      <pane id="AssemblyExplorer" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -393,11 +154,35 @@
               <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Solution Items" type="24d0babc:SolutionExplorerModelNode" />
             </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Network" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="IctBaden.Framework.Test" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="IctBaden.Framework" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="IctBaden.Framework.Test" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Network" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
           </expand>
           <select />
         </subPane>
         <option name="show-all-files" value="false" />
       </pane>
+      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -445,11 +230,12 @@
       <workItem from="1558463299207" duration="9604000" />
       <workItem from="1562681992232" duration="1462000" />
       <workItem from="1562683506943" duration="29000" />
+      <workItem from="1565006106375" duration="323000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16566000" />
+    <option name="totallyTimeSpent" value="16889000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -463,7 +249,7 @@
   <component name="ToolWindowManager">
     <frame x="215" y="103" width="2370" height="1472" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16566265" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16709957" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -479,10 +265,10 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Unit Tests" order="11" weight="0.33233532" />
+      <window_info active="true" anchor="bottom" id="Unit Tests" order="11" visible="true" weight="0.33210874" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3288201" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Build" order="14" visible="true" weight="0.3285928" />
+      <window_info anchor="bottom" id="Build" order="14" weight="0.32843497" />
       <window_info anchor="bottom" id="Performance Profiler" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -523,21 +309,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="73" lean-forward="true" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
-          <folding>
-            <marker date="1556873547101" expanded="true" signature="36:750" ph="{...}" />
-            <marker date="1556873547101" expanded="true" signature="49:90" ph="..." />
-            <marker date="1556873547101" expanded="true" signature="127:748" ph="{...}" />
-            <marker date="1556873547101" expanded="true" signature="181:430" ph="{...}" />
-            <marker date="1556873547101" expanded="true" signature="479:741" ph="{...}" />
-            <marker date="1556873547101" expanded="true" signature="582:706" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpProcessor.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4047">
@@ -606,31 +377,6 @@
             <marker date="1558463194657" expanded="true" signature="1322:1471" ph="{...}" />
             <marker date="1558463194657" expanded="true" signature="1592:1675" ph="{...}" />
             <marker date="1558463194657" expanded="true" signature="1796:2029" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
-          <folding>
-            <marker date="1558463194655" expanded="false" signature="6:150" ph="..." />
-            <marker date="1558463194655" expanded="true" signature="193:4813" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="245:4811" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="428:516" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="547:600" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="655:1512" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="1575:2310" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="2162:2225" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="2381:4804" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="2731:3039" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="3159:3467" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="3717:3864" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="4041:4295" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="4120:4281" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="4402:4543" ph="{...}" />
-            <marker date="1558463194655" expanded="true" signature="4585:4647" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1208,248 +954,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="79" column="56" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
-          <folding>
-            <marker date="1562682313176" expanded="true" signature="0:238" ph="/* ReSharper disable UnusedMember.Global ... */" />
-            <marker date="1562682313176" expanded="true" signature="275:2617" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="358:444" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="468:2615" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="588:639" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="649:1110" ph="State methods" />
-            <marker date="1562682313176" expanded="true" signature="709:729" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="780:800" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="838:858" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="909:929" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="984:1029" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="1070:1090" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="1120:1568" ph="GoState()" />
-            <marker date="1562682313176" expanded="true" signature="1194:1273" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="1342:1422" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="1481:1548" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="1609:1667" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="1677:2609" ph="Timeout" />
-            <marker date="1562682313176" expanded="true" signature="1750:2013" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="2089:2174" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="2210:2370" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="2422:2488" ph="{...}" />
-            <marker date="1562682313176" expanded="true" signature="2528:2589" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1691">
-          <caret line="105" column="80" selection-start-line="105" selection-start-column="80" selection-end-line="105" selection-end-column="80" />
-          <folding>
-            <marker date="1562682412898" expanded="true" signature="6:44" ph="..." />
-            <marker date="1562682412898" expanded="true" signature="46:335" ph="/* ReSharper disable MemberCanBePrivate.Global ... */" />
-            <marker date="1562682412898" expanded="true" signature="373:3696" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="414:3693" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="1040:1217" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="1246:1308" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="1405:1487" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="1544:1623" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="1691:1771" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="1829:2571" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="1877:1989" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="2245:2469" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="2486:2561" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="2618:2680" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="2690:3687" ph="Timeouts" />
-            <marker date="1562682412898" expanded="true" signature="2757:2820" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="2859:2916" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="2992:3196" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="3246:3668" ph="{...}" />
-            <marker date="1562682412898" expanded="true" signature="3472:3576" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeout.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding>
-            <marker date="1562682441073" expanded="true" signature="0:95" ph="/* ReSharper disable ConvertToAutoPropertyWhenPossible ... */" />
-            <marker date="1562682441073" expanded="true" signature="132:1409" ph="{...}" />
-            <marker date="1562682441073" expanded="false" signature="145:196" ph="..." />
-            <marker date="1562682441073" expanded="true" signature="241:1407" ph="{...}" />
-            <marker date="1562682441073" expanded="true" signature="533:715" ph="{...}" />
-            <marker date="1562682441073" expanded="true" signature="747:1098" ph="{...}" />
-            <marker date="1562682441073" expanded="true" signature="839:1004" ph="{...}" />
-            <marker date="1562682441073" expanded="true" signature="1034:1088" ph="{...}" />
-            <marker date="1562682441073" expanded="false" signature="1108:1401" ph="IDisposable Members" />
-            <marker date="1562682441073" expanded="true" signature="1166:1381" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeoutCollection.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <marker date="1562682441077" expanded="true" signature="36:1085" ph="{...}" />
-            <marker date="1562682441077" expanded="false" signature="49:99" ph="..." />
-            <marker date="1562682441077" expanded="true" signature="161:1083" ph="{...}" />
-            <marker date="1562682441077" expanded="true" signature="273:597" ph="{...}" />
-            <marker date="1562682441077" expanded="true" signature="473:573" ph="{...}" />
-            <marker date="1562682441077" expanded="true" signature="648:794" ph="{...}" />
-            <marker date="1562682441077" expanded="true" signature="827:1077" ph="{...}" />
-            <marker date="1562682441077" expanded="true" signature="916:1053" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5814">
-          <caret line="330" column="31" selection-start-line="330" selection-start-column="31" selection-end-line="330" selection-end-column="31" />
-          <folding>
-            <marker date="1562683169618" expanded="true" signature="6:183" ph="..." />
-            <marker date="1562683169618" expanded="true" signature="184:522" ph="/* ReSharper disable AutoPropertyCanBeMadeGetOnly.Local ... */" />
-            <marker date="1562683169618" expanded="true" signature="561:12984" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="586:12982" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="1408:1673" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="1716:1788" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="1816:4829" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="1883:2043" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="2189:2359" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="2427:2504" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="2763:2820" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="2854:2980" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="3030:3156" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="3196:3322" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="3368:3426" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="3685:3742" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="3924:4744" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="3974:4580" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="4071:4410" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="4443:4554" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="4622:4722" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="4858:5594" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="4977:5167" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="5236:5394" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="5426:5481" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="5529:5584" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="5740:6161" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="5919:6077" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="6123:6151" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="6212:8369" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="6372:6472" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="6510:8359" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="6719:7047" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="6834:7025" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="7170:8345" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="7257:8325" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="7329:7905" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="7629:7786" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="7950:8059" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="8091:8303" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="8156:8277" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="8418:8478" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="8531:10085" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="8671:8868" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="8963:9121" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="9255:9358" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="9374:9588" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="9622:9744" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="9792:9914" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="9953:10050" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="10122:10182" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="10235:11519" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="10304:10522" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="10733:11079" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="10816:11020" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="11312:11475" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="11566:11952" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="11747:11928" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="11989:12350" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="12103:12284" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="12426:12500" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="12560:12976" ph="{...}" />
-            <marker date="1562683169618" expanded="true" signature="12627:12783" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
-          <folding>
-            <marker date="1562683202948" expanded="true" signature="14:212" ph="/* ReSharper disable UnusedAutoPropertyAccessor.Global ... */" />
-            <marker date="1562683202948" expanded="true" signature="251:1110" ph="{...}" />
-            <marker date="1562683202948" expanded="true" signature="325:851" ph="{...}" />
-            <marker date="1562683202948" expanded="true" signature="940:1108" ph="{...}" />
-            <marker date="1562683202948" expanded="true" signature="1053:1102" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1881">
-          <caret line="116" column="38" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
-          <folding>
-            <marker date="1562683228133" expanded="true" signature="6:47" ph="..." />
-            <marker date="1562683228133" expanded="true" signature="127:4926" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="161:1176" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="279:388" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="417:491" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="827:1169" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="956:1084" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="1219:4924" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="1369:2844" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="1438:2756" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="2916:3358" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="3067:3237" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="3122:3223" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="3387:3473" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="3522:4918" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="3645:4052" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="3698:3921" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="3960:4038" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="4154:4684" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="4280:4670" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="4535:4652" ph="{...}" />
-            <marker date="1562683228133" expanded="true" signature="4763:4860" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <marker date="1562683353204" expanded="true" signature="14:213" ph="/* ReSharper disable UnusedMember.Global ... */" />
-            <marker date="1562683353204" expanded="true" signature="254:2573" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="287:2571" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="832:997" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="1026:1082" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="1128:1247" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="1293:1366" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="1431:2563" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="1611:1700" ph="/* calculate the difference between ... */" />
-            <marker date="1562683353204" expanded="true" signature="2012:2112" ph="/* calculate how much to drive the output in order to get to the ... */" />
-            <marker date="1562683353204" expanded="true" signature="2262:2328" ph="{...}" />
-            <marker date="1562683353204" expanded="true" signature="2366:2432" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs" />
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs" />
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeout.cs" />
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeoutCollection.cs" />
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs" />
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" />
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs" />
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="76">
+          <first_editor relative-caret-position="80">
             <caret line="4" selection-start-line="4" selection-end-line="4" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ReleaseNotes.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="140">
+            <caret line="7" selection-start-line="7" selection-end-line="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+          <folding>
+            <marker date="1565006292341" expanded="false" signature="6:150" ph="..." />
+            <marker date="1565006292341" expanded="true" signature="193:5177" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="245:5175" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="428:516" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="547:600" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="655:1512" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="1575:2310" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="2162:2225" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="2381:4804" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="2731:3039" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="3159:3467" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="3717:3864" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="4041:4295" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="4120:4281" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="4402:4543" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="4585:4647" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="4873:4986" ph="{...}" />
+            <marker date="1565006292341" expanded="true" signature="5055:5168" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8B935998-CF94-43EB-824D-D68D33F86C0D/84/f9e3857f/TcpListener.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="30" column="11" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <marker date="1565006399753" expanded="true" signature="36:745" ph="{...}" />
+            <marker date="1565006399753" expanded="false" signature="49:90" ph="..." />
+            <marker date="1565006399753" expanded="true" signature="127:743" ph="{...}" />
+            <marker date="1565006399753" expanded="true" signature="181:430" ph="{...}" />
+            <marker date="1565006399753" expanded="true" signature="479:736" ph="{...}" />
+            <marker date="1565006399753" expanded="true" signature="577:701" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

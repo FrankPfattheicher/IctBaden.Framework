@@ -148,5 +148,19 @@ namespace IctBaden.Framework.Test.Network
             Assert.Empty(_server.Clients);
         }
 
+        [Fact]
+        public void NextFreeTcpPortShouldNotBeZero()
+        {
+            var port = NetworkInfo.GetFreeLocalTcpPort();
+            Assert.True(port > 0);
+        }
+
+        [Fact]
+        public void NextFreeUdpPortShouldNotBeZero()
+        {
+            var port = NetworkInfo.GetFreeLocalUdpPort();
+            Assert.True(port > 0);
+        }
+
     }
 }
