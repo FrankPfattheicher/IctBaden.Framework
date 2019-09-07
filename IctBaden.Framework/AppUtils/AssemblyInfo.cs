@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
 using System.Text;
@@ -128,5 +130,8 @@ namespace IctBaden.Framework.AppUtils
         public string NeutralResourcesLanguage => ((_assembly.GetCustomAttributes(typeof(NeutralResourcesLanguageAttribute), true) is NeutralResourcesLanguageAttribute[] attributes) && (attributes.Length > 0)) 
             ? attributes[0].CultureName 
             : string.Empty;
+
+        public bool IsDebugBuild => _assembly.GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(da => da.IsJITTrackingEnabled);
+
     }
 }
