@@ -4,10 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Framework.Resource
 {
-    public class ResourceLoader
+    public static class ResourceLoader
     {
         /// <summary>
         /// Loads resource string by name from
@@ -17,6 +18,8 @@ namespace IctBaden.Framework.Resource
         /// <returns></returns>
         public static string LoadString(string resourceName)
         {
+            if(string.IsNullOrEmpty(resourceName)) throw new ArgumentException("must not be null or empty", nameof(resourceName));
+            
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic);
             foreach (var assembly in assemblies)
             {

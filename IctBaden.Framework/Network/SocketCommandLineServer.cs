@@ -1,5 +1,9 @@
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable EventNeverSubscribedTo.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 namespace IctBaden.Framework.Network
 {
     using System;
@@ -55,7 +59,7 @@ namespace IctBaden.Framework.Network
             {
                 if (_listener == null)
                     return;
-                _listener.Listen(10);
+                _listener.Listen(100);
             }
             catch (Exception ex)
             {
