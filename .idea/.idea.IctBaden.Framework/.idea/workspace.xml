@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9eadcf85-c018-4174-9010-08cac1a14e96" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/InterpolationTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPointDouble.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/AppUtils/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/AppUtils/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework.sln.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReleaseNotes.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReleaseNotes.md" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,40 +33,46 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/AppUtils/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Arithmetic/Interpolation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/PropertyProvider/ClassPropertyProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Tron/TronTrace.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileKeyTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/TextEscaping.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/ReverseBitsTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/UniversalConverter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeout.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateTimeoutCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedEnum.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/TextEscaping.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/StateMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPointDouble.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Automat/State.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/InterpolationTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKeyCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileKey.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Types/ValidatedGuid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileSection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/IniFile/ProfileClassLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Types/ConverterTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpProcessor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileClassLoaderTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandClient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SimpleHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileSectionTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/IniFile/ProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SimpleHttpServerTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/TestHttpServer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework.Test/AppUtils/SystemInfoTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/AppUtils/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -95,15 +105,27 @@
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/AppUtils/AssemblyInfo.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/Interpolation.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPointDouble.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/InterpolationTests.cs" />
         <option value="$PROJECT_DIR$/ReleaseNotes.md" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1QUwr5fwCbIT0foOgOwSxjqNaM1" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Source/Framework/dotNET/IctBaden.Framework/Controller/PidController.cs" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -113,15 +135,15 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -146,6 +168,8 @@
       <workItem from="1562683506943" duration="29000" />
       <workItem from="1565006106375" duration="323000" />
       <workItem from="1567838679464" duration="159000" />
+      <workItem from="1574094551472" duration="12000" />
+      <workItem from="1574094644248" duration="987000" />
     </task>
     <servers />
   </component>
@@ -159,14 +183,103 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
+  <component name="WindowStateProjectService">
+    <state x="1179" y="788" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1574094559296">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state x="1179" y="788" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2786.1805@0.0.2786.1805" timestamp="1574094559296" />
+    <state width="1820" height="421" key="GridCell.Tab.0.bottom" timestamp="1574095631995">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.0.bottom/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631995" />
+    <state width="1820" height="421" key="GridCell.Tab.0.center" timestamp="1574095631992">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.0.center/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631992" />
+    <state width="1820" height="421" key="GridCell.Tab.0.left" timestamp="1574095631991">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.0.left/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631991" />
+    <state width="1820" height="421" key="GridCell.Tab.0.right" timestamp="1574095631993">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.0.right/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631993" />
+    <state width="1820" height="421" key="GridCell.Tab.1.bottom" timestamp="1574095631996">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.1.bottom/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631996" />
+    <state width="1820" height="421" key="GridCell.Tab.1.center" timestamp="1574095631996">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.1.center/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631996" />
+    <state width="1820" height="421" key="GridCell.Tab.1.left" timestamp="1574095631996">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.1.left/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631996" />
+    <state width="1820" height="421" key="GridCell.Tab.1.right" timestamp="1574095631996">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.1.right/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631996" />
+    <state width="1820" height="421" key="GridCell.Tab.2.bottom" timestamp="1574095631997">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.2.bottom/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631997" />
+    <state width="1820" height="421" key="GridCell.Tab.2.center" timestamp="1574095631996">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.2.center/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631996" />
+    <state width="1820" height="421" key="GridCell.Tab.2.left" timestamp="1574095631996">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.2.left/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631996" />
+    <state width="1820" height="421" key="GridCell.Tab.2.right" timestamp="1574095631996">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.2.right/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631996" />
+    <state width="1820" height="421" key="GridCell.Tab.3.bottom" timestamp="1574095631997">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.3.bottom/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631997" />
+    <state width="1820" height="421" key="GridCell.Tab.3.center" timestamp="1574095631997">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.3.center/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631997" />
+    <state width="1820" height="421" key="GridCell.Tab.3.left" timestamp="1574095631997">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.3.left/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631997" />
+    <state width="1820" height="421" key="GridCell.Tab.3.right" timestamp="1574095631997">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.3.right/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631997" />
+    <state width="1820" height="421" key="GridCell.Tab.4.bottom" timestamp="1574095631998">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.4.bottom/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631998" />
+    <state width="1820" height="421" key="GridCell.Tab.4.center" timestamp="1574095631998">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.4.center/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631998" />
+    <state width="1820" height="421" key="GridCell.Tab.4.left" timestamp="1574095631997">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.4.left/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631997" />
+    <state width="1820" height="421" key="GridCell.Tab.4.right" timestamp="1574095631998">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state width="1820" height="421" key="GridCell.Tab.4.right/0.0.2786.1805@0.0.2786.1805" timestamp="1574095631998" />
+    <state x="1116" y="471" key="run.anything.popup" timestamp="1574095130981">
+      <screen x="0" y="0" width="2786" height="1805" />
+    </state>
+    <state x="1116" y="471" key="run.anything.popup/0.0.2786.1805@0.0.2786.1805" timestamp="1574095130981" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

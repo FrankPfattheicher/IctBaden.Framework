@@ -1,5 +1,5 @@
 
-WorkInProgress : SocketCommandLineServer.Reset handle not running runner thread. AssemblyInfo.IsDebugBuild added.
+* 1.0.5	- 18.11.2019 SocketCommandLineServer.Reset handle not running runner thread. AssemblyInfo.IsDebugBuild added. InterpolationDouble added.
 * 1.0.4	- 31.07.2019 GetHostEntry replaced by GetHostAddresses. GetHostEntry replaced by GetHostAddresses. ResourceLoader from AppDomain, Tests added.
 * 1.0.3	- 09.07.2019 Added Automat, ModemChannel, PidController.
 * 1.0.2	- 28.06.2019 Added ReverseBits.

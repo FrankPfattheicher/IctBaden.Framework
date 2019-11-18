@@ -2,9 +2,9 @@
 namespace IctBaden.Framework.Arithmetic
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class InterpolationPoint
+    public class InterpolationPointDouble
     {
-        public long Input;
-        public long Output;
+        public double Input;
+        public double Output;
     }
 }
