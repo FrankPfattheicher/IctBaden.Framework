@@ -129,11 +129,12 @@ namespace IctBaden.Framework.Network
         {
             try
             {
-                Trace.TraceInformation("SocketCommandLineServer.Start()");
+                Trace.TraceInformation($"SocketCommandLineServer.Start({_port})");
                 _clientAccepted = new ManualResetEvent(false);
                 if (_listener == null)
                 {
                     _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+                    _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                     var localEp = new IPEndPoint(0, _port);
                     _listener.Bind(localEp);
@@ -266,6 +267,8 @@ namespace IctBaden.Framework.Network
         private void Handler(object param)
         {
             var client = (Socket)param;
+            client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+            client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             lock (Clients)
             {
                 Clients.Add(client);
