@@ -16,7 +16,7 @@ namespace IctBaden.Framework.IniFile
         public Profile Profile { get; private set; }
 
         public const string UnnamedGlobalSectionName = " ";
-        public bool IsUnnamedGlobalSection => Name.StartsWith(UnnamedGlobalSectionName);
+        public bool IsUnnamedGlobalSection => (Name != null) && Name.StartsWith(UnnamedGlobalSectionName);
 
         public ProfileSection(Profile profile, string sectionName)
         {
