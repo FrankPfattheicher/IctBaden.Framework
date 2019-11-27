@@ -1,5 +1,6 @@
 ﻿using System;
 using IctBaden.Framework.Tron;
+// ReSharper disable UnusedType.Global
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -46,7 +47,7 @@ namespace IctBaden.Framework.Automat
             GoState(null, null);
         }
 
-        public void GoState<T>() where T : State, new()
+        protected void GoState<T>() where T : State, new()
         {
             var t = new T();
             GoState(t, null);
@@ -85,6 +86,7 @@ namespace IctBaden.Framework.Automat
             }
         }
 
+        // ReSharper disable once MemberCanBeProtected.Global
         public void SignalInput(object input)
         {
             CurrentState?.OnInput(input);

@@ -23,7 +23,7 @@ namespace IctBaden.Framework.Network
         private bool _handlingCommand;
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public string LastResult { get; private set; }
+        public string LastResult { get; private set; } = string.Empty;
 
         /// <summary>
         /// Milliseconds
