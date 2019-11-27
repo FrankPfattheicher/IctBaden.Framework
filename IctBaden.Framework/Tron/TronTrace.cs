@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using System.Net.Sockets;
 using IctBaden.Framework.Timer;
+// ReSharper disable CommentTypo
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
 // ReSharper disable UnusedMember.Global
 
@@ -51,16 +54,22 @@ namespace IctBaden.Framework.Tron
         private static string ExeName => "TRON.exe";
         private static string FullExeName { get; } = Path.Combine(AssemblyInfo.Default.CommonPath, ExeName);
 
-        public static string PipeName = "ICTBaden.tron";
+        public static string PipeName { get; set; } = "ICTBaden.tron";
         private static NamedPipeClientStream _tron;
 
-        public static bool EnableTronWindow = true;
+        public static bool EnableTronWindow { get; set; } = true;
 
-        public static int UdpPort = 1959;
-        public static bool UseUdpConnection = true;
+        public static int UdpPort { get; set; } = 1959;
+        public static bool UseUdpConnection { get; set; } = true;
 
         private static readonly PassiveTimer ReConnect = new PassiveTimer(10);
 
+
+        static TronTrace()
+        {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        }
+        
         public static bool Connect()
         {
             if (_tron != null)
@@ -254,13 +263,14 @@ namespace IctBaden.Framework.Tron
             Send(TronCommand.Cls, null);
         }
 
+        // ReSharper disable once EventNeverSubscribedTo.Global
         public static event Action<string> OnPrint;
 
         // TODO: IsOn(TraceIndex)
 
         public static void Print(string text)
         {
-            var data = Encoding.Default.GetBytes(text + '\0');
+            var data = Encoding.GetEncoding(1252).GetBytes(text + '\0');
             Send(TronCommand.Print, data);
 
             OnPrint?.Invoke(text);
@@ -278,12 +288,12 @@ namespace IctBaden.Framework.Tron
             if (frames == null) return;
 
             SetColor(TraceColor.DarkGreen);
-            var breadcrump = frames.Skip(2)
+            var breadcrumbs = frames.Skip(2)
                 .Take(3)
                 .Select(f => f.GetMethod().Name)
                 .Reverse();
 
-            PrintLine("CallTrail: " + string.Join(" / ", breadcrump));
+            PrintLine("CallTrail: " + string.Join(" / ", breadcrumbs));
         }
 
 
