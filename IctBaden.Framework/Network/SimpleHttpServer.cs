@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
@@ -169,7 +170,13 @@ namespace IctBaden.Framework.Network
             }
         }
 
-        public void Terminate(bool disconnectClients = true)
+        // ReSharper disable once MemberCanBeProtected.Global
+        public void Terminate()
+        {
+            // ReSharper disable once IntroduceOptionalParameters.Global
+            Terminate(true);
+        }
+        public void Terminate(bool disconnectClients)
         {
             try
             {
