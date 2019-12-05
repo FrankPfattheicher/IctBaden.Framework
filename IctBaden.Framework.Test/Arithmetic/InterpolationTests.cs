@@ -22,6 +22,43 @@ namespace IctBaden.Framework.Test.Arithmetic
             Assert.Equal(expected, value);
         }
         
+        
+        [Fact]
+        public void InterpolationLongOutOfRangeShouldReturnMinimum()
+        {
+            var points = new[]
+            {
+                new InterpolationPoint {Input = 0, Output = 0},
+                new InterpolationPoint {Input = 100, Output = 0x10000}
+            };
+
+            const long expected = 0;
+
+            var interpolation = new Interpolation(points);
+            var value = interpolation.InterpolateLinear(-10);
+            
+            Assert.Equal(expected, value);
+        }
+
+        
+        [Fact]
+        public void InterpolationLongOutOfRangeShouldReturnMaximum()
+        {
+            var points = new[]
+            {
+                new InterpolationPoint {Input = 0, Output = 0},
+                new InterpolationPoint {Input = 100, Output = 0x10000}
+            };
+
+            const long expected = 0x10000;
+
+            var interpolation = new Interpolation(points);
+            var value = interpolation.InterpolateLinear(110);
+            
+            Assert.Equal(expected, value);
+        }
+
+        
         [Fact]
         public void InterpolationDoubleShouldReturnHalf()
         {

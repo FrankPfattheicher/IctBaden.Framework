@@ -1,4 +1,5 @@
 
+* 1.0.6	- 04.12.2019 Interpolation fixed for input values out of range.
 * 1.0.5	- 18.11.2019 SocketCommandLineServer.Reset handle not running runner thread. AssemblyInfo.IsDebugBuild added. InterpolationDouble added.
 * 1.0.4	- 31.07.2019 GetHostEntry replaced by GetHostAddresses. GetHostEntry replaced by GetHostAddresses. ResourceLoader from AppDomain, Tests added.
 * 1.0.3	- 09.07.2019 Added Automat, ModemChannel, PidController.

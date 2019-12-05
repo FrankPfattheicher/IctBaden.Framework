@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9eadcf85-c018-4174-9010-08cac1a14e96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/InterpolationTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPointDouble.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IctBaden.Framework/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IctBaden.Framework.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework.sln.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/InterpolationTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/InterpolationTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/Interpolation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/Interpolation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/IctBaden.Framework/IctBaden.Framework.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReleaseNotes.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReleaseNotes.md" afterDir="false" />
     </list>
@@ -35,9 +33,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/AppUtils/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Network/SocketCommandLineServer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemResult.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/Modem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Channels/ModemTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Arithmetic/Interpolation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IctBaden.Framework/Controller/PidController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -105,11 +100,11 @@
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Network/SocketCmdLineTests.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Network/NetworkInfo.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/AppUtils/AssemblyInfo.cs" />
-        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/Interpolation.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPoint.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationPointDouble.cs" />
-        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" />
         <option value="$PROJECT_DIR$/IctBaden.Framework.Test/Arithmetic/InterpolationTests.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/InterpolationDouble.cs" />
+        <option value="$PROJECT_DIR$/IctBaden.Framework/Arithmetic/Interpolation.cs" />
         <option value="$PROJECT_DIR$/ReleaseNotes.md" />
       </list>
     </option>
@@ -129,8 +124,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Source/Framework/dotNET/IctBaden.Framework/Controller/PidController.cs" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
@@ -170,6 +168,7 @@
       <workItem from="1567838679464" duration="159000" />
       <workItem from="1574094551472" duration="12000" />
       <workItem from="1574094644248" duration="987000" />
+      <workItem from="1575454523490" duration="1220000" />
     </task>
     <servers />
   </component>
