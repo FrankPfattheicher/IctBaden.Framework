@@ -167,7 +167,7 @@ namespace IctBaden.Framework.Types
                     if (value.ToString() == "0")
                         return (T)Convert.ChangeType(false, typeof(T));
                 }
-                return (T)Convert.ChangeType(value, typeof(T));
+                return (T)ConvertToType(value, typeof(T));
             }
             catch (FormatException)
             {
