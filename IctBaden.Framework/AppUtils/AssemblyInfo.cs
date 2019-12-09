@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Resources;
 using System.Text;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Framework.AppUtils
 {
@@ -56,11 +57,11 @@ namespace IctBaden.Framework.AppUtils
 
         public string ExeBaseName => Path.GetFileNameWithoutExtension(_assembly.Location);
 
-        public string ExePath => Path.GetDirectoryName(_assembly.Location);
+        public string ExePath => Path.GetDirectoryName(_assembly.Location) ?? ".";
 
         private string GetPath(string name)
         {
-            var path = ExePath;
+            var path = ExePath ?? ".";
 
             path = Path.GetFileName(path) == CompanyPath
                 ? Path.Combine(path, name)
