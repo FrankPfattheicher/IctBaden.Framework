@@ -4,6 +4,9 @@
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable EventNeverSubscribedTo.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+
+using IctBaden.Framework.AppUtils;
+
 namespace IctBaden.Framework.Network
 {
     using System;
@@ -134,7 +137,10 @@ namespace IctBaden.Framework.Network
                 if (_listener == null)
                 {
                     _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-                    _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+                    if (SystemInfo.Platform == Platform.Windows)
+                    {
+                        _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+                    }
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                     var localEp = new IPEndPoint(0, _port);
                     _listener.Bind(localEp);
@@ -267,7 +273,10 @@ namespace IctBaden.Framework.Network
         private void Handler(object param)
         {
             var client = (Socket)param;
-            client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+            if (SystemInfo.Platform == Platform.Windows)
+            {
+                client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+            }
             client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             lock (Clients)
             {
