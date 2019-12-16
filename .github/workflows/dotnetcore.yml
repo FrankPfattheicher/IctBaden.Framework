@@ -14,5 +14,6 @@ jobs:
       with:
         dotnet-version: 3.1.100
     - name: Build with dotnet
-      run: dotnet build --configuration Release src/IctBaden.Framework.sln
-      
+      run: dotnet build --configuration Release ./IctBaden.Framework.sln
+    - name: Test with dotnet
+      run: dotnet test ./IctBaden.Framework.sln --configuration Release
