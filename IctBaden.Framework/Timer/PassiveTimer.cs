@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
+// ReSharper disable MemberCanBePrivate.Global
+
 // ReSharper disable UnusedMember.Global
 
 // ReSharper disable BuiltInTypeReferenceStyle
@@ -15,7 +18,7 @@ namespace IctBaden.Framework.Timer
         private long _timer;
         private readonly List<System.Threading.Timer> _callbacks = new List<System.Threading.Timer>();
 
-        private static long Now => DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+        private static long Now => DateTime.UtcNow.Ticks / TimeSpan.TicksPerMillisecond;
 
         public PassiveTimer()
         {
@@ -125,6 +128,17 @@ namespace IctBaden.Framework.Timer
             }
         }
 
+        public void WaitTask()
+        {
+            var T = (int)Math.Max(0, RemainingMilliseconds);
+            Task.Delay(T).Wait();
+        }
+
+        public void WaitThread()
+        {
+            var T = (int)Math.Max(0, RemainingMilliseconds);
+            Thread.Sleep(T);
+        }
 
         #region IComparable Members
 
