@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable IntroduceOptionalParameters.Global
 
 namespace IctBaden.Framework.Types
 {
@@ -96,25 +97,29 @@ namespace IctBaden.Framework.Types
             if (targetType.IsArray)
             {
                 var elementType = targetType.GetElementType();
-                var list  = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(new[]{elementType}));
-                if(value is IEnumerable enumerableValue)
+                if (elementType != null)
                 {
-                    foreach (var val in enumerableValue)
+                    var list  = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
+                    if(value is IEnumerable enumerableValue)
                     {
-                        list.Add(UniversalConverter.ConvertToType(val, elementType));
+                        foreach (var val in enumerableValue)
+                        {
+                            list.Add(UniversalConverter.ConvertToType(val, elementType));
+                        }
                     }
-                }
-                else
-                {
-                    list.Add(value);
-                }
-                var array = Array.CreateInstance(elementType, list.Count);
-                for(var ix = 0; ix < list.Count; ix++)
-                {
-                    array.SetValue(list[ix], ix);
-                }
+                    else
+                    {
+                        list.Add(value);
+                    }
 
-                return array;
+                    var array = Array.CreateInstance(elementType, list.Count);
+                    for(var ix = 0; ix < list.Count; ix++)
+                    {
+                        array.SetValue(list[ix], ix);
+                    }
+
+                    return array;
+                }
             }
 
             // check for Parse method
@@ -154,24 +159,33 @@ namespace IctBaden.Framework.Types
 
         public static T ConvertTo<T>(object value, T defaultValue)
         {
+            if (value == null) return defaultValue;
+            
             try
             {
-                if ((value != null) && (typeof(T) == typeof(string)))
+                if ((typeof(T) == typeof(string)))
                 {
                     return (T)(object)value.ToString();
                 }
-                if ((value != null) && (typeof (T) == typeof (bool)))
+                
+                // ReSharper disable once InvertIf
+                if ((typeof (T) == typeof (bool)))
                 {
-                    if (value.ToString() == "1")
-                        return (T)Convert.ChangeType(true, typeof(T));
-                    if (value.ToString() == "0")
-                        return (T)Convert.ChangeType(false, typeof(T));
+                    switch (value.ToString())
+                    {
+                        case "-1":
+                        case "1":
+                            return (T)Convert.ChangeType(true, typeof(T));
+                        case "0":
+                            return (T)Convert.ChangeType(false, typeof(T));
+                    }
                 }
+
                 return (T)ConvertToType(value, typeof(T));
             }
             catch (FormatException)
             {
-                if ((value != null) && (typeof(T) == typeof(bool)))
+                if (typeof(T) == typeof(bool))
                 {
                     if (bool.TryParse(value.ToString(), out var boolValue))
                         return (T)Convert.ChangeType(boolValue, typeof(T));
