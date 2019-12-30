@@ -7,6 +7,7 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.Network
 {
+    [CollectionDefinition(nameof(SocketCmdLineTests), DisableParallelization = true)]
     public class SocketCmdLineTests : IDisposable
     {
         private readonly int _testServerPort = NetworkInfo.GetFreeLocalTcpPort();
