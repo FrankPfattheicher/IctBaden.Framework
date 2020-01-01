@@ -14,7 +14,7 @@ using IctBaden.Framework.AppUtils;
 [assembly: AssemblyCompany("ICT Baden GmbH")]
 [assembly: AssemblyContact(Address = "Seboldstraße 9", City = "76227 Karlsruhe", Mail = "support@ict-baden.de", Phone = "0172-7207196", Url="http://www.ict-baden.de")]
 [assembly: AssemblyProduct("Application Framework")]
-[assembly: AssemblyCopyright("Copyright ©2009-2019 ICT Baden GmbH")]
+[assembly: AssemblyCopyright("Copyright ©2009-2020 ICT Baden GmbH")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(false)]

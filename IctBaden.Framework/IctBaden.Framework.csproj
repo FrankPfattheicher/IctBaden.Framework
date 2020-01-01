@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>Basic Application Framework</Title>
     <Authors>Frank Pfattheicher</Authors>
-    <Copyright>(C) 2009-2019 ICT Baden GmbH</Copyright>
+    <Copyright>(C) 2009-2020 ICT Baden GmbH</Copyright>
     <Description>Not really a framework but more a application companion...</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
