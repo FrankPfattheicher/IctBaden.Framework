@@ -18,8 +18,5 @@ jobs:
     - name: Test with dotnet
       run: dotnet test ./IctBaden.Framework.sln --configuration Release
     - name: Publish NuGet
-      uses: rohith/publish-nuget@v1.2.0
-      with:
-        project_dir: ./IctBaden.Framework/
-        tag_format: *
-        nuget_key: ${NugetKey}
+    - name: Publish NuGet
+      run: nuget push ./IctBaden.Framework/bin/Release/*.nupkg -k ${NugetKey} -s https://api.nuget.org/v3/index.json
