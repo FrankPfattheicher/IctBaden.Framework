@@ -17,3 +17,7 @@ jobs:
       run: dotnet build --configuration Release ./IctBaden.Framework.sln
     - name: Test with dotnet
       run: dotnet test ./IctBaden.Framework.sln --configuration Release
+    - name: Publish NuGet
+      uses: rohith/publish-nuget@v1.2.0
+      with:
+        nuget_key: ${NugetKey}
