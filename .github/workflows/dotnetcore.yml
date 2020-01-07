@@ -17,5 +17,7 @@ jobs:
       run: dotnet build --configuration Release ./IctBaden.Framework.sln
     - name: Test with dotnet
       run: dotnet test ./IctBaden.Framework.sln --configuration Release
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
     - name: Publish NuGet
       run: nuget push ./IctBaden.Framework/bin/Release/*.nupkg -k ${NugetKey} -s https://api.nuget.org/v3/index.json
