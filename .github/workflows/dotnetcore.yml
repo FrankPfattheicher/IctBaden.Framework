@@ -18,4 +18,4 @@ jobs:
     - name: Test with dotnet
       run: dotnet test ./IctBaden.Framework.sln --configuration Release
     - name: Publish NuGet
-      run: dotnet nuget push IctBaden.Framework/bin/Release/*.nupkg --source https://www.nuget.org -k ${NugetKey}
+      run: dotnet nuget push IctBaden.Framework/bin/Release/*.nupkg --source https://www.nuget.org --api-key ${NugetKey}
