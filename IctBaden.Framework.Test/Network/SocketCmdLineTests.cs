@@ -38,7 +38,7 @@ namespace IctBaden.Framework.Test.Network
 
             var client = new SocketCommandClient("localhost", _testServerPort, s => { });
             var connected = client.Connect();
-            Assert.True(connected);
+            Assert.True(connected, "LastResult: " + client.LastResult);
             Thread.Sleep(100);
 
             Assert.True(reportConnected);

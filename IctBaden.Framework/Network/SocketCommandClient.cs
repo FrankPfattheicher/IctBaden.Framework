@@ -59,7 +59,7 @@ namespace IctBaden.Framework.Network
 
             if (string.IsNullOrEmpty(_commandHost))
             {
-                LastResult = "Hos missing";
+                LastResult = "Host missing";
                 return false;
             }
 
