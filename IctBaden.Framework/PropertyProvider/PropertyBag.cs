@@ -40,24 +40,15 @@ namespace IctBaden.Framework.PropertyProvider
 
         #endregion
 
+        
         #region IPropertyProvider Members
 
         public List<T> GetAll<T>()
         {
-#if !NET20
-            return (from property in _data where property.GetType() == typeof(T) select (T)property.Value).ToList();
-#else
-            var list = new List<T>();
-            // ReSharper disable once LoopCanBeConvertedToQuery
-            foreach (var property in data)
-            {
-                if (property.GetType() == typeof (T))
-                {
-                    list.Add((T)property.Value);
-                }
-            }
-            return list;
-#endif
+            return _data
+                    .Where(property => property.GetType() == typeof(T))
+                    .Select(property => (T) property.Value)
+                    .ToList();
         }
 
         public T Get<T>(string key)
