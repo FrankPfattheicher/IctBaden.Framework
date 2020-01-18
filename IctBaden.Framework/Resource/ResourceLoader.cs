@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable ConvertToUsingDeclaration
 
 namespace IctBaden.Framework.Resource
 {
