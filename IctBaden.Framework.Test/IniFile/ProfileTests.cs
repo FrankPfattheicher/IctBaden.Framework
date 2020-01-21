@@ -175,7 +175,7 @@ Text=DeserializeClass
             var watch = new Stopwatch();
             watch.Start();
 
-            for (var s = 1; s <= 20; s++)
+            for (var s = 1; s <= 10; s++)
             {
                 var section = ini["Section" + s];
                 for (var i = 1; i <= 10; i++)
