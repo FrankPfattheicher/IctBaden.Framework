@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using IctBaden.Framework.IniFile;
 using Xunit;
+// ReSharper disable StringLiteralTypo
 
 namespace IctBaden.Framework.Test.IniFile
 {
@@ -163,6 +165,30 @@ Text=DeserializeClass
             Assert.True(section["Boolean"].BoolValue);
             Assert.Equal("DeserializeClass", section["Text"].StringValue);
         }
+
+        [Fact]
+        public void SaveProfileShouldBeFasterThan100Milliseconds()
+        {
+            // create large file
+            var ini = new Profile(_testFileName);
+
+            var watch = new Stopwatch();
+            watch.Start();
+
+            for (var s = 1; s <= 20; s++)
+            {
+                var section = ini["Section" + s];
+                for (var i = 1; i <= 10; i++)
+                {
+                    section["Item" + i].StringValue = "Test Save Profile Speed";
+                }
+            }
+            
+            watch.Stop();
+            var elapsed = watch.ElapsedMilliseconds;
+            Assert.True(elapsed < 100, $"Duration = {elapsed}ms");
+        }
+        
 
     }
 }

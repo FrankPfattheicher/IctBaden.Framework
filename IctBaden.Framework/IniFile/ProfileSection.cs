@@ -1,6 +1,7 @@
 ﻿using System;
 using IctBaden.Framework.PropertyProvider;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
+// ReSharper disable MemberCanBePrivate.Global
 
 // ReSharper disable UnusedMember.Global
 
@@ -16,21 +17,24 @@ namespace IctBaden.Framework.IniFile
         public Profile Profile { get; private set; }
 
         public const string UnnamedGlobalSectionName = " ";
-        public bool IsUnnamedGlobalSection => (Name != null) && Name.StartsWith(UnnamedGlobalSectionName);
+        public bool IsUnnamedGlobalSection { get; } 
+        public string Name { get; }
+        public string Header { get; }
+
 
         public ProfileSection(Profile profile, string sectionName)
         {
             Profile = profile;
             Name = sectionName;
+            IsUnnamedGlobalSection = (Name != null) && Name.StartsWith(UnnamedGlobalSectionName);
+            Header = IsUnnamedGlobalSection ? string.Empty : ToString();
             Keys = new ProfileKeyCollection();
         }
 
-        public override string ToString()
+        public sealed override string ToString()
         {
             return $"[{Name}]";
         }
-
-        public string Name { get; }
 
         public ProfileKeyCollection Keys { get; }
 
@@ -51,11 +55,12 @@ namespace IctBaden.Framework.IniFile
         {
             get
             {
-                foreach (var k in Keys)
-                {
-                    if (string.Compare(k.Name, 0, key, 0, 2048, StringComparison.InvariantCultureIgnoreCase) == 0)
-                        return k;
-                }
+                var existingKey = Keys
+                    .FirstOrDefault(k => string.Compare(k.Name, key, StringComparison.InvariantCultureIgnoreCase) == 0);
+                
+                if (existingKey != null)
+                        return existingKey;
+
                 var newKey = new ProfileKey(this, key);
                 Keys.Add(newKey);
                 return newKey;
@@ -114,16 +119,7 @@ namespace IctBaden.Framework.IniFile
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
-#if !NET20
             return Keys.Select(key => new KeyValuePair<string, object>(key.Name, key.ObjectValue)).GetEnumerator();
-#else
-            var list = new List<KeyValuePair<string, object>>();
-            foreach (var key in Keys)
-            {
-                list.Add(new KeyValuePair<string, object>(key.Name, key.ObjectValue));
-            }
-            return list.GetEnumerator();
-#endif
         }
 
         IEnumerator IEnumerable.GetEnumerator()

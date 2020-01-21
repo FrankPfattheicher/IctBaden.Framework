@@ -1,7 +1,14 @@
 ﻿// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
+using System.Collections.Generic;
 using System.Reflection;
+
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
+// ReSharper disable ConvertToUsingDeclaration
+// ReSharper disable IntroduceOptionalParameters.Global
 
 namespace IctBaden.Framework.IniFile
 {
@@ -21,23 +28,33 @@ namespace IctBaden.Framework.IniFile
         public DateTime LastFileChange { get; private set; }
         public Encoding FileEncoding { get; private set; }
         public bool ReadOnly { get; private set; }
+
         /// <summary>
         /// Lines starting with this are treated as comments
         /// </summary>
         public string CommentLines { get; private set; }
 
         // ReSharper disable UnusedMember.Global
-        public static string DefaultFileName => Path.Combine(AssemblyInfo.Default.DataPath, AssemblyInfo.Default.ExeBaseName + ".cfg");
-        public static string CurrentDirectoryFileName => Path.Combine(Directory.GetCurrentDirectory(), AssemblyInfo.Default.ExeBaseName + ".cfg");
-        public static string LocalToExeFileName => Path.Combine(AssemblyInfo.Default.ExePath, AssemblyInfo.Default.ExeBaseName + ".cfg");
+        public static string DefaultFileName =>
+            Path.Combine(AssemblyInfo.Default.DataPath, AssemblyInfo.Default.ExeBaseName + ".cfg");
+
+        public static string CurrentDirectoryFileName => Path.Combine(Directory.GetCurrentDirectory(),
+            AssemblyInfo.Default.ExeBaseName + ".cfg");
+
+        public static string LocalToExeFileName =>
+            Path.Combine(AssemblyInfo.Default.ExePath, AssemblyInfo.Default.ExeBaseName + ".cfg");
         // ReSharper restore UnusedMember.Global
 
         public Profile(string profileName)
             : this(profileName, Encoding.Default)
-        { }
+        {
+        }
+
         public Profile(string profileName, Encoding desiredEncoding)
             : this(profileName, desiredEncoding, null)
-        { }
+        {
+        }
+
         public Profile(string profileName, Encoding desiredEncoding, string commentLines)
         {
             FileName = profileName;
@@ -59,7 +76,7 @@ namespace IctBaden.Framework.IniFile
         // ReSharper disable once UnusedMember.Global
         public static Profile FromResource(Assembly assembly, string resourceName)
         {
-            var profile = new Profile("res://" + resourceName) { ReadOnly = true };
+            var profile = new Profile("res://" + resourceName) {ReadOnly = true};
 
             resourceName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.EndsWith(resourceName));
             if (resourceName == null) return null;
@@ -74,6 +91,7 @@ namespace IctBaden.Framework.IniFile
                     profile.LoadContent(reader);
                 }
             }
+
             return profile;
         }
 
@@ -84,6 +102,7 @@ namespace IctBaden.Framework.IniFile
         }
 
         public ProfileSection this[string name, int index] => this[$"{name}{index}"];
+
         public ProfileSection this[string name]
         {
             get
@@ -93,6 +112,7 @@ namespace IctBaden.Framework.IniFile
                     if (section.Name == name)
                         return section;
                 }
+
                 var newSection = new ProfileSection(this, name);
                 Sections.Add(newSection);
                 return newSection;
@@ -104,6 +124,7 @@ namespace IctBaden.Framework.IniFile
         {
             return HasSection($"{name}{index}");
         }
+
         public bool HasSection(string name)
         {
             return Sections.Any(section => section.Name == name);
@@ -121,6 +142,7 @@ namespace IctBaden.Framework.IniFile
 
         private static readonly Regex SectionFmt = new Regex(@"^\[(.*)\]", RegexOptions.Compiled);
         private static readonly Regex KeyFmt = new Regex(@"^([^=]+)=(.*)$", RegexOptions.Compiled);
+
         private void LoadContent(TextReader content)
         {
             var currentSection = new ProfileSection(this, ProfileSection.UnnamedGlobalSectionName);
@@ -157,81 +179,84 @@ namespace IctBaden.Framework.IniFile
 
         public bool Load()
         {
-            if (!File.Exists(FileName))
-                return false;
-
-            try
+            lock (FileName)
             {
-                Sections.Clear();
+                if (!File.Exists(FileName))
+                    return false;
 
-                using (var fileData = new StreamReader(FileName, FileEncoding, true))
+                try
                 {
-                    string firstLine = null;
-                    while (string.IsNullOrEmpty(firstLine) && !fileData.EndOfStream)
+                    Sections.Clear();
+
+                    using (var fileData = new StreamReader(FileName, FileEncoding, true))
                     {
-                        firstLine = fileData.ReadLine();
+                        string firstLine = null;
+                        while (string.IsNullOrEmpty(firstLine) && !fileData.EndOfStream)
+                        {
+                            firstLine = fileData.ReadLine();
+                        }
+
+                        if (!FileEncoding.Equals(Encoding.Unicode) && !FileEncoding.Equals(Encoding.BigEndianUnicode) &&
+                            EncodingDetector.IsUnicode(firstLine))
+                        {
+                            FileEncoding = Encoding.Unicode;
+                        }
+                        else
+                        {
+                            FileEncoding = fileData.CurrentEncoding;
+                        }
+
+                        fileData.Close();
                     }
-                    if (!FileEncoding.Equals(Encoding.Unicode) && !FileEncoding.Equals(Encoding.BigEndianUnicode) && EncodingDetector.IsUnicode(firstLine))
+
+                    using (var fileData = new StreamReader(FileName, FileEncoding, true))
                     {
-                        FileEncoding = Encoding.Unicode;
+                        LoadContent(fileData);
+                        fileData.Close();
                     }
-                    else
-                    {
-                        FileEncoding = fileData.CurrentEncoding;
-                    }
-                    fileData.Close();
+
+                    return true;
                 }
-                using (var fileData = new StreamReader(FileName, FileEncoding, true))
+                catch (IOException ex)
                 {
-                    LoadContent(fileData);
-                    fileData.Close();
+                    System.Diagnostics.Trace.TraceError(ex.Message);
+                    return false;
                 }
             }
-            catch (IOException ex)
-            {
-                System.Diagnostics.Trace.TraceError(ex.Message);
-                return false;
-            }
-            return true;
         }
 
+        // ReSharper disable once UnusedMethodReturnValue.Global
         public bool Save()
         {
-            if (ReadOnly)
-                return false;
-
-            try
+            lock (FileName)
             {
-                using (var fileData = new StreamWriter(FileName, false, FileEncoding))
+                if (ReadOnly)
+                    return false;
+
+                try
                 {
-                    foreach (var section in Sections)
+                    var lines = new List<string>();
+                    foreach (var section in Sections.Where(section => section.Keys.Count != 0))
                     {
-                        if (section.Keys.Count == 0)
-                            continue;
+                        lines.Add(section.Header);
 
-                        if (!section.IsUnnamedGlobalSection)
-                        {
-                            fileData.WriteLine("[" + section.Name + "]");
-                        }
+                        var sectionLines = section.Keys
+                            .Where(key => !string.IsNullOrEmpty(key.StringValue))
+                            .Select(key => key.ToString());
+                        lines.AddRange(sectionLines);
 
-                        foreach (var key in section.Keys)
-                        {
-                            if (string.IsNullOrEmpty(key.StringValue))
-                                continue;
-                            fileData.WriteLine(key.Name + "=" + key.StringValue);
-                        }
-
-                        fileData.WriteLine(string.Empty);
+                        lines.Add(string.Empty);
                     }
-                    fileData.Close();
+
+                    File.WriteAllLines(FileName, lines, FileEncoding);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Trace.TraceError(ex.Message);
+                    return false;
                 }
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Trace.TraceError(ex.Message);
-                return false;
-            }
-            return true;
         }
 
         #endregion

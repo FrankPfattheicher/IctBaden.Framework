@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+// ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.IniFile
 {
@@ -15,7 +16,7 @@ namespace IctBaden.Framework.IniFile
 
         public override string ToString()
         {
-            return $"{Name}={_keyValue}";
+            return Name + "=" +_keyValue;
         }
 
         public string Name { get; }
@@ -132,5 +133,6 @@ namespace IctBaden.Framework.IniFile
         {
             return (_keyValue != null) ? BoolValue : defaultValue;
         }
+        
     }
 }
