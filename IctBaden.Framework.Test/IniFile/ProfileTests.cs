@@ -166,7 +166,7 @@ Text=DeserializeClass
             Assert.Equal("DeserializeClass", section["Text"].StringValue);
         }
 
-        [Fact]
+        [PerformanceFact]
         public void SaveProfileShouldBeFasterThan100Milliseconds()
         {
             // create large file
