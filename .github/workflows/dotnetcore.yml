@@ -16,6 +16,6 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release ./IctBaden.Framework.sln
     - name: Test with dotnet
-      run: dotnet test ./IctBaden.Framework.sln --configuration Release
+      run: dotnet test ./IctBaden.Framework.sln --configuration Release -- SkipPerformanceTests=true
     - name: Publish NuGet
       run: dotnet nuget push IctBaden.Framework/bin/Release/*.nupkg --source https://www.nuget.org --api-key ${{ secrets.NugetKey }}
