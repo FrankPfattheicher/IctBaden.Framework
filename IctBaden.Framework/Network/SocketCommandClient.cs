@@ -38,15 +38,11 @@ namespace IctBaden.Framework.Network
             _pollReceiveData = new System.Threading.Timer(ReceiveData, this, 100, 100);
         }
 
-        #region IDisposable Members
-
         public void Dispose()
         {
             Disconnect();
             _pollReceiveData.Dispose();
         }
-
-        #endregion
 
         public bool Connect()
         {

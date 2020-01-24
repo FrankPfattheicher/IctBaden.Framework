@@ -1,4 +1,5 @@
 
+* 1.0.10 - 24.01.2020 GetApplicationDirectory added.
 * 1.0.9	- 21.01.2020 Profile Save thread safe and performance optimized.
 * 1.0.8	- 07.01.2020 MicrosecondsTimer added.
 * 1.0.7	- 21.12.2019 PassiveTimer using UtcNow.Ticks, WaitTask and WaitThread added.
