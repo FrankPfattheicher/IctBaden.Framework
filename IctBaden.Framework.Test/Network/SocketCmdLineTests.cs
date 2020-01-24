@@ -7,14 +7,15 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.Network
 {
-    [CollectionDefinition(nameof(SocketCmdLineTests), DisableParallelization = true)]
+    [CollectionDefinition("TcpClientServerTests", DisableParallelization = true)]
     public class SocketCmdLineTests : IDisposable
     {
-        private readonly int _testServerPort = NetworkInfo.GetFreeLocalTcpPort();
+        private readonly int _testServerPort;
         private readonly SocketCommandLineServer _server;
 
         public SocketCmdLineTests()
         {
+            _testServerPort = NetworkInfo.GetFreeLocalTcpPort();
             _server = new SocketCommandLineServer(_testServerPort);
         }
 
@@ -24,11 +25,10 @@ namespace IctBaden.Framework.Test.Network
         }
 
         [Fact]
-        public void ConnectOneClient()
+        public void ConnectAndDisposeOneClientShouldBeTrackedByServer()
         {
             var started = _server.Start();
             Assert.True(started, "Could not start server");
-
             Assert.Empty(_server.Clients);
 
             var reportConnected = false;

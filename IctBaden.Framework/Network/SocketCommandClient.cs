@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -64,12 +65,10 @@ namespace IctBaden.Framework.Network
                 var hostAddresses = Dns.GetHostAddresses(_commandHost);
 
                 // create an end-point for the first address...
-                IPEndPoint endPoint = null;
-                foreach (var hostAddress in hostAddresses)
-                {
-                    if (hostAddress.AddressFamily == AddressFamily.InterNetwork)
-                        endPoint = new IPEndPoint(hostAddress, _commandPort);
-                }
+                var endPoint = hostAddresses
+                    .Where(hostAddress => hostAddress.AddressFamily == AddressFamily.InterNetwork)
+                    .Select(hostAddress => new IPEndPoint(hostAddress, _commandPort))
+                    .FirstOrDefault();
 
                 if (endPoint == null)
                 {
@@ -79,13 +78,13 @@ namespace IctBaden.Framework.Network
 
                 _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 _clientSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                //clientSocket.Connect(endPoint);
+                
                 var result = _clientSocket.BeginConnect(endPoint, null, null);
                 var success = result.AsyncWaitHandle.WaitOne(ConnectTimeout, true);
                 if (!success)
                 {
                     LastResult = "Connect timeout";
-                    _clientSocket.Close(); // NOTE, MUST CLOSE THE SOCKET
+                    _clientSocket.Close(); //NOTE: MUST CLOSE THE SOCKET
                     return false;
                 }
                 _clientSocket.EndConnect(result);

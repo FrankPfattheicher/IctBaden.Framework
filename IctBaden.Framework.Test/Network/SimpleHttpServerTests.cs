@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -7,13 +6,16 @@ using System.Threading.Tasks;
 using IctBaden.Framework.Network;
 using Xunit;
 using Xunit.Abstractions;
+// ReSharper disable ConvertToUsingDeclaration
 
 // ReSharper disable StringLiteralTypo
 
 namespace IctBaden.Framework.Test.Network
 {
+    [CollectionDefinition("TcpClientServerTests", DisableParallelization = true)]
     public partial class SimpleHttpServerTests : IDisposable
     {
+        // ReSharper disable once NotAccessedField.Local
         private readonly ITestOutputHelper _testOutputHelper;
         private int _testPort = NetworkInfo.GetFreeLocalTcpPort();
         private readonly TestHttpServer _httpServer;
@@ -124,7 +126,7 @@ namespace IctBaden.Framework.Test.Network
         public void MultipleParallelGetRequests()
         {
             var requests = Enumerable.Range(1, 10)
-                .Select(ix => Task.Run(() => { GetRequestSuccess(); }))
+                .Select(ix => Task.Run(GetRequestSuccess))
                 .ToArray();
             Task.WaitAll(requests);
         }
