@@ -1,0 +1,21 @@
+{
+  "$type": "IctBaden.Framework.Test.Serialization.Test, IctBaden.Framework.Test",
+  "name": "test",
+  "properties": {
+    "$type": "IctBaden.Framework.PropertyProvider.PropertyBag, IctBaden.Framework",
+    "$values": [
+      {
+        "key": "abc",
+        "value": "123"
+      },
+      {
+        "key": "bcd",
+        "value": "234"
+      },
+      {
+        "key": "cde",
+        "value": "345"
+      }
+    ]
+  }
+}

@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resource\TextFile1.txt" />
+    <None Remove="Serialization\test.json" />
+    <EmbeddedResource Include="Serialization\test.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -93,7 +93,7 @@ namespace IctBaden.Framework.PropertyProvider
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            return new List<KeyValuePair<string, object>>().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
