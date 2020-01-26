@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 // ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.PropertyProvider
 {
-#if !NET20
     using System.Linq;
-#endif
 
-    public class PropertyBag : IPropertyProvider
+    public class PropertyBag : Dictionary<string, object>, IPropertyProvider
     {
-        private readonly Dictionary<string, object> _data;
-
-        public PropertyBag()
-        {
-            _data = new Dictionary<string, object>();
-        }
-
         public void Append(IPropertyProvider source)
         {
             foreach (var prop in source)
@@ -26,26 +16,9 @@ namespace IctBaden.Framework.PropertyProvider
             }
         }
 
-        #region IEnumerable Members
-
-        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
-        {
-            return _data.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _data.GetEnumerator();
-        }
-
-        #endregion
-
-        
-        #region IPropertyProvider Members
-
         public List<T> GetAll<T>()
         {
-            return _data
+            return this
                     .Where(property => property.GetType() == typeof(T))
                     .Select(property => (T) property.Value)
                     .ToList();
@@ -58,38 +31,36 @@ namespace IctBaden.Framework.PropertyProvider
 
         public T Get<T>(string key, T defaultValue)
         {
-            if (!_data.ContainsKey(key) || (_data[key] == null))
+            if (!ContainsKey(key) || (this[key] == null))
                 return defaultValue;
 
-            return (T)Convert.ChangeType(_data[key], typeof(T));
+            return (T)Convert.ChangeType(this[key], typeof(T));
         }
 
         public void Set<T>(string key, T newValue)
         {
-            if (_data.ContainsKey(key))
+            if (ContainsKey(key))
             {
-                _data[key] = newValue;
+                this[key] = newValue;
             }
             else
             {
-                _data.Add(key, newValue);
+                Add(key, newValue);
             }
         }
 
-        public void Remove(string key)
+        public new void Remove(string key)
         {
-            if (_data.ContainsKey(key))
+            if (ContainsKey(key))
             {
-                _data.Remove(key);
+                base.Remove(key);
             }
         }
 
         public bool Contains(string key)
         {
-            return _data.ContainsKey(key);
+            return ContainsKey(key);
         }
-
-        #endregion
 
     }
 }

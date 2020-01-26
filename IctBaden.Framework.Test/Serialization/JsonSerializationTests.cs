@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using IctBaden.Framework.PropertyProvider;
 using IctBaden.Framework.Resource;
 using Newtonsoft.Json;
@@ -70,5 +74,30 @@ namespace IctBaden.Framework.Test.Serialization
             Assert.Equal("234", test.Properties.Get<string>("bcd"));
             Assert.Equal("345", test.Properties.Get<string>("cde"));
         }
+        
+        [Fact]
+        public void PropertyBagShouldBeDeserializedAsSerialized()
+        {
+            var from = new Test
+            {
+                Name = "fromTo"
+            };
+            from.Properties.Set("fgh", "678");
+            from.Properties.Set("ghi", "789");
+            from.Properties.Set("hik", "890");
+
+            var json = JsonConvert.SerializeObject(from, Settings);
+            Assert.False(string.IsNullOrEmpty(json));
+
+            var to = JsonConvert.DeserializeObject(json, Settings) as Test;
+            Assert.NotNull(to);
+            
+            Assert.Equal(from.Name, to.Name);
+            Assert.Equal(from.Properties, to.Properties);
+        }
+
+
+        
+        
     }
 }

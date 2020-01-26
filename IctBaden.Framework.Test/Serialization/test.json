@@ -3,19 +3,8 @@
   "name": "test",
   "properties": {
     "$type": "IctBaden.Framework.PropertyProvider.PropertyBag, IctBaden.Framework",
-    "$values": [
-      {
-        "key": "abc",
-        "value": "123"
-      },
-      {
-        "key": "bcd",
-        "value": "234"
-      },
-      {
-        "key": "cde",
-        "value": "345"
-      }
-    ]
+    "abc": "123",
+    "bcd": "234",
+    "cde": "345"
   }
 }
