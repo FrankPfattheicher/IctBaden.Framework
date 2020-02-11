@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using IctBaden.Framework.Types;
 using Xunit;
+// ReSharper disable UnusedMember.Local
 
 namespace IctBaden.Framework.Test.Types
 {
     public class ConverterTests
     {
-        enum TestEnum
+        private enum TestEnum
         {
             Zero,
             One,
@@ -28,11 +29,19 @@ namespace IctBaden.Framework.Test.Types
         public void UniversalConverterShouldConvertStringsToBoolean()
         {
             Assert.False((bool) UniversalConverter.ConvertToType("0", typeof(bool)));
+            Assert.False((bool) UniversalConverter.ConvertToType("N", typeof(bool)));
+            Assert.False((bool) UniversalConverter.ConvertToType("F", typeof(bool)));
             Assert.False((bool) UniversalConverter.ConvertToType("false", typeof(bool)));
             Assert.False((bool) UniversalConverter.ConvertToType("False", typeof(bool)));
+            Assert.False((bool) UniversalConverter.ConvertToType("X", typeof(bool)));
+            Assert.False((bool) UniversalConverter.ConvertToType("", typeof(bool)));
+
             Assert.True((bool) UniversalConverter.ConvertToType("1", typeof(bool)));
             Assert.True((bool) UniversalConverter.ConvertToType("true", typeof(bool)));
             Assert.True((bool) UniversalConverter.ConvertToType("True", typeof(bool)));
+            Assert.True((bool) UniversalConverter.ConvertToType("Y", typeof(bool)));
+            Assert.True((bool) UniversalConverter.ConvertToType("J", typeof(bool)));
+            Assert.True((bool) UniversalConverter.ConvertToType("T", typeof(bool)));
         }
         
         [Fact]

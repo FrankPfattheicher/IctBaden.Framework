@@ -169,30 +169,36 @@ namespace IctBaden.Framework.Types
                 }
                 
                 // ReSharper disable once InvertIf
-                if ((typeof (T) == typeof (bool)))
-                {
-                    switch (value.ToString())
-                    {
-                        case "-1":
-                        case "1":
-                            return (T)Convert.ChangeType(true, typeof(T));
-                        case "0":
-                            return (T)Convert.ChangeType(false, typeof(T));
-                    }
-                }
-
-                return (T)ConvertToType(value, typeof(T));
-            }
-            catch (FormatException)
-            {
                 if (typeof(T) == typeof(bool))
                 {
                     if (bool.TryParse(value.ToString(), out var boolValue))
+                    {
                         return (T)Convert.ChangeType(boolValue, typeof(T));
-                    return (T)Convert.ChangeType((value.ToString() == "T") || (value.ToString() == "Y"), typeof(T));
+                    }
+                    if (value is string str)
+                    {
+                        var trueStrings = new[] {
+                            "-1", "1", "Y", "J", "T"
+                        };
+                        var falseStrings = new[] {
+                            "0", " ", "", "N", "F"
+                        };
+                        if (trueStrings.Contains(str.ToUpper()))
+                        {
+                            return (T) Convert.ChangeType(true, typeof(T));
+                        }
+                        if (falseStrings.Contains(str.ToUpper()))
+                        {
+                            return (T)Convert.ChangeType(false, typeof(T));
+                        }
+                    }
+                }
+                else
+                {
+                    return (T)ConvertToType(value, typeof(T));
                 }
             }
-            catch (InvalidCastException)
+            catch (Exception)
             {
                 return defaultValue;
             }
