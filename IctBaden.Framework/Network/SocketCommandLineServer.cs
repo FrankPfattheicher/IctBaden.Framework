@@ -141,6 +141,7 @@ namespace IctBaden.Framework.Network
                     {
                         _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
                     }
+                    _listener.LingerState = new LingerOption(false, 0);
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                     var localEp = new IPEndPoint(0, _port);
                     _listener.Bind(localEp);
@@ -277,6 +278,7 @@ namespace IctBaden.Framework.Network
             {
                 client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
             }
+            client.LingerState = new LingerOption(false, 0);
             client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             lock (Clients)
             {

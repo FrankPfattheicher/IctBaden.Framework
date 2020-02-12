@@ -1,5 +1,5 @@
 
-* 1.0.12 - 12.02.2020 ConvertTo<bool> stack overflow fixed.
+* 1.0.12 - 12.02.2020 ConvertTo<bool> stack overflow fixed. Do not linger on sockets on Linux.
 * 1.0.11 - 26.01.2020 Refactored PropertyBag to be JSON serializable.
 * 1.0.10 - 24.01.2020 GetApplicationDirectory added.
 * 1.0.9	- 21.01.2020 Profile Save thread safe and performance optimized.
