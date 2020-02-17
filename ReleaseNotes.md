@@ -1,4 +1,5 @@
 
+* 1.0.13 - 17.02.2020 Fixed GetApplicationDirectory on Windows.
 * 1.0.12 - 12.02.2020 ConvertTo<bool> stack overflow fixed. Do not linger on sockets on Linux.
 * 1.0.11 - 26.01.2020 Refactored PropertyBag to be JSON serializable.
 * 1.0.10 - 24.01.2020 GetApplicationDirectory added.
