@@ -109,6 +109,25 @@ namespace IctBaden.Framework.Test.IniFile
         }
 
         [Fact]
+        public void SectionNamesAreCaseInsensitive()
+        {
+            var ini = new Profile(_testFileName);
+            ini["Test"]["Wert"].StringValue = "1234";
+            
+            Assert.True(ini.Sections.Contains("Test"));
+            Assert.True(ini.Sections.Contains("test"));
+            Assert.True(ini.Sections.Contains("TEST"));
+
+            Assert.True(ini.HasSection("Test"));
+            Assert.True(ini.HasSection("test"));
+            Assert.True(ini.HasSection("TEST"));
+
+            Assert.True(ini["Test"].Keys.Contains("Wert"));
+            Assert.True(ini["test"].Keys.Contains("Wert"));
+            Assert.True(ini["TEST"].Keys.Contains("Wert"));
+        }
+
+        [Fact]
         public void KeyNamesAreCaseInsensitive()
         {
             var ini = new Profile(_testFileName);

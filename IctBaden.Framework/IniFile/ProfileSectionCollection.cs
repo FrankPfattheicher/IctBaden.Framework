@@ -1,5 +1,8 @@
 ﻿
 // ReSharper disable UnusedMember.Global
+
+using System;
+
 namespace IctBaden.Framework.IniFile
 {
     using System.Collections.Generic;
@@ -16,18 +19,20 @@ namespace IctBaden.Framework.IniFile
 
         public bool Contains(string name)
         {
-            return this.Any(section => section.Name == name);
+            return this.Any(section => string.Compare(section.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
         }
 
         public ProfileSection this[string name]
         {
             get
             {
-                foreach (var section in this)
+                var section = this
+                    .FirstOrDefault(s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
+                if (section != null)
                 {
-                    if (section.Name == name)
-                        return section;
+                    return section;
                 }
+
                 var newSection = new ProfileSection(_profile, name);
                 Add(newSection);
                 return newSection;

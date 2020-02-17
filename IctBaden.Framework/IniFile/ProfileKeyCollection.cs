@@ -9,7 +9,7 @@ namespace IctBaden.Framework.IniFile
     {
         public bool Contains(string key)
         {
-            return this.Any(k => string.Compare(k.Name, 0, key, 0, 2048, StringComparison.InvariantCultureIgnoreCase) == 0);
+            return this.Any(k => string.Compare(k.Name, key, StringComparison.InvariantCultureIgnoreCase) == 0);
         }
     }
 }

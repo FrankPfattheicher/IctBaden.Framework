@@ -107,10 +107,11 @@ namespace IctBaden.Framework.IniFile
         {
             get
             {
-                foreach (var section in Sections)
+                var section = Sections
+                    .FirstOrDefault(s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
+                if (section != null)
                 {
-                    if (section.Name == name)
-                        return section;
+                    return section;
                 }
 
                 var newSection = new ProfileSection(this, name);
@@ -127,7 +128,7 @@ namespace IctBaden.Framework.IniFile
 
         public bool HasSection(string name)
         {
-            return Sections.Any(section => section.Name == name);
+            return Sections.Any(s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
         }
 
         public static bool NeedsUnicode(string text)
