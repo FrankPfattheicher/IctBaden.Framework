@@ -1,4 +1,5 @@
 
+* 1.0.15 - 24.02.2020 Refactored SimpleHttpServer.
 * 1.0.14 - 17.02.2020 INI file sections are case insensitive.
 * 1.0.13 - 17.02.2020 Fixed GetApplicationDirectory on Windows.
 * 1.0.12 - 12.02.2020 ConvertTo<bool> stack overflow fixed. Do not linger on sockets on Linux.
