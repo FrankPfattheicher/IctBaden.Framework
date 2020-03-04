@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+
 // ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.AppUtils
@@ -10,8 +11,7 @@ namespace IctBaden.Framework.AppUtils
     /// Provides information about an application
     /// </summary>
     // ReSharper disable once UnusedType.Global
-    [Obsolete("Use ApplicationInfo instead.")]
-    public static class Application
+    public static class ApplicationInfo
     {
         /// <summary>
         /// With netcore 3 introduces single file publish,
@@ -21,14 +21,15 @@ namespace IctBaden.Framework.AppUtils
         /// Feedback welcome !!!
         /// </summary>
         /// <returns></returns>
-        [Obsolete("Use ApplicationInfo.ApplicationDirectory instead.")]
-        public static string GetApplicationDirectory()
+        public static string ApplicationDirectory
         {
-            var path = AppContext.BaseDirectory;
-
-            using (var processModule = Process.GetCurrentProcess().MainModule)
+            get
             {
-                    if (processModule != null 
+                var path = AppContext.BaseDirectory;
+
+                using (var processModule = Process.GetCurrentProcess().MainModule)
+                {
+                    if (processModule != null
                         && (processModule.ModuleName != "dotnet")
                         && (processModule.ModuleName != "dotnet.exe"))
                     {
@@ -39,26 +40,28 @@ namespace IctBaden.Framework.AppUtils
                             return path;
                         }
                     }
-            }
-            // started as dotnet app.dll
-            var assembly = Assembly.GetEntryAssembly();
-            if (assembly != null)
-            {
-                path = Path.GetDirectoryName(assembly.Location);
+                }
+
+                // started as dotnet app.dll
+                var assembly = Assembly.GetEntryAssembly();
+                if (assembly != null)
+                {
+                    path = Path.GetDirectoryName(assembly.Location);
+                    if (Directory.Exists(path))
+                    {
+                        return path;
+                    }
+                }
+
                 if (Directory.Exists(path))
                 {
                     return path;
                 }
-            }
 
-            if (Directory.Exists(path))
-            {
-                return path;
+                // fallback
+                return Environment.CurrentDirectory;
             }
-            // fallback
-            return Environment.CurrentDirectory;
         }
         
     }
-    
 }
