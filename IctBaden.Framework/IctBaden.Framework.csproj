@@ -9,10 +9,10 @@
     <Description>Not really a framework but more a application companion...</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageVersion>1.0.16</PackageVersion>
+    <PackageVersion>1.0.17</PackageVersion>
     <LangVersion>default</LangVersion>
-    <AssemblyVersion>1.0.16</AssemblyVersion>
-    <FileVersion>1.0.16</FileVersion>
+    <AssemblyVersion>1.0.17</AssemblyVersion>
+    <FileVersion>1.0.17</FileVersion>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
