@@ -42,7 +42,7 @@ namespace IctBaden.Framework.IniFile
             AssemblyInfo.Default.ExeBaseName + ".cfg");
 
         public static string LocalToExeFileName =>
-            Path.Combine(AssemblyInfo.Default.ExePath, AssemblyInfo.Default.ExeBaseName + ".cfg");
+            Path.Combine(ApplicationInfo.ApplicationDirectory, AssemblyInfo.Default.ExeBaseName + ".cfg");
         // ReSharper restore UnusedMember.Global
 
         public Profile(string profileName)

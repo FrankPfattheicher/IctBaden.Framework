@@ -1,4 +1,4 @@
-
+* 1.0.18 - 03.04.2020 Profile LocalToExeFileName using ApplicationInfo
 * 1.0.17 - 27.03.2020 Added AppUtils.Shell.OpenFile
 * 1.0.16 - 04.03.2020 Added ApplicationInfo as replacement for Application, new FrameworkInfo
 * 1.0.15 - 24.02.2020 Refactored SimpleHttpServer.
