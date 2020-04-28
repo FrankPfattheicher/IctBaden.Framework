@@ -124,14 +124,26 @@ namespace IctBaden.Framework.Network
             }
         }
 
+        /// <summary>
+        /// Sets the receive timeout of an existing client connection.
+        /// </summary>
+        /// <param name="timeout"></param>
+        /// <exception cref="Exception">Throws exception if the client is not connected.</exception>
         public void SetReceiveTimeout(TimeSpan timeout)
         {
             SetReceiveTimeout((int)timeout.TotalMilliseconds);
         }
+        /// <summary>
+        /// Sets the receive timeout of an existing client connection.
+        /// </summary>
+        /// <param name="milliSeconds"></param>
+        /// <exception cref="Exception">Throws exception if the client is not connected.</exception>
         public void SetReceiveTimeout(int milliSeconds)
         {
             if (_clientSocket == null)
-                return;
+            {
+                throw new Exception("SetReceiveTimeout is valid only if client is connected.");
+            }
 
             _clientSocket.ReceiveTimeout = milliSeconds;
         }
