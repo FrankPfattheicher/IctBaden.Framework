@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using IctBaden.Framework.Network;
 using IctBaden.Framework.Timer;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace IctBaden.Framework.Test.Network
 {
     [CollectionDefinition("TcpClientServerTests", DisableParallelization = true)]
     public class SocketCmdLineTests : IDisposable
     {
+        private readonly ITestOutputHelper _testOutputHelper;
         private readonly int _testServerPort;
         private readonly SocketCommandLineServer _server;
 
-        public SocketCmdLineTests()
+        public SocketCmdLineTests(ITestOutputHelper testOutputHelper)
         {
+            _testOutputHelper = testOutputHelper;
             _testServerPort = NetworkInfo.GetFreeLocalTcpPort();
             _server = new SocketCommandLineServer(_testServerPort);
         }
@@ -163,5 +170,106 @@ namespace IctBaden.Framework.Test.Network
             Assert.True(port > 0);
         }
 
+        
+        [Fact]
+        public void ClientConnectShouldTimeoutIfServerNotRunning()
+        {
+            using var client = new SocketCommandClient("localhost", _testServerPort, s => { });
+
+            var connected = client.Connect();
+            Assert.False(connected, "LastResult: " + client.LastResult);
+        }
+        
+        [Fact]
+        public void IncompleteCommandShouldNotTimeoutIfNotSpecified()
+        {
+            var started = _server.Start();
+            Assert.True(started, "Could not start server");
+
+            using var client = new SocketCommandClient("localhost", _testServerPort, s =>
+            {
+                _testOutputHelper.WriteLine(s);
+            });
+
+            var connected = client.Connect();
+            Assert.True(connected, "LastResult: " + client.LastResult);
+
+            var task = Task.Run(() => client.DoCommand("TEST"));
+            var completedInTime = Task.WaitAll(new Task[] { task }, TimeSpan.FromSeconds(5));
+
+            Assert.False(completedInTime);
+        }
+
+        [Fact]
+        public void DoCommandShouldAutoConnectToServer()
+        {
+            var started = _server.Start();
+            Assert.True(started, "Could not start server");
+
+            _server.HandleCommand += (socket, line) => socket.Send(Encoding.ASCII.GetBytes(line)); 
+            
+            using var client = new SocketCommandClient("localhost", _testServerPort, s =>
+            {
+                _testOutputHelper.WriteLine(s);
+            });
+
+            const string cmd = "TEST*TEST";
+            var response = client.DoCommand(cmd + _server.Eoc.First());
+            Assert.True(client.IsConnected);
+            Assert.Equal(cmd, response);
+        }
+
+        [Fact]
+        public void DisconnectCommandShouldSucceed()
+        {
+            var started = _server.Start();
+            Assert.True(started, "Could not start server");
+
+            using var client = new SocketCommandClient("localhost", _testServerPort, s =>
+            {
+                _testOutputHelper.WriteLine(s);
+            });
+
+            var connected = client.Connect();
+            Assert.True(connected, "LastResult: " + client.LastResult);
+
+            client.Disconnect();
+            Assert.False(client.IsConnected);
+        }
+
+        [Fact]
+        public void IncompleteCommandShouldTimeoutInTimeIfSpecified()
+        {
+            var started = _server.Start();
+            Assert.True(started, "Could not start server");
+
+            var client = new SocketCommandClient("localhost", _testServerPort, s => { });
+
+            try
+            {
+                client.Connect();
+                client.SetReceiveTimeout(TimeSpan.FromSeconds(1));
+
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                var task = Task.Run(() => client.DoCommand("TEST"));
+                Task.WaitAll(new Task[] {task}, TimeSpan.FromSeconds(6));
+
+                stopwatch.Stop();
+                Assert.True(stopwatch.Elapsed >= TimeSpan.FromSeconds(1));
+                Assert.True(stopwatch.Elapsed <= TimeSpan.FromSeconds(5));
+            }
+            catch (Exception ex)
+            {
+                Assert.True(false, ex.Message);
+            }
+            finally
+            {
+                client.Dispose();
+            }
+        }
+
+        
     }
 }
