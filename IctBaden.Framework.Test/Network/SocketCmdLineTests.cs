@@ -29,6 +29,7 @@ namespace IctBaden.Framework.Test.Network
         public void Dispose()
         {
             _server.Terminate();
+            Thread.Sleep(500);
         }
 
         [Fact]
@@ -245,20 +246,19 @@ namespace IctBaden.Framework.Test.Network
 
             var client = new SocketCommandClient("localhost", _testServerPort, s => { });
 
+            var stopwatch = new Stopwatch();
             try
             {
                 client.Connect();
                 client.SetReceiveTimeout(TimeSpan.FromSeconds(1));
 
-                var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
+                // ReSharper disable once AccessToDisposedClosure
                 var task = Task.Run(() => client.DoCommand("TEST"));
                 Task.WaitAll(new Task[] {task}, TimeSpan.FromSeconds(6));
 
                 stopwatch.Stop();
-                Assert.True(stopwatch.Elapsed >= TimeSpan.FromSeconds(1));
-                Assert.True(stopwatch.Elapsed <= TimeSpan.FromSeconds(5));
             }
             catch (Exception ex)
             {
@@ -268,6 +268,8 @@ namespace IctBaden.Framework.Test.Network
             {
                 client.Dispose();
             }
+            Assert.True(stopwatch.Elapsed >= TimeSpan.FromSeconds(1), $"t={stopwatch.Elapsed}");
+            Assert.True(stopwatch.Elapsed <= TimeSpan.FromSeconds(5), $"t={stopwatch.Elapsed}");
         }
 
         
