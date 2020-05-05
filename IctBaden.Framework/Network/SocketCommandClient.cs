@@ -30,6 +30,10 @@ namespace IctBaden.Framework.Network
         /// Milliseconds
         /// </summary>
         public int ConnectTimeout  { get; set; } = 5000;
+        /// <summary>
+        /// Number of retires to connect and execute command.
+        /// </summary>
+        public int CommandRetryCount  { get; set; } = 3;
 
         public SocketCommandClient(string host, int port, Action<string> rxHandler)
         {
@@ -201,7 +205,7 @@ namespace IctBaden.Framework.Network
 
         public string DoCommand(string cmd)
         {
-            for (var retry = 0; retry < 3; retry++)
+            for (var retry = 0; retry <= CommandRetryCount; retry++)
             {
                 if (!Connect())
                     continue;

@@ -1,6 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO.Pipes;
+using System.Linq;
 using System.Net.Sockets;
+using System.Text;
 using IctBaden.Framework.Timer;
+
 // ReSharper disable CommentTypo
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
@@ -9,14 +15,6 @@ using IctBaden.Framework.Timer;
 
 namespace IctBaden.Framework.Tron
 {
-    using System;
-    using System.Text;
-    using System.IO;
-    using System.IO.Pipes;
-    using System.Diagnostics;
-    using AppUtils;
-    using System.Drawing;
-
     public static class TronTrace
     {
         // ReSharper disable UnusedMember.Local
@@ -50,9 +48,6 @@ namespace IctBaden.Framework.Tron
         }
 
         // ReSharper restore UnusedMember.Local
-
-        private static string ExeName => "TRON.exe";
-        private static string FullExeName { get; } = Path.Combine(AssemblyInfo.Default.CommonPath, ExeName);
 
         public static string PipeName { get; set; } = "ICTBaden.tron";
         private static NamedPipeClientStream _tron;
@@ -229,33 +224,6 @@ namespace IctBaden.Framework.Tron
             }
 
             CheckState.Start(10000);
-        }
-
-        public static bool IsInstalled
-        {
-            get
-            {
-                var exe = FullExeName;
-                if (File.Exists(exe))
-                    return true;
-                exe = Path.Combine(AssemblyInfo.Default.ExePath, ExeName);
-                return File.Exists(exe);
-            }
-        }
-
-        public static void Open()
-        {
-            var exe = FullExeName;
-            if (File.Exists(exe))
-            {
-                Process.Start(exe);
-                return;
-            }
-            exe = Path.Combine(AssemblyInfo.Default.ExePath, ExeName);
-            if (File.Exists(exe))
-            {
-                Process.Start(exe);
-            }
         }
 
         public static void Clear()
