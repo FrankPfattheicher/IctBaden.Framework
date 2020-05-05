@@ -224,7 +224,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.Equal(cmd, response);
         }
 
-        [Fact(Skip="Connect fails if run with other tests :-(")]
+        [Fact(Skip = ":-(")]
         public void DisconnectCommandShouldSucceed()
         {
             var started = _server.Start();
@@ -239,7 +239,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.False(_client.IsConnected);
         }
 
-        [Fact(Skip="Does not run with other tests :-(")]
+        [Fact(Skip = ":-(")]
         public void IncompleteCommandShouldTimeoutInTimeIfSpecified()
         {
             var started = _server.Start();
