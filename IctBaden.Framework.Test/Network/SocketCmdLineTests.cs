@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -8,30 +7,36 @@ using System.Threading.Tasks;
 using IctBaden.Framework.Network;
 using IctBaden.Framework.Timer;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace IctBaden.Framework.Test.Network
 {
     [CollectionDefinition("TcpClientServerTests", DisableParallelization = true)]
     public class SocketCmdLineTests : IDisposable
     {
-        private readonly ITestOutputHelper _testOutputHelper;
         private readonly int _testServerPort;
         private readonly SocketCommandLineServer _server;
         private SocketCommandClient _client;
+
+        private CancellationTokenSource _cancel;
         private Task _task;
 
-        public SocketCmdLineTests(ITestOutputHelper testOutputHelper)
+        public SocketCmdLineTests()
         {
-            _testOutputHelper = testOutputHelper;
             _testServerPort = NetworkInfo.GetFreeLocalTcpPort();
             _server = new SocketCommandLineServer(_testServerPort);
         }
 
         public void Dispose()
         {
-            _task?.Dispose();
-            _task = null;
+            _cancel?.Cancel();
+            if (_task != null)
+            {
+                if (_task.Wait(1000))
+                {
+                    _task?.Dispose();
+                }
+                _task = null;
+            }
 
             _client?.Dispose();
             _client = null;
@@ -189,26 +194,6 @@ namespace IctBaden.Framework.Test.Network
         }
         
         [Fact]
-        public void IncompleteCommandShouldNotTimeoutIfNotSpecified()
-        {
-            var started = _server.Start();
-            Assert.True(started, "Could not start server");
-
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { })
-            {
-                CommandRetryCount = 0
-            };
-
-            var connected = _client.Connect();
-            Assert.True(connected, "LastResult: " + _client.LastResult);
-
-            var task = Task.Run(() => _client.DoCommand("TEST"));
-            var completedInTime = Task.WaitAll(new Task[] { task }, TimeSpan.FromSeconds(5));
-
-            Assert.False(completedInTime);
-        }
-
-        [Fact]
         public void DoCommandShouldAutoConnectToServer()
         {
             var started = _server.Start();
@@ -224,7 +209,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.Equal(cmd, response);
         }
 
-        [Fact(Skip = ":-(")]
+        [Fact]
         public void DisconnectCommandShouldSucceed()
         {
             var started = _server.Start();
@@ -239,8 +224,8 @@ namespace IctBaden.Framework.Test.Network
             Assert.False(_client.IsConnected);
         }
 
-        [Fact(Skip = ":-(")]
-        public void IncompleteCommandShouldTimeoutInTimeIfSpecified()
+        [Fact]
+        public void IncompleteCommandShouldNotTimeoutIfNotSpecified()
         {
             var started = _server.Start();
             Assert.True(started, "Could not start server");
@@ -250,26 +235,38 @@ namespace IctBaden.Framework.Test.Network
                 CommandRetryCount = 0
             };
 
-            var stopwatch = new Stopwatch();
-            try
+            var connected = _client.Connect();
+            Assert.True(connected, "LastResult: " + _client.LastResult);
+
+            _cancel = new CancellationTokenSource();
+            _task = Task.Run(() => _client.DoCommand("TEST"), _cancel.Token);
+            var completedInTime = Task.WaitAll(new Task[] { _task }, 5000, _cancel.Token);
+            _cancel.Cancel();
+
+            Assert.False(completedInTime, "Should NOT timeout");
+        }
+
+        [Fact]
+        public void IncompleteCommandShouldTimeoutInTimeIfSpecified()
+        {
+            var started = _server.Start();
+            Assert.True(started, "Could not start server");
+
+            _client = new SocketCommandClient("localhost", _testServerPort, s => { })
             {
-                _client.Connect();
-                _client.SetReceiveTimeout(TimeSpan.FromSeconds(1));
+                ConnectTimeout = 1000, 
+                CommandRetryCount = 0
+            };
 
-                stopwatch.Start();
+            _client.Connect();
+            _client.SetReceiveTimeout(1000);
 
-                // ReSharper disable once AccessToDisposedClosure
-                _task = Task.Run(() => _client.DoCommand("TEST"));
-                Task.WaitAll(new Task[] {_task}, TimeSpan.FromSeconds(6));
+            _cancel = new CancellationTokenSource();
+            _task = Task.Run(() => _client.DoCommand("TEST"), _cancel.Token);
+            var completedInTime = Task.WaitAll(new Task[] { _task }, 6000, _cancel.Token);
+            _cancel.Cancel();
 
-                stopwatch.Stop();
-            }
-            catch (Exception ex)
-            {
-                Assert.True(false, ex.Message);
-            }
-            Assert.True(stopwatch.Elapsed >= TimeSpan.FromSeconds(1), $"t={stopwatch.Elapsed}");
-            Assert.True(stopwatch.Elapsed <= TimeSpan.FromSeconds(5), $"t={stopwatch.Elapsed}");
+            Assert.True(completedInTime, "Should timeout");
         }
 
         
