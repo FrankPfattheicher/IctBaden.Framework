@@ -230,10 +230,7 @@ namespace IctBaden.Framework.Test.Network
             var started = _server.Start();
             Assert.True(started, "Could not start server");
 
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { })
-            {
-                CommandRetryCount = 0
-            };
+            _client = new SocketCommandClient("localhost", _testServerPort, s => { });
 
             var connected = _client.Connect();
             Assert.True(connected, "LastResult: " + _client.LastResult);
