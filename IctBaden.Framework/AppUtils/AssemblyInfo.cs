@@ -16,7 +16,6 @@ namespace IctBaden.Framework.AppUtils
 
         public static readonly AssemblyInfo Default = new AssemblyInfo();
 
-        public static string CompanyPath = "ICT Baden";
         private readonly Assembly _assembly;
         private readonly AssemblyContactAttribute _contact;
 
@@ -59,31 +58,10 @@ namespace IctBaden.Framework.AppUtils
 
         public string ExePath => Path.GetDirectoryName(_assembly.Location) ?? ".";
 
-        private string GetPath(string name)
-        {
-            var path = ExePath ?? ".";
-
-            path = Path.GetFileName(path) == CompanyPath
-                ? Path.Combine(path, name)
-                : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), Path.Combine(CompanyPath, name));
-
-            if (!Directory.Exists(path))
-            {
-                try
-                {
-                    Directory.CreateDirectory(path);
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    // ignore this
-                }
-            }
-            return path;
-        }
+        private string GetPath(string name) => Path.Combine(ApplicationInfo.ApplicationDirectory, name);
         public string DataPath => GetPath("Data");
 
-        public string CommonPath => GetPath("Common");
-
+        
         public string SettingsFileName => Path.ChangeExtension(Path.Combine(DataPath, ExeBaseName), "cfg");
         public string LocalSettingsFileName => Path.ChangeExtension(Path.Combine(ExePath, ExeBaseName), "cfg");
 
