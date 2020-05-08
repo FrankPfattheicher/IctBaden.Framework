@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
@@ -23,6 +23,7 @@ namespace IctBaden.Framework.Network
         private Socket _clientSocket;
         private readonly System.Threading.Timer _pollReceiveData;
         private bool _handlingCommand;
+        private int _receiveTimeout = -1;
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string LastResult { get; private set; } = string.Empty;
@@ -150,6 +151,7 @@ namespace IctBaden.Framework.Network
                 throw new Exception("SetReceiveTimeout is valid only if client is connected.");
             }
 
+            _receiveTimeout = milliSeconds;
             _clientSocket.ReceiveTimeout = milliSeconds;
         }
 
@@ -173,8 +175,24 @@ namespace IctBaden.Framework.Network
                     return;
 
                 var result = new byte[10240];
-                var rxCount = receiveSocket.Receive(result, 0, result.Length, SocketFlags.None);
-                _receiveDataHandler(Encoding.Default.GetString(result, 0, rxCount));
+                var rxCount = 0;
+                var rxResult = _clientSocket.BeginReceive(result, 0, result.Length, SocketFlags.None, ar =>
+                {
+                    try
+                    {
+                        rxCount = ((Socket) ar.AsyncState).EndReceive(ar);
+                    }
+                    catch
+                    {
+                        // ignore
+                    }
+                }, _clientSocket);
+                var success = rxResult?.AsyncWaitHandle.WaitOne(_receiveTimeout, true) ?? false;
+                if (success)
+                {
+                    Task.Delay(10).Wait();
+                    _receiveDataHandler(Encoding.Default.GetString(result, 0, rxCount));
+                }
             }
             catch (Exception ex)
             {
@@ -214,7 +232,7 @@ namespace IctBaden.Framework.Network
                 try
                 {
                     var result = new byte[10240];
-                    int rxCount;
+                    var rxCount = 0;
                     if (_clientSocket.Poll(100, SelectMode.SelectRead))
                     {
                         rxCount = _clientSocket.Receive(result, 0, result.Length, SocketFlags.None);
@@ -223,17 +241,33 @@ namespace IctBaden.Framework.Network
 
                     _handlingCommand = true;
                     _clientSocket.Send(Encoding.Default.GetBytes(cmd));
-                    Thread.Sleep(5);
 
-                    rxCount = _clientSocket.Receive(result, 0, result.Length, SocketFlags.None);
-                    var rxData = Encoding.Default.GetString(result, 0, rxCount);
-                    _handlingCommand = false;
-                    return rxData;
+                    var rxResult = _clientSocket.BeginReceive(result, 0, result.Length, SocketFlags.None, ar =>
+                    {
+                        try
+                        {
+                            rxCount = ((Socket) ar.AsyncState).EndReceive(ar);
+                        }
+                        catch
+                        {
+                            // ignore
+                        }
+                    }, _clientSocket);
+                    var success = rxResult?.AsyncWaitHandle.WaitOne(_receiveTimeout, true) ?? false;
+                    if (success)
+                    {
+                        Task.Delay(10).Wait();
+                        var rxData = Encoding.Default.GetString(result, 0, rxCount);
+                        return rxData;
+                    }
                 }
-                // ReSharper disable EmptyGeneralCatchClause
                 catch
-                // ReSharper restore EmptyGeneralCatchClause
                 {
+                    // ignore
+                }
+                finally
+                {
+                    _handlingCommand = false;
                 }
             }
 
