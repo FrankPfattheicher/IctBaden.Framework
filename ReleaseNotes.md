@@ -1,3 +1,4 @@
+* 1.0.21 - 18.06.2020 More naming converters.
 * 1.0.20 - 08.05.2020 Using async receive to handle timeouts as expected.
 * 1.0.19 - 05.05.2020 Removed Windows specific TronTrace and assembly path functionality.
 * 1.0.18 - 03.04.2020 Profile LocalToExeFileName using ApplicationInfo
