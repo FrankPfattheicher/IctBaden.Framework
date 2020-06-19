@@ -13,6 +13,7 @@
     <LangVersion>default</LangVersion>
     <AssemblyVersion>1.0.19</AssemblyVersion>
     <FileVersion>1.0.19</FileVersion>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
