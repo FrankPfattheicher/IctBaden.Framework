@@ -15,6 +15,7 @@ namespace IctBaden.Framework.Network
     /// <summary>
     /// 
     /// </summary>
+    [Obsolete("Please use a REST API instead")]
     public class SocketCommandClient : IDisposable
     {
         private readonly string _commandHost;
