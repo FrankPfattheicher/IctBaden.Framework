@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 using IctBaden.Framework.Network;
 using IctBaden.Framework.Timer;
 using Xunit;
+#pragma warning disable 618
 
 namespace IctBaden.Framework.Test.Network
 {
+    // Tests marked as [PerformanceFact] due they are flaky on linux
+    // and SocketCommandClient is obsolete 
+    
     [CollectionDefinition("TcpClientServerTests", DisableParallelization = true)]
     public class SocketCmdLineTests : IDisposable
     {
@@ -44,7 +48,7 @@ namespace IctBaden.Framework.Test.Network
             _server.Terminate();
         }
 
-        [Fact]
+        [PerformanceFact]
         public void ConnectAndDisposeOneClientShouldBeTrackedByServer()
         {
             var started = _server.Start();
@@ -71,7 +75,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.Empty(_server.Clients);
         }
 
-        [Fact]
+        [PerformanceFact]
         public void TerminateFromOtherThread()
         {
             var started = _server.Start();
@@ -97,7 +101,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.Empty(_server.Clients);
         }
 
-        [Fact]
+        [PerformanceFact]
         public void DisconnectFromThisAndOtherThread()
         {
             const int clientCount = 400;
@@ -169,7 +173,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.Empty(_server.Clients);
         }
 
-        [Fact]
+        [PerformanceFact]
         public void NextFreeTcpPortShouldNotBeZero()
         {
             var port = NetworkInfo.GetFreeLocalTcpPort();
@@ -184,7 +188,7 @@ namespace IctBaden.Framework.Test.Network
         }
 
         
-        [Fact]
+        [PerformanceFact]
         public void ClientConnectShouldTimeoutIfServerNotRunning()
         {
             _client = new SocketCommandClient("localhost", _testServerPort, s => { });
@@ -193,7 +197,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.False(connected, "LastResult: " + _client.LastResult);
         }
         
-        [Fact]
+        [PerformanceFact]
         public void DoCommandShouldAutoConnectToServer()
         {
             var started = _server.Start();
@@ -209,7 +213,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.Equal(cmd, response);
         }
 
-        [Fact]
+        [PerformanceFact]
         public void DisconnectCommandShouldSucceed()
         {
             var started = _server.Start();
@@ -224,7 +228,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.False(_client.IsConnected);
         }
 
-        [Fact]
+        [PerformanceFact]
         public void IncompleteCommandShouldNotTimeoutIfNotSpecified()
         {
             var started = _server.Start();
@@ -243,7 +247,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.False(completedInTime, "Should NOT timeout");
         }
 
-        [Fact]
+        [PerformanceFact]
         public void IncompleteCommandShouldTimeoutInTimeIfSpecified()
         {
             var started = _server.Start();
