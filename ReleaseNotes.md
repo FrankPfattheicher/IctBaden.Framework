@@ -1,3 +1,4 @@
+* 1.0.22 - 16.07.2020 Added CronSchedule.
 * 1.0.21 - 18.06.2020 More naming converters.
 * 1.0.20 - 08.05.2020 Using async receive to handle timeouts as expected.
 * 1.0.19 - 05.05.2020 Removed Windows specific TronTrace and assembly path functionality.
