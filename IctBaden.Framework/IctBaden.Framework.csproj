@@ -9,7 +9,7 @@
     <Description>Not really a framework but more a application companion...</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageVersion>1.0.21</PackageVersion>
+    <PackageVersion>1.0.22</PackageVersion>
     <LangVersion>default</LangVersion>
     <AssemblyVersion>1.0.22</AssemblyVersion>
     <FileVersion>1.0.22</FileVersion>
