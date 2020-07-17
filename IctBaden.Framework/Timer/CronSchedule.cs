@@ -8,7 +8,7 @@ namespace IctBaden.Framework.Timer
     // forked from https://github.com/kevincolyar/CronNET
 
     /// <summary>
-    /// A cron compatible schedule sepcifiation handler
+    /// A cron compatible schedule specification handler
     /// 
     /// * * * * * *
     /// | | | | | |
@@ -18,6 +18,15 @@ namespace IctBaden.Framework.Timer
     /// | | +--------- hour (0 - 23)
     /// | +----------- min (0 - 59)
     /// +------------- sec (0 - 59)
+    ///
+    /// 0 - Sun      Sunday
+    /// 1 - Mon      Monday
+    /// 2 - Tue      Tuesday
+    /// 3 - Wed      Wednesday
+    /// 4 - Thu      Thursday
+    /// 5 - Fri      Friday
+    /// 6 - Sat      Saturday
+    ///
     /// </summary>
     public class CronSchedule
     {
@@ -28,16 +37,26 @@ namespace IctBaden.Framework.Timer
         private static readonly Regex ValidationRegex = new Regex(DividedRegex + "|" + RangeRegex + "|" + WildRegex + "|" + ListRegex);
 
         private readonly string _expression;
-        private List<int> _seconds;
-        private List<int> _minutes;
-        private List<int> _hours;
-        private List<int> _daysOfMonth;
-        private List<int> _months;
-        private List<int> _daysOfWeek;
+        private int[] _seconds = new int[0];
+        private int[] _minutes = new int[0];
+        private int[] _hours = new int[0];
+        private int[] _days = new int[0];
+        private int[] _months = new int[0];
+        private int[] _weekdays = new int[0];
 
         public CronSchedule(string expressions)
         {
-            this._expression = expressions;
+            _expression = expressions.ToUpper();
+            var weekday = new[] {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+            for (var w = 0; w < weekday.Length; w++)
+            {
+                _expression = _expression.Replace(weekday[w], w.ToString());
+            }
+            var month = new[] {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
+            for (var m = 0; m < month.Length; m++)
+            {
+                _expression = _expression.Replace(month[m], m.ToString());
+            }
             Generate();
         }
 
@@ -52,125 +71,145 @@ namespace IctBaden.Framework.Timer
             return matches.Count > 0;
         }
 
-        public bool InTime(DateTime dateTime)
+        public bool IsMatch(DateTime dateTime)
         {
             return _seconds.Contains(dateTime.Second) &&
                    _minutes.Contains(dateTime.Minute) &&
                    _hours.Contains(dateTime.Hour) &&
-                   _daysOfMonth.Contains(dateTime.Day) &&
+                   _days.Contains(dateTime.Day) &&
                    _months.Contains(dateTime.Month) &&
-                   _daysOfWeek.Contains((int)dateTime.DayOfWeek);
+                   _weekdays.Contains((int)dateTime.DayOfWeek);
         }
 
-        public TimeSpan TimeToNextSchedule(DateTime from)
+        /// <summary>
+        /// Examines the time span to the next schedule.
+        /// </summary>
+        /// <param name="from"></param>
+        /// <returns></returns>
+        public TimeSpan TimeToNextSchedule(DateTime from) => NextSchedule(@from) - @from;
+
+        /// <summary>
+        /// Finds next time stamp matching specification.
+        /// </summary>
+        /// <param name="from"></param>
+        /// <returns></returns>
+        public DateTime NextSchedule(DateTime from)
         {
-            var second = FirstOrDefault(_seconds, from.Second, 0);
-            var minute = FirstOrDefault(_minutes, from.Minute, 0);
-            var hour = FirstOrDefault(_hours, from.Hour, 0);
-            var day = FirstOrDefault(_daysOfMonth, from.Day, 1);
-            var month = FirstOrDefault(_months, from.Month, 1);
-            var year = from.Year;
-            var next = new DateTime(year, month, day, hour, minute, second);
-            while (next < from)
+            var start = from;
+            var next = start;
+            var maxIterations = 10 * 365;
+            
+            while ((maxIterations-- > 0) && (next <= from || !IsMatch(next)))
             {
-                year++;
-                next = new DateTime(year, month, day, hour, minute, second);
+                try
+                {
+                    while (true)
+                    {
+                        var month = Next(_months, next.Month, 1);
+                        next = new DateTime(next.Year, month, next.Day, next.Hour, next.Minute, next.Second);
+                        if (next >= start) break;
+                        start = next = (start + TimeSpan.FromDays(30));
+                    }
+                    next = new DateTime(next.Year, next.Month, next.Day, next.Hour, next.Minute, next.Second);
+                    while (!_weekdays.Contains((int) next.DayOfWeek))
+                    {
+                        next += TimeSpan.FromDays(1);
+                    }
+                    while (true)
+                    {
+                        var day = Next(_days, next.Day, 1);
+                        next = new DateTime(next.Year, next.Month, day, next.Hour, next.Minute, next.Second);
+                        if (next >= start) break;
+                        start = next = (start + TimeSpan.FromDays(1));
+                    }
+                    while (true)
+                    {
+                        var hour = Next(_hours, next.Hour, 0);
+                        next = new DateTime(next.Year, next.Month, next.Day, hour, next.Minute, next.Second);
+                        if (next >= start) break;
+                        start = next = (start + TimeSpan.FromHours(1));
+                    }
+                    while (true)
+                    {
+                        var minute = Next(_minutes, next.Minute, 0);
+                        next = new DateTime(next.Year, next.Month, next.Day, next.Hour, minute, next.Second);
+                        if (next >= start) break;
+                        start = next = (start + TimeSpan.FromMinutes(1));
+                    }
+                    while (true)
+                    {
+                        var second = Next(_seconds, next.Second, 0);
+                        next = new DateTime(next.Year, next.Month, next.Day, next.Hour, next.Minute, second);
+                        if (next >= start) break;
+                        start = next = (start + TimeSpan.FromSeconds(1));
+                    }
+                }
+                catch (Exception)
+                {
+                    start = next = (start + TimeSpan.FromDays(1));
+                }
             }
-            return next - from;
+            return next;
         }
 
-        private static int FirstOrDefault(IReadOnlyCollection<int> list, int value, int defaultValue)
+        private static int Next(int[] schedule, int value, int defaultValue)
         {
-            var any = list.Where(n => n >= value).ToArray();
+            var any = schedule.Where(n => n >= value).ToArray();
             if (any.Any()) return any.First();
-            return list.Any() ? list.First() : defaultValue;
+            return schedule.Any() ? schedule.First() : defaultValue;
         }
         
         private void Generate()
         {
             if (!IsValid()) return;
 
-            var matches = ValidationRegex.Matches(this._expression);
+            var matches = ValidationRegex.Matches(_expression);
 
-            generate_seconds(matches[0].ToString());
-
-            generate_minutes(matches.Count > 1 ? matches[1].ToString() : "*");
-
-            generate_hours(matches.Count > 2 ? matches[2].ToString() : "*");
-
-            generate_days_of_month(matches.Count > 3 ? matches[3].ToString() : "*");
-
-            generate_months(matches.Count > 4 ? matches[4].ToString() : "*");
-
-            generate_days_of_weeks(matches.Count > 5 ? matches[5].ToString() : "*");
+            _seconds = GenerateSecondValues(matches.Count > 0 ? matches[0].ToString() : "*");
+            _minutes = GenerateMinuteValues(matches.Count > 1 ? matches[1].ToString() : "*");
+            _hours = GenerateHourValues(matches.Count > 2 ? matches[2].ToString() : "*");
+            _days =GenerateDayValues(matches.Count > 3 ? matches[3].ToString() : "*");
+            _months = GenerateMonthValues(matches.Count > 4 ? matches[4].ToString() : "*");
+            _weekdays = GenerateWeekdayValues(matches.Count > 5 ? matches[5].ToString() : "*");
         }
 
-        private void generate_seconds(string match)
+        private static int[] GenerateSecondValues(string match) => GenerateScheduleValues(match, 0, 60);
+        private static int[] GenerateMinuteValues(string match) => GenerateScheduleValues(match, 0, 60);
+        private static int[] GenerateHourValues(string match) => GenerateScheduleValues(match, 0, 24);
+        private static int[] GenerateDayValues(string match) => GenerateScheduleValues(match, 1, 32);
+        private static int[] GenerateMonthValues(string match) => GenerateScheduleValues(match, 1, 13);
+        private static int[] GenerateWeekdayValues(string match) => GenerateScheduleValues(match, 0, 7);
+
+        private static int[] GenerateScheduleValues(string configuration, int start, int max)
         {
-            this._seconds = generate_values(match, 0, 60);
-        }
-        private void generate_minutes(string match)
-        {
-            this._minutes = generate_values(match, 0, 60);
-        }
+            if (DividedRegex.IsMatch(configuration)) return GetDivided(configuration, start, max);
+            if (RangeRegex.IsMatch(configuration)) return GetRange(configuration);
+            if (WildRegex.IsMatch(configuration)) return GetWild(configuration, start, max);
+            if (ListRegex.IsMatch(configuration)) return GetList(configuration);
 
-        private void generate_hours(string match)
-        {
-            this._hours = generate_values(match, 0, 24);
+            return new int[0];
         }
 
-        private void generate_days_of_month(string match)
-        {
-            this._daysOfMonth = generate_values(match, 1, 32);
-        }
-
-        private void generate_months(string match)
-        {
-            this._months = generate_values(match, 1, 13);
-        }
-
-        private void generate_days_of_weeks(string match)
-        {
-            this._daysOfWeek = generate_values(match, 0, 7);
-        }
-
-        private List<int> generate_values(string configuration, int start, int max)
-        {
-            if (DividedRegex.IsMatch(configuration)) return divided_array(configuration, start, max);
-            if (RangeRegex.IsMatch(configuration)) return range_array(configuration);
-            if (WildRegex.IsMatch(configuration)) return wild_array(configuration, start, max);
-            if (ListRegex.IsMatch(configuration)) return list_array(configuration);
-
-            return new List<int>();
-        }
-
-        private static List<int> divided_array(string configuration, int start, int max)
+        private static int[] GetDivided(string configuration, int start, int max)
         {
             if (!DividedRegex.IsMatch(configuration))
-                return new List<int>();
+                return new int[0];
 
-            var ret = new List<int>();
-            var split = configuration.Split("/".ToCharArray());
+            var split = configuration.Split('/');
             var divisor = int.Parse(split[1]);
 
-            for (var i = start; i < max; ++i)
-            {
-                if (i % divisor == 0)
-                {
-                    ret.Add(i);
-                }
-            }
-
-            return ret;
+            return Enumerable.Range(start, max - start - 1)
+                .Where(i => i % divisor == 0)
+                .ToArray();
         }
 
-        private static List<int> range_array(string configuration)
+        private static int[] GetRange(string configuration)
         {
             if (!RangeRegex.IsMatch(configuration))
-                return new List<int>();
+                return new int[0];
 
             var ret = new List<int>();
-            var split = configuration.Split("-".ToCharArray());
+            var split = configuration.Split('-');
             var start = int.Parse(split[0]);
             int end;
             if (split[1].Contains("/"))
@@ -186,41 +225,29 @@ namespace IctBaden.Framework.Timer
                         ret.Add(i);
                     }
                 }
-                return ret;
+                return ret.ToArray();
             }
             end = int.Parse(split[1]);
 
-            for (var i = start; i <= end; ++i)
-            {
-                ret.Add(i);
-            }
-
-            return ret;
+            return Enumerable.Range(start, end - start).ToArray();
         }
 
-        private static List<int> wild_array(string configuration, int start, int max)
+        private static int[] GetWild(string configuration, int start, int max)
         {
-            if (!WildRegex.IsMatch(configuration))
-                return new List<int>();
-
-            var ret = new List<int>();
-
-            for (var i = start; i < max; ++i)
-            {
-                ret.Add(i);
-            }
-
-            return ret;
+            return !WildRegex.IsMatch(configuration) 
+                ? new int[0] 
+                : Enumerable.Range(start, max - start).ToArray();
         }
 
-        private static List<int> list_array(string configuration)
+        private static int[] GetList(string configuration)
         {
             if (!ListRegex.IsMatch(configuration))
-                return new List<int>();
+                return new int[0];
 
-            var split = configuration.Split(",".ToCharArray());
-
-            return split.Select(int.Parse).ToList();
+            return configuration
+                .Split(new []{','}, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
         }
 
     }

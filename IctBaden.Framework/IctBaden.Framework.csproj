@@ -11,8 +11,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageVersion>1.0.21</PackageVersion>
     <LangVersion>default</LangVersion>
-    <AssemblyVersion>1.0.21</AssemblyVersion>
-    <FileVersion>1.0.21</FileVersion>
+    <AssemblyVersion>1.0.22</AssemblyVersion>
+    <FileVersion>1.0.22</FileVersion>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
