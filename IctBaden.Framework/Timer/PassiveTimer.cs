@@ -118,11 +118,11 @@ namespace IctBaden.Framework.Timer
 
         public System.Threading.Timer SetCallback(TimerCallback callback, object state)
         {
-            var T = Math.Max(0, RemainingMilliseconds);
-            Debug.Print("Timer SetCallback {0}", T);
+            var remaining = Math.Max(0, RemainingMilliseconds);
+            Debug.Print("Timer SetCallback {0}", remaining);
             lock (_callbacks)
             {
-                var callbackTimer = new System.Threading.Timer(callback, state, (uint)T, System.Threading.Timeout.Infinite);
+                var callbackTimer = new System.Threading.Timer(callback, state, (uint)remaining, System.Threading.Timeout.Infinite);
                 _callbacks.Add(callbackTimer);
                 return callbackTimer;
             }
@@ -130,14 +130,14 @@ namespace IctBaden.Framework.Timer
 
         public void WaitTask()
         {
-            var T = (int)Math.Max(0, RemainingMilliseconds);
-            Task.Delay(T).Wait();
+            var remaining = (int)Math.Max(0, RemainingMilliseconds);
+            Task.Delay(remaining).Wait();
         }
 
         public void WaitThread()
         {
-            var T = (int)Math.Max(0, RemainingMilliseconds);
-            Thread.Sleep(T);
+            var remaining = (int)Math.Max(0, RemainingMilliseconds);
+            Thread.Sleep(remaining);
         }
 
         #region IComparable Members
