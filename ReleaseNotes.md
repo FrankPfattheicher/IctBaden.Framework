@@ -1,3 +1,5 @@
+
+* 1.0.23 - 25.07.2020 Strip milliseconds in CronSchedule.
 * 1.0.22 - 17.07.2020 Added CronSchedule.
 * 1.0.21 - 18.06.2020 More naming converters.
 * 1.0.20 - 08.05.2020 Using async receive to handle timeouts as expected.
