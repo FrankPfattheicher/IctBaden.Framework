@@ -22,6 +22,7 @@ namespace IctBaden.Framework.Network
     public class SocketCommandLineServer
     {
         private readonly int _port;
+        private readonly bool _publicReachable;
         private Thread _runner;
         private bool _cancelRunner;
         private bool _runnerCanceled;
@@ -45,9 +46,15 @@ namespace IctBaden.Framework.Network
         public bool HandleEmptyCommands { get; set; }
 
         public SocketCommandLineServer(int tcpPort)
+            // ReSharper disable once IntroduceOptionalParameters.Global
+            : this(tcpPort, true)
+        {
+        }
+        public SocketCommandLineServer(int tcpPort, bool publicReachable)
         {
             Clients = new List<Socket>();
             _port = tcpPort;
+            _publicReachable = publicReachable;
             Eoc = new List<string> {"\r", "\n"};
             UseEncoding = Encoding.UTF8;
             HandleEmptyCommands = false;
@@ -143,7 +150,7 @@ namespace IctBaden.Framework.Network
                     }
                     _listener.LingerState = new LingerOption(false, 0);
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                    var localEp = new IPEndPoint(0, _port);
+                    var localEp = new IPEndPoint(_publicReachable ? IPAddress.Any : IPAddress.Loopback, _port);
                     _listener.Bind(localEp);
                 }
 
