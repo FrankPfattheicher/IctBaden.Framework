@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using IctBaden.Framework.Timer;
 using Xunit;
 
@@ -146,6 +147,18 @@ namespace IctBaden.Framework.Test.Timer
             var schedule = new CronSchedule($"* * 12 29 02 *");
             var time = schedule.NextSchedule(_now);
             Assert.Equal(next, time);
+        }
+
+
+        [Fact]
+        public void TimeToEvery30SecShouldBeLessThan30SecAlways()
+        {
+            var schedule = new CronSchedule("0,30 * * * * *");
+            var remain = schedule.TimeToNextSchedule(_now);
+            Assert.True(remain <= TimeSpan.FromSeconds(30));
+            
+            remain = schedule.TimeToNextSchedule(DateTime.Now);
+            Assert.True(remain <= TimeSpan.FromSeconds(30));
         }
 
     }

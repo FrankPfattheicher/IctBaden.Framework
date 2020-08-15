@@ -80,13 +80,15 @@ namespace IctBaden.Framework.Timer
                    _months.Contains(dateTime.Month) &&
                    _weekdays.Contains((int)dateTime.DayOfWeek);
         }
+        
+        private static DateTime StripMillis(DateTime dt) => new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
 
         /// <summary>
         /// Examines the time span to the next schedule.
         /// </summary>
         /// <param name="from"></param>
         /// <returns></returns>
-        public TimeSpan TimeToNextSchedule(DateTime from) => NextSchedule(@from) - @from;
+        public TimeSpan TimeToNextSchedule(DateTime from) => NextSchedule(from) - from;
 
         /// <summary>
         /// Finds next time stamp matching specification.
@@ -95,7 +97,7 @@ namespace IctBaden.Framework.Timer
         /// <returns></returns>
         public DateTime NextSchedule(DateTime from)
         {
-            var start = from;
+            var start = StripMillis(from);
             var next = start;
             var maxIterations = 10 * 365;
             
