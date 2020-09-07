@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using IctBaden.Framework.Tron;
 // ReSharper disable UnusedType.Global
 
@@ -68,7 +69,7 @@ namespace IctBaden.Framework.Automat
             LastState = CurrentState;
             CurrentState = newState;
 
-            TronTrace.TraceInformation($"GoState {GetType().Name}:{CurrentStateName}");
+            Trace.TraceInformation($"GoState {GetType().Name}:{CurrentStateName}");
 
             StateChanged?.Invoke(new EventArgs());
 
@@ -116,11 +117,11 @@ namespace IctBaden.Framework.Automat
             if (string.IsNullOrEmpty(name))
                 return;
 
-            TronTrace.PrintLine("OnTimeout:" + name);
+            Trace.TraceInformation("OnTimeout:" + name);
 
             if (!StateTimeouts.IsRunning(name))
             {
-                TronTrace.PrintLine("NOT RUNNING");
+                Trace.TraceInformation("NOT RUNNING");
                 return;
             }
 

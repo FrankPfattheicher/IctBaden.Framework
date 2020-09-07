@@ -1,5 +1,8 @@
 ﻿// ReSharper disable ConvertToAutoPropertyWhenPossible
 // ReSharper disable UnusedMember.Global
+
+using System.Diagnostics;
+
 namespace IctBaden.Framework.Automat
 {
     using System;
@@ -28,7 +31,7 @@ namespace IctBaden.Framework.Automat
 
             try
             {
-                TronTrace.PrintLine("Activate Timeout:" + _name + "=" + _dueTime);
+                Trace.TraceInformation("Activate Timeout:" + _name + "=" + _dueTime);
                 t.Change(_dueTime, Timeout.Infinite);
             }
             catch (Exception)
