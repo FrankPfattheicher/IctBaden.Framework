@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using IctBaden.Framework.Tron;
@@ -28,7 +29,7 @@ namespace IctBaden.Framework.PropertyProvider
             {
                 var value = property.GetValue(_targetObject, null);
                 result.Set(property.Name, value);
-                TronTrace.TraceInformation($"Get({_type.Name}) {property.Name} = {value}");
+                Trace.TraceInformation($"Get({_type.Name}) {property.Name} = {value}");
             }
 
             return result;
@@ -57,7 +58,7 @@ namespace IctBaden.Framework.PropertyProvider
                     }
                     value = UniversalConverter.ConvertToType(value, property.PropertyType, provider);
                     property.SetValue(_targetObject, value, null);
-                    TronTrace.TraceInformation($"Set({_type.Name}) {property.Name} = {property.GetValue(_targetObject, null)}");
+                    Trace.TraceInformation($"Set({_type.Name}) {property.Name} = {property.GetValue(_targetObject, null)}");
                 }
             }
         }
