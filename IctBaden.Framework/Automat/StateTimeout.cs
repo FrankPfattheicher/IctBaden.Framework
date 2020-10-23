@@ -7,7 +7,6 @@ namespace IctBaden.Framework.Automat
 {
     using System;
     using System.Threading;
-    using Tron;
 
     public class StateTimeout : IDisposable
     {

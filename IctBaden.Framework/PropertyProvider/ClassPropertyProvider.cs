@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using IctBaden.Framework.Tron;
 using IctBaden.Framework.Types;
 
 namespace IctBaden.Framework.PropertyProvider

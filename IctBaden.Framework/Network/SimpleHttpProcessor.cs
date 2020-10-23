@@ -186,6 +186,7 @@ namespace IctBaden.Framework.Network
                         Console.WriteLine("read finished, numRead={0}", numRead);
                         if (numRead == 0)
                         {
+                            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                             if (toRead == 0)
                             {
                                 break;

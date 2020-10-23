@@ -3,7 +3,7 @@ using Xunit;
 
 namespace IctBaden.Framework.Test
 {
-    public class PerformanceFactAttribute : FactAttribute
+    public sealed class PerformanceFactAttribute : FactAttribute
     {
         public PerformanceFactAttribute()
         {

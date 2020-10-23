@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using IctBaden.Framework.PropertyProvider;
 using IctBaden.Framework.Resource;
 using Newtonsoft.Json;

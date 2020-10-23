@@ -1,5 +1,6 @@
 ﻿// ReSharper disable UnusedMember.Global
 
+using System;
 using System.Linq;
 
 namespace IctBaden.Framework.Arithmetic
@@ -40,7 +41,7 @@ namespace IctBaden.Framework.Arithmetic
 
             var outputValue = inputValue - point1.Input;
             outputValue *= point2.Output - point1.Output; // * (Out2 - Out1)
-            outputValue /= point2.Input == point1.Input
+            outputValue /= Math.Abs(point2.Input - point1.Input) < .001
                 ? 1.0
                 : point2.Input - point1.Input; // / (In2 - In1)
             outputValue += point1.Output; // + Out1

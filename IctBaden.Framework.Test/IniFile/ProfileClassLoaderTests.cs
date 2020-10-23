@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using IctBaden.Framework.IniFile;
 using Xunit;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace IctBaden.Framework.Test.IniFile
 {
@@ -71,7 +72,7 @@ namespace IctBaden.Framework.Test.IniFile
             Assert.Equal(4.567, testClass.Numeric2);
             Assert.Equal("a b c", testClass.Text);
             Assert.Equal(new List<string> {"a","b","c"}, testClass.TextList);
-            Assert.Equal(new string[] {"a","b","c"}, testClass.TextArray);
+            Assert.Equal(new[] {"a","b","c"}, testClass.TextArray);
             Assert.Equal(new List<int> {1,2,3}, testClass.IntList);
         }
     }
