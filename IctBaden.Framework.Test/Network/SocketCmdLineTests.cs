@@ -241,7 +241,7 @@ namespace IctBaden.Framework.Test.Network
 
             _cancel = new CancellationTokenSource();
             _task = Task.Run(() => _client.DoCommand("TEST"), _cancel.Token);
-            var completedInTime = Task.WaitAll(new Task[] { _task }, 5000, _cancel.Token);
+            var completedInTime = Task.WaitAll(new[] { _task }, 5000, _cancel.Token);
             _cancel.Cancel();
 
             Assert.False(completedInTime, "Should NOT timeout");
@@ -264,7 +264,7 @@ namespace IctBaden.Framework.Test.Network
 
             _cancel = new CancellationTokenSource();
             _task = Task.Run(() => _client.DoCommand("TEST"), _cancel.Token);
-            var completedInTime = Task.WaitAll(new Task[] { _task }, 6000, _cancel.Token);
+            var completedInTime = Task.WaitAll(new[] { _task }, 6000, _cancel.Token);
             _cancel.Cancel();
 
             Assert.True(completedInTime, "Should timeout");

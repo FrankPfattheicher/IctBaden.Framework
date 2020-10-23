@@ -25,13 +25,17 @@ namespace IctBaden.Framework.AppUtils
         {
             get
             {
-                var path = AppContext.BaseDirectory;
-
-                using (var processModule = Process.GetCurrentProcess().MainModule)
+                var path = AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
+                if (IsRunningInUnitTest)
                 {
-                    if (processModule != null
-                        && (processModule.ModuleName != "dotnet")
-                        && (processModule.ModuleName != "dotnet.exe"))
+                    return path;
+                }
+
+                using var processModule = Process.GetCurrentProcess().MainModule;
+                if (processModule != null)
+                {
+                    var moduleName = processModule.ModuleName.ToLower();
+                    if (moduleName != "dotnet" && moduleName != "dotnet.exe")
                     {
                         // started as app.exe (netcore 3.1) or published single file
                         path = Path.GetDirectoryName(processModule.FileName);
@@ -42,7 +46,7 @@ namespace IctBaden.Framework.AppUtils
                     }
                 }
 
-                // started as dotnet app.dll
+                // started as "dotnet <assembly>"
                 var assembly = Assembly.GetEntryAssembly();
                 if (assembly != null)
                 {
@@ -53,13 +57,21 @@ namespace IctBaden.Framework.AppUtils
                     }
                 }
 
-                if (Directory.Exists(path))
-                {
-                    return path;
-                }
+                return Directory.Exists(path) 
+                    ? path 
+                    : Environment.CurrentDirectory;    // fallback
+            }
+        }
 
-                // fallback
-                return Environment.CurrentDirectory;
+        public static bool IsRunningInUnitTest
+        {
+            get
+            {
+                var assembly = Assembly.GetEntryAssembly();
+                if (assembly == null) return false;
+                
+                var moduleName = assembly.GetName().Name.ToLower();
+                return moduleName.Contains("testrunner") || moduleName.Contains("testhost");
             }
         }
         

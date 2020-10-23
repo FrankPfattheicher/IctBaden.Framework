@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using IctBaden.Framework.Tron;
+
 // ReSharper disable UnusedType.Global
 
 // ReSharper disable MemberCanBePrivate.Global

@@ -1,4 +1,5 @@
 
+* 1.0.26 - 23.10.2020 ApplicationInfo fixed for unit tests, new IsRunningInUnitTest
 * 1.0.25 - 07.09.2020 Replaced TronTrace with System.Trace
 * 1.0.24 - 15.08.2020 SocketCommandLineServer option publicReachable
 * 1.0.23 - 25.07.2020 Strip milliseconds in CronSchedule.
