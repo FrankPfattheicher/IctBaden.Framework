@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using IctBaden.Framework.Types;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable CollectionNeverQueried.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
@@ -52,50 +56,65 @@ namespace IctBaden.Framework.CsvFile
             try
             {
                 var lineNumber = 0;
-                using (var fs = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (var fileData = new StreamReader(fs, FileEncoding, true))
+                
+                using var fs = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using var fileData = new StreamReader(fs, FileEncoding, true);
+                
+                while (!fileData.EndOfStream)
                 {
-                    while (!fileData.EndOfStream)
+                    lineNumber++;
+                    var lineData = fileData.ReadLine();
+                    if (string.IsNullOrEmpty(lineData))
                     {
-                        lineNumber++;
-                        var lineData = fileData.ReadLine();
-                        if (string.IsNullOrEmpty(lineData))
-                            continue;
+                        continue;
+                    }
 
-                        if (lineNumber == 1)
-                        {
-                            DetectSeparator(lineData);
-                            Columns.Clear();
-                            var columns = lineData
-                                .Split(Separator)
-                                .Select(TextEscaping.RemoveQuotes);
-                            Columns.AddRange(columns);
-                            continue;
-                        }
+                    if (lineNumber == 1)
+                    {
+                        DetectSeparator(lineData);
+                        Columns.Clear();
+                        var columns = lineData
+                            .Split(Separator)
+                            .Select(TextEscaping.RemoveQuotes);
+                        Columns.AddRange(columns);
+                        continue;
+                    }
 
-                        var data = new CsvData(lineNumber, Columns, lineData);
-                        var fields = lineData.Split(Separator);
-                        if (RemoveQuotes)
+                    if (RemoveQuotes)
+                    {
+                        while (!fileData.EndOfStream)
                         {
-                            fields = fields
-                                .Select(TextEscaping.RemoveQuotes)
-                                .ToArray();
-                        }
-                        data.Fields.AddRange(fields);
-                        if (data.Fields.Count == Columns.Count)
-                        {
-                            DataRows.Add(data);
-                        }
-                        else
-                        {
-                            LoadError = "Invalid rows detected.";
-                            InvalidRows.Add(data);
+                            var quotes = lineData.ToCharArray().Count(ch => ch == '"');
+                            if (quotes > 0 && (quotes & 1) == 0) break;
+                            quotes = lineData.ToCharArray().Count(ch => ch == '\'');
+                            if (quotes > 0 && (quotes & 1) == 0) break;
+
+                            lineData += fileData.ReadLine();
                         }
                     }
 
-                    FileEncoding = fileData.CurrentEncoding;
-                    fileData.Close();
+                    var data = new CsvData(lineNumber, Columns, lineData);
+                    var fields = lineData.Split(Separator);
+                    if (RemoveQuotes)
+                    {
+                        fields = fields
+                            .Select(TextEscaping.RemoveQuotes)
+                            .ToArray();
+                    }
+                    data.Fields.AddRange(fields);
+                    if (data.Fields.Count == Columns.Count)
+                    {
+                        DataRows.Add(data);
+                    }
+                    else
+                    {
+                        LoadError = "Invalid rows detected.";
+                        InvalidRows.Add(data);
+                    }
                 }
+
+                FileEncoding = fileData.CurrentEncoding;
+                fileData.Close();
                 return true;
             }
             catch (IOException ex)
@@ -125,19 +144,18 @@ namespace IctBaden.Framework.CsvFile
         {
             try
             {
-                using (var fileData = new StreamWriter(FileName, false, FileEncoding))
+                using var fileData = new StreamWriter(FileName, false, FileEncoding);
+                
+                var lineData = string.Join(Separator.ToString(), Columns.ToArray());
+                fileData.WriteLine(lineData);
+
+                foreach (var row in DataRows)
                 {
-                    var lineData = string.Join(Separator.ToString(), Columns.ToArray());
+                    lineData = string.Join(Separator.ToString(), row.Fields.ToArray());
                     fileData.WriteLine(lineData);
-
-                    foreach (var row in DataRows)
-                    {
-                        lineData = string.Join(Separator.ToString(), row.Fields.ToArray());
-                        fileData.WriteLine(lineData);
-                    }
-
-                    fileData.Close();
                 }
+
+                fileData.Close();
                 return true;
             }
             catch (IOException ex)

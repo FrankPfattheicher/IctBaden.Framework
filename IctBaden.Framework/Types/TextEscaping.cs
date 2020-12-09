@@ -1,6 +1,6 @@
 ﻿namespace IctBaden.Framework.Types
 {
-    public class TextEscaping
+    public static class TextEscaping
     {
         public static string RemoveQuotes(string text)
         {
