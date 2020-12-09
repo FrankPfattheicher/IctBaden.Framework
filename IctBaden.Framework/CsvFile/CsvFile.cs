@@ -84,10 +84,11 @@ namespace IctBaden.Framework.CsvFile
                     {
                         while (!fileData.EndOfStream)
                         {
-                            var quotes = lineData.ToCharArray().Count(ch => ch == '"');
-                            if (quotes > 0 && (quotes & 1) == 0) break;
-                            quotes = lineData.ToCharArray().Count(ch => ch == '\'');
-                            if (quotes > 0 && (quotes & 1) == 0) break;
+                            var quotes1 = lineData.ToCharArray().Count(ch => ch == '"');
+                            var quotes2 = lineData.ToCharArray().Count(ch => ch == '\'');
+                            if (quotes1 == 0 && quotes2 == 0) break;
+                            if (quotes1 > 0 && (quotes1 & 1) == 0) break;
+                            if (quotes2 > 0 && (quotes2 & 1) == 0) break;
 
                             lineData += fileData.ReadLine();
                         }
