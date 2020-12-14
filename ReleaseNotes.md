@@ -1,4 +1,5 @@
 
+* 1.1.01 - 14.12.2020 Add Logging support using Microsoft.Extensions.Logging.
 * 1.0.28 - 09.12.2020 CsvFile fixed rows without quoted columns.
 * 1.0.27 - 09.12.2020 CsvFile supporting quoted column values with line breaks.
 * 1.0.26 - 23.10.2020 ApplicationInfo fixed for unit tests, new IsRunningInUnitTest
