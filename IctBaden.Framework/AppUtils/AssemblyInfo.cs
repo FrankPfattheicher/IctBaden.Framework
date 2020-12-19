@@ -95,7 +95,7 @@ namespace IctBaden.Framework.AppUtils
             : string.Empty;
 
         public string Copyright => (_assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true) is AssemblyCopyrightAttribute[] copyright) 
-            ? copyright[0].Copyright 
+            ? (copyright.Any() ? copyright[0].Copyright : string.Empty) 
             : string.Empty;
 
         public string Trademark => (_assembly.GetCustomAttributes(typeof(AssemblyTrademarkAttribute), true) is AssemblyTrademarkAttribute[] trademark) 
