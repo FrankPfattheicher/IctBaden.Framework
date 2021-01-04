@@ -18,7 +18,7 @@ namespace IctBaden.Framework.Logging
         public IDisposable BeginScope<TState>(TState state) => default;
 
         public bool IsEnabled(LogLevel logLevel) =>
-            logLevel >= _config.GetValue<LogLevel>("TronTraceLogLevel", LogLevel.Information);
+            logLevel >= _config.GetValue("TronTraceLogLevel", LogLevel.Information);
 
         public void Log<TState>(
             LogLevel logLevel,

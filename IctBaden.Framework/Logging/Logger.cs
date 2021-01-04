@@ -45,7 +45,7 @@ namespace IctBaden.Framework.Logging
         /// <returns>Logger factory</returns>
         public static ILoggerFactory CreateConsoleAndTronFactory(IConfiguration configuration)
         {
-            var minimumLogLevel = configuration.GetValue<LogLevel>("LogLevel", LogLevel.Information);
+            var minimumLogLevel = configuration.GetValue("LogLevel", LogLevel.Information);
             var loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddConsole();
