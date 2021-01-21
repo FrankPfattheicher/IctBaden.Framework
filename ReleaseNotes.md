@@ -1,4 +1,5 @@
 
+* 1.1.04 - 21.01.2021 FileLoggerProvider.
 * 1.1.03 - 04.01.2021 Updated nuget packages.
 * 1.1.02 - 19.12.2020 Add file logger.
 * 1.1.01 - 14.12.2020 Add Logging support using Microsoft.Extensions.Logging.
