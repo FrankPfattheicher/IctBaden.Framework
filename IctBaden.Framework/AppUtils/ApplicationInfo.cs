@@ -14,7 +14,7 @@ namespace IctBaden.Framework.AppUtils
     public static class ApplicationInfo
     {
         /// <summary>
-        /// With netcore 3 introduces single file publish,
+        /// With netcore 3 introduced single file publish,
         /// the assemblies are unpacked in a temp directory.
         /// Assembly.Location returns this temp path :-(
         /// This is a first try to ALWAYS return the applications directory.

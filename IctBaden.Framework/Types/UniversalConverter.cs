@@ -224,7 +224,7 @@ namespace IctBaden.Framework.Types
                 var result = new TimeSpan(days, 0, 0, 0);
                 return negative ? -result : result;
             }
-            //                            12           34         5        6  7       8  9
+            //                                  12           34         5        6  7       8  9
             var formatFull = new Regex(@"^(([0-9]+)\.)?(([0-9]+)\:([0-9]+))(\:([0-9]+)(\.([0-9]+))?)?$");
             match = formatFull.Match(txt);
             if (match.Success)

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Framework.Logging
 {
@@ -18,11 +19,10 @@ namespace IctBaden.Framework.Logging
             {
                 // find static field of type ILoggerFactory in entry assembly
                 var entry = Assembly.GetEntryAssembly();
-                ILoggerFactory loggerFactory;
                 foreach (var entryType in entry!.DefinedTypes)
                 {
                     var fieldInfo = entryType.DeclaredFields.FirstOrDefault(f => f.FieldType == typeof(ILoggerFactory));
-                    loggerFactory = (ILoggerFactory) fieldInfo?.GetValue(null);
+                    var loggerFactory = (ILoggerFactory) fieldInfo?.GetValue(null);
                     if (loggerFactory == null) continue;
                     
                     Trace.TraceInformation($"Using LoggerFactory '{fieldInfo.Name}' of type '{entryType.Name}'.");
