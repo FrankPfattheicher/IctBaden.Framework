@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using Microsoft.Extensions.Logging;
 // ReSharper disable StringLiteralTypo
 
@@ -10,6 +11,8 @@ namespace IctBaden.Framework.Logging
     {
         private readonly string _context;
         private string _scopeContext = "";
+        private LogLevel _logLevel;
+        private bool _timestamp = true;
     
         private readonly LogFileNameFactory _fileNameFactory;
 
@@ -40,10 +43,9 @@ namespace IctBaden.Framework.Logging
             return new LogScope(this, state.ToString());
         }
 
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return true;
-        }
+        public bool IsEnabled(LogLevel logLevel) => logLevel >= _logLevel;
+        public void SetLogLevel(LogLevel logLevel) => _logLevel = logLevel;
+        public void SetTimestamp(bool timestamp) => _timestamp = timestamp;
 
         private static string GetLogLevelString(LogLevel logLevel) =>
             logLevel switch
@@ -62,19 +64,32 @@ namespace IctBaden.Framework.Logging
         {
             try
             {
-                var fileName = _fileNameFactory.GetLogFileName();
+                if(!IsEnabled(logLevel)) return;
                 
-                var logLine = $"{GetLogLevelString(logLevel)}: {_context} ";
+                var fileName = _fileNameFactory.GetLogFileName();
+
+                var logLine = new StringBuilder();
+                if (_timestamp)
+                {
+                    logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss "));
+                }
+                logLine.Append(GetLogLevelString(logLevel));
+                logLine.Append(": ");
+                logLine.Append(_context);
+                logLine.Append(" ");
                 if (!string.IsNullOrEmpty(_scopeContext))
                 {
-                    logLine += $"{_scopeContext} ";
+                    logLine.Append(_scopeContext);
+                    logLine.Append(" ");
                 }
-                logLine += state.ToString();
+                logLine.Append(state);
                 if (exception != null)
                 {
-                    logLine += ", " + exception.Message;
+                    logLine.Append(", ");
+                    logLine.Append(exception.Message);
                 }
-                File.AppendAllText(fileName, logLine + Environment.NewLine);
+                logLine.AppendLine();
+                File.AppendAllText(fileName, logLine.ToString());
             }
             catch (Exception ex)
             {
