@@ -54,6 +54,36 @@ namespace IctBaden.Framework.Test.Logging
             Assert.Contains("error-message", logContent);
         }
 
+        [Fact]
+        public void FileLoggerShouldUse()
+        {
+            var factory = new LogFileNameFactory(_path, LogFileCycle.OneFile, "test", "log");
+
+            var logFileName = Path.Combine(_path, "test.log");
+            if (File.Exists(logFileName))
+            {
+                File.Delete(logFileName);
+            }
+
+            var logger = new FileLogger(factory, "test-logger");
+            
+            logger.LogInformation("information-message");
+            using (logger.BeginScope("FunctionCall"))
+            {
+                logger.LogWarning("warning-message");
+                logger.LogTrace("trace-message");
+            }
+            logger.LogError("error-message");
+            
+            var logContent = File.ReadAllText(logFileName);
+            Assert.Contains("test-logger", logContent);
+            Assert.Contains("information-message", logContent);
+            Assert.Contains("error-message", logContent);
+            Assert.Contains("warning-message", logContent);
+            Assert.Contains("trace-message", logContent);
+            Assert.Contains("=> FunctionCall", logContent);
+        }
+
        
     }
 }

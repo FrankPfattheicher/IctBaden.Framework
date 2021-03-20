@@ -50,12 +50,12 @@ namespace IctBaden.Framework.Logging
         private static string GetLogLevelString(LogLevel logLevel) =>
             logLevel switch
             {
-                LogLevel.Trace => "trce",
-                LogLevel.Debug => "dbug",
-                LogLevel.Information => "info",
-                LogLevel.Warning => "warn",
-                LogLevel.Error => "fail",
-                LogLevel.Critical => "crit",
+                LogLevel.Trace => "TRCE",
+                LogLevel.Debug => "DBUG",
+                LogLevel.Information => "INFO",
+                LogLevel.Warning => "WARN",
+                LogLevel.Error => "FAIL",
+                LogLevel.Critical => "CRIT",
                 LogLevel.None => "    ",
                 _ => throw new ArgumentOutOfRangeException(nameof(logLevel))
             };
@@ -79,6 +79,7 @@ namespace IctBaden.Framework.Logging
                 logLine.Append(" ");
                 if (!string.IsNullOrEmpty(_scopeContext))
                 {
+                    logLine.Append("=> ");
                     logLine.Append(_scopeContext);
                     logLine.Append(" ");
                 }

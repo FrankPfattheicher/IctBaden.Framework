@@ -30,10 +30,10 @@ namespace IctBaden.Framework.Logging
 
             var period = _cycle switch
             {
-                LogFileCycle.Daily => $"D{now.Year:D4}{now.Month:D2}{now.Day:D2}",
-                LogFileCycle.Weekly => $"W{Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday):D2}",
-                LogFileCycle.Monthly => $"M{now.Year:D4}{now.Month:D2}",
-                LogFileCycle.Yearly => $"Y{now.Year:D4}",
+                LogFileCycle.Daily => $"{now.Year:D4}{now.Month:D2}{now.Day:D2}",
+                LogFileCycle.Weekly => $"{Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday):D2}",
+                LogFileCycle.Monthly => $"{now.Year:D4}{now.Month:D2}",
+                LogFileCycle.Yearly => $"{now.Year:D4}",
                 _ => ""
             };
 

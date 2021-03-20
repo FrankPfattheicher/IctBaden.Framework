@@ -28,7 +28,7 @@ namespace IctBaden.Framework.Test.Logging
         {
             var factory = new LogFileNameFactory(_path, LogFileCycle.Daily, "test", "log");
             var now = DateTime.Now;
-            var expectedName = $"test_D{now.Year:D4}{now.Month:D2}{now.Day:D2}.log";
+            var expectedName = $"test_{now.Year:D4}{now.Month:D2}{now.Day:D2}.log";
 
             var logFileName = factory.GetLogFileName();
             
@@ -42,7 +42,7 @@ namespace IctBaden.Framework.Test.Logging
         {
             var factory = new LogFileNameFactory(_path, LogFileCycle.Weekly, "test", "log");
             var now = DateTime.Now;
-            var expectedName = $"test_W{Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday):D2}.log";
+            var expectedName = $"test_{Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday):D2}.log";
 
             var logFileName = factory.GetLogFileName();
             
@@ -56,7 +56,7 @@ namespace IctBaden.Framework.Test.Logging
         {
             var factory = new LogFileNameFactory(_path, LogFileCycle.Monthly, "test", "log");
             var now = DateTime.Now;
-            var expectedName = $"test_M{now.Year:D4}{now.Month:D2}.log";
+            var expectedName = $"test_{now.Year:D4}{now.Month:D2}.log";
 
             var logFileName = factory.GetLogFileName();
             
@@ -70,7 +70,7 @@ namespace IctBaden.Framework.Test.Logging
         {
             var factory = new LogFileNameFactory(_path, LogFileCycle.Yearly, "test", "log");
             var now = DateTime.Now;
-            var expectedName = $"test_Y{now.Year:D4}.log";
+            var expectedName = $"test_{now.Year:D4}.log";
 
             var logFileName = factory.GetLogFileName();
             
