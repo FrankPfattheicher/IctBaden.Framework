@@ -110,7 +110,7 @@ namespace IctBaden.Framework.Timer
                         var month = Next(_months, next.Month, 1);
                         next = new DateTime(next.Year, month, next.Day, next.Hour, next.Minute, next.Second);
                         if (next >= start) break;
-                        start = next = (start + TimeSpan.FromDays(30));
+                        start = next = (start + TimeSpan.FromDays(1));
                     }
                     next = new DateTime(next.Year, next.Month, next.Day, next.Hour, next.Minute, next.Second);
                     while (!_weekdays.Contains((int) next.DayOfWeek))

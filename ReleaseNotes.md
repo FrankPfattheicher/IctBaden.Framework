@@ -1,4 +1,5 @@
 
+* 1.1.07 - 31.03.2021 ValidatedEnum supporting [Flags]. Fix CronSchedule next year schedules.
 * 1.1.06 - 20.03.2021 LogFileNameFactory file names simplified, FileLogger w/uppercase level.
 * 1.1.05 - 17.03.2021 FileLogger with timestamp.
 * 1.1.04 - 21.01.2021 FileLoggerProvider.

@@ -83,16 +83,29 @@ namespace IctBaden.Framework.Types
                 }
             }
 
-            Text = data.ToString();
             HasValue = !string.IsNullOrEmpty(Text);
-            Text = Enum.GetNames(typeof(TEnum)).FirstOrDefault(name => string.Equals(name, Text, ignoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture));
-            if (Enum.TryParse(Text, out TEnum enumeration))
+            Text = Enum.GetNames(typeof(TEnum))
+                .FirstOrDefault(name => string.Equals(name, Text, ignoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture));
+
+            if (Text != null && Enum.TryParse(Text, out TEnum enumeration))
             {
                 Enumeration = enumeration;
                 Numeric = Convert.ToInt32(enumeration);
                 IsValid = true;
                 return;
             }
+
+            Text = data.ToString()
+                .Replace("|", ",");
+            
+            if (Enum.TryParse(Text, out enumeration))
+            {
+                Enumeration = enumeration;
+                Numeric = Convert.ToInt32(enumeration);
+                IsValid = true;
+                return;
+            }
+
 
             IsValid = false;
         }
