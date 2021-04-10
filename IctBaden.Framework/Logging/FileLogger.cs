@@ -73,15 +73,16 @@ namespace IctBaden.Framework.Logging
                 {
                     logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss "));
                 }
+                logLine.Append("\t");
                 logLine.Append(GetLogLevelString(logLevel));
-                logLine.Append(": ");
+                logLine.Append("\t");
                 logLine.Append(_context);
-                logLine.Append(" ");
+                logLine.Append("\t");
                 if (!string.IsNullOrEmpty(_scopeContext))
                 {
                     logLine.Append("=> ");
                     logLine.Append(_scopeContext);
-                    logLine.Append(" ");
+                    logLine.Append("\t");
                 }
                 logLine.Append(state);
                 if (exception != null)
