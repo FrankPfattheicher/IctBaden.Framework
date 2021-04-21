@@ -71,7 +71,7 @@ namespace IctBaden.Framework.Logging
                 var logLine = new StringBuilder();
                 if (_timestamp)
                 {
-                    logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss "));
+                    logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
                 logLine.Append("\t");
                 logLine.Append(GetLogLevelString(logLevel));
