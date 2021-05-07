@@ -54,6 +54,14 @@ namespace IctBaden.Framework.AppUtils
             }
         }
 
+        private T GetCustomAttribute<T>()
+        {
+            var attribute = _assembly
+                .GetCustomAttributes(typeof(AssemblyCompanyAttribute), true)
+                .FirstOrDefault(a => a.GetType() == typeof(T));
+            return (T) attribute;
+        }
+        
         public string ExeBaseName => Path.GetFileNameWithoutExtension(_assembly.Location);
 
         public string ExePath => Path.GetDirectoryName(_assembly.Location) ?? ".";
@@ -67,21 +75,10 @@ namespace IctBaden.Framework.AppUtils
 
         public DateTime FileTime => File.GetLastWriteTime(_assembly.Location);
 
-        public string Title => (_assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), true) is AssemblyTitleAttribute[] title) 
-            ? title[0].Title 
-            : ExeBaseName;
-
-        public string Description => (_assembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), true) is AssemblyDescriptionAttribute[] description) 
-            ? description[0].Description 
-            : string.Empty;
-
-        public string Configuration => (_assembly.GetCustomAttributes(typeof(AssemblyConfigurationAttribute), true) is AssemblyConfigurationAttribute[] configuration) 
-            ? configuration[0].Configuration 
-            : string.Empty;
-
-        public string CompanyName => (_assembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), true) is AssemblyCompanyAttribute[] company) 
-            ? company[0].Company 
-            : string.Empty;
+        public string Title => GetCustomAttribute<AssemblyTitleAttribute>()?.Title ?? ExeBaseName;
+        public string Description => GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? string.Empty;
+        public string Configuration => GetCustomAttribute<AssemblyConfigurationAttribute>()?.Configuration ?? string.Empty;
+        public string CompanyName => GetCustomAttribute<AssemblyCompanyAttribute>()?.Company ?? string.Empty;
 
         public string CompanyAddress => _contact.Address;
         public string CompanyCity => _contact.City;
@@ -90,25 +87,11 @@ namespace IctBaden.Framework.AppUtils
         public string CompanyFax => _contact.Fax;
         public string CompanyMobile => _contact.Mobile;
         public string CompanyUrl => _contact.Url;
-        public string Product => (_assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), true) is AssemblyProductAttribute[] product) 
-            ? product[0].Product 
-            : string.Empty;
-
-        public string Copyright => (_assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true) is AssemblyCopyrightAttribute[] copyright) 
-            ? (copyright.Any() ? copyright[0].Copyright : string.Empty) 
-            : string.Empty;
-
-        public string Trademark => (_assembly.GetCustomAttributes(typeof(AssemblyTrademarkAttribute), true) is AssemblyTrademarkAttribute[] trademark) 
-            ? trademark[0].Trademark 
-            : string.Empty;
-
-        public string Culture => ((_assembly.GetCustomAttributes(typeof(AssemblyCultureAttribute), true) is AssemblyCultureAttribute[] attributes) && (attributes.Length > 0)) 
-            ? attributes[0].Culture 
-            : string.Empty;
-
-        public string NeutralResourcesLanguage => ((_assembly.GetCustomAttributes(typeof(NeutralResourcesLanguageAttribute), true) is NeutralResourcesLanguageAttribute[] attributes) && (attributes.Length > 0)) 
-            ? attributes[0].CultureName 
-            : string.Empty;
+        public string Product => GetCustomAttribute<AssemblyProductAttribute>()?.Product ?? string.Empty;
+        public string Copyright => GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright ?? string.Empty;
+        public string Trademark => GetCustomAttribute<AssemblyTrademarkAttribute>()?.Trademark ?? string.Empty;
+        public string Culture => GetCustomAttribute<AssemblyCultureAttribute>()?.Culture ?? string.Empty;
+        public string NeutralResourcesLanguage => GetCustomAttribute<NeutralResourcesLanguageAttribute>()?.CultureName ?? string.Empty;
 
         public bool IsDebugBuild => _assembly.GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(da => da.IsJITTrackingEnabled);
 

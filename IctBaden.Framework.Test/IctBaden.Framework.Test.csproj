@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IctBaden.Framework.TestLib\IctBaden.Framework.TestLib.csproj" />
     <ProjectReference Include="..\IctBaden.Framework\IctBaden.Framework.csproj" />
   </ItemGroup>
 
