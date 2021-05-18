@@ -2,6 +2,7 @@
 
 [assembly:AssemblyCompany("TestLib-Company")]
 //[assembly:AssemblyTrademark("TestLib-Trademark")]
+[assembly:AssemblyCopyright("2021 ICT Baden")]
     
 namespace IctBaden.Framework.TestLib
 {

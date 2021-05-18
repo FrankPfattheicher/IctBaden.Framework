@@ -23,5 +23,7 @@ namespace IctBaden.Framework.Test.AppUtils
         [Fact]
         public void NotGivenTrademarkShouldReturnEmptyString() => Assert.Equal("", _info.Trademark);
 
+        [Fact]
+        public void GivenAssemblyCopyrightShouldReturnText() => Assert.Equal("2021 ICT Baden", _info.Copyright);
     }
 }

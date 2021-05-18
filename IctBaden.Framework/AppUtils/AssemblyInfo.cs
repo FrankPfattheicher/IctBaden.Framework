@@ -57,7 +57,7 @@ namespace IctBaden.Framework.AppUtils
         private T GetCustomAttribute<T>()
         {
             var attribute = _assembly
-                .GetCustomAttributes(typeof(AssemblyCompanyAttribute), true)
+                .GetCustomAttributes(typeof(T), true)
                 .FirstOrDefault(a => a.GetType() == typeof(T));
             return (T) attribute;
         }

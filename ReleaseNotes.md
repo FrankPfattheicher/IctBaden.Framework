@@ -1,4 +1,5 @@
 
+* 1.1.10 - 18.05.2021 AssemblyInfo fixed GetCustomAttribute<T>.
 * 1.1.09 - 07.05.2021 AssemblyInfo missing attributes exception fixed.
 * 1.1.08 - 10.04.2021 FileLogger with tab separation.
 * 1.1.07 - 31.03.2021 ValidatedEnum supporting [Flags]. Fix CronSchedule next year schedules.
@@ -22,7 +23,7 @@
 * 1.0.17 - 27.03.2020 Added AppUtils.Shell.OpenFile
 * 1.0.16 - 04.03.2020 Added ApplicationInfo as replacement for Application, new FrameworkInfo
 * 1.0.15 - 24.02.2020 Refactored SimpleHttpServer.
-* 1.0.14 - 17.02.2020 INI file sections are case insensitive.
+* 1.0.14 - 17.02.2020 INI file sections are case-insensitive.
 * 1.0.13 - 17.02.2020 Fixed GetApplicationDirectory on Windows.
 * 1.0.12 - 12.02.2020 ConvertTo<bool> stack overflow fixed. Do not linger on sockets on Linux.
 * 1.0.11 - 26.01.2020 Refactored PropertyBag to be JSON serializable.
