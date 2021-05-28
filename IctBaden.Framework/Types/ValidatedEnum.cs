@@ -103,6 +103,7 @@ namespace IctBaden.Framework.Types
                 Enumeration = enumeration;
                 Numeric = Convert.ToInt32(enumeration);
                 IsValid = true;
+                HasValue = true;
                 return;
             }
 

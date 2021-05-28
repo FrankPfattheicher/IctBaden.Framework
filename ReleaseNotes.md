@@ -1,4 +1,5 @@
 
+* 1.2.01 - 28.05.2021 ValidatedEnum.HasValue fixed.
 * 1.1.10 - 18.05.2021 AssemblyInfo fixed GetCustomAttribute<T>.
 * 1.1.09 - 07.05.2021 AssemblyInfo missing attributes exception fixed.
 * 1.1.08 - 10.04.2021 FileLogger with tab separation.
