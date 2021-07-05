@@ -12,6 +12,9 @@ namespace IctBaden.Framework.Logging
         private readonly LogFileCycle _cycle;
         private readonly string _name;
         private readonly string _extension;
+        
+        private string _lastFileName;
+        private int _lastDay;
 
         public LogFileNameFactory(string path, LogFileCycle cycle, string name, string extension)
         {
@@ -24,6 +27,9 @@ namespace IctBaden.Framework.Logging
         public string GetLogFileName()
         {
             var now = DateTime.Now;
+            if (now.Day == _lastDay) return _lastFileName;
+            
+            _lastDay = now.Day; 
             var name = _cycle == LogFileCycle.OneFile
                 ? _name
                 : (string.IsNullOrEmpty(_name) ? "" : _name + "_");
@@ -37,7 +43,8 @@ namespace IctBaden.Framework.Logging
                 _ => ""
             };
 
-            return Path.Combine(_path, name + period + "." + _extension);
+            _lastFileName = Path.Combine(_path, name + period + "." + _extension);
+            return _lastFileName;
         }
         
     }

@@ -65,33 +65,36 @@ namespace IctBaden.Framework.Logging
             try
             {
                 if(!IsEnabled(logLevel)) return;
-                
-                var fileName = _fileNameFactory.GetLogFileName();
 
-                var logLine = new StringBuilder();
-                if (_timestamp)
+                lock (_context)
                 {
-                    logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                }
-                logLine.Append("\t");
-                logLine.Append(GetLogLevelString(logLevel));
-                logLine.Append("\t");
-                logLine.Append(_context);
-                logLine.Append("\t");
-                if (!string.IsNullOrEmpty(_scopeContext))
-                {
-                    logLine.Append("=> ");
-                    logLine.Append(_scopeContext);
+                    var fileName = _fileNameFactory.GetLogFileName();
+
+                    var logLine = new StringBuilder();
+                    if (_timestamp)
+                    {
+                        logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    }
                     logLine.Append("\t");
+                    logLine.Append(GetLogLevelString(logLevel));
+                    logLine.Append("\t");
+                    logLine.Append(_context);
+                    logLine.Append("\t");
+                    if (!string.IsNullOrEmpty(_scopeContext))
+                    {
+                        logLine.Append("=> ");
+                        logLine.Append(_scopeContext);
+                        logLine.Append("\t");
+                    }
+                    logLine.Append(state);
+                    if (exception != null)
+                    {
+                        logLine.Append(", ");
+                        logLine.Append(exception.Message);
+                    }
+                    logLine.AppendLine();
+                    File.AppendAllText(fileName, logLine.ToString());
                 }
-                logLine.Append(state);
-                if (exception != null)
-                {
-                    logLine.Append(", ");
-                    logLine.Append(exception.Message);
-                }
-                logLine.AppendLine();
-                File.AppendAllText(fileName, logLine.ToString());
             }
             catch (Exception ex)
             {
