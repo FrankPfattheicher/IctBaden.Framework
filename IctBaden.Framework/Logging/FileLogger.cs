@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Microsoft.Extensions.Logging;
+
 // ReSharper disable StringLiteralTypo
 
 namespace IctBaden.Framework.Logging
@@ -13,13 +14,13 @@ namespace IctBaden.Framework.Logging
         private string _scopeContext = "";
         private LogLevel _logLevel;
         private bool _timestamp = true;
-    
+
         private readonly LogFileNameFactory _fileNameFactory;
 
         private class LogScope : IDisposable
         {
             private readonly FileLogger _logger;
-        
+
             public LogScope(FileLogger logger, string context)
             {
                 _logger = logger;
@@ -37,7 +38,7 @@ namespace IctBaden.Framework.Logging
             _fileNameFactory = fileNameFactory;
             _context = context;
         }
-        
+
         public IDisposable BeginScope<TState>(TState state)
         {
             return new LogScope(this, state.ToString());
@@ -60,12 +61,13 @@ namespace IctBaden.Framework.Logging
                 _ => throw new ArgumentOutOfRangeException(nameof(logLevel))
             };
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception,
+            Func<TState, Exception, string> formatter)
         {
             try
             {
-                if(!IsEnabled(logLevel)) return;
-                
+                if (!IsEnabled(logLevel)) return;
+
                 var fileName = _fileNameFactory.GetLogFileName();
 
                 var logLine = new StringBuilder();
@@ -73,6 +75,7 @@ namespace IctBaden.Framework.Logging
                 {
                     logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
+
                 logLine.Append("\t");
                 logLine.Append(GetLogLevelString(logLevel));
                 logLine.Append("\t");
@@ -84,12 +87,14 @@ namespace IctBaden.Framework.Logging
                     logLine.Append(_scopeContext);
                     logLine.Append("\t");
                 }
+
                 logLine.Append(state);
                 if (exception != null)
                 {
                     logLine.Append(", ");
                     logLine.Append(exception.Message);
                 }
+
                 logLine.AppendLine();
                 File.AppendAllText(fileName, logLine.ToString());
             }
@@ -98,6 +103,5 @@ namespace IctBaden.Framework.Logging
                 Trace.TraceError(ex.Message);
             }
         }
-
     }
 }
