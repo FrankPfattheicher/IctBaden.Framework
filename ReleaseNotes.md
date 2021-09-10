@@ -1,5 +1,5 @@
 
-* 1.2.02 - ??.07.2021 File logger: lock access and cache file name.
+* 1.2.02 - 10.09.2021 File logger caching file name. Profile removed load/save lock.
 * 1.2.01 - 28.05.2021 ValidatedEnum.HasValue fixed.
 * 1.1.10 - 18.05.2021 AssemblyInfo fixed GetCustomAttribute<T>.
 * 1.1.09 - 07.05.2021 AssemblyInfo missing attributes exception fixed.

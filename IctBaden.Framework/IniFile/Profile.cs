@@ -76,7 +76,7 @@ namespace IctBaden.Framework.IniFile
         // ReSharper disable once UnusedMember.Global
         public static Profile FromResource(Assembly assembly, string resourceName)
         {
-            var profile = new Profile("res://" + resourceName) {ReadOnly = true};
+            var profile = new Profile("res://" + resourceName) { ReadOnly = true };
 
             resourceName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.EndsWith(resourceName));
             if (resourceName == null) return null;
@@ -108,7 +108,8 @@ namespace IctBaden.Framework.IniFile
             get
             {
                 var section = Sections
-                    .FirstOrDefault(s => string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
+                    .FirstOrDefault(s =>
+                        string.Compare(s.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
                 if (section != null)
                 {
                     return section;
@@ -180,83 +181,77 @@ namespace IctBaden.Framework.IniFile
 
         public bool Load()
         {
-            lock (FileName)
+            if (!File.Exists(FileName))
+                return false;
+
+            try
             {
-                if (!File.Exists(FileName))
-                    return false;
+                Sections.Clear();
 
-                try
+                using (var fileData = new StreamReader(FileName, FileEncoding, true))
                 {
-                    Sections.Clear();
-
-                    using (var fileData = new StreamReader(FileName, FileEncoding, true))
+                    string firstLine = null;
+                    while (string.IsNullOrEmpty(firstLine) && !fileData.EndOfStream)
                     {
-                        string firstLine = null;
-                        while (string.IsNullOrEmpty(firstLine) && !fileData.EndOfStream)
-                        {
-                            firstLine = fileData.ReadLine();
-                        }
-
-                        if (!FileEncoding.Equals(Encoding.Unicode) && !FileEncoding.Equals(Encoding.BigEndianUnicode) &&
-                            EncodingDetector.IsUnicode(firstLine))
-                        {
-                            FileEncoding = Encoding.Unicode;
-                        }
-                        else
-                        {
-                            FileEncoding = fileData.CurrentEncoding;
-                        }
-
-                        fileData.Close();
+                        firstLine = fileData.ReadLine();
                     }
 
-                    using (var fileData = new StreamReader(FileName, FileEncoding, true))
+                    if (!FileEncoding.Equals(Encoding.Unicode) && !FileEncoding.Equals(Encoding.BigEndianUnicode) &&
+                        EncodingDetector.IsUnicode(firstLine))
                     {
-                        LoadContent(fileData);
-                        fileData.Close();
+                        FileEncoding = Encoding.Unicode;
+                    }
+                    else
+                    {
+                        FileEncoding = fileData.CurrentEncoding;
                     }
 
-                    return true;
+                    fileData.Close();
                 }
-                catch (IOException ex)
+
+                using (var fileData = new StreamReader(FileName, FileEncoding, true))
                 {
-                    System.Diagnostics.Trace.TraceError(ex.Message);
-                    return false;
+                    LoadContent(fileData);
+                    fileData.Close();
                 }
+
+                return true;
+            }
+            catch (IOException ex)
+            {
+                System.Diagnostics.Trace.TraceError(ex.Message);
+                return false;
             }
         }
 
         // ReSharper disable once UnusedMethodReturnValue.Global
         public bool Save()
         {
-            lock (FileName)
+            if (ReadOnly)
+                return false;
+
+            try
             {
-                if (ReadOnly)
-                    return false;
-
-                try
+                var lines = new List<string>();
+                foreach (var section in Sections.Where(section => section.Keys.Count != 0))
                 {
-                    var lines = new List<string>();
-                    foreach (var section in Sections.Where(section => section.Keys.Count != 0))
-                    {
-                        lines.Add(section.Header);
+                    lines.Add(section.Header);
 
-                        var sectionLines = section.Keys
-                            .Where(key => !string.IsNullOrEmpty(key.StringValue))
-                            .Select(key => key.ToString());
-                        lines.AddRange(sectionLines);
+                    var sectionLines = section.Keys
+                        .Where(key => !string.IsNullOrEmpty(key.StringValue))
+                        .Select(key => key.ToString());
+                    lines.AddRange(sectionLines);
 
-                        lines.Add(string.Empty);
-                    }
-
-                    File.WriteAllLines(FileName, lines, FileEncoding);
-                    return true;
+                    lines.Add(string.Empty);
                 }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Trace.TraceError(ex.Message);
-                    return false;
-                }
+
+                File.WriteAllLines(FileName, lines, FileEncoding);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError(ex.Message);
+                return false;
             }
         }
 
