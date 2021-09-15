@@ -24,6 +24,12 @@
     <Content Include="TestCfg.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Utf8WithBom.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WindowsWithoutBom.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Remove="Simple.csv" />
     <Content Include="SimpleTab.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
