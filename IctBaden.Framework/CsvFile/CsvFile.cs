@@ -23,6 +23,7 @@ namespace IctBaden.Framework.CsvFile
         public string LoadError { get; private set; }
         public char Separator { get; set; }
         public Encoding FileEncoding { get; set; }
+        public bool WriteBom { get; set; }
         public CultureInfo CultureInfo { get; set; }
         public List<string> Columns { get; set; }
         public List<CsvData> DataRows { get; set; }
@@ -141,11 +142,17 @@ namespace IctBaden.Framework.CsvFile
             }
         }
 
-        public bool Save()
+        public bool Save() => SaveAs(FileName);
+
+        public bool SaveAs(string fileName)
         {
             try
             {
-                using var fileData = new StreamWriter(FileName, false, FileEncoding);
+                var encoding = FileEncoding.WebName == "utf-8" && WriteBom
+                    ? new UTF8Encoding(true)
+                    : FileEncoding;
+                
+                using var fileData = new StreamWriter(fileName, false, encoding);
                 
                 var lineData = string.Join(Separator.ToString(), Columns.ToArray());
                 fileData.WriteLine(lineData);
