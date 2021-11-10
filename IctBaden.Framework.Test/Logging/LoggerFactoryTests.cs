@@ -1,4 +1,5 @@
 using IctBaden.Framework.Logging;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Xunit;
 
@@ -32,6 +33,20 @@ namespace IctBaden.Framework.Test.Logging
             logger.Log(LogLevel.Information, "Test information");
             logger.Log(LogLevel.Warning, "Test warning");
             logger.Log(LogLevel.Error, "Test error");
+        }
+
+        [Fact]
+        public void LogConfigurationShouldBeInitiallyContainLevelWarning()
+        {
+            var level = Logger.GetLogConfiguration().GetValue("LogLevel", LogLevel.None);
+            Assert.Equal(LogLevel.Warning, level);
+        }
+        
+        [Fact]
+        public void LogConfigurationShouldBeChanged()
+        {
+            var level = Logger.GetLogConfiguration(LogLevel.Critical).GetValue("LogLevel", LogLevel.None);
+            Assert.Equal(LogLevel.Critical, level);
         }
         
     }

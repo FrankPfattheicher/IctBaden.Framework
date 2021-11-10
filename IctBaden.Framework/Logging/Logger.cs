@@ -1,14 +1,26 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Memory;
 using Microsoft.Extensions.Logging;
+
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Framework.Logging
 {
     public static class Logger
     {
+        public static IConfiguration GetLogConfiguration() => GetLogConfiguration(LogLevel.Warning);
+        public static IConfiguration GetLogConfiguration(LogLevel level) => new ConfigurationBuilder()
+            .Add(new MemoryConfigurationSource
+            {
+                InitialData = new[] { new KeyValuePair<string, string>("LogLevel", level.ToString()) }
+            })
+            .Build();
+
+
         /// <summary>
         /// Tries to find static field of type ILoggerFactory in entry assembly.
         /// If not found return simple factory for console and tron output with default configuration.
@@ -22,16 +34,15 @@ namespace IctBaden.Framework.Logging
                 foreach (var entryType in entry!.DefinedTypes)
                 {
                     var fieldInfo = entryType.DeclaredFields.FirstOrDefault(f => f.FieldType == typeof(ILoggerFactory));
-                    var loggerFactory = (ILoggerFactory) fieldInfo?.GetValue(null);
+                    var loggerFactory = (ILoggerFactory)fieldInfo?.GetValue(null);
                     if (loggerFactory == null) continue;
-                    
+
                     Trace.TraceInformation($"Using LoggerFactory '{fieldInfo.Name}' of type '{entryType.Name}'.");
                     return loggerFactory;
                 }
 
                 Trace.TraceWarning($"No LoggerFactory found. Using console factory.");
-                var emptyConfiguration = new ConfigurationBuilder().Build();
-                return CreateConsoleAndTronFactory(emptyConfiguration);
+                return CreateConsoleAndTronFactory(GetLogConfiguration());
             }
         }
 
@@ -54,6 +65,5 @@ namespace IctBaden.Framework.Logging
             });
             return loggerFactory;
         }
-        
     }
 }
