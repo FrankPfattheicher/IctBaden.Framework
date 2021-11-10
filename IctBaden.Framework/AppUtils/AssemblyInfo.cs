@@ -62,9 +62,30 @@ namespace IctBaden.Framework.AppUtils
             return (T) attribute;
         }
         
-        public string ExeBaseName => Path.GetFileNameWithoutExtension(_assembly.Location);
+        public string ExeBaseName
+        {
+            get
+            {
+                var codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                var uri = new UriBuilder(codeBase);
+                var path = Uri.UnescapeDataString(uri.Path); 
+                return Path.GetFileNameWithoutExtension(path);
+            }
+        }
 
-        public string ExePath => Path.GetDirectoryName(_assembly.Location) ?? ".";
+        public string ExePath
+        {
+            get
+            {
+                var location = _assembly.Location;
+                if (string.IsNullOrEmpty(location))
+                {
+                    // NET 5 and up packed applications
+                    return AppContext.BaseDirectory;
+                }
+                return Path.GetDirectoryName(_assembly.Location) ?? ".";
+            }
+        }
 
         private string GetPath(string name) => Path.Combine(ApplicationInfo.ApplicationDirectory, name);
         public string DataPath => GetPath("Data");

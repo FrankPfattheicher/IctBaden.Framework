@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <IsPackable>false</IsPackable>

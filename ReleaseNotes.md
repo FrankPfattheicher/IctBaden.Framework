@@ -1,4 +1,5 @@
 
+* 1.4.01 - 10.11.2021 Fixed .NET5 ExePath issues. Added GetLogConfiguration.
 * 1.3.01 - 15.09.2021 CsvFile BOM support.
 * 1.2.02 - 10.09.2021 File logger caching file name. Profile removed load/save lock.
 * 1.2.01 - 28.05.2021 ValidatedEnum.HasValue fixed.

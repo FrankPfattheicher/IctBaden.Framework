@@ -1,9 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpAutoNaming/IsNamingAutoDetectionCompleted/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpAutoNaming/IsNotificationDisabled/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0779039b_002D57b8_002D4c3a_002Da690_002Da8fc841fcea6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=692703bc_002Db146_002D4e80_002Db488_002D99b1d8b61e7b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
+	
 	
 	
 	

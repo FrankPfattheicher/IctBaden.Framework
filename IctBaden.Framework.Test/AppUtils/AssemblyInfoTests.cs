@@ -15,13 +15,13 @@ namespace IctBaden.Framework.Test.AppUtils
         }
 
         [Fact]
-        public void GivenAssemblyTitleShouldReturnText() => Assert.Equal("IctBaden.Framework.TestLib", _info.Title);
+        public void GivenAssemblyTitleShouldReturnText() => Assert.Equal("TestLib", _info.Title);
 
         [Fact]
         public void GivenAssemblyCompanyShouldReturnText() => Assert.Equal("TestLib-Company", _info.CompanyName);
 
         [Fact]
-        public void NotGivenTrademarkShouldReturnEmptyString() => Assert.Equal("", _info.Trademark);
+        public void NotGivenTrademarkShouldReturnEmptyString() => Assert.Equal("TestLib-Trademark", _info.Trademark);
 
         [Fact]
         public void GivenAssemblyCopyrightShouldReturnText() => Assert.Equal("2021 ICT Baden", _info.Copyright);
