@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Framework.Types
 {
@@ -380,7 +381,7 @@ namespace IctBaden.Framework.Types
                 var defaultCtor = type.GetConstructor(Type.EmptyTypes);
                 if (defaultCtor != null)
                 {
-                    result = defaultCtor.Invoke(new object[0]);
+                    result = defaultCtor.Invoke(Array.Empty<object>());
                 }
                 else
                 {
@@ -476,26 +477,26 @@ namespace IctBaden.Framework.Types
                 {
                     // ReSharper disable BuiltInTypeReferenceStyle
                     // ReSharper disable RedundantCast
-                    { typeof(Boolean), index => true },
-                    { typeof(Byte), index => (Byte)64 },
-                    { typeof(Char), index => (Char)65 },
-                    { typeof(DateTime), index => DateTime.Now },
-                    { typeof(DateTimeOffset), index => new DateTimeOffset(DateTime.Now) },
-                    { typeof(DBNull), index => DBNull.Value },
+                    { typeof(Boolean), _ => true },
+                    { typeof(Byte), _ => (Byte)64 },
+                    { typeof(Char), _ => (Char)65 },
+                    { typeof(DateTime), _ => DateTime.Now },
+                    { typeof(DateTimeOffset), _ => new DateTimeOffset(DateTime.Now) },
+                    { typeof(DBNull), _ => DBNull.Value },
                     { typeof(Decimal), index => (Decimal)index },
                     { typeof(Double), index => (Double)(index + 0.1) },
-                    { typeof(Guid), index => Guid.NewGuid() },
+                    { typeof(Guid), _ => Guid.NewGuid() },
                     { typeof(Int16), index => (Int16)(index % Int16.MaxValue) },
                     { typeof(Int32), index => (Int32)(index % Int32.MaxValue) },
                     { typeof(Int64), index => (Int64)index },
-                    { typeof(Object), index => new object() },
-                    { typeof(SByte), index => (SByte)64 },
+                    { typeof(Object), _ => new object() },
+                    { typeof(SByte), _ => (SByte)64 },
                     { typeof(Single), index => (Single)(index + 0.1) },
                     { 
                         typeof(String), index => String.Format(CultureInfo.CurrentCulture, "string {0}", index)
                     },
                     { 
-                        typeof(TimeSpan), index => TimeSpan.FromTicks(1234567)
+                        typeof(TimeSpan), _ => TimeSpan.FromTicks(1234567)
                     },
                     { typeof(UInt16), index => (UInt16)(index % UInt16.MaxValue) },
                     { typeof(UInt32), index => (UInt32)(index % UInt32.MaxValue) },

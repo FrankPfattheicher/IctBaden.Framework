@@ -18,7 +18,7 @@ namespace IctBaden.Framework.Logging
         }
 
         public ILogger CreateLogger(string categoryName) =>
-            _loggers.GetOrAdd(categoryName, name => new FileLogger(_fileNameFactory, _context));
+            _loggers.GetOrAdd(categoryName, _ => new FileLogger(_fileNameFactory, _context));
 
         public void Dispose() => _loggers.Clear();
     }

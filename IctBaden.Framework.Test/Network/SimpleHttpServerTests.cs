@@ -126,7 +126,7 @@ namespace IctBaden.Framework.Test.Network
         public void MultipleParallelGetRequests()
         {
             var requests = Enumerable.Range(1, 10)
-                .Select(ix => Task.Run(GetRequestSuccess))
+                .Select(_ => Task.Run(GetRequestSuccess))
                 .ToArray();
             Task.WaitAll(requests);
         }

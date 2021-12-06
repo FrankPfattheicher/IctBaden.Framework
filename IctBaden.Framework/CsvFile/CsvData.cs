@@ -5,6 +5,8 @@ using System.Linq;
 using IctBaden.Framework.Types;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace IctBaden.Framework.CsvFile
 {
@@ -64,5 +66,30 @@ namespace IctBaden.Framework.CsvFile
             return obj;
         }
 
+
+        public static CsvData FromObject(object obj) => FromObject(obj, CultureInfo.InvariantCulture);
+
+        public static CsvData FromObject(object obj, CultureInfo cultureInfo)
+        {
+            var columns = obj.GetType().GetProperties()
+                .Select(prop => prop.Name)
+                .ToList();
+
+            var csvData = new CsvData(-1, columns, "");
+            
+            foreach (var propertyInfo in obj.GetType().GetProperties())
+            {
+                var columnIndex = csvData.ColumnNames
+                    .FindIndex(c => string.Compare(c, propertyInfo.Name, StringComparison.InvariantCultureIgnoreCase) == 0);
+                if(columnIndex == -1)
+                    continue;
+
+                var value = UniversalConverter.ConvertToType(propertyInfo.GetValue(obj), typeof(string), cultureInfo)?.ToString() ?? "";
+                csvData.Fields.Add(value);                
+            }
+
+            return csvData;
+        }
+        
     }
 }
