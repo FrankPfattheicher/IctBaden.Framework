@@ -56,11 +56,11 @@ namespace IctBaden.Framework.Test.Network
             Assert.Empty(_server.Clients);
 
             var reportConnected = false;
-            _server.ClientConnected += socket => { reportConnected = true; };
+            _server.ClientConnected += _ => { reportConnected = true; };
             var reportDisconnected = false;
-            _server.ClientDisconnected += socket => { reportDisconnected = true; };
+            _server.ClientDisconnected += _ => { reportDisconnected = true; };
 
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { });
+            _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
             var connected = _client.Connect();
             Assert.True(connected, "LastResult: " + _client.LastResult);
             Thread.Sleep(100);
@@ -82,7 +82,7 @@ namespace IctBaden.Framework.Test.Network
             Assert.True(started, "Could not start server");
 
             Thread.Sleep(100);
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { });
+            _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
             var connected = _client.Connect();
             Assert.True(connected, "Could not connect to server: " + _client.LastResult);
 
@@ -114,7 +114,7 @@ namespace IctBaden.Framework.Test.Network
             var clients1 = new List<SocketCommandClient>();
             for (var cx = 1; cx <= (clientCount / 2); cx++)
             {
-                var client = new SocketCommandClient("localhost", _testServerPort, s => { });
+                var client = new SocketCommandClient("localhost", _testServerPort, _ => { });
                 var connected = client.Connect();
                 Assert.True(connected, "[1] Could not connect to server: " + client.LastResult);
 
@@ -123,7 +123,7 @@ namespace IctBaden.Framework.Test.Network
             var clients2 = new List<SocketCommandClient>();
             for (var cx = 1; cx <= (clientCount / 2); cx++)
             {
-                var client = new SocketCommandClient("localhost", _testServerPort, s => { });
+                var client = new SocketCommandClient("localhost", _testServerPort, _ => { });
                 var connected = client.Connect();
                 Assert.True(connected, "[2] Could not connect to server: " + client.LastResult);
 
@@ -191,7 +191,7 @@ namespace IctBaden.Framework.Test.Network
         [PerformanceFact]
         public void ClientConnectShouldTimeoutIfServerNotRunning()
         {
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { });
+            _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
             var connected = _client.Connect();
             Assert.False(connected, "LastResult: " + _client.LastResult);
@@ -205,7 +205,7 @@ namespace IctBaden.Framework.Test.Network
 
             _server.HandleCommand += (socket, line) => socket.Send(Encoding.ASCII.GetBytes(line)); 
             
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { });
+            _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
             const string cmd = "TEST*TEST";
             var response = _client.DoCommand(cmd + _server.Eoc.First());
@@ -219,7 +219,7 @@ namespace IctBaden.Framework.Test.Network
             var started = _server.Start();
             Assert.True(started, "Could not start server");
 
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { });
+            _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
             var connected = _client.Connect();
             Assert.True(connected, "LastResult: " + _client.LastResult);
@@ -234,7 +234,7 @@ namespace IctBaden.Framework.Test.Network
             var started = _server.Start();
             Assert.True(started, "Could not start server");
 
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { });
+            _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
             var connected = _client.Connect();
             Assert.True(connected, "LastResult: " + _client.LastResult);
@@ -253,7 +253,7 @@ namespace IctBaden.Framework.Test.Network
             var started = _server.Start();
             Assert.True(started, "Could not start server");
 
-            _client = new SocketCommandClient("localhost", _testServerPort, s => { })
+            _client = new SocketCommandClient("localhost", _testServerPort, _ => { })
             {
                 ConnectTimeout = 1000, 
                 CommandRetryCount = 0
