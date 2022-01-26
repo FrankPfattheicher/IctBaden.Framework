@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace IctBaden.Framework.Logging
     public static class Logger
     {
         public static IConfiguration GetLogConfiguration() => GetLogConfiguration(LogLevel.Warning);
+
         public static IConfiguration GetLogConfiguration(LogLevel level) => new ConfigurationBuilder()
             .Add(new MemoryConfigurationSource
             {
@@ -64,6 +66,18 @@ namespace IctBaden.Framework.Logging
                 builder.SetMinimumLevel(minimumLogLevel);
             });
             return loggerFactory;
+        }
+
+
+        public static LogLevel GetLevelFromFirstChar(string logLevel, LogLevel defaultLevel = LogLevel.Trace)
+        {
+            var firstChar = string.IsNullOrEmpty(logLevel) ? "_" : logLevel.Substring(0, 1);
+            var possibleLevels = Enum.GetNames(typeof(LogLevel));
+            var matchedLevel =
+                possibleLevels.FirstOrDefault(n => n.StartsWith(firstChar, StringComparison.InvariantCultureIgnoreCase))
+                ?? defaultLevel.ToString();
+
+            return (LogLevel)Enum.Parse(typeof(LogLevel), matchedLevel);
         }
     }
 }
