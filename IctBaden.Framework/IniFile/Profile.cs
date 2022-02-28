@@ -238,7 +238,7 @@ namespace IctBaden.Framework.IniFile
                     lines.Add(section.Header);
 
                     var sectionLines = section.Keys
-                        .Where(key => !string.IsNullOrEmpty(key.StringValue))
+                        .Where(key => key.StringValue != null)
                         .Select(key => key.ToString());
                     lines.AddRange(sectionLines);
 

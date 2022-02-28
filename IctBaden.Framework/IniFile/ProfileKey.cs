@@ -48,12 +48,17 @@ namespace IctBaden.Framework.IniFile
             }
         }
 
+        /// <summary>
+        /// Key value as string
+        /// If value is null the key is not written
+        /// empty string will write key 
+        /// </summary>
         public string StringValue
         {
             get => _keyValue;
             set
             {
-                var strVal = value.Trim();
+                var strVal = value?.Trim();
                 if (_keyValue == strVal)
                     return;
                 _keyValue = strVal;
