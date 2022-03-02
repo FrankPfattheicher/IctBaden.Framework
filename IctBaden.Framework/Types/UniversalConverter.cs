@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable IntroduceOptionalParameters.Global
@@ -22,6 +23,7 @@ namespace IctBaden.Framework.Types
         {
             return ConvertToType(value, targetType, CultureInfo.CurrentCulture);
         }
+
         public static object ConvertToType(object value, Type targetType, IFormatProvider provider)
         {
             if (value == null) return null;
@@ -32,11 +34,11 @@ namespace IctBaden.Framework.Types
 
             // check for explicit converters
             var cvm = value.GetType().GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.Instance);
-            var cvt = cvm.FirstOrDefault(m => (m.ReturnType == targetType) 
-                && m.IsHideBySig 
-                && (m.GetParameters().Length == 1) 
-                && (m.GetParameters()[0].ParameterType == sourceType)
-                && m.Name.StartsWith("op_Implicit"));
+            var cvt = cvm.FirstOrDefault(m => (m.ReturnType == targetType)
+                                              && m.IsHideBySig
+                                              && (m.GetParameters().Length == 1)
+                                              && (m.GetParameters()[0].ParameterType == sourceType)
+                                              && m.Name.StartsWith("op_Implicit"));
             if (cvt != null)
             {
                 return cvt.Invoke(value, new[] { value });
@@ -44,10 +46,10 @@ namespace IctBaden.Framework.Types
 
             cvm = targetType.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.Instance);
             cvt = cvm.FirstOrDefault(m => (m.ReturnType == targetType)
-                && m.IsHideBySig
-                && (m.GetParameters().Length == 1)
-                && (m.GetParameters()[0].ParameterType == sourceType)
-                && m.Name.StartsWith("op_Explicit"));
+                                          && m.IsHideBySig
+                                          && (m.GetParameters().Length == 1)
+                                          && (m.GetParameters()[0].ParameterType == sourceType)
+                                          && m.Name.StartsWith("op_Explicit"));
             if (cvt != null)
             {
                 return cvt.Invoke(value, new[] { value });
@@ -59,9 +61,9 @@ namespace IctBaden.Framework.Types
                 var constructedType = typeof(ValidatedEnum<>).MakeGenericType(targetType);
                 var enu = Activator.CreateInstance(constructedType, value);
                 var hasValueProperty = constructedType.GetProperty("HasValue");
-                if(hasValueProperty != null)
+                if (hasValueProperty != null)
                 {
-                    if (hasValueProperty.GetValue(enu, null) is bool hasValue && hasValue)
+                    if (hasValueProperty.GetValue(enu, null) is bool and true)
                     {
                         var enumerationProperty = constructedType.GetProperty("Enumeration");
                         if (enumerationProperty != null)
@@ -71,15 +73,16 @@ namespace IctBaden.Framework.Types
                     }
                 }
             }
-            
+
             // handle List<T>
-            if (targetType.IsGenericType 
+            if (targetType.IsGenericType
                 && targetType.GenericTypeArguments.Length == 1
                 && targetType == typeof(List<>).MakeGenericType(targetType.GenericTypeArguments))
             {
                 var elementType = targetType.GenericTypeArguments[0];
-                var list  = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(targetType.GenericTypeArguments));
-                if(value is IEnumerable enumerableValue)
+                var list = (IList)Activator.CreateInstance(
+                    typeof(List<>).MakeGenericType(targetType.GenericTypeArguments));
+                if (value is IEnumerable enumerableValue)
                 {
                     foreach (var val in enumerableValue)
                     {
@@ -90,17 +93,18 @@ namespace IctBaden.Framework.Types
                 {
                     list.Add(value);
                 }
+
                 return list;
             }
-            
+
             // handle single dimensional arrays
             if (targetType.IsArray)
             {
                 var elementType = targetType.GetElementType();
                 if (elementType != null)
                 {
-                    var list  = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
-                    if(value is IEnumerable enumerableValue)
+                    var list = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
+                    if (value is IEnumerable enumerableValue)
                     {
                         foreach (var val in enumerableValue)
                         {
@@ -113,7 +117,7 @@ namespace IctBaden.Framework.Types
                     }
 
                     var array = Array.CreateInstance(elementType, list.Count);
-                    for(var ix = 0; ix < list.Count; ix++)
+                    for (var ix = 0; ix < list.Count; ix++)
                     {
                         array.SetValue(list[ix], ix);
                     }
@@ -125,11 +129,40 @@ namespace IctBaden.Framework.Types
             // check for Parse method
             try
             {
-                var parseMethod = targetType.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static);
+                var parseMethods = targetType
+                    .GetMethods(BindingFlags.Public | BindingFlags.Static)
+                    .Where(m => m.Name == "Parse")
+                    .ToArray();
+                    
+                var parseMethod = parseMethods
+                    .FirstOrDefault(m => m.GetParameters().Length == 2 
+                                                                   && m.GetParameters()[0].ParameterType == typeof(string) 
+                                                                   && m.GetParameters()[1].ParameterType == typeof(IFormatProvider));
                 if (parseMethod != null)
                 {
-                    value = parseMethod.Invoke(null, new[] {value});
+                    value = parseMethod.Invoke(null, new[] { value, provider });
                     return value;
+                }
+                parseMethod = parseMethods
+                    .FirstOrDefault(m => m.GetParameters().Length == 1
+                                         && m.GetParameters()[0].ParameterType == typeof(string));
+                if (parseMethod != null)
+                {
+                    value = parseMethod.Invoke(null, new[] { value });
+                    return value;
+                }
+            }
+            catch (Exception)
+            {
+                // ignore
+            }
+
+            // handle "ToString"
+            try
+            {
+                if (targetType == typeof(string))
+                {
+                    return string.Format(provider, "{0}", value);
                 }
             }
             catch (Exception)
@@ -147,8 +180,8 @@ namespace IctBaden.Framework.Types
                 // ignore
             }
 
-            return (targetType == typeof (bool))
-                ? ConvertTo<bool>(value) 
+            return (targetType == typeof(bool))
+                ? ConvertTo<bool>(value)
                 : GetDefault(targetType);
         }
 
@@ -160,14 +193,14 @@ namespace IctBaden.Framework.Types
         public static T ConvertTo<T>(object value, T defaultValue)
         {
             if (value == null) return defaultValue;
-            
+
             try
             {
                 if ((typeof(T) == typeof(string)))
                 {
                     return (T)(object)value.ToString();
                 }
-                
+
                 // ReSharper disable once InvertIf
                 if (typeof(T) == typeof(bool))
                 {
@@ -175,18 +208,22 @@ namespace IctBaden.Framework.Types
                     {
                         return (T)Convert.ChangeType(boolValue, typeof(T));
                     }
+
                     if (value is string str)
                     {
-                        var trueStrings = new[] {
+                        var trueStrings = new[]
+                        {
                             "-1", "1", "Y", "J", "T"
                         };
-                        var falseStrings = new[] {
+                        var falseStrings = new[]
+                        {
                             "0", " ", "", "N", "F"
                         };
                         if (trueStrings.Contains(str.ToUpper()))
                         {
-                            return (T) Convert.ChangeType(true, typeof(T));
+                            return (T)Convert.ChangeType(true, typeof(T));
                         }
+
                         if (falseStrings.Contains(str.ToUpper()))
                         {
                             return (T)Convert.ChangeType(false, typeof(T));
@@ -202,6 +239,7 @@ namespace IctBaden.Framework.Types
             {
                 return defaultValue;
             }
+
             return defaultValue;
         }
 
@@ -211,6 +249,7 @@ namespace IctBaden.Framework.Types
             {
                 return new TimeSpan();
             }
+
             var negative = txt.StartsWith("-");
             if (negative)
                 txt = txt.Substring(1);
@@ -224,6 +263,7 @@ namespace IctBaden.Framework.Types
                 var result = new TimeSpan(days, 0, 0, 0);
                 return negative ? -result : result;
             }
+
             //                                  12           34         5        6  7       8  9
             var formatFull = new Regex(@"^(([0-9]+)\.)?(([0-9]+)\:([0-9]+))(\:([0-9]+)(\.([0-9]+))?)?$");
             match = formatFull.Match(txt);
@@ -237,8 +277,8 @@ namespace IctBaden.Framework.Types
                 var result = new TimeSpan(days, hours, minutes, seconds, fraction);
                 return negative ? -result : result;
             }
+
             return new TimeSpan();
         }
-
     }
 }
