@@ -84,7 +84,7 @@ namespace IctBaden.Framework.CsvFile
                 if(columnIndex == -1)
                     continue;
 
-                var value = UniversalConverter.ConvertToType(propertyInfo.GetValue(obj), typeof(string), cultureInfo)?.ToString() ?? "";
+                var value = UniversalConverter.ConvertToType(propertyInfo.GetValue(obj), typeof(string), cultureInfo)?.ToString() ?? $"{obj}";
                 csvData.Fields.Add(value);                
             }
 
