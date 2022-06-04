@@ -7,6 +7,7 @@ using IctBaden.Framework.Network;
 using Xunit;
 using Xunit.Abstractions;
 // ReSharper disable ConvertToUsingDeclaration
+#pragma warning disable SYSLIB0014
 
 // ReSharper disable StringLiteralTypo
 
