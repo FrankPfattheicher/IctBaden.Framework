@@ -23,7 +23,7 @@ namespace IctBaden.Framework.Test.AppUtils
         public void FrameworkVersionShouldBeNetCore31()
         {
             var core = FrameworkInfo.FrameworkVersion;
-            Assert.Contains("3.1.", core);
+            Assert.Contains("6.0.", core);
             
             Assert.True(FrameworkInfo.IsNetCore);
         }

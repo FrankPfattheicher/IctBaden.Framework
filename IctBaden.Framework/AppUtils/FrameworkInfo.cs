@@ -22,7 +22,8 @@ namespace IctBaden.Framework.AppUtils
             var runtimeDirectory = Path.GetFullPath(Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "."));
             IsSelfHosted = runtimeDirectory == ApplicationInfo.ApplicationDirectory;
 
-            IsNetCore = RuntimeInformation.FrameworkDescription.Contains("Core");
+            IsNetCore = RuntimeInformation.FrameworkDescription.Contains("Core") ||
+                        RuntimeInformation.FrameworkDescription.Contains(".NET ");
         }
         
     }
