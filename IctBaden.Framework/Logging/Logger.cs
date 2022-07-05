@@ -13,6 +13,7 @@ namespace IctBaden.Framework.Logging
 {
     public static class Logger
     {
+        public static string TimestampFormat = null;
         public static IConfiguration GetLogConfiguration() => GetLogConfiguration(LogLevel.Warning);
 
         public static IConfiguration GetLogConfiguration(LogLevel level) => new ConfigurationBuilder()
@@ -61,7 +62,7 @@ namespace IctBaden.Framework.Logging
             var minimumLogLevel = configuration.GetValue("LogLevel", LogLevel.Information);
             var loggerFactory = LoggerFactory.Create(builder =>
             {
-                builder.AddConsole();
+                builder.AddConsole(options => options.TimestampFormat = TimestampFormat);
                 builder.AddProvider(new TronLoggerProvider(configuration));
                 builder.SetMinimumLevel(minimumLogLevel);
             });

@@ -1,4 +1,5 @@
 
+* 1.5.02 - 05.07.2022 IctBaden.Framework.Logging.Logger.TimestampFormat added
 * 1.5.01 - 04.06.2022 UsbInfo and GetDeviceList() added for Linux
 * 1.4.05 - 02.03.2022 UniversalConverter handling multiple parse methods and missing implicit ToString (DateTimeOffset) and use Parse method w/IFormatProvider
 * 1.4.04 - 28.02.2022 Profile string value distinguish between null and empty string
