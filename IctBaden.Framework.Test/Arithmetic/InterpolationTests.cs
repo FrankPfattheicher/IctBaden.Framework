@@ -1,3 +1,4 @@
+using System;
 using IctBaden.Framework.Arithmetic;
 using Xunit;
 
@@ -74,6 +75,16 @@ namespace IctBaden.Framework.Test.Arithmetic
             var value = interpolation.InterpolateLinear(50);
             
             Assert.Equal(expected, value, 4);
+        }
+
+        [Fact]
+        public void InterpolationWithoutPointsShouldReturnInputValue()
+        {
+            var interpolation = new Interpolation(Array.Empty<InterpolationPoint>());
+            const long expected = 55;
+            var value = interpolation.InterpolateLinear(expected);
+            
+            Assert.Equal(expected, value);
         }
         
     }

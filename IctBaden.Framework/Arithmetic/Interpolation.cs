@@ -15,6 +15,11 @@ namespace IctBaden.Framework.Arithmetic
 
         public long InterpolateLinear(long inputValue)
         {
+            if (_points == null || _points.Length == 0)
+            {
+                // no points given
+                return inputValue;
+            }
             // zu verwendende Wertepaare suchen
             if (inputValue < _points[0].Input)
             {

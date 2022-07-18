@@ -1,4 +1,5 @@
 
+* 1.5.03 - 18.07.2022 Interpolation without given points return input value
 * 1.5.02 - 05.07.2022 IctBaden.Framework.Logging.Logger.TimestampFormat added
 * 1.5.01 - 04.06.2022 UsbInfo and GetDeviceList() added for Linux
 * 1.4.05 - 02.03.2022 UniversalConverter handling multiple parse methods and missing implicit ToString (DateTimeOffset) and use Parse method w/IFormatProvider
