@@ -10,15 +10,16 @@ namespace IctBaden.Framework.Logging
         private readonly string _name;
         private readonly IConfiguration _config;
 
-        public TronLogger(
-            string name,
-            IConfiguration config) =>
-            (_name, _config) = (name, config);
+        public TronLogger(string name, IConfiguration config)
+        {
+            _name = name;
+            _config = config;
+        }
 
         public IDisposable BeginScope<TState>(TState state) => default;
 
         public bool IsEnabled(LogLevel logLevel) =>
-            logLevel >= _config.GetValue("TronTraceLogLevel", LogLevel.Information);
+            logLevel >= _config.GetValue("LogLevel", LogLevel.Information);
 
         public void Log<TState>(
             LogLevel logLevel,
