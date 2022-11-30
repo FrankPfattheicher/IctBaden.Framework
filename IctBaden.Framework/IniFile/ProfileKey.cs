@@ -1,4 +1,7 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+
 // ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.IniFile
@@ -39,7 +42,12 @@ namespace IctBaden.Framework.IniFile
                 }
                 else
                 {
-                    var strVal = string.Format(CultureInfo.InvariantCulture, "{0}", value).Trim();
+                    var strVal = value switch
+                    {
+                        DateTime dt => dt.ToString("O"),
+                        DateTimeOffset dt => dt.ToString("O"),
+                        _ => string.Format(CultureInfo.InvariantCulture, "{0}", value).Trim()
+                    };
                     if (_keyValue == strVal)
                         return;
                     _keyValue = strVal;

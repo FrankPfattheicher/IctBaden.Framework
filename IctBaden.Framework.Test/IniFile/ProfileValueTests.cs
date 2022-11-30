@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using IctBaden.Framework.IniFile;
@@ -56,7 +55,6 @@ public class ProfileValueTests : IDisposable
         Assert.Null(value);
     }
 
-
     [Fact]
     public void WritingEmptyStringShouldWriteKeyName()
     {
@@ -75,6 +73,26 @@ public class ProfileValueTests : IDisposable
 
         var fileText = File.ReadAllText(_testFileName);
         Assert.DoesNotContain("NewNullKey", fileText);
+    }
+
+    [Fact]
+    public void DateTimeShouldBeSerializedIsoFormatted()
+    {
+        _testSection["DateTime"].ObjectValue = new DateTime(2022, 11, 30, 15, 54, 0);
+        _profile.Save();
+
+        var fileText = File.ReadAllText(_testFileName);
+        Assert.Contains("DateTime=2022-11-30T15:54:00", fileText);
+    }
+
+    [Fact]
+    public void DateTimeOffsetShouldBeSerializedIsoFormatted()
+    {
+        _testSection["DateTimeOffset"].ObjectValue = new DateTimeOffset(2022, 11, 30, 15, 54, 1, TimeSpan.Zero);
+        _profile.Save();
+
+        var fileText = File.ReadAllText(_testFileName);
+        Assert.Contains("DateTimeOffset=2022-11-30T15:54:01", fileText);
     }
 
 }
