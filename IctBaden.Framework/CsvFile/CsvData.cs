@@ -52,6 +52,7 @@ namespace IctBaden.Framework.CsvFile
         {
             var obj = new T();
 
+            // Set public properties
             foreach (var propertyInfo in typeof(T).GetProperties())
             {
                 var columnIndex = ColumnNames
@@ -61,6 +62,18 @@ namespace IctBaden.Framework.CsvFile
 
                 var value = UniversalConverter.ConvertToType(GetField(Columns[columnIndex]), propertyInfo.PropertyType, cultureInfo);
                 propertyInfo.SetValue(obj, value, null);
+            }
+
+            // Set public fields
+            foreach (var fieldInfo in typeof(T).GetFields())
+            {
+                var columnIndex = ColumnNames
+                    .FindIndex(c => string.Compare(c, fieldInfo.Name, StringComparison.InvariantCultureIgnoreCase) == 0);
+                if(columnIndex == -1)
+                    continue;
+
+                var value = UniversalConverter.ConvertToType(GetField(Columns[columnIndex]), fieldInfo.FieldType, cultureInfo);
+                fieldInfo.SetValue(obj, value);
             }
 
             return obj;

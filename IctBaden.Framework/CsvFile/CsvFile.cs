@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using IctBaden.Framework.Types;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable CollectionNeverQueried.Global
@@ -129,6 +130,12 @@ namespace IctBaden.Framework.CsvFile
 
         private void DetectSeparator(string lineData)
         {
+            if (RemoveQuotes)
+            {
+                lineData = Regex.Replace(lineData, "\".*\"", "col");
+                lineData = Regex.Replace(lineData, "\'.*\'", "col");
+            }
+
             var possibleSeparators = new[] { '\t', ';', ',' };
 
             // ReSharper disable once LoopCanBePartlyConvertedToQuery
