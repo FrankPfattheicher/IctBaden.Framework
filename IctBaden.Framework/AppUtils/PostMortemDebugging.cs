@@ -17,8 +17,8 @@ namespace IctBaden.Framework.AppUtils
             ExitAndRestart
         }
         
-        private static Exception _dumpReason;
-        private static string _stackTrace;
+        private static Exception? _dumpReason;
+        private static string? _stackTrace;
         private static bool _exitOnFailure;
         private static bool _restartOnFailure;
 
@@ -63,7 +63,7 @@ namespace IctBaden.Framework.AppUtils
                 info.Append(_dumpReason.Message);
                 info.Append(Environment.NewLine);
                 info.Append(Environment.NewLine);
-                info.Append(_stackTrace);
+                if(_stackTrace != null) info.Append(_stackTrace);
                 info.Append(Environment.NewLine);
                 
                 // write dump

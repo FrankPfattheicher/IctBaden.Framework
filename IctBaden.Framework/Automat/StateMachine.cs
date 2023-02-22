@@ -12,19 +12,27 @@ using System.Diagnostics;
 
 namespace IctBaden.Framework.Automat
 {
+    internal class EmptyStateMachine : StateMachine
+    {
+        public EmptyStateMachine() 
+            : base(typeof(object))
+        {
+        }
+    }
+    
     public abstract class StateMachine
     {
         public delegate void StateChangedHandler(EventArgs e);
         public delegate void DoneHandler(EventArgs e);
 
-        public event StateChangedHandler StateChanged;
-        public event StateChangedHandler Done;
+        public event StateChangedHandler? StateChanged;
+        public event StateChangedHandler? Done;
 
-        public object Result { get; private set; }
+        public object? Result { get; private set; }
 
-        public State CurrentState { get; private set; }
+        public State? CurrentState { get; private set; }
         public string CurrentStateName => (CurrentState == null) ? "<null>" : CurrentState.GetType().Name;
-        protected State LastState;
+        protected State? LastState;
         protected StateTimeoutCollection StateTimeouts;
         private readonly State _initialState;
 
@@ -32,7 +40,9 @@ namespace IctBaden.Framework.Automat
         {
             Result = null;
             StateTimeouts = new StateTimeoutCollection();
-            _initialState = Activator.CreateInstance(initial) as State;
+
+            var state = Activator.CreateInstance(initial) as State;
+            _initialState = state ?? throw new ArgumentException("Could not instantiate initial state");
         }
 
         public void Start()
@@ -58,7 +68,7 @@ namespace IctBaden.Framework.Automat
             var t = new T();
             GoState(t, input);
         }
-        public void GoState(State newState, object input)
+        public void GoState(State? newState, object? input)
         {
             if (CurrentState != null)
             {
@@ -111,7 +121,7 @@ namespace IctBaden.Framework.Automat
             t.Activate();
         }
 
-        private void OnTimeout(object timerName)
+        private void OnTimeout(object? timerName)
         {
             var name = timerName as string;
             if (string.IsNullOrEmpty(name))

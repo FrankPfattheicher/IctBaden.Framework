@@ -18,7 +18,7 @@ namespace IctBaden.Framework.CharacterSet
             return unicodeText.ToString();
         }
 
-        public static string DecodeText(string textToDecode)
+        public static string? DecodeText(string textToDecode)
         {
             try
             {

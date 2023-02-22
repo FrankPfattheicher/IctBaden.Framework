@@ -50,7 +50,7 @@ namespace IctBaden.Framework.Tron
         // ReSharper restore UnusedMember.Local
 
         public static string PipeName { get; set; } = "ICTBaden.tron";
-        private static NamedPipeClientStream _tron;
+        private static NamedPipeClientStream? _tron;
 
         public static bool EnableTronWindow { get; set; } = true;
 
@@ -77,7 +77,7 @@ namespace IctBaden.Framework.Tron
                 lock (CheckState)
                 {
                     _tron = new NamedPipeClientStream(".", PipeName, PipeDirection.InOut, PipeOptions.Asynchronous);
-                    _tron?.Connect(10);
+                    _tron.Connect(10);
                 }
             }
             catch (Exception)
@@ -109,7 +109,7 @@ namespace IctBaden.Framework.Tron
 
         public static bool Connected => (_tron != null) && _tron.IsConnected;
 
-        private static void Send(TronCommand command, byte[] data)
+        private static void Send(TronCommand command, byte[]? data)
         {
             // UDP connection - requires TRON V3.0
             if (UseUdpConnection)
@@ -146,7 +146,7 @@ namespace IctBaden.Framework.Tron
 
 
             // Named pipe connection
-            if (!Connect())
+            if (!Connect() || _tron == null)
                 return;
 
             try
@@ -196,7 +196,7 @@ namespace IctBaden.Framework.Tron
             if (!CheckState.Timeout)
                 return;
 
-            if (!Connect())
+            if (!Connect() || _tron == null)
                 return;
 
             try
@@ -232,7 +232,7 @@ namespace IctBaden.Framework.Tron
         }
 
         // ReSharper disable once EventNeverSubscribedTo.Global
-        public static event Action<string> OnPrint;
+        public static event Action<string>? OnPrint;
 
         // TODO: IsOn(TraceIndex)
 
@@ -253,12 +253,13 @@ namespace IctBaden.Framework.Tron
         {
             var stack = new StackTrace();
             var frames = stack.GetFrames();
-            if (frames == null) return;
+            if (!frames.Any()) return;
 
             SetColor(TraceColor.DarkGreen);
             var breadcrumbs = frames.Skip(2)
                 .Take(3)
-                .Select(f => f.GetMethod().Name)
+                .Where(f => f?.GetMethod() != null)
+                .Select(f => f?.GetMethod()!.Name)
                 .Reverse();
 
             PrintLine("CallTrail: " + string.Join(" / ", breadcrumbs));

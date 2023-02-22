@@ -16,7 +16,11 @@ namespace IctBaden.Framework.Logging
             _config = config;
         }
 
-        public IDisposable BeginScope<TState>(TState state) => default;
+        private class EmptyScope : IDisposable
+        {
+            public void Dispose() { }
+        }
+        public IDisposable BeginScope<TState>(TState state) => new EmptyScope();
 
         public bool IsEnabled(LogLevel logLevel) =>
             logLevel >= _config.GetValue("LogLevel", LogLevel.Information);

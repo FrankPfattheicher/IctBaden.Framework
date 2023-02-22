@@ -14,17 +14,15 @@ namespace IctBaden.Framework.Types
 {
     public static class UniversalConverter
     {
-        public static object GetDefault(Type type)
+        public static object? GetDefault(Type type)
         {
             return type.IsValueType ? Activator.CreateInstance(type) : null;
         }
 
-        public static object ConvertToType(object value, Type targetType)
-        {
-            return ConvertToType(value, targetType, CultureInfo.CurrentCulture);
-        }
+        public static object? ConvertToType(object? value, Type targetType) => 
+            ConvertToType(value, targetType, CultureInfo.CurrentCulture);
 
-        public static object ConvertToType(object value, Type targetType, IFormatProvider provider)
+        public static object? ConvertToType(object? value, Type targetType, IFormatProvider provider)
         {
             if (value == null) return null;
 
@@ -80,13 +78,14 @@ namespace IctBaden.Framework.Types
                 && targetType == typeof(List<>).MakeGenericType(targetType.GenericTypeArguments))
             {
                 var elementType = targetType.GenericTypeArguments[0];
-                var list = (IList)Activator.CreateInstance(
-                    typeof(List<>).MakeGenericType(targetType.GenericTypeArguments));
+                var list = Activator.CreateInstance(typeof(List<>).MakeGenericType(targetType.GenericTypeArguments)) as IList;
+                if (list == null) return null;
+                
                 if (value is IEnumerable enumerableValue)
                 {
                     foreach (var val in enumerableValue)
                     {
-                        list.Add(UniversalConverter.ConvertToType(val, elementType));
+                        list.Add(ConvertToType(val, elementType));
                     }
                 }
                 else
@@ -103,7 +102,9 @@ namespace IctBaden.Framework.Types
                 var elementType = targetType.GetElementType();
                 if (elementType != null)
                 {
-                    var list = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
+                    var list = Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType)) as IList;
+                    if (list == null) return null;
+                    
                     if (value is IEnumerable enumerableValue)
                     {
                         foreach (var val in enumerableValue)
@@ -185,20 +186,17 @@ namespace IctBaden.Framework.Types
                 : GetDefault(targetType);
         }
 
-        public static T ConvertTo<T>(object value)
-        {
-            return ConvertTo(value, default(T));
-        }
+        public static T? ConvertTo<T>(object? value) => ConvertTo(value, default(T));
 
-        public static T ConvertTo<T>(object value, T defaultValue)
+        public static T? ConvertTo<T>(object? value, T defaultValue)
         {
             if (value == null) return defaultValue;
 
             try
             {
-                if ((typeof(T) == typeof(string)))
+                if (typeof(T) == typeof(string))
                 {
-                    return (T)(object)value.ToString();
+                    return (T?)(value.ToString() as object);
                 }
 
                 // ReSharper disable once InvertIf
@@ -232,7 +230,7 @@ namespace IctBaden.Framework.Types
                 }
                 else
                 {
-                    return (T)ConvertToType(value, typeof(T));
+                    return (T?)ConvertToType(value, typeof(T));
                 }
             }
             catch (Exception)

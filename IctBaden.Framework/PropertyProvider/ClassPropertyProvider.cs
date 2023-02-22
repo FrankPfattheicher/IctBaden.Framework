@@ -53,7 +53,7 @@ namespace IctBaden.Framework.PropertyProvider
                             && property.PropertyType.GenericTypeArguments.Length == 1
                             && property.PropertyType == typeof(List<>).MakeGenericType(property.PropertyType.GenericTypeArguments)))
                     {
-                        value = value.ToString().Split(';').ToList();
+                        value = value.ToString()?.Split(';').ToList();
                     }
                     value = UniversalConverter.ConvertToType(value, property.PropertyType, provider);
                     property.SetValue(_targetObject, value, null);

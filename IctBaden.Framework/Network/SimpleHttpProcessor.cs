@@ -16,13 +16,13 @@ namespace IctBaden.Framework.Network
 {
     public class SimpleHttpProcessor
     {
-        public readonly Socket Socket;
+        public readonly Socket? Socket;
         public readonly SimpleHttpServer Server;
 
-        public string HttpMethod;
-        public string HttpUrl;
-        public Dictionary<string, string> QueryParameters;
-        public string HttpProtocolVersionString;
+        public string? HttpMethod;
+        public string? HttpUrl;
+        public Dictionary<string, string>? QueryParameters;
+        public string? HttpProtocolVersionString;
         public readonly Hashtable HttpHeaders = new Hashtable();
 
         private const int MaxPostSize = 10 * 1024 * 1024; // 10MB
@@ -38,17 +38,20 @@ namespace IctBaden.Framework.Network
             string exception;
             try
             {
-                var inputStream = new StreamReader(new NetworkStream(Socket, FileAccess.Read));
+                if (Socket != null)
+                {
+                    var inputStream = new StreamReader(new NetworkStream(Socket, FileAccess.Read));
 
-                ParseRequest(inputStream);
-                ReadHeaders(inputStream);
-                if (HttpMethod.Equals("GET"))
-                {
-                    HandleGetRequest();
-                }
-                else if (HttpMethod.Equals("POST"))
-                {
-                    HandlePostRequest(inputStream);
+                    ParseRequest(inputStream);
+                    ReadHeaders(inputStream);
+                    if (HttpMethod == "GET")
+                    {
+                        HandleGetRequest();
+                    }
+                    else if (HttpMethod == "POST")
+                    {
+                        HandlePostRequest(inputStream);
+                    }
                 }
                 return;
             }
@@ -118,7 +121,7 @@ namespace IctBaden.Framework.Network
         private void ReadHeaders(TextReader inputStream)
         {
             Console.WriteLine("ReadHeaders()");
-            string line;
+            string? line;
             while ((line = inputStream.ReadLine()) != null)
             {
                 if (line.Equals(""))
@@ -229,26 +232,27 @@ namespace IctBaden.Framework.Network
             WriteStringResponse(HttpStatusCode.InternalServerError, result, contentType);
         }
 
-        public void WriteStringResponse(HttpStatusCode statusCode, string body, string contentType)
+        public void WriteStringResponse(HttpStatusCode statusCode, string? body, string? contentType)
         {
-            using (var outputStream = new StreamWriter(new NetworkStream(Socket, FileAccess.Write), new UTF8Encoding(false)) { NewLine = "\r\n" })
+            if (Socket == null) return;
+            
+            using var outputStream = new StreamWriter(new NetworkStream(Socket, FileAccess.Write), new UTF8Encoding(false)) { NewLine = "\r\n" };
+            
+            var reasonPhrase = new HttpResponseMessage(statusCode).ReasonPhrase;
+            outputStream.WriteLine($"HTTP/1.0 {(int)statusCode} {reasonPhrase}");
+
+            // these are the HTTP headers
+            if (!string.IsNullOrEmpty(contentType))
             {
-                var reasonPhrase = new HttpResponseMessage(statusCode).ReasonPhrase;
-                outputStream.WriteLine($"HTTP/1.0 {(int)statusCode} {reasonPhrase}");
+                outputStream.WriteLine("Content-Type: " + contentType);
+            }
+            outputStream.WriteLine("Connection: close");
+            outputStream.WriteLine(""); // this terminates the HTTP headers
 
-                // these are the HTTP headers
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    outputStream.WriteLine("Content-Type: " + contentType);
-                }
-                outputStream.WriteLine("Connection: close");
-                outputStream.WriteLine(""); // this terminates the HTTP headers
-
-                if (body != null)
-                {
-                    // finally add the body data
-                    outputStream.Write(body);
-                }
+            if (body != null)
+            {
+                // finally add the body data
+                outputStream.Write(body);
             }
         }
 

@@ -39,7 +39,7 @@ namespace IctBaden.Framework.Types
         /// Konstruktor mit automatischer Typerkennung
         /// </summary>
         /// <param name="data"></param>
-        public ValidatedGuid(object data)
+        public ValidatedGuid(object? data)
         {
             if (data == null)
             {

@@ -34,7 +34,7 @@ namespace IctBaden.Framework.CsvFile
         public string GetField(string columnName)
         {
             var index = Columns.IndexOf(columnName);
-            if ((index < 0) || (index >= Fields.Count)) return null;
+            if ((index < 0) || (index >= Fields.Count)) return "";
             return Fields[index];
         }
 

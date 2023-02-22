@@ -34,7 +34,7 @@ namespace IctBaden.Framework.AppUtils
                     {
                         // started as app.exe (netcore 3.1) or published single file
                         path = Path.GetDirectoryName(processModule.FileName);
-                        if (Directory.Exists(path))
+                        if (path != null && Directory.Exists(path))
                         {
                             return path;
                         }
@@ -45,13 +45,13 @@ namespace IctBaden.Framework.AppUtils
             if (assembly != null)
             {
                 path = Path.GetDirectoryName(assembly.Location);
-                if (Directory.Exists(path))
+                if (path != null && Directory.Exists(path))
                 {
                     return path;
                 }
             }
 
-            if (Directory.Exists(path))
+            if (path != null && Directory.Exists(path))
             {
                 return path;
             }

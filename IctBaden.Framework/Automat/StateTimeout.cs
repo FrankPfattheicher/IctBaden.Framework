@@ -10,7 +10,7 @@ namespace IctBaden.Framework.Automat
 
     public class StateTimeout : IDisposable
     {
-        private Timer _timeout;
+        private Timer? _timeout;
         private readonly string _name;
         private readonly long _dueTime;
         public string Name => _name;

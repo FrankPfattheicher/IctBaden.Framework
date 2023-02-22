@@ -22,7 +22,7 @@ namespace IctBaden.Framework.Types
         /// <summary>
         /// Vollständige Typinformation
         /// </summary>
-        public Type Type { get; private set; }
+        public Type? Type { get; private set; }
 
         /// <summary>
         /// Gibt an, ob ein Objekt des Typs instanziiert werden kann
@@ -42,10 +42,14 @@ namespace IctBaden.Framework.Types
         public ValidatedType(string shortName)
         {
             ShortName = shortName;
+            FullName = "";
+            Message = "";
+            
+            
             try
             {
                 Type = GetTypeByShortName(shortName);
-                if (Type != null)
+                if (Type is { FullName: { } })
                 {
                     FullName = Type.FullName;
 
@@ -73,7 +77,7 @@ namespace IctBaden.Framework.Types
             IsValid = (Type != null);
         }
 
-        private static Type GetTypeByShortName(string name)
+        private static Type? GetTypeByShortName(string name)
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in assemblies)
@@ -92,9 +96,9 @@ namespace IctBaden.Framework.Types
             return null;
         }
 
-        public object CreateInstance()
-        {
-            return ObjectGenerator.Generate(Type);
-        }
+        public object? CreateInstance() =>
+            Type != null 
+                ? ObjectGenerator.Generate(Type) 
+                : null;
     }
 }

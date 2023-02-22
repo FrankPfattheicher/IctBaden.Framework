@@ -15,10 +15,14 @@ namespace IctBaden.Framework.Types
                 var index = Array.IndexOf(Enum.GetNames(typeof(ConsoleColor)), property.Name);
                 if (index == -1) continue;
 
-                consoleColor = (ConsoleColor)Enum.GetValues(typeof(ConsoleColor)).GetValue(index);
-                return true;
+                var cc = (ConsoleColor?)Enum.GetValues(typeof(ConsoleColor)).GetValue(index);
+                if (cc != null)
+                {
+                    consoleColor = (ConsoleColor)cc;
+                    return true;
+                }
             }
-            consoleColor = default(ConsoleColor);
+            consoleColor = default;
             return false;
         }
     }

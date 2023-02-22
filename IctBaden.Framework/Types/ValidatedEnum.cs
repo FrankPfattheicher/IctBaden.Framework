@@ -34,7 +34,7 @@ namespace IctBaden.Framework.Types
         /// <summary>
         /// String-Repräsentation
         /// </summary>
-        public string Text { get; private set; }
+        public string? Text { get; private set; }
 
 
         /// <summary>
@@ -50,10 +50,10 @@ namespace IctBaden.Framework.Types
         /// </summary>
         /// <param name="data"></param>
         /// <param name="ignoreCase">Ignore case comparing enum values</param>
-        public ValidatedEnum(object data, bool ignoreCase)
+        public ValidatedEnum(object? data, bool ignoreCase)
         {
             HasValue = false;
-
+            
             switch (data)
             {
                 case null:
@@ -95,8 +95,7 @@ namespace IctBaden.Framework.Types
                 return;
             }
 
-            Text = data.ToString()
-                .Replace("|", ",");
+            Text = data.ToString()?.Replace("|", ",");
             
             if (Enum.TryParse(Text, out enumeration))
             {
