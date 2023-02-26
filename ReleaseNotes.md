@@ -1,5 +1,5 @@
 
-* 2.0.0 - 22.02.2023 Move to C# 10, netcore3.1, nullable enabled
+* 2.0.0 - 26.02.2023 Move to C# 10, netcore3.1, nullable enabled
 * 1.5.05 - 14.12.2022 CSV GetObject sets fields also, DetectSeparator with RemoveQuotes fixed
 * 1.5.04 - 30.11.2022 Fix TronLogger handling LogLevel setting, Profile write DateTime values as ISO
 * 1.5.03 - 18.07.2022 Interpolation without given points return input value
