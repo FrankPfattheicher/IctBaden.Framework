@@ -1,4 +1,5 @@
 
+* 2.0.2 - 26.02.2023 Enable state machine automat to ne null
 * 2.0.1 - 26.02.2023 Enable default profile section with null name
 * 2.0.0 - 26.02.2023 Move to C# 10, netcore3.1, nullable enabled
 * 1.5.05 - 14.12.2022 CSV GetObject sets fields also, DetectSeparator with RemoveQuotes fixed
