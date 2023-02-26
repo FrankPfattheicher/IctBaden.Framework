@@ -22,10 +22,10 @@ namespace IctBaden.Framework.IniFile
         public string Header { get; }
 
 
-        public ProfileSection(Profile profile, string sectionName)
+        public ProfileSection(Profile profile, string? sectionName)
         {
             Profile = profile;
-            Name = sectionName;
+            Name = sectionName ?? string.Empty;
             IsUnnamedGlobalSection = Name.StartsWith(UnnamedGlobalSectionName);
             Header = IsUnnamedGlobalSection ? string.Empty : ToString();
             Keys = new ProfileKeyCollection();

@@ -29,5 +29,16 @@ namespace IctBaden.Framework.Test.IniFile
             }
         }
 
+        [Fact]
+        public void DefaultSectionShouldSetAndGetValues()
+        {
+            var expected = "123";
+            var section = new ProfileSection(_profile, null);
+            section.Set("test", expected);
+            var value = section.Get<string>("test");
+            
+            Assert.Equal(expected, value);
+        }
+
     }
 }
