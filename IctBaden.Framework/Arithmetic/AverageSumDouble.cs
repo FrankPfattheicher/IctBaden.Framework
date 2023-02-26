@@ -1,4 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global
+
+using System;
+
 namespace IctBaden.Framework.Arithmetic
 {
     public class AverageSumDouble
@@ -10,6 +13,7 @@ namespace IctBaden.Framework.Arithmetic
 
         public AverageSumDouble(int count = DefaultCount)
         {
+            if (count <= 0) throw new ArgumentException("The count mus be greater than 0");
             _averageCount = count;
         }
         public AverageSumDouble(int count, double startValue)

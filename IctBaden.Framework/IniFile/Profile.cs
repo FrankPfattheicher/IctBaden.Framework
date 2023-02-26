@@ -32,7 +32,7 @@ namespace IctBaden.Framework.IniFile
         /// <summary>
         /// Lines starting with this are treated as comments
         /// </summary>
-        public string CommentLines { get; private set; }
+        public string? CommentLines { get; private set; }
 
         // ReSharper disable UnusedMember.Global
         public static string DefaultFileName =>
@@ -55,7 +55,7 @@ namespace IctBaden.Framework.IniFile
         {
         }
 
-        public Profile(string profileName, Encoding desiredEncoding, string commentLines)
+        public Profile(string profileName, Encoding desiredEncoding, string? commentLines)
         {
             FileName = profileName;
             FileEncoding = desiredEncoding;
@@ -74,11 +74,13 @@ namespace IctBaden.Framework.IniFile
         }
 
         // ReSharper disable once UnusedMember.Global
-        public static Profile FromResource(Assembly assembly, string resourceName)
+        public static Profile? FromResource(Assembly assembly, string? resourceName)
         {
             var profile = new Profile("res://" + resourceName) { ReadOnly = true };
 
-            resourceName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.EndsWith(resourceName));
+            if (resourceName == null) return null;
+            resourceName = assembly.GetManifestResourceNames()
+                .FirstOrDefault(n => n.EndsWith(resourceName));
             if (resourceName == null) return null;
 
             using (var stream = assembly.GetManifestResourceStream(resourceName))
@@ -190,14 +192,14 @@ namespace IctBaden.Framework.IniFile
 
                 using (var fileData = new StreamReader(FileName, FileEncoding, true))
                 {
-                    string firstLine = null;
+                    string? firstLine = null;
                     while (string.IsNullOrEmpty(firstLine) && !fileData.EndOfStream)
                     {
                         firstLine = fileData.ReadLine();
                     }
 
                     if (!FileEncoding.Equals(Encoding.Unicode) && !FileEncoding.Equals(Encoding.BigEndianUnicode) &&
-                        EncodingDetector.IsUnicode(firstLine))
+                        firstLine != null && EncodingDetector.IsUnicode(firstLine))
                     {
                         FileEncoding = Encoding.Unicode;
                     }

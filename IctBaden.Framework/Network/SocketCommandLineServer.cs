@@ -26,21 +26,21 @@ namespace IctBaden.Framework.Network
         private Thread _runner;
         private bool _cancelRunner;
         private bool _runnerCanceled;
-        private Socket _listener;
+        private Socket? _listener;
         private ManualResetEvent _clientAccepted;
 
         public delegate void CommandLineHandler(Socket client, string commandLine);
         public delegate void ConnectionHandler(Socket client);
 
-        public event CommandLineHandler HandleCommand;
-        public event ConnectionHandler ClientConnected;
-        public event ConnectionHandler ClientDisconnected;
+        public event CommandLineHandler? HandleCommand;
+        public event ConnectionHandler? ClientConnected;
+        public event ConnectionHandler? ClientDisconnected;
 
         public List<Socket> Clients { get; private set; }
 
         public int Connections => Clients.Count;
 
-        public string StartOfCommand { get; set; }
+        public string? StartOfCommand { get; set; }
         public List<string> Eoc { get; set; }
         public Encoding UseEncoding { get; set; }
         public bool HandleEmptyCommands { get; set; }
@@ -60,6 +60,7 @@ namespace IctBaden.Framework.Network
             HandleEmptyCommands = false;
 
             _runner = new Thread(RunnerDoWork);
+            _clientAccepted = new ManualResetEvent(false);
         }
 
         private void RunnerDoWork()
@@ -278,9 +279,11 @@ namespace IctBaden.Framework.Network
         }
 
 
-        private void Handler(object param)
+        private void Handler(object? param)
         {
-            var client = (Socket)param;
+            var client = param as Socket;
+            if (client == null) return;
+            
             if (SystemInfo.Platform == Platform.Windows)
             {
                 client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);

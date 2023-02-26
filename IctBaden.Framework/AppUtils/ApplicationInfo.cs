@@ -39,7 +39,7 @@ namespace IctBaden.Framework.AppUtils
                     {
                         // started as app.exe (netcore 3.1) or published single file
                         path = Path.GetDirectoryName(processModule.FileName);
-                        if (Directory.Exists(path))
+                        if (path != null && Directory.Exists(path))
                         {
                             return path;
                         }
@@ -51,13 +51,13 @@ namespace IctBaden.Framework.AppUtils
                 if (assembly != null)
                 {
                     path = Path.GetDirectoryName(assembly.Location);
-                    if (Directory.Exists(path))
+                    if (path != null && Directory.Exists(path))
                     {
                         return path;
                     }
                 }
 
-                return Directory.Exists(path) 
+                return path != null && Directory.Exists(path) 
                     ? path 
                     : Environment.CurrentDirectory;    // fallback
             }
@@ -70,7 +70,7 @@ namespace IctBaden.Framework.AppUtils
                 var assembly = Assembly.GetEntryAssembly();
                 if (assembly == null) return false;
                 
-                var moduleName = assembly.GetName().Name.ToLower();
+                var moduleName = assembly.GetName().Name?.ToLower() ?? "";
                 return moduleName.Contains("testrunner") || moduleName.Contains("testhost");
             }
         }

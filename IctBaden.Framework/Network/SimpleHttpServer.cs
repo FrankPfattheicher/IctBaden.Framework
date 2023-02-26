@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using IctBaden.Framework.AppUtils;
+
 // ReSharper disable UnusedType.Global
 
 // ReSharper disable UnusedMember.Global
@@ -20,9 +21,10 @@ namespace IctBaden.Framework.Network
     {
         public int Port { get; private set; }
 
-        private Socket _listener;
+        private Socket? _listener;
 
         public delegate void CommandLineHandler(Socket client, string commandLine);
+
         public delegate void ConnectionHandler(Socket client);
 
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
@@ -46,7 +48,7 @@ namespace IctBaden.Framework.Network
 
         private void AcceptClient(IAsyncResult ar)
         {
-            if (!(ar.AsyncState is Socket listener)) return;
+            if (!(ar.AsyncState is Socket listener) || _listener == null) return;
 
             try
             {
@@ -54,7 +56,7 @@ namespace IctBaden.Framework.Network
                 var p = new ParameterizedThreadStart(Handler);
                 var t = new Thread(p);
                 t.Start(client);
-                
+
                 listener.BeginAccept(AcceptClient, listener);
             }
             catch (ObjectDisposedException)
@@ -75,10 +77,10 @@ namespace IctBaden.Framework.Network
                 _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
                 _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                 var localEp = new IPEndPoint(0, Port);
-                
+
                 _listener.Bind(localEp);
                 _listener.Listen(100);
-                
+
                 _listener?.BeginAccept(AcceptClient, _listener);
                 return true;
             }
@@ -88,9 +90,11 @@ namespace IctBaden.Framework.Network
                 {
                     if (native.NativeErrorCode == 13 && SystemInfo.Platform == Platform.Linux && Port < 1024)
                     {
-                        Trace.TraceError("Ports below 1024 are considered 'privileged' and can only be bound to with an equally privileged user (read: root).");
+                        Trace.TraceError(
+                            "Ports below 1024 are considered 'privileged' and can only be bound to with an equally privileged user (read: root).");
                     }
                 }
+
                 Trace.TraceError(ex.Message);
                 _listener?.Close();
                 _listener?.Dispose();
@@ -115,12 +119,13 @@ namespace IctBaden.Framework.Network
             // ReSharper disable once IntroduceOptionalParameters.Global
             Terminate(true);
         }
+
         public void Terminate(bool disconnectClients)
         {
             try
             {
-                _listener.Close();
-                _listener.Dispose();
+                _listener?.Close();
+                _listener?.Dispose();
 
                 if (disconnectClients)
                 {
@@ -160,9 +165,11 @@ namespace IctBaden.Framework.Network
         }
 
 
-        private void Handler(object param)
+        private void Handler(object? param)
         {
-            var client = (Socket)param;
+            var client = param as Socket;
+            if (client == null) return;
+
             lock (Clients)
             {
                 Clients.Add(client);
@@ -191,6 +198,5 @@ namespace IctBaden.Framework.Network
                 Clients.Remove(client);
             }
         }
-
     }
 }

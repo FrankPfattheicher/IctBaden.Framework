@@ -36,7 +36,7 @@ namespace IctBaden.Framework.Types
         /// <param name="type">The type.</param>
         /// <param name="collectionSize">Size limit for generated collections.</param>
         /// <returns>An object of the given type.</returns>
-        public static object Generate(Type type, int collectionSize = DefaultCollectionSize)
+        public static object? Generate(Type type, int collectionSize = DefaultCollectionSize)
         {
             var generator = new ObjectGenerator(collectionSize);
             return generator.GenerateObject(type);
@@ -56,13 +56,13 @@ namespace IctBaden.Framework.Types
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>An object of the given type.</returns>
-        public object GenerateObject(Type type)
+        public object? GenerateObject(Type type)
         {
             return GenerateObject(type, new Dictionary<Type, object>());
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we just want to return null if anything goes wrong.")]
-        private object GenerateObject(Type type, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateObject(Type type, Dictionary<Type, object> createdObjectReferences)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace IctBaden.Framework.Types
             return null;
         }
 
-        private object GenerateGenericType(Type type, int collectionSize, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateGenericType(Type type, int collectionSize, Dictionary<Type, object> createdObjectReferences)
         {
             Type genericTypeDefinition = type.GetGenericTypeDefinition();
             if (genericTypeDefinition == typeof(Nullable<>))
@@ -200,10 +200,10 @@ namespace IctBaden.Framework.Types
             return null;
         }
 
-        private object GenerateTuple(Type type, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateTuple(Type type, Dictionary<Type, object> createdObjectReferences)
         {
             var genericArgs = type.GetGenericArguments();
-            var parameterValues = new object[genericArgs.Length];
+            var parameterValues = new object?[genericArgs.Length];
             var failedToCreateTuple = true;
             for (var i = 0; i < genericArgs.Length; i++)
             {
@@ -231,7 +231,7 @@ namespace IctBaden.Framework.Types
                 genericTypeDefinition == typeof(Tuple<,,,,,,,>);
         }
 
-        private object GenerateKeyValuePair(Type keyValuePairType, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateKeyValuePair(Type keyValuePairType, Dictionary<Type, object> createdObjectReferences)
         {
             var genericArgs = keyValuePairType.GetGenericArguments();
             var typeK = genericArgs[0];
@@ -248,7 +248,7 @@ namespace IctBaden.Framework.Types
             return result;
         }
 
-        private object GenerateArray(Type arrayType, int size, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateArray(Type arrayType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             var type = arrayType.GetElementType() ?? throw new InvalidOperationException();
             var result = Array.CreateInstance(type, size);
@@ -263,7 +263,7 @@ namespace IctBaden.Framework.Types
             return areAllElementsNull ? null : result;
         }
 
-        private object GenerateDictionary(Type dictionaryType, int size, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateDictionary(Type dictionaryType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             var typeK = typeof(object);
             var typeV = typeof(object);
@@ -286,8 +286,11 @@ namespace IctBaden.Framework.Types
                     return null;
                 }
 
-                var containsKey = containsMethod != null && (bool)containsMethod.Invoke(result, new[] { newKey });
-                if (containsKey)
+                if(containsMethod == null)
+                    continue;
+                
+                var containsKey = containsMethod.Invoke(result, new[] { newKey });
+                if (containsKey == (object?)true)
                     continue;
                 var newValue = GenerateObject(typeV, createdObjectReferences);
                 addMethod?.Invoke(result, new[] {newKey, newValue});
@@ -296,7 +299,7 @@ namespace IctBaden.Framework.Types
             return result;
         }
 
-        private object GenerateEnum(Type enumType)
+        private object? GenerateEnum(Type enumType)
         {
             var possibleValues = Enum.GetValues(enumType);
             if (possibleValues.Length > 0)
@@ -307,10 +310,10 @@ namespace IctBaden.Framework.Types
             return null;
         }
 
-        private object GenerateQueryable(Type queryableType, int size, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateQueryable(Type queryableType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             var isGeneric = queryableType.IsGenericType;
-            object list;
+            object? list;
             if (isGeneric)
             {
                 var listType = typeof(List<>).MakeGenericType(queryableType.GetGenericArguments());
@@ -334,7 +337,7 @@ namespace IctBaden.Framework.Types
             return ((IEnumerable)list).AsQueryable();
         }
 
-        private object GenerateCollection(Type collectionType, int size, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateCollection(Type collectionType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             var type = collectionType.IsGenericType ?
                 collectionType.GetGenericArguments()[0] :
@@ -358,13 +361,13 @@ namespace IctBaden.Framework.Types
             return result;
         }
 
-        private object GenerateNullable(Type nullableType, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateNullable(Type nullableType, Dictionary<Type, object> createdObjectReferences)
         {
             var type = nullableType.GetGenericArguments()[0];
             return GenerateObject(type, createdObjectReferences);
         }
 
-        private object GenerateComplexObject(Type type, Dictionary<Type, object> createdObjectReferences)
+        private object? GenerateComplexObject(Type type, Dictionary<Type, object> createdObjectReferences)
         {
             if (createdObjectReferences.TryGetValue(type, out var result))
             {

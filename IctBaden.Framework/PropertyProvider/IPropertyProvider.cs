@@ -2,11 +2,11 @@
 
 namespace IctBaden.Framework.PropertyProvider
 {
-    public interface IPropertyProvider : IEnumerable<KeyValuePair<string, object>>
+    public interface IPropertyProvider : IEnumerable<KeyValuePair<string, object?>>
     {
-        List<T> GetAll<T>();
-        T Get<T>(string key);
-        T Get<T>(string key, T defaultValue);
+        List<T?> GetAll<T>();
+        T? Get<T>(string key);
+        T? Get<T>(string key, T defaultValue);
 
         void Set<T>(string key, T newValue);
 

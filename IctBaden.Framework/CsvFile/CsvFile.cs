@@ -41,6 +41,7 @@ namespace IctBaden.Framework.CsvFile
             Columns = new List<string>();
             DataRows = new List<CsvData>();
             InvalidRows = new List<CsvData>();
+            LoadError = string.Empty;
         }
 
         public bool Load()

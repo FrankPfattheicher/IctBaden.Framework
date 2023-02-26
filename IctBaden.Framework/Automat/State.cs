@@ -13,7 +13,7 @@ namespace IctBaden.Framework.Automat
 
     public class State
     {
-        public StateMachine Automat { get; private set; }
+        public StateMachine Automat { get; private set; } = new EmptyStateMachine();
 
         internal void SetContext(StateMachine automat)
         {
@@ -63,23 +63,23 @@ namespace IctBaden.Framework.Automat
             GoState(t, input);
         }
 
-        public void GoState(State newState, object input)
+        public void GoState(State newState, object? input)
         {
-            Automat?.GoState(newState, input);
+            Automat.GoState(newState, input);
         }
 
         #endregion
 
         public void Done(object result)
         {
-            Automat?.SetDone(result);
+            Automat.SetDone(result);
         }
 
         #region Timeout
 
         public void SetTimeout(long timeoutMilliseconds)
         {
-            if (Automat?.CurrentState == null)
+            if (Automat.CurrentState == null)
                 return;
             if (Automat.CurrentStateName != GetType().Name)
                 return;
@@ -88,24 +88,24 @@ namespace IctBaden.Framework.Automat
 
         public void SetTimeout(string timerName, long timeoutMilliseconds)
         {
-            Automat?.SetTimeout(timerName, timeoutMilliseconds);
+            Automat.SetTimeout(timerName, timeoutMilliseconds);
         }
 
         public void ClearTimeout()
         {
-            if (Automat?.CurrentState == null)
+            if (Automat.CurrentState == null)
                 return;
             Automat.ClearTimeout("####" + Automat.CurrentStateName);
         }
 
         public void ClearTimeout(string timerName)
         {
-            Automat?.ClearTimeout(timerName);
+            Automat.ClearTimeout(timerName);
         }
 
         public void ClearAllTimeouts()
         {
-            Automat?.ClearAllTimeouts();
+            Automat.ClearAllTimeouts();
         }
 
         #endregion

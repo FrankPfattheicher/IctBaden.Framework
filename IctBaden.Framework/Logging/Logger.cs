@@ -13,7 +13,7 @@ namespace IctBaden.Framework.Logging
 {
     public static class Logger
     {
-        public static string TimestampFormat = null;
+        public static string? TimestampFormat = null;
         public static IConfiguration GetLogConfiguration() => GetLogConfiguration(LogLevel.Warning);
 
         public static IConfiguration GetLogConfiguration(LogLevel level) => new ConfigurationBuilder()
@@ -37,10 +37,10 @@ namespace IctBaden.Framework.Logging
                 foreach (var entryType in entry!.DefinedTypes)
                 {
                     var fieldInfo = entryType.DeclaredFields.FirstOrDefault(f => f.FieldType == typeof(ILoggerFactory));
-                    var loggerFactory = (ILoggerFactory)fieldInfo?.GetValue(null);
+                    var loggerFactory = (ILoggerFactory?)fieldInfo?.GetValue(null);
                     if (loggerFactory == null) continue;
 
-                    Trace.TraceInformation($"Using LoggerFactory '{fieldInfo.Name}' of type '{entryType.Name}'.");
+                    Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
                     return loggerFactory;
                 }
 

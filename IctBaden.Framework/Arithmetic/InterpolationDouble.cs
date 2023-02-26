@@ -16,7 +16,7 @@ namespace IctBaden.Framework.Arithmetic
 
         public double InterpolateLinear(double inputValue)
         {
-            if (_points == null || _points.Length == 0)
+            if (_points.Length == 0)
             {
                 // no points given
                 return inputValue;

@@ -26,7 +26,7 @@ namespace IctBaden.Framework.IniFile
         {
             Profile = profile;
             Name = sectionName;
-            IsUnnamedGlobalSection = (Name != null) && Name.StartsWith(UnnamedGlobalSectionName);
+            IsUnnamedGlobalSection = Name.StartsWith(UnnamedGlobalSectionName);
             Header = IsUnnamedGlobalSection ? string.Empty : ToString();
             Keys = new ProfileKeyCollection();
         }
@@ -79,23 +79,18 @@ namespace IctBaden.Framework.IniFile
 
         #region IPropertyProvider Members
 
-        public List<T> GetAll<T>()
+        public List<T?> GetAll<T>()
         {
-            return (from property in Keys select (T)property.ObjectValue).ToList();
+            return Keys
+                .Select(property => property.ObjectValue != null ? (T)property.ObjectValue : default)
+                .ToList();
         }
 
-        public T Get<T>(string key)
-        {
-            return Get(key, default(T));
-        }
+        public T? Get<T>(string key) => Get(key, default(T));
 
-        public T Get<T>(string key, T defaultValue)
-        {
-            if (!Keys.Contains(key))
-                return defaultValue;
-
-            return UniversalConverter.ConvertTo(this[key].ObjectValue, defaultValue);
-        }
+        public T? Get<T>(string key, T? defaultValue) => Keys.Contains(key) 
+                ? UniversalConverter.ConvertTo(this[key].ObjectValue, defaultValue)
+                : defaultValue;
 
         public void Set<T>(string key, T newValue)
         {
@@ -117,9 +112,9 @@ namespace IctBaden.Framework.IniFile
 
         #region IEnumerable<KeyValuePair<string, object>>
 
-        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator()
         {
-            return Keys.Select(key => new KeyValuePair<string, object>(key.Name, key.ObjectValue)).GetEnumerator();
+            return Keys.Select(key => new KeyValuePair<string, object?>(key.Name, key.ObjectValue)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

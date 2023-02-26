@@ -17,7 +17,7 @@ namespace IctBaden.Framework.Resource
         /// </summary>
         /// <param name="resourceName">Name of the resource. Only base name required, case insensitive.</param>
         /// <returns></returns>
-        public static string LoadString(string resourceName)
+        public static string? LoadString(string resourceName)
         {
             if(string.IsNullOrEmpty(resourceName)) throw new ArgumentException("must not be null or empty", nameof(resourceName));
             
@@ -34,7 +34,7 @@ namespace IctBaden.Framework.Resource
             return null;
         }
 
-        public static string LoadString(Assembly assembly, string resourceName)
+        public static string? LoadString(Assembly assembly, string resourceName)
         {
             string result;
             using (var stream = assembly.GetManifestResourceStream(resourceName))

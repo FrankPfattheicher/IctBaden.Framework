@@ -13,7 +13,7 @@ namespace IctBaden.Framework.Logging
         private readonly string _name;
         private readonly string _extension;
         
-        private string _lastFileName;
+        private string _lastFileName = "";
         private int _lastDay;
 
         public LogFileNameFactory(string path, LogFileCycle cycle, string name, string extension)

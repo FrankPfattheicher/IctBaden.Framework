@@ -21,7 +21,7 @@ namespace IctBaden.Framework.Network
         private readonly string _commandHost;
         private readonly int _commandPort;
         private readonly Action<string> _receiveDataHandler;
-        private Socket _clientSocket;
+        private Socket? _clientSocket;
         private readonly System.Threading.Timer _pollReceiveData;
         private bool _handlingCommand;
         private int _receiveTimeout = -1;
@@ -156,7 +156,7 @@ namespace IctBaden.Framework.Network
             _clientSocket.ReceiveTimeout = milliSeconds;
         }
 
-        private void ReceiveData(object state)
+        private void ReceiveData(object? state)
         {
             var receiveSocket = _clientSocket;
 
@@ -181,7 +181,7 @@ namespace IctBaden.Framework.Network
                 {
                     try
                     {
-                        rxCount = ((Socket) ar.AsyncState).EndReceive(ar);
+                        rxCount = (ar.AsyncState as Socket)?.EndReceive(ar) ?? 0;
                     }
                     catch
                     {
@@ -227,7 +227,7 @@ namespace IctBaden.Framework.Network
         {
             for (var retry = 0; retry <= CommandRetryCount; retry++)
             {
-                if (!Connect())
+                if (!Connect() || _clientSocket == null)
                     continue;
 
                 try
@@ -247,7 +247,7 @@ namespace IctBaden.Framework.Network
                     {
                         try
                         {
-                            rxCount = ((Socket) ar.AsyncState).EndReceive(ar);
+                            rxCount = (ar.AsyncState as Socket)?.EndReceive(ar) ?? 0;
                         }
                         catch
                         {

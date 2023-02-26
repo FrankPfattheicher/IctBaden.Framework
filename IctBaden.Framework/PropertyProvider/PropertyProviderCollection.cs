@@ -27,9 +27,9 @@ namespace IctBaden.Framework.PropertyProvider
 
         #region IPropertyProvider Members
 
-        public List<T> GetAll<T>()
+        public List<T?> GetAll<T>()
         {
-            var list = new List<T>();
+            var list = new List<T?>();
             foreach (var cfg in _configurationProviderList)
             {
                 list.AddRange(cfg.GetAll<T>());
@@ -37,17 +37,17 @@ namespace IctBaden.Framework.PropertyProvider
             return list;
         }
 
-        public T Get<T>(string key)
+        public T? Get<T>(string key)
         {
             foreach (var cfg in _configurationProviderList)
             {
                 if (cfg.Contains(key))
                     return cfg.Get<T>(key);
             }
-            return default(T);
+            return default;
         }
 
-        public T Get<T>(string key, T defaultValue)
+        public T? Get<T>(string key, T defaultValue)
         {
             foreach (var cfg in _configurationProviderList)
             {
@@ -91,9 +91,9 @@ namespace IctBaden.Framework.PropertyProvider
 
         #region IEnumerable<KeyValuePair<string, object>>
 
-        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator()
         {
-            return new List<KeyValuePair<string, object>>().GetEnumerator();
+            return new List<KeyValuePair<string, object?>>().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

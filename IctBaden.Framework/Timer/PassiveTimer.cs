@@ -142,9 +142,11 @@ namespace IctBaden.Framework.Timer
 
         #region IComparable Members
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
-            var otherTimer = (PassiveTimer)obj;
+            var otherTimer = obj as PassiveTimer;
+            if (otherTimer == null) return 0;
+            
             var t1 = _locked ? _lockedTimer : _timer;
             var t2 = otherTimer._locked ? otherTimer._lockedTimer : otherTimer._timer;
             return ((t1 - t2) < 0) ? -1 : 1;

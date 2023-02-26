@@ -41,7 +41,7 @@ namespace IctBaden.Framework.Logging
 
         public IDisposable BeginScope<TState>(TState state)
         {
-            return new LogScope(this, state.ToString());
+            return new LogScope(this, state?.ToString() ?? "");
         }
 
         public bool IsEnabled(LogLevel logLevel) => logLevel >= _logLevel;
@@ -61,7 +61,7 @@ namespace IctBaden.Framework.Logging
                 _ => throw new ArgumentOutOfRangeException(nameof(logLevel))
             };
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception,
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception,
             Func<TState, Exception, string> formatter)
         {
             try

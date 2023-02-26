@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 
 // ReSharper disable UnusedMember.Global
 
@@ -9,12 +8,12 @@ namespace IctBaden.Framework.IniFile
     public class ProfileKey
     {
         private readonly ProfileSection _section;
-        private string _keyValue;
+        private string? _keyValue;
 
         public ProfileKey(ProfileSection section, string name)
         {
             _section = section;
-            Name = name?.Trim() ?? string.Empty;
+            Name = name.Trim();
         }
 
         public override string ToString()
@@ -29,7 +28,7 @@ namespace IctBaden.Framework.IniFile
             _keyValue = newValue.Trim();
         }
 
-        public object ObjectValue
+        public object? ObjectValue
         {
             get => _keyValue;
             set
@@ -61,7 +60,7 @@ namespace IctBaden.Framework.IniFile
         /// If value is null the key is not written
         /// empty string will write key 
         /// </summary>
-        public string StringValue
+        public string? StringValue
         {
             get => _keyValue;
             set

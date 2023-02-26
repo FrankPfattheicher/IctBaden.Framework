@@ -26,7 +26,7 @@ namespace IctBaden.Framework.Timer
         
         private readonly MicroTimerElapsedEventHandler _handler;
 
-        private Thread _threadTimer;
+        private Thread? _threadTimer;
         private readonly long _timerIntervalInMicroSec;
         private bool _stopTimer = true;
 
@@ -56,11 +56,11 @@ namespace IctBaden.Framework.Timer
         public void Stop()
         {
             _stopTimer = true;
-            if (!IsRunning || _threadTimer.ManagedThreadId == Thread.CurrentThread.ManagedThreadId)
+            if (!IsRunning || _threadTimer?.ManagedThreadId == Thread.CurrentThread.ManagedThreadId)
             {
                 return;
             }
-            _threadTimer.Join();
+            _threadTimer?.Join();
         }
 
         private void TimerThread()
