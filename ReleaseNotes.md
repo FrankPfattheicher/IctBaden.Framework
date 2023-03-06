@@ -1,4 +1,5 @@
 
+* 2.0.3 - 06.03.2023 Removed Newtonsoft.JSON
 * 2.0.2 - 26.02.2023 Enable state machine automat to ne null
 * 2.0.1 - 26.02.2023 Enable default profile section with null name
 * 2.0.0 - 26.02.2023 Move to C# 10, netcore3.1, nullable enabled
