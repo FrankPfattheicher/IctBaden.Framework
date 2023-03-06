@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using IctBaden.Framework.Types;
+
 // ReSharper disable UnusedMember.Global
 
 namespace IctBaden.Framework.PropertyProvider
 {
-    using System.Linq;
-
     public class PropertyBag : Dictionary<string, object?>, IPropertyProvider
     {
         public void Append(IPropertyProvider source)
@@ -34,7 +34,7 @@ namespace IctBaden.Framework.PropertyProvider
             if (!ContainsKey(key) || (this[key] == null))
                 return defaultValue;
 
-            return (T?)Convert.ChangeType(this[key], typeof(T));
+            return UniversalConverter.ConvertTo<T?>(this[key]);
         }
 
         public void Set<T>(string key, T newValue)

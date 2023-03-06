@@ -1,7 +1,7 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using IctBaden.Framework.PropertyProvider;
 using IctBaden.Framework.Resource;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Xunit;
 
 namespace IctBaden.Framework.Test.Serialization
@@ -9,22 +9,21 @@ namespace IctBaden.Framework.Test.Serialization
     public class Test
     {
         public string Name { get; set; }
-        public PropertyBag Properties { get; private set; } = new PropertyBag();
+        [JsonInclude]
+        public PropertyBag Properties { get; private set; } = new();
     }
 
     public class JsonSerializationTests
     {
-        private static JsonSerializerSettings Settings
+        private static JsonSerializerOptions Settings
         {
             get
             {
-                var settings = new JsonSerializerSettings
+                var settings = new JsonSerializerOptions
                 {
-                    Formatting = Formatting.Indented,
-                    NullValueHandling = NullValueHandling.Ignore,
-                    DefaultValueHandling = DefaultValueHandling.Ignore,
-                    TypeNameHandling = TypeNameHandling.All,
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                    WriteIndented = true,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 };
 
                 return settings;
@@ -42,7 +41,7 @@ namespace IctBaden.Framework.Test.Serialization
             test.Properties.Set("bcd", "234");
             test.Properties.Set("cde", "345");
 
-            var json = JsonConvert.SerializeObject(test, Settings);
+            var json = JsonSerializer.Serialize(test, Settings);
 
             Assert.NotNull(json);
             Assert.Contains("test", json);
@@ -59,7 +58,7 @@ namespace IctBaden.Framework.Test.Serialization
         {
             var json = ResourceLoader.LoadString("IctBaden.Framework.Test.Serialization.test.json");
 
-            var test = JsonConvert.DeserializeObject(json, Settings) as Test;
+            var test = JsonSerializer.Deserialize<Test>(json!, Settings);
 
             Assert.NotNull(test);
             Assert.Equal("test", test.Name);
@@ -78,22 +77,25 @@ namespace IctBaden.Framework.Test.Serialization
             {
                 Name = "fromTo"
             };
+            from.Properties.Set("abc", "def");
             from.Properties.Set("fgh", "678");
             from.Properties.Set("ghi", "789");
             from.Properties.Set("hik", "890");
 
-            var json = JsonConvert.SerializeObject(from, Settings);
+            var json = JsonSerializer.Serialize(from, Settings);
             Assert.False(string.IsNullOrEmpty(json));
 
-            var to = JsonConvert.DeserializeObject(json, Settings) as Test;
+            var to = JsonSerializer.Deserialize<Test>(json, Settings);
             Assert.NotNull(to);
             
             Assert.Equal(from.Name, to.Name);
-            Assert.Equal(from.Properties, to.Properties);
+            Assert.Equal(from.Properties.Count, to.Properties.Count);
+            foreach (var (key, value) in from.Properties)
+            {
+                var toValue = to.Properties[key];
+                Assert.Equal(value?.ToString(), toValue.ToString());
+            }
         }
-
-
-        
         
     }
 }
