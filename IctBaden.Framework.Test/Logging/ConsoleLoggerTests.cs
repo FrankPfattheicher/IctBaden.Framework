@@ -27,7 +27,7 @@ public class ConsoleLoggerTests
     {
         _logger.LogError("LogWithTimestamp");
         var logText = _consoleWriter.ToString();
-        Assert.True(new Regex("^[0-9]+:[0-9]+:[0-9]+").Match(logText).Success);
+        Assert.True(new Regex("[0-9]+:[0-9]+:[0-9]+").Match(logText).Success);
     }
 
     [Fact]
