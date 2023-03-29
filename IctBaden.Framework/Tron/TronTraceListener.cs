@@ -38,14 +38,14 @@ namespace IctBaden.Framework.Tron
             };
         }
 
-        public override void Write(string message)
+        public override void Write(string? message)
         {
-            TronTrace.Print(message);
+            TronTrace.Print(message ?? "");
         }
 
-        public override void WriteLine(string message)
+        public override void WriteLine(string? message)
         {
-            TronTrace.PrintLine(message);
+            TronTrace.PrintLine(message ?? "");
         }
 
         private void SetColorOnEventType(TraceEventType eventType)
@@ -59,7 +59,7 @@ namespace IctBaden.Framework.Tron
             TronTrace.SetColor(color);
         }
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string format, params object[] args)
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? format, params object?[]? args)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace IctBaden.Framework.Tron
             }
         }
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? message)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace IctBaden.Framework.Tron
             }
         }
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id)
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace IctBaden.Framework.Tron
             }
         }
 
-        public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
+        public override void TraceTransfer(TraceEventCache? eventCache, string source, int id, string? message, Guid relatedActivityId)
         {
             try
             {

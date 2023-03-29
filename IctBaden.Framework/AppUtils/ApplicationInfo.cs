@@ -34,7 +34,7 @@ namespace IctBaden.Framework.AppUtils
                 using var processModule = Process.GetCurrentProcess().MainModule;
                 if (processModule != null)
                 {
-                    var moduleName = processModule.ModuleName.ToLower();
+                    var moduleName = processModule.ModuleName?.ToLower();
                     if (moduleName != "dotnet" && moduleName != "dotnet.exe")
                     {
                         // started as app.exe (netcore 3.1) or published single file

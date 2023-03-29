@@ -7,7 +7,7 @@
     <Authors>Frank Pfattheicher</Authors>
     <Copyright>(C) 2009-2023 ICT Baden GmbH</Copyright>
     <Description>Not really a framework but more a application companion...</Description>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageVersion>1.0.22</PackageVersion>
     <LangVersion>10</LangVersion>
@@ -25,11 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.10" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.10" />
-    <PackageReference Include="System.Drawing.Common" Version="4.7.2" />
-    <PackageReference Include="System.IO.Ports" Version="4.7.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

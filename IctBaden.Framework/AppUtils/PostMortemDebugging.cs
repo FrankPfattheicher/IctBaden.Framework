@@ -26,7 +26,6 @@ namespace IctBaden.Framework.AppUtils
         /// Enables AppDomain wide exception handling
         /// </summary>
         /// <param name="mode">Specifies how to handle application exception.</param>
-        [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         public static void Enable(HandlerMode mode)
         {
             _exitOnFailure = mode == HandlerMode.ExitApplication || mode == HandlerMode.ExitAndRestart;

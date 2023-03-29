@@ -62,7 +62,12 @@ namespace IctBaden.Framework.Logging
             var minimumLogLevel = configuration.GetValue("LogLevel", LogLevel.Information);
             var loggerFactory = LoggerFactory.Create(builder =>
             {
-                builder.AddConsole(options => options.TimestampFormat = TimestampFormat);
+                builder.AddConsole(options =>
+                {
+#pragma warning disable CS0618
+                    if(TimestampFormat != null) options.TimestampFormat = TimestampFormat;
+#pragma warning restore CS0618
+                });
                 builder.AddProvider(new TronLoggerProvider(configuration));
                 builder.SetMinimumLevel(minimumLogLevel);
             });
