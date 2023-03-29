@@ -16,12 +16,9 @@
 
         public static int GetFreeLocalUdpPort()
         {
-            int port;
-            using (var udpClient = new UdpClient(0))
-            {
-                port = ((IPEndPoint)udpClient.Client.LocalEndPoint).Port;
-                udpClient.Close();
-            }
+            using var udpClient = new UdpClient(0);
+            var port = (udpClient.Client.LocalEndPoint as IPEndPoint)?.Port ?? 0; 
+            udpClient.Close();
             return port;
         }
 

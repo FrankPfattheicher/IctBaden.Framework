@@ -30,7 +30,9 @@ namespace IctBaden.Framework.FileSystem
                 {
                     // Analyze the BOM
                     if (bom[0] == 0x2B && bom[1] == 0x2F && bom[2] == 0x76)
+#pragma warning disable SYSLIB0001
                         return Encoding.UTF7;
+#pragma warning restore SYSLIB0001
                     if (bom[0] == 0xEF && bom[1] == 0xBB && bom[2] == 0xBF)
                         return Encoding.UTF8;
                     if (bom[0] == 0xFF && bom[1] == 0xFE)

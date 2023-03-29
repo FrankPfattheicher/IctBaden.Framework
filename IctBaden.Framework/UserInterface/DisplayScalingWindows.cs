@@ -22,6 +22,9 @@ namespace IctBaden.Framework.UserInterface
         
         public float GetScalingFactor()
         {
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return 1.0f;
+            
             var graphics = Graphics.FromHwnd(IntPtr.Zero);
             var desktop = graphics.GetHdc();
             var logicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.VERTRES);

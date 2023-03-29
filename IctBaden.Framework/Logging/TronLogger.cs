@@ -29,7 +29,7 @@ namespace IctBaden.Framework.Logging
             LogLevel logLevel,
             EventId eventId,
             TState state,
-            Exception exception,
+            Exception? exception,
             Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel))
@@ -61,7 +61,8 @@ namespace IctBaden.Framework.Logging
                     TronTrace.SetColor(TraceColor.Text);
                     break;
             }
-            TronTrace.PrintLine($"[{logLevel.ToString().Substring(0, 4)}] {_name}: {formatter(state, exception)}");
+            
+            TronTrace.PrintLine($"[{logLevel.ToString().Substring(0, 4)}] {_name}: {formatter(state, exception ?? new Exception())}");
         }
     }
 }

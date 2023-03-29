@@ -46,7 +46,7 @@ namespace IctBaden.Framework.Tron
             Console.ForegroundColor = color;
         }
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string format, params object[] args)
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? format, params object?[]? args)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace IctBaden.Framework.Tron
             }
         }
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? message)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace IctBaden.Framework.Tron
             }
         }
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id)
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace IctBaden.Framework.Tron
             }
         }
 
-        public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
+        public override void TraceTransfer(TraceEventCache? eventCache, string source, int id, string? message, Guid relatedActivityId)
         {
             try
             {

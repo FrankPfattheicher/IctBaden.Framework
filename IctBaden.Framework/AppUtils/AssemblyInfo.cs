@@ -64,19 +64,10 @@ namespace IctBaden.Framework.AppUtils
             var attribute = _assembly
                 .GetCustomAttributes(typeof(T), true)
                 .FirstOrDefault(a => a.GetType() == typeof(T));
-            return (T)attribute;
+            return (T?)attribute;
         }
 
-        public string ExeBaseName
-        {
-            get
-            {
-                var codeBase = Assembly.GetExecutingAssembly().CodeBase ?? "";
-                var uri = new UriBuilder(codeBase);
-                var path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetFileNameWithoutExtension(path);
-            }
-        }
+        public string ExeBaseName => Path.GetFileNameWithoutExtension(_assembly.Location);
 
         public string ExePath
         {
