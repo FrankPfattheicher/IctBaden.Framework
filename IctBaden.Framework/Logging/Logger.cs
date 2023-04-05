@@ -40,7 +40,7 @@ namespace IctBaden.Framework.Logging
                     var loggerFactory = (ILoggerFactory?)fieldInfo?.GetValue(null);
                     if (loggerFactory == null) continue;
 
-                    Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
+                    //Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
                     return loggerFactory;
                 }
 
