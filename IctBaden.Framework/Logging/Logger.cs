@@ -40,11 +40,11 @@ namespace IctBaden.Framework.Logging
                     var loggerFactory = (ILoggerFactory?)fieldInfo?.GetValue(null);
                     if (loggerFactory == null) continue;
 
-                    //Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
+                    Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
                     return loggerFactory;
                 }
 
-                Trace.TraceWarning($"No LoggerFactory found. Using console factory.");
+                Trace.TraceInformation($"No LoggerFactory found. Using console factory.");
                 return CreateConsoleAndTronFactory(GetLogConfiguration());
             }
         }
