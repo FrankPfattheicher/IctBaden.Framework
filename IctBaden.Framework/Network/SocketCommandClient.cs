@@ -188,7 +188,7 @@ namespace IctBaden.Framework.Network
                         // ignore
                     }
                 }, _clientSocket);
-                var success = rxResult?.AsyncWaitHandle.WaitOne(_receiveTimeout, true) ?? false;
+                var success = rxResult.AsyncWaitHandle.WaitOne(_receiveTimeout, true);
                 if (success)
                 {
                     Task.Delay(10).Wait();
@@ -254,7 +254,7 @@ namespace IctBaden.Framework.Network
                             // ignore
                         }
                     }, _clientSocket);
-                    var success = rxResult?.AsyncWaitHandle.WaitOne(_receiveTimeout, true) ?? false;
+                    var success = rxResult.AsyncWaitHandle.WaitOne(_receiveTimeout, true);
                     if (success)
                     {
                         Task.Delay(10).Wait();

@@ -107,7 +107,7 @@ namespace IctBaden.Framework.Tron
             }
         }
 
-        public static bool Connected => (_tron != null) && _tron.IsConnected;
+        public static bool Connected => _tron is { IsConnected: true };
 
         private static void Send(TronCommand command, byte[]? data)
         {
@@ -130,11 +130,9 @@ namespace IctBaden.Framework.Tron
                             data.CopyTo(txBuffer, 1);
                         }
 
-                        using (var udp = new UdpClient("127.0.0.1", UdpPort))
-                        {
-                            udp.Send(txBuffer, txLength);
-                            udp.Close();
-                        }
+                        using var udp = new UdpClient("127.0.0.1", UdpPort);
+                        udp.Send(txBuffer, txLength);
+                        udp.Close();
                     }
                 }
                 catch
@@ -258,8 +256,8 @@ namespace IctBaden.Framework.Tron
             SetColor(TraceColor.DarkGreen);
             var breadcrumbs = frames.Skip(2)
                 .Take(3)
-                .Where(f => f?.GetMethod() != null)
-                .Select(f => f?.GetMethod()!.Name)
+                .Where(f => f.GetMethod() != null)
+                .Select(f => f.GetMethod()!.Name)
                 .Reverse();
 
             PrintLine("CallTrail: " + string.Join(" / ", breadcrumbs));

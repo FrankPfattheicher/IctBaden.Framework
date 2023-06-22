@@ -98,7 +98,7 @@ namespace IctBaden.Framework.Network
             {
                 var parts = route.Split('?');
                 HttpUrl = parts[0];
-                var queryString = System.Web.HttpUtility.UrlDecode(parts[1]) ?? string.Empty;
+                var queryString = System.Web.HttpUtility.UrlDecode(parts[1]);
                 try
                 {
                     QueryParameters = queryString.Split('&')
