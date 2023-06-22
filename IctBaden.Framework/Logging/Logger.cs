@@ -14,7 +14,8 @@ namespace IctBaden.Framework.Logging
     public static class Logger
     {
         public static string? TimestampFormat = null;
-        public static IConfiguration GetLogConfiguration() => GetLogConfiguration(LogLevel.Warning);
+        public static LogLevel LogLevel = LogLevel.Warning;
+        public static IConfiguration GetLogConfiguration() => GetLogConfiguration(LogLevel);
 
         public static IConfiguration GetLogConfiguration(LogLevel level) => new ConfigurationBuilder()
             .Add(new MemoryConfigurationSource
@@ -40,11 +41,11 @@ namespace IctBaden.Framework.Logging
                     var loggerFactory = (ILoggerFactory?)fieldInfo?.GetValue(null);
                     if (loggerFactory == null) continue;
 
-                    //Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
+                    Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
                     return loggerFactory;
                 }
 
-                Trace.TraceWarning($"No LoggerFactory found. Using console factory.");
+                Trace.TraceInformation($"No LoggerFactory found. Using console factory.");
                 return CreateConsoleAndTronFactory(GetLogConfiguration());
             }
         }
@@ -59,7 +60,7 @@ namespace IctBaden.Framework.Logging
         /// <returns>Logger factory</returns>
         public static ILoggerFactory CreateConsoleAndTronFactory(IConfiguration configuration)
         {
-            var minimumLogLevel = configuration.GetValue("LogLevel", LogLevel.Information);
+            var minimumLogLevel = configuration.GetValue("LogLevel", LogLevel);
             var loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddConsole(options =>

@@ -5,7 +5,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <IsPackable>false</IsPackable>
-        <LangVersion>10</LangVersion>
+        <LangVersion>11</LangVersion>
     </PropertyGroup>
 
 </Project>

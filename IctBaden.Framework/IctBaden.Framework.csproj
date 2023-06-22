@@ -10,7 +10,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageVersion>1.0.22</PackageVersion>
-    <LangVersion>10</LangVersion>
+    <LangVersion>11</LangVersion>
     <AssemblyVersion>1.0.22</AssemblyVersion>
     <FileVersion>1.0.22</FileVersion>
     <Nullable>enable</Nullable>
@@ -29,6 +29,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+    <PackageReference Include="System.Management" Version="6.0.2" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
   </ItemGroup>
 

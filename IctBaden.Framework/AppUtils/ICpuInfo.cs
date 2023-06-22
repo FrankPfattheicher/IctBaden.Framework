@@ -1,7 +1,6 @@
-﻿namespace IctBaden.Framework.AppUtils
+﻿namespace IctBaden.Framework.AppUtils;
+
+internal interface ICpuInfo
 {
-    internal interface ICpuInfo
-    {
-        float GetCpuUsage();
-    }
+    float GetCpuUsage();
 }

@@ -1,4 +1,6 @@
 
+* 2.2.0 - 22.06.2023 SystemInfo.GetSystemTemperature
+* 2.1.2 - 13.04.2023 Trace DefaultFactory with "Information" level
 * 2.1.1 - 07.04.2023 Removed Using LoggerFactory log entry
 * 2.1.0 - 29.03.2023 Moved to NET6.0
 * 2.0.4 - 09.03.2023 Console logger level tests
