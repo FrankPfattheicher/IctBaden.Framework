@@ -236,8 +236,9 @@ namespace IctBaden.Framework.Network
         {
             if (Socket == null) return;
             
-            using var outputStream = new StreamWriter(new NetworkStream(Socket, FileAccess.Write), new UTF8Encoding(false)) { NewLine = "\r\n" };
-            
+            using var outputStream = new StreamWriter(new NetworkStream(Socket, FileAccess.Write), new UTF8Encoding(false));
+            outputStream.NewLine = "\r\n";
+
             var reasonPhrase = new HttpResponseMessage(statusCode).ReasonPhrase;
             outputStream.WriteLine($"HTTP/1.0 {(int)statusCode} {reasonPhrase}");
 

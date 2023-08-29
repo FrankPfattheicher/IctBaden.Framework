@@ -25,6 +25,13 @@ namespace IctBaden.Framework.Test.Types
         }
 
         [Fact]
+        public void LowerPascalToSnake()
+        {
+            var result = NamingConverter.PascalToSnakeCase(Camel);
+            Assert.Equal(Snake, result);
+        }
+
+        [Fact]
         public void KebabToPascal()
         {
             var result = NamingConverter.KebabToPascalCase(Kebab);
