@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using IctBaden.Framework.Types;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable AssignNullToNotNullAttribute
 
 namespace IctBaden.Framework.Tron
 {

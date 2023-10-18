@@ -254,11 +254,13 @@ namespace IctBaden.Framework.Tron
             if (!frames.Any()) return;
 
             SetColor(TraceColor.DarkGreen);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var breadcrumbs = frames.Skip(2)
                 .Take(3)
                 .Where(f => f.GetMethod() != null)
                 .Select(f => f.GetMethod()!.Name)
                 .Reverse();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             PrintLine("CallTrail: " + string.Join(" / ", breadcrumbs));
         }

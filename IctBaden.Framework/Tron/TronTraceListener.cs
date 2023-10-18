@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+// ReSharper disable AssignNullToNotNullAttribute
 
 namespace IctBaden.Framework.Tron
 {
