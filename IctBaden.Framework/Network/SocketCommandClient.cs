@@ -188,7 +188,8 @@ namespace IctBaden.Framework.Network
                         // ignore
                     }
                 }, _clientSocket);
-                var success = rxResult.AsyncWaitHandle.WaitOne(_receiveTimeout, true);
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+                var success = rxResult != null && rxResult.AsyncWaitHandle.WaitOne(_receiveTimeout, true);
                 if (success)
                 {
                     Task.Delay(10).Wait();
@@ -254,7 +255,8 @@ namespace IctBaden.Framework.Network
                             // ignore
                         }
                     }, _clientSocket);
-                    var success = rxResult.AsyncWaitHandle.WaitOne(_receiveTimeout, true);
+                    // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+                    var success = rxResult != null && rxResult.AsyncWaitHandle.WaitOne(_receiveTimeout, true);
                     if (success)
                     {
                         Task.Delay(10).Wait();

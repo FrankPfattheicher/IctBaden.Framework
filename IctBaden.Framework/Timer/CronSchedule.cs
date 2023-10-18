@@ -167,12 +167,15 @@ namespace IctBaden.Framework.Timer
 
             var matches = ValidationRegex.Matches(_expression);
 
-            _seconds = GenerateSecondValues(matches.Count > 0 ? matches[0].ToString() : "*");
-            _minutes = GenerateMinuteValues(matches.Count > 1 ? matches[1].ToString() : "*");
-            _hours = GenerateHourValues(matches.Count > 2 ? matches[2].ToString() : "*");
-            _days =GenerateDayValues(matches.Count > 3 ? matches[3].ToString() : "*");
-            _months = GenerateMonthValues(matches.Count > 4 ? matches[4].ToString() : "*");
-            _weekdays = GenerateWeekdayValues(matches.Count > 5 ? matches[5].ToString() : "*");
+            const string anytime = "*";
+            // ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+            _seconds = GenerateSecondValues((matches.Count > 0 ? matches[0].ToString() : anytime) ?? anytime);
+            _minutes = GenerateMinuteValues((matches.Count > 1 ? matches[1].ToString() : anytime) ?? anytime);
+            _hours = GenerateHourValues((matches.Count > 2 ? matches[2].ToString() : anytime) ?? anytime);
+            _days =GenerateDayValues((matches.Count > 3 ? matches[3].ToString() : anytime) ?? anytime);
+            _months = GenerateMonthValues((matches.Count > 4 ? matches[4].ToString() : anytime) ?? anytime);
+            _weekdays = GenerateWeekdayValues((matches.Count > 5 ? matches[5].ToString() : anytime) ?? anytime);
+            // ReSharper restore NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
         }
 
         private static int[] GenerateSecondValues(string match) => GenerateScheduleValues(match, 0, 60);
