@@ -7,7 +7,7 @@ namespace IctBaden.Framework.Test.Logging;
 public class TronLogger
 {
     private readonly ILogger _logger;
-    private string _logText;
+    private string _logText = string.Empty;
 
     public TronLogger()
     {
