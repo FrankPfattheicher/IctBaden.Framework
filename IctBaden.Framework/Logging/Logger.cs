@@ -63,11 +63,12 @@ public static class Logger
         var minimumLogLevel = configuration.GetValue("LogLevel", LogLevel);
         var loggerFactory = LoggerFactory.Create(builder =>
         {
-            builder.AddConsole(options =>
+            builder.AddSimpleConsole(options =>
             {
-#pragma warning disable CS0618
-                if(TimestampFormat != null) options.TimestampFormat = TimestampFormat;
-#pragma warning restore CS0618
+                if (TimestampFormat != null)
+                {
+                    options.TimestampFormat = TimestampFormat;
+                }
             });
             builder.AddProvider(new TronLoggerProvider(configuration));
             builder.SetMinimumLevel(minimumLogLevel);

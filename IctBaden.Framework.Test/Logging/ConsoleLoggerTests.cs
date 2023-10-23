@@ -1,19 +1,23 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using IctBaden.Framework.Logging;
 using Microsoft.Extensions.Logging;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace IctBaden.Framework.Test.Logging;
 
 public class ConsoleLoggerTests
 {
+    private readonly ITestOutputHelper _testOutputHelper;
     private readonly StringWriter _consoleWriter;
     private readonly ILogger _logger;
 
-    public ConsoleLoggerTests()
+    public ConsoleLoggerTests(ITestOutputHelper testOutputHelper)
     {
+        _testOutputHelper = testOutputHelper;
         _consoleWriter = new StringWriter();
         Console.SetOut(_consoleWriter);
         
@@ -27,6 +31,7 @@ public class ConsoleLoggerTests
     {
         _logger.LogError("LogWithTimestamp");
         var logText = _consoleWriter.ToString();
+        _testOutputHelper.WriteLine("Log output: " + logText);
         Assert.True(new Regex("[0-9]+:[0-9]+:[0-9]+").Match(logText).Success);
     }
 
@@ -50,19 +55,19 @@ public class ConsoleLoggerTests
 
         _logger.LogInformation("LogInformation");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
-        logTextSoFar = _consoleWriter.ToString();
+        logTextSoFar = logText;
         if (string.IsNullOrEmpty(logTextSoFar)) logTextSoFar = " ";
         Assert.DoesNotContain("LogInformation", logText);
         
         _logger.LogWarning("LogWarning");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
-        logTextSoFar = _consoleWriter.ToString();
+        logTextSoFar = logText;
         Assert.Contains("ConsoleLogger", logText);
         Assert.Contains("LogWarning", logText);
 
         _logger.LogError("LogError");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
-        logTextSoFar = _consoleWriter.ToString();
+        logTextSoFar = logText;
         Assert.Contains("ConsoleLogger", logText);
         Assert.Contains("LogError", logText);
 
