@@ -133,8 +133,8 @@ namespace IctBaden.Framework.CsvFile
         {
             if (RemoveQuotes)
             {
-                lineData = Regex.Replace(lineData, "\".*\"", "col");
-                lineData = Regex.Replace(lineData, "\'.*\'", "col");
+                lineData = Regex.Replace(lineData, "\"[^\"]+\"", "col");
+                lineData = Regex.Replace(lineData, "\'[^\"]+\'", "col");
             }
 
             var possibleSeparators = new[] { '\t', ';', ',' };
