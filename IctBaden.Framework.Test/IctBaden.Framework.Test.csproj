@@ -40,6 +40,10 @@
     <Content Include="QuotedHeaderAndFields.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Remove="CsvDataObjects.csv" />
+    <Content Include="CsvDataObjects.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
