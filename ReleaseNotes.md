@@ -1,4 +1,7 @@
 
+* 2.2.5 - 14.11.2023 Fixed CsvFile separator detection in quoted headers
+* 2.2.4 - 23.10.2023 ClassPropertyProvider supports Nullable properties, Console logger using AddSimpleConsole
+* 2.2.3 - 18.10.2023 Revert netcore3.1 support - too many changes
 * 2.2.2 - 18.10.2023 Added netcore3.1 support
 * 2.2.1 - 29.08.2023 Added PascalToSnakeCase
 * 2.2.0 - 22.06.2023 SystemInfo.GetSystemTemperature

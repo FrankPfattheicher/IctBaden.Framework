@@ -14,14 +14,15 @@
     <FileVersion>1.0.22</FileVersion>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TargetFrameworks>net6.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <Content Include="..\LICENSE">
+      <Pack>true</Pack>
+      <PackagePath>.</PackagePath>
+      <Visible>True</Visible>    
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

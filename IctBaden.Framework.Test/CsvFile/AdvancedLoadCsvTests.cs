@@ -1,27 +1,55 @@
 using System.Linq;
 using Xunit;
 
-namespace IctBaden.Framework.Test.CsvFile
+namespace IctBaden.Framework.Test.CsvFile;
+
+public class AdvancedLoadCsvTests
 {
-    public class AdvancedLoadCsvTests
+    [Fact]
+    public void LoadFileShouldDetectSeparatorCharacterWithLineBreaks()
     {
-        [Fact]
-        public void LoadFileShouldDetectSeparatorCharacter()
+        var file = new Framework.CsvFile.CsvFile("QuotedWithLineBreaks.csv")
         {
-            var file = new Framework.CsvFile.CsvFile("QuotedWithLineBreaks.csv")
-            {
-                RemoveQuotes = true
-            };
-            file.Load();
+            RemoveQuotes = true
+        };
+        file.Load();
 
-            Assert.Equal(4, file.Columns.Count);
-            Assert.Equal(10, file.DataRows.Count);
-            Assert.Empty(file.InvalidRows);
-            Assert.True(string.IsNullOrEmpty(file.LoadError));
-            Assert.Equal(';', file.Separator);
-            Assert.DoesNotContain(file.DataRows, row => row.Fields.Last().Contains('"'));
-        }
-
-
+        Assert.Equal(4, file.Columns.Count);
+        Assert.Equal(10, file.DataRows.Count);
+        Assert.Empty(file.InvalidRows);
+        Assert.True(string.IsNullOrEmpty(file.LoadError));
+        Assert.Equal(';', file.Separator);
+        Assert.DoesNotContain(file.DataRows, row => row.Fields.Last().Contains('"'));
     }
+
+    [Fact]
+    public void LoadFileShouldDetectSeparatorCharacterInQuotedHeader()
+    {
+        var file = new Framework.CsvFile.CsvFile("QuotedHeaderAndFields.csv")
+        {
+            RemoveQuotes = true
+        };
+        file.Load();
+
+        Assert.Equal(27, file.Columns.Count);
+        Assert.Equal(10, file.DataRows.Count);
+        Assert.Empty(file.InvalidRows);
+        Assert.True(string.IsNullOrEmpty(file.LoadError));
+        Assert.Equal(',', file.Separator);
+        Assert.DoesNotContain(file.DataRows, row => row.Fields.Last().Contains('"'));
+    }
+
+    [Fact]
+    public void LoadObjectsShouldDeserializeProperties()
+    {
+        var file = new Framework.CsvFile.CsvFile("CsvDataObjects.csv")
+        {
+            RemoveQuotes = true
+        };
+        var dataObjects = file.LoadData<CsvDataObject>();
+
+        Assert.Equal(4, dataObjects.Count);
+    }
+        
+
 }

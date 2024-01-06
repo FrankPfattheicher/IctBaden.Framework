@@ -6,6 +6,7 @@
     <IsPackable>false</IsPackable>
     <OutputType>Library</OutputType>
     <LangVersion>11</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +35,13 @@
     </Content>
     <None Remove="Simple.csv" />
     <Content Include="SimpleTab.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QuotedHeaderAndFields.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Remove="CsvDataObjects.csv" />
+    <Content Include="CsvDataObjects.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

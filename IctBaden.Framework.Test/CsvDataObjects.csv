@@ -1,0 +1,5 @@
+PropertyBool;PropertyInt;PropertyLong;PropertyString;PropertyFloat;PropertyDouble;PropertyDateTime;PropertyDateTimeOffset;PropertyEnum
+true;111;555;"abc";111.222;111000.222;8.12.2023 12:01;8.12.2023 13:01;1
+false;222;666;def;222.333;222000.333;2023-12-08T12:02;2023-12-08T13:02;Two
+1;333;777;"ghi";333.444;333000.444;8.12.2023 12:03;8.12.2023 13:03;4
+0;444;888;jkl;444.555;444000.555;8.12.2023 12:04;8.12.2023 13:04;Five

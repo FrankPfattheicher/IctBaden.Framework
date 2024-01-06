@@ -14,7 +14,7 @@ namespace IctBaden.Framework.Test.AppUtils
         public AssemblyInfoTests()
         {
             var assembly = typeof(TestLibClass).Assembly;
-            _path = Path.GetDirectoryName(assembly.Location);
+            _path = Path.GetDirectoryName(assembly.Location) ?? ".";
             _baseName = Path.GetFileNameWithoutExtension(assembly.Location);
             _info = new AssemblyInfo(assembly);
         }

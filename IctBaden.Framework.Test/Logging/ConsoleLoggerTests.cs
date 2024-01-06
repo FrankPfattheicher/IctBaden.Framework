@@ -4,16 +4,19 @@ using System.Text.RegularExpressions;
 using IctBaden.Framework.Logging;
 using Microsoft.Extensions.Logging;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace IctBaden.Framework.Test.Logging;
 
 public class ConsoleLoggerTests
 {
+    private readonly ITestOutputHelper _testOutputHelper;
     private readonly StringWriter _consoleWriter;
     private readonly ILogger _logger;
 
-    public ConsoleLoggerTests()
+    public ConsoleLoggerTests(ITestOutputHelper testOutputHelper)
     {
+        _testOutputHelper = testOutputHelper;
         _consoleWriter = new StringWriter();
         Console.SetOut(_consoleWriter);
         
@@ -27,6 +30,7 @@ public class ConsoleLoggerTests
     {
         _logger.LogError("LogWithTimestamp");
         var logText = _consoleWriter.ToString();
+        _testOutputHelper.WriteLine(">>>> Log output: " + logText);
         Assert.True(new Regex("[0-9]+:[0-9]+:[0-9]+").Match(logText).Success);
     }
 
@@ -40,34 +44,40 @@ public class ConsoleLoggerTests
         var logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
         logTextSoFar = _consoleWriter.ToString();
         if (string.IsNullOrEmpty(logTextSoFar)) logTextSoFar = " ";
+        _testOutputHelper.WriteLine(">>>> Log output 1: " + logText);
         Assert.DoesNotContain("LogTrace", logText);
         
         _logger.LogDebug("LogDebug");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
         logTextSoFar = _consoleWriter.ToString();
         if (string.IsNullOrEmpty(logTextSoFar)) logTextSoFar = " ";
+        _testOutputHelper.WriteLine(">>>> Log output 2: " + logText);
         Assert.DoesNotContain("LogDebug", logText);
 
         _logger.LogInformation("LogInformation");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
-        logTextSoFar = _consoleWriter.ToString();
+        logTextSoFar = logText;
         if (string.IsNullOrEmpty(logTextSoFar)) logTextSoFar = " ";
+        _testOutputHelper.WriteLine(">>>> Log output 3: " + logText);
         Assert.DoesNotContain("LogInformation", logText);
         
         _logger.LogWarning("LogWarning");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
-        logTextSoFar = _consoleWriter.ToString();
+        logTextSoFar = logText;
+        _testOutputHelper.WriteLine(">>>> Log output 4: " + logText);
         Assert.Contains("ConsoleLogger", logText);
         Assert.Contains("LogWarning", logText);
 
         _logger.LogError("LogError");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
-        logTextSoFar = _consoleWriter.ToString();
+        logTextSoFar = logText;
+        _testOutputHelper.WriteLine(">>>> Log output 5: " + logText);
         Assert.Contains("ConsoleLogger", logText);
         Assert.Contains("LogError", logText);
 
         _logger.LogCritical("LogCritical");
         logText = _consoleWriter.ToString().Replace(logTextSoFar, "");
+        _testOutputHelper.WriteLine(">>>> Log output 6: " + logText);
         Assert.Contains("ConsoleLogger", logText);
         Assert.Contains("LogCritical", logText);
     }

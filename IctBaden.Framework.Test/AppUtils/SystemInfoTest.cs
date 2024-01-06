@@ -10,7 +10,7 @@ namespace IctBaden.Framework.Test.AppUtils
         [Fact]
         public void GetDiskUsageShouldReturnPercentage()
         {
-            var currentDrive = Path.GetPathRoot(Environment.CurrentDirectory);
+            var currentDrive = Path.GetPathRoot(Environment.CurrentDirectory) ?? "C";
             var usage = SystemInfo.GetDiskUsage(currentDrive);
 
             Assert.True(usage > 0.0f);
