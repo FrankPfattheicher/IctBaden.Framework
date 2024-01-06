@@ -34,6 +34,7 @@ namespace IctBaden.Framework.AppUtils
                 using var processModule = Process.GetCurrentProcess().MainModule;
                 if (processModule != null)
                 {
+                    // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
                     var moduleName = processModule.ModuleName?.ToLower();
                     if (moduleName != "dotnet" && moduleName != "dotnet.exe")
                     {

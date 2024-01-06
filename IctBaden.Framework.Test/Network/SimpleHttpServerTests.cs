@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -49,10 +49,10 @@ public partial class SimpleHttpServerTests : IDisposable
         }
         catch (Exception ex)
         {
-            Assert.True(false, ex.Message);
+            Assert.Fail(ex.Message);
         }
 
-        Assert.True(response != null);
+        Assert.NotNull(response);
         Assert.Contains(@"Test äöüß", response);
     }
 
@@ -71,10 +71,10 @@ public partial class SimpleHttpServerTests : IDisposable
         }
         catch (Exception ex)
         {
-            Assert.True(false, ex.Message);
+            Assert.Fail(ex.Message);
         }
 
-        Assert.True(response != null);
+        Assert.NotNull(response);
         Assert.Contains("a=123", response);
         Assert.Contains("b=x y", response);
     }
@@ -96,7 +96,7 @@ public partial class SimpleHttpServerTests : IDisposable
             response = ex.Message;
         }
 
-        Assert.True(response != null);
+        Assert.NotNull(response);
         Assert.Contains("404", response);
     }
 
@@ -116,20 +116,20 @@ public partial class SimpleHttpServerTests : IDisposable
         }
         catch (Exception ex)
         {
-            Assert.True(false, ex.Message);
+            Assert.Fail(ex.Message);
         }
 
-        Assert.True(response != null);
+        Assert.NotNull(response);
         Assert.Equal(data, response);
     }
 
     [Fact]
-    public void MultipleParallelGetRequests()
+    public async void MultipleParallelGetRequests()
     {
         var requests = Enumerable.Range(1, 10)
             .Select(_ => Task.Run(GetRequestSuccess))
             .ToArray();
-        Task.WaitAll(requests);
+        await Task.WhenAll(requests);
     }
 
 }
