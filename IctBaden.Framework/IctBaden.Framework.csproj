@@ -1,20 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>Basic Application Framework</Title>
     <Authors>Frank Pfattheicher</Authors>
-    <Copyright>(C) 2009-2023 ICT Baden GmbH</Copyright>
+    <Copyright>(C) 2009-2024 ICT Baden GmbH</Copyright>
     <Description>Not really a framework but more a application companion...</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageVersion>1.0.22</PackageVersion>
-    <LangVersion>11</LangVersion>
-    <AssemblyVersion>1.0.22</AssemblyVersion>
-    <FileVersion>1.0.22</FileVersion>
+    <PackageVersion>3.0.0</PackageVersion>
+    <LangVersion>12</LangVersion>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;netcoreapp3.1;net8.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.4" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />

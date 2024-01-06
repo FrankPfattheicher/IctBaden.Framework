@@ -1,4 +1,5 @@
 
+* 3.0.0 - 06.01.2024 Added net8.0 support and Hysteresis
 * 2.2.5 - 14.11.2023 Fixed CsvFile separator detection in quoted headers
 * 2.2.4 - 23.10.2023 ClassPropertyProvider supports Nullable properties, Console logger using AddSimpleConsole
 * 2.2.3 - 18.10.2023 Revert netcore3.1 support - too many changes
