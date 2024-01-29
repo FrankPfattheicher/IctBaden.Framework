@@ -19,7 +19,7 @@ public class Hysteresis
     public static Hysteresis FromValueAndRange(double value, double range) => 
         new(value - range / 2, value + range / 2);
 
-    public bool Get(long value)
+    public bool Get(double value)
     {
         _output = (value >= _upper || _output) && value > _lower;
         return _output;

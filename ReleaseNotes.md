@@ -1,4 +1,6 @@
 
+* 3.0.2 - 29.01.2024 Optionally expand environment variables in ClassPropertyProvider
+* 3.0.1 - 09.01.2024 Hysteresis.Get using double
 * 3.0.0 - 06.01.2024 Added net8.0 support and Hysteresis
 * 2.2.5 - 14.11.2023 Fixed CsvFile separator detection in quoted headers
 * 2.2.4 - 23.10.2023 ClassPropertyProvider supports Nullable properties, Console logger using AddSimpleConsole

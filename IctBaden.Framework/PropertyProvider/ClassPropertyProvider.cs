@@ -4,20 +4,15 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using IctBaden.Framework.Types;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable IntroduceOptionalParameters.Global
 
 namespace IctBaden.Framework.PropertyProvider;
 
 // ReSharper disable once UnusedMember.Global
-public class ClassPropertyProvider
+public class ClassPropertyProvider(object targetObject)
 {
-    private readonly object _targetObject;
-    private readonly Type _type;
-
-    public ClassPropertyProvider(object targetObject)
-    {
-        _targetObject = targetObject;
-        _type = targetObject.GetType();
-    }
+    private readonly Type _type = targetObject.GetType();
 
     public PropertyBag GetProperties()
     {
@@ -26,7 +21,7 @@ public class ClassPropertyProvider
         var properties = _type.GetProperties();
         foreach (var property in properties)
         {
-            var value = property.GetValue(_targetObject, null);
+            var value = property.GetValue(targetObject, null);
             result.Set(property.Name, value);
             Trace.TraceInformation($"Get({_type.Name}) {property.Name} = {value}");
         }
@@ -36,35 +31,43 @@ public class ClassPropertyProvider
 
     public void SetProperties(IPropertyProvider propertyValues)
     {
-        SetProperties(propertyValues, CultureInfo.CurrentCulture);
+        SetProperties(propertyValues, CultureInfo.CurrentCulture, false);
     }
-        
     public void SetProperties(IPropertyProvider propertyValues, IFormatProvider provider)
+    {
+        SetProperties(propertyValues, provider, false);
+    }
+    public void SetProperties(IPropertyProvider propertyValues, IFormatProvider provider, bool expandEnvironmentVariables)
     {
         var properties = _type.GetProperties();
         foreach (var property in properties)
         {
             var value = propertyValues.Get<object>(property.Name);
-            if (value != null)
+            if (value == null) continue;
+            
+            var propertyType = property.PropertyType;
+                    
+            if (property.PropertyType.Name.StartsWith("Nullable`1"))
             {
-                var propertyType = property.PropertyType;
-                    
-                if (property.PropertyType.Name.StartsWith("Nullable`1"))
-                {
-                    propertyType = property.PropertyType.GenericTypeArguments.First();
-                }
-                else if (property.PropertyType.IsArray
-                         || (property.PropertyType is { IsGenericType: true, GenericTypeArguments.Length: 1 }
-                             && property.PropertyType == typeof(List<>).MakeGenericType(property.PropertyType.GenericTypeArguments)))
-                {
-                    // for array and list properties - split value on ';'s
-                    value = value.ToString()?.Split(';').ToList();
-                }
-                    
-                value = UniversalConverter.ConvertToType(value, propertyType, provider);
-                property.SetValue(_targetObject, value, null);
-                Trace.TraceInformation($"Set({_type.Name}) {property.Name} = {property.GetValue(_targetObject, null)}");
+                propertyType = property.PropertyType.GenericTypeArguments.First();
             }
+            else if (property.PropertyType.IsArray
+                     || (property.PropertyType is { IsGenericType: true, GenericTypeArguments.Length: 1 }
+                         && property.PropertyType == typeof(List<>).MakeGenericType(property.PropertyType.GenericTypeArguments)))
+            {
+                // for array and list properties - split value on ';'s
+                var listValue = UniversalConverter.ConvertTo(value, string.Empty);
+                value = listValue?.Split(';').ToList();
+            }
+
+            if (expandEnvironmentVariables && value is string stringValue)
+            {
+                value = Environment.ExpandEnvironmentVariables(stringValue);
+            }
+
+            value = UniversalConverter.ConvertToType(value, propertyType, provider);
+            property.SetValue(targetObject, value, null);
+            Trace.TraceInformation($"Set({_type.Name}) {property.Name} = {property.GetValue(targetObject, null)}");
         }
     }
 }
