@@ -1,4 +1,5 @@
 
+* 3.0.3 - 29.01.2024 Optionally expand environment variables in ProfileClassLoader
 * 3.0.2 - 29.01.2024 Optionally expand environment variables in ClassPropertyProvider
 * 3.0.1 - 09.01.2024 Hysteresis.Get using double
 * 3.0.0 - 06.01.2024 Added net8.0 support and Hysteresis

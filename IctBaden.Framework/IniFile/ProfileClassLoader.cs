@@ -11,6 +11,7 @@ namespace IctBaden.Framework.IniFile;
 public class ProfileClassLoader
 {
     private readonly IFormatProvider _provider = CultureInfo.CurrentCulture;
+    private readonly bool _expandEnvironmentVariables;
         
     // ReSharper disable once UnusedMember.Global
     public ProfileClassLoader()
@@ -19,6 +20,11 @@ public class ProfileClassLoader
     public ProfileClassLoader(IFormatProvider provider)
     {
         _provider = provider;
+    }
+    public ProfileClassLoader(IFormatProvider provider, bool expandEnvironmentVariables)
+    {
+        _provider = provider;
+        _expandEnvironmentVariables = expandEnvironmentVariables;
     }
         
     /// <summary>
@@ -46,7 +52,7 @@ public class ProfileClassLoader
     {
         var iniSection = iniFile[sectionName];
         var targetClass = new ClassPropertyProvider(targetObject);
-        targetClass.SetProperties(iniSection, _provider);
+        targetClass.SetProperties(iniSection, _provider, _expandEnvironmentVariables);
     }
 
 }
