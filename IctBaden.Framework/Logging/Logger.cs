@@ -87,4 +87,26 @@ public static class Logger
 
         return (LogLevel)Enum.Parse(typeof(LogLevel), matchedLevel);
     }
+    
+    public static TLogger? GetLogger<TLogger>(this ILogger logger) where TLogger : ILogger
+    {
+        var loggersInfo = logger.GetType()
+            .GetProperty("Loggers", BindingFlags.Instance | BindingFlags.Public);
+        
+        var loggers = loggersInfo?.GetValue(logger);
+        if (loggers is not Array loggerInformation) return default;
+
+        foreach (var loggerInfoObject in loggerInformation)
+        {
+            var loggerInfo = loggerInfoObject.GetType()
+                .GetProperty("Logger", BindingFlags.Instance | BindingFlags.Public);
+            
+            if (loggerInfo?.GetValue(loggerInfoObject) is TLogger foundLogger)
+            {
+                return foundLogger;
+            }
+        }
+        return default;
+    }
+
 }
