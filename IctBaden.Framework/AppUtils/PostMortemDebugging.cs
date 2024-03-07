@@ -42,17 +42,27 @@ public static class PostMortemDebugging
             Environment.Exit(1);
         }
 
+        var errorFileName = string.Empty;
+        try
+        {
+            // error file path
+            errorFileName = $"{AssemblyInfo.Default.ExeBaseName}_{DateTime.Now:u}.err";
+            errorFileName = errorFileName.Replace(' ', '_').Replace(':', '-');
+            var logs = Path.Combine(AssemblyInfo.Default.ExePath, "logs");
+            errorFileName = Path.Combine(Directory.Exists(logs) ? logs : Path.GetTempPath(), errorFileName);
+        }
+        catch
+        {
+            // ignore
+        }
+
         var info = new StringBuilder();
+        var written = false;
         try
         {
             // save information
             _dumpReason = (Exception)e.ExceptionObject;
             _stackTrace = _dumpReason.StackTrace;
-
-            // error file path
-            var errorFileName = $"{AssemblyInfo.Default.ExeBaseName}_{DateTime.Now:u}.err";
-            errorFileName = errorFileName.Replace(' ', '_').Replace(':', '-');
-            errorFileName = Path.Combine(Path.GetTempPath(), errorFileName);
 
             // show internal error
             info.Append("ERROR: ");
@@ -65,7 +75,8 @@ public static class PostMortemDebugging
             info.Append(Environment.NewLine);
                 
             // write dump
-            File.WriteAllText(errorFileName, info.ToString());
+            File.AppendAllText(errorFileName, info.ToString());
+            written = true;
         }
         finally
         {
@@ -74,8 +85,10 @@ public static class PostMortemDebugging
                 
             Trace.TraceError(text);
 
-            var errFileName = $"{AssemblyInfo.Default.ExeBaseName}_{DateTime.Now:u}.err";
-            File.WriteAllText(errFileName, text);
+            if (!written)
+            {
+                File.AppendAllText(errorFileName, text);
+            }
 
             if (_restartOnFailure)
             {
