@@ -4,12 +4,12 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.Logging;
 
-public class TronLogger
+public class TestTronLogger
 {
     private readonly ILogger _logger;
     private string _logText = string.Empty;
 
-    public TronLogger()
+    public TestTronLogger()
     {
         var config = Logger.GetLogConfiguration(LogLevel.Trace);
         _logger = Logger.CreateConsoleAndTronFactory(config).CreateLogger("TronLogger");

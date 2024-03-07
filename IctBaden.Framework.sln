@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctBaden.Framework.TestLib"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctBaden.Framework.TestApp", "IctBaden.Framework.TestApp\IctBaden.Framework.TestApp.csproj", "{968475AC-2FE5-41CE-B904-7BA49B35C8BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctBaden.Framework.TestFailingApp", "IctBaden.Framework.TestFailingApp\IctBaden.Framework.TestFailingApp.csproj", "{EBEB4FAA-B9A2-46CE-A02C-A2ED451AD7E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{968475AC-2FE5-41CE-B904-7BA49B35C8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968475AC-2FE5-41CE-B904-7BA49B35C8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968475AC-2FE5-41CE-B904-7BA49B35C8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBEB4FAA-B9A2-46CE-A02C-A2ED451AD7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEB4FAA-B9A2-46CE-A02C-A2ED451AD7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEB4FAA-B9A2-46CE-A02C-A2ED451AD7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEB4FAA-B9A2-46CE-A02C-A2ED451AD7E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

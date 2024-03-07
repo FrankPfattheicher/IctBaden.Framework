@@ -1,4 +1,6 @@
 
+* 3.1.0 - 15.02.2024 Added Logger.GetLogger<TLogger>, PostMortemDebugging log err to logs folder if exists
+
 * 3.0.3 - 29.01.2024 Optionally expand environment variables in ProfileClassLoader
 * 3.0.2 - 29.01.2024 Optionally expand environment variables in ClassPropertyProvider
 * 3.0.1 - 09.01.2024 Hysteresis.Get using double
