@@ -60,9 +60,10 @@ public class ClassPropertyProvider(object targetObject)
                 value = listValue?.Split(';').ToList();
             }
 
-            if (expandEnvironmentVariables && value is string stringValue)
+            while(expandEnvironmentVariables && value is string stringValue && stringValue.Contains('%'))
             {
                 value = Environment.ExpandEnvironmentVariables(stringValue);
+                if ((string)value == stringValue) break;
             }
 
             value = UniversalConverter.ConvertToType(value, propertyType, provider);

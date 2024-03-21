@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using IctBaden.Framework.PropertyProvider;
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -53,6 +54,27 @@ public class ProfileClassLoader
         var iniSection = iniFile[sectionName];
         var targetClass = new ClassPropertyProvider(targetObject);
         targetClass.SetProperties(iniSection, _provider, _expandEnvironmentVariables);
+        
+        // load subtypes from named sections
+        var subClasses = targetObject.GetType().GetProperties()
+            .Where(sc => sc.PropertyType.IsClass)
+            .Where(sc => sc.PropertyType.Namespace?.StartsWith("System") != true)
+            .ToArray();
+
+        try
+        {
+            foreach (var subClassProperty in subClasses)
+            {
+                var subType = subClassProperty.GetValue(targetObject);
+                if (subType == null) continue;
+
+                LoadClass(subType, iniFile, subClassProperty.Name);
+            }
+        }
+        catch
+        {
+            // ignore
+        }
     }
 
 }

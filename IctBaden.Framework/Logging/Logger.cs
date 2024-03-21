@@ -98,7 +98,7 @@ public static class Logger
 
         foreach (var loggerInfoObject in loggerInformation)
         {
-            var loggerInfo = loggerInfoObject.GetType()
+            var loggerInfo = loggerInfoObject?.GetType()
                 .GetProperty("Logger", BindingFlags.Instance | BindingFlags.Public);
             
             if (loggerInfo?.GetValue(loggerInfoObject) is TLogger foundLogger)

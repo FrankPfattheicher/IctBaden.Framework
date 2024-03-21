@@ -1,11 +1,10 @@
 ﻿
-namespace IctBaden.Framework.Test.IniFile
+namespace IctBaden.Framework.Test.IniFile;
+
+public class TestObject
 {
-    internal class TestObject
-    {
-        public int Numeric { get; set; }
-        public double Float { get; set; }
-        public bool Boolean { get; set; }
-        public string Text { get; set; } = string.Empty;
-    }
+    public int Numeric { get; set; }
+    public double Float { get; set; }
+    public bool Boolean { get; set; }
+    public string Text { get; set; } = string.Empty;
 }
