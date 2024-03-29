@@ -14,7 +14,7 @@ public class FileLogger(LogFileNameFactory fileNameFactory, string context) : IL
     private LogLevel _logLevel;
     private bool _timestamp = true;
 
-    private class LogScope : IDisposable
+    private sealed class LogScope : IDisposable
     {
         private readonly FileLogger _logger;
 

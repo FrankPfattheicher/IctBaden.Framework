@@ -11,19 +11,17 @@ internal class UsbInfoLinux
     static string ExecuteBashCommand(string command)
     {
         // according to: https://stackoverflow.com/a/15262019/637142
-        // thans to this we will pass everything as one command
+        // than to this we will pass everything as one command
         command = command.Replace("\"", "\"\"");
 
-        var proc = new Process
+        using var proc = new Process();
+        proc.StartInfo = new ProcessStartInfo
         {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName = "/bin/bash",
-                Arguments = "-c \"" + command + "\"",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = true
-            }
+            FileName = "/bin/bash",
+            Arguments = "-c \"" + command + "\"",
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            CreateNoWindow = true
         };
 
         proc.Start();

@@ -9,7 +9,7 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.IniFile;
 
-public class ProfileClassLoaderTests : IDisposable
+public sealed class ProfileClassLoaderTests : IDisposable
 {
     private readonly string _testFileName;
 
@@ -58,9 +58,9 @@ public class ProfileClassLoaderTests : IDisposable
         Assert.Equal(4.567f, testClass.Numeric1);
         Assert.Equal(4.567, testClass.Numeric2);
         Assert.Equal("a b c", testClass.Text);
-        Assert.Equal(new List<string> {"a","b","c"}, testClass.TextList);
+        Assert.Equal(["a", "b", "c"], testClass.TextList);
         Assert.Equal(new[] {"a","b","c"}, testClass.TextArray);
-        Assert.Equal(new List<int> {1,2,3}, testClass.IntList);
+        Assert.Equal([1, 2, 3], testClass.IntList);
     }
     
     

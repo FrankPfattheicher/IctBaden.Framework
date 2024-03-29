@@ -8,11 +8,12 @@ using Xunit.Abstractions;
 
 namespace IctBaden.Framework.Test.Logging;
 
-public class ConsoleLoggerTests
+public sealed class ConsoleLoggerTests : IDisposable
 {
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly StringWriter _consoleWriter;
     private readonly ILogger _logger;
+    private bool _disposed;
 
     public ConsoleLoggerTests(ITestOutputHelper testOutputHelper)
     {
@@ -22,7 +23,9 @@ public class ConsoleLoggerTests
         
         Logger.TimestampFormat = "hh:mm:ss ";
         var config = Logger.GetLogConfiguration(LogLevel.Warning);
+#pragma warning disable IDISP004
         _logger = Logger.CreateConsoleAndTronFactory(config).CreateLogger("ConsoleLogger");
+#pragma warning restore IDISP004
     }
     
     [Fact]
@@ -82,8 +85,23 @@ public class ConsoleLoggerTests
         Assert.Contains("LogCritical", logText);
     }
 
+    public void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
+        }
 
+        _disposed = true;
+        _consoleWriter.Dispose();
+    }
 
-    
-    
+    // ReSharper disable once UnusedMember.Local
+    private void ThrowIfDisposed()
+    {
+        if (_disposed)
+        {
+            throw new ObjectDisposedException(GetType().FullName);
+        }
+    }
 }

@@ -6,7 +6,7 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.IniFile;
 
-public class ProfileKeyTests : IDisposable
+public sealed class ProfileKeyTests : IDisposable
 {
     private readonly string _testFileName;
 

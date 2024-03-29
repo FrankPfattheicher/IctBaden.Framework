@@ -14,7 +14,7 @@ using Xunit.Abstractions;
 namespace IctBaden.Framework.Test.Network;
 
 [CollectionDefinition("TcpClientServerTests", DisableParallelization = true)]
-public partial class SimpleHttpServerTests : IDisposable
+public sealed partial class SimpleHttpServerTests : IDisposable
 {
     // ReSharper disable once NotAccessedField.Local
     private readonly ITestOutputHelper _testOutputHelper;

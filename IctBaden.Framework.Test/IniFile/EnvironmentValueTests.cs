@@ -7,7 +7,7 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.IniFile;
 
-public class EnvironmentValueTests : IDisposable
+public sealed class EnvironmentValueTests : IDisposable
 {
     private readonly string _testFileName;
 

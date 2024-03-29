@@ -13,12 +13,8 @@ namespace IctBaden.Framework.Test.Network;
 public partial class SimpleHttpServerTests
 {
     // ReSharper disable once MemberCanBePrivate.Global
-    internal class TestHttpServer : SimpleHttpServer
+    internal class TestHttpServer(int port) : SimpleHttpServer(port)
     {
-        public TestHttpServer(int port)
-            : base(port)
-        {
-        }
         public override void HandleGetRequest(SimpleHttpProcessor processor)
         {
             Debug.WriteLine("GET request: {0}", processor.HttpUrl);

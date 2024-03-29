@@ -7,401 +7,423 @@
 
 using IctBaden.Framework.AppUtils;
 
-namespace IctBaden.Framework.Network
+namespace IctBaden.Framework.Network;
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using System.Net.Sockets;
+using System.Net;
+using System.Threading;
+
+using ThreadState = System.Threading.ThreadState;
+
+public sealed class SocketCommandLineServer : IDisposable
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Text;
-    using System.Net.Sockets;
-    using System.Net;
-    using System.Threading;
+    private readonly int _port;
+    private readonly bool _publicReachable;
+    private Thread _runner;
+    private bool _cancelRunner;
+    private bool _runnerCanceled;
+    private Socket? _listener;
+    private ManualResetEvent _clientAccepted;
+    private bool _disposed;
 
-    using ThreadState = System.Threading.ThreadState;
-
-    public class SocketCommandLineServer
+    public void Dispose()
     {
-        private readonly int _port;
-        private readonly bool _publicReachable;
-        private Thread _runner;
-        private bool _cancelRunner;
-        private bool _runnerCanceled;
-        private Socket? _listener;
-        private ManualResetEvent _clientAccepted;
-
-        public delegate void CommandLineHandler(Socket client, string commandLine);
-        public delegate void ConnectionHandler(Socket client);
-
-        public event CommandLineHandler? HandleCommand;
-        public event ConnectionHandler? ClientConnected;
-        public event ConnectionHandler? ClientDisconnected;
-
-        public List<Socket> Clients { get; private set; }
-
-        public int Connections => Clients.Count;
-
-        public string? StartOfCommand { get; set; }
-        public List<string> Eoc { get; set; }
-        public Encoding UseEncoding { get; set; }
-        public bool HandleEmptyCommands { get; set; }
-
-        public SocketCommandLineServer(int tcpPort)
-            // ReSharper disable once IntroduceOptionalParameters.Global
-            : this(tcpPort, true)
+        if (_disposed)
         {
-        }
-        public SocketCommandLineServer(int tcpPort, bool publicReachable)
-        {
-            Clients = new List<Socket>();
-            _port = tcpPort;
-            _publicReachable = publicReachable;
-            Eoc = new List<string> {"\r", "\n"};
-            UseEncoding = Encoding.UTF8;
-            HandleEmptyCommands = false;
-
-            _runner = new Thread(RunnerDoWork);
-            _clientAccepted = new ManualResetEvent(false);
+            return;
         }
 
-        private void RunnerDoWork()
-        {
-            Trace.TraceInformation("SocketCommandLineServer.RunnerDoWork()");
-            try
-            {
-                if (_listener == null)
-                    return;
-                _listener.Listen(100);
-            }
-            catch (Exception ex)
-            {
-                Trace.TraceError(ex.Message);
-                return;
-            }
-            Trace.TraceInformation("SocketCommandLineServer started.");
-            _clientAccepted.Set();
-            while (!_cancelRunner && (_listener != null) && _listener.IsBound)
-            {
-                try
-                {
-                    if (_clientAccepted.WaitOne(1000, false)) // use this version for Windows 2000 compatibility
-                    {
-                        _clientAccepted.Reset();
-                        _listener?.BeginAccept(AcceptClient, null);
-                    }
-                }
-                catch (SocketException ex)
-                {
-                    if ((ex.SocketErrorCode != SocketError.Interrupted) &&
-                        (ex.SocketErrorCode != SocketError.ConnectionReset))
-                    {
-                        Trace.TraceError(ex.Message);
-                    }
-                    break;
-                }
-                catch (ObjectDisposedException)
-                {
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    Trace.TraceError(ex.Message);
-                    break;
-                }
-            }
+        _disposed = true;
+        _listener?.Dispose();
+        _clientAccepted.Dispose();
+    }
 
-            Disconnect();
-            _runnerCanceled = true;
-            Trace.TraceInformation("SocketCommandLineServer terminated.");
+    // ReSharper disable once UnusedMember.Local
+    private void ThrowIfDisposed()
+    {
+        if (_disposed)
+        {
+            throw new ObjectDisposedException(GetType().FullName);
         }
+    }
 
-        private void AcceptClient(IAsyncResult ar)
+    public delegate void CommandLineHandler(Socket client, string commandLine);
+    public delegate void ConnectionHandler(Socket client);
+
+    public event CommandLineHandler? HandleCommand;
+    public event ConnectionHandler? ClientConnected;
+    public event ConnectionHandler? ClientDisconnected;
+
+    public List<Socket> Clients { get; private set; }
+
+    public int Connections => Clients.Count;
+
+    public string? StartOfCommand { get; set; }
+    public List<string> Eoc { get; set; }
+    public Encoding UseEncoding { get; set; }
+    public bool HandleEmptyCommands { get; set; }
+
+    public SocketCommandLineServer(int tcpPort)
+        // ReSharper disable once IntroduceOptionalParameters.Global
+        : this(tcpPort, true)
+    {
+    }
+    public SocketCommandLineServer(int tcpPort, bool publicReachable)
+    {
+        Clients = new List<Socket>();
+        _port = tcpPort;
+        _publicReachable = publicReachable;
+        Eoc = new List<string> {"\r", "\n"};
+        UseEncoding = Encoding.UTF8;
+        HandleEmptyCommands = false;
+
+        _runner = new Thread(RunnerDoWork);
+        _clientAccepted = new ManualResetEvent(false);
+    }
+
+    private void RunnerDoWork()
+    {
+        Trace.TraceInformation("SocketCommandLineServer.RunnerDoWork()");
+        try
         {
-            _clientAccepted.Set();
             if (_listener == null)
                 return;
-
+            _listener.Listen(100);
+        }
+        catch (Exception ex)
+        {
+            Trace.TraceError(ex.Message);
+            return;
+        }
+        Trace.TraceInformation("SocketCommandLineServer started.");
+        _clientAccepted.Set();
+        while (!_cancelRunner && _listener is { IsBound: true })
+        {
             try
             {
-                var client = _listener.EndAccept(ar);
-                var p = new ParameterizedThreadStart(Handler);
-                var t = new Thread(p);
-                t.Start(client);
+                if (_clientAccepted.WaitOne(1000, false)) // use this version for Windows 2000 compatibility
+                {
+                    _clientAccepted.Reset();
+                    _listener?.BeginAccept(AcceptClient, null);
+                }
+            }
+            catch (SocketException ex)
+            {
+                if ((ex.SocketErrorCode != SocketError.Interrupted) &&
+                    (ex.SocketErrorCode != SocketError.ConnectionReset))
+                {
+                    Trace.TraceError(ex.Message);
+                }
+                break;
             }
             catch (ObjectDisposedException)
             {
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            } 
-        }
-
-        public bool Start()
-        {
-            try
-            {
-                Trace.TraceInformation($"SocketCommandLineServer.Start({_port})");
-                _clientAccepted = new ManualResetEvent(false);
-                if (_listener == null)
-                {
-                    _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-                    if (SystemInfo.Platform == Platform.Windows)
-                    {
-                        _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
-                    }
-                    _listener.LingerState = new LingerOption(false, 0);
-                    _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                    var localEp = new IPEndPoint(_publicReachable ? IPAddress.Any : IPAddress.Loopback, _port);
-                    _listener.Bind(localEp);
-                }
-
-                _cancelRunner = false;
-                _runnerCanceled = false;
-                _runner.Start();
+                break;
             }
             catch (Exception ex)
             {
                 Trace.TraceError(ex.Message);
-                return false;
+                break;
             }
-            return true;
         }
 
-        public void Reset()
-        {
-            Trace.TraceInformation("SocketCommandLineServer.Reset()");
-            Terminate(false);
+        Disconnect();
+        _runnerCanceled = true;
+        Trace.TraceInformation("SocketCommandLineServer terminated.");
+    }
 
-            var wait = 30;
-            while ((!_runnerCanceled) && (wait > 0))
+    private void AcceptClient(IAsyncResult ar)
+    {
+        _clientAccepted.Set();
+        if (_listener == null)
+            return;
+
+        try
+        {
+            var client = _listener.EndAccept(ar);
+            var p = new ParameterizedThreadStart(Handler);
+            var t = new Thread(p);
+            t.Start(client);
+        }
+        catch (ObjectDisposedException)
+        {
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        } 
+    }
+
+    public bool Start()
+    {
+        try
+        {
+            Trace.TraceInformation($"SocketCommandLineServer.Start({_port})");
+            _clientAccepted.Dispose();
+            _clientAccepted = new ManualResetEvent(false);
+            if (_listener == null)
             {
-                Thread.Sleep(1000);
-                wait--;
+                _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+                if (SystemInfo.Platform == Platform.Windows)
+                {
+                    _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+                }
+                _listener.LingerState = new LingerOption(false, 0);
+                _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                var localEp = new IPEndPoint(_publicReachable ? IPAddress.Any : IPAddress.Loopback, _port);
+                _listener.Bind(localEp);
             }
 
-            Debug.Assert(_runner.ThreadState == ThreadState.Stopped, "Should be stopped here.");
+            _cancelRunner = false;
+            _runnerCanceled = false;
+            _runner.Start();
+        }
+        catch (Exception ex)
+        {
+            Trace.TraceError(ex.Message);
+            return false;
+        }
+        return true;
+    }
 
+    public void Reset()
+    {
+        Trace.TraceInformation("SocketCommandLineServer.Reset()");
+        Terminate(false);
+
+        var wait = 30;
+        while ((!_runnerCanceled) && (wait > 0))
+        {
+            Thread.Sleep(1000);
+            wait--;
+        }
+
+        Debug.Assert(_runner.ThreadState == ThreadState.Stopped, "Should be stopped here.");
+
+        Cancel();
+        try
+        {
+            if (_runner.IsAlive)
+            {
+                _runner.Join(TimeSpan.FromSeconds(10));
+            }
+        }
+        catch
+        {
+            // ignore
+        }
+
+        _runner = new Thread(RunnerDoWork);
+
+        if(!Start())
+        {
+            Trace.TraceError("SocketCommandLineServer: FATAL ERROR: Restart failed");
+        }
+    }
+
+    public void Terminate(bool disconnectClients = true)
+    {
+        try
+        {
             Cancel();
-            try
+            if (disconnectClients)
             {
-                if (_runner.IsAlive)
-                {
-                    _runner.Join(TimeSpan.FromSeconds(10));
-                }
-            }
-            catch
-            {
-                // ignore
+                DisconnectAllClients();
             }
 
-            _runner = new Thread(RunnerDoWork);
+            var list = _listener;
+            _listener = null;
 
-            if(!Start())
-            {
-                Trace.TraceError("SocketCommandLineServer: FATAL ERROR: Restart failed");
-            }
+            if (list == null)
+                return;
+
+            list.Close();
+            list.Dispose();
         }
-
-        public void Terminate(bool disconnectClients = true)
+        catch (Exception ex)
         {
-            try
-            {
-                Cancel();
-                if (disconnectClients)
-                {
-                    DisconnectAllClients();
-                }
-
-                var list = _listener;
-                _listener = null;
-
-                if (list == null)
-                    return;
-
-                list.Close();
-                list.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
+            Debug.WriteLine(ex.Message);
         }
+    }
 
-        private void Cancel()
+    private void Cancel()
+    {
+        try
         {
-            try
-            {
-                _cancelRunner = true;
-                Disconnect();
-            }
-            catch (Exception ex)
-            {
-                Trace.TraceError(ex.Message);
-            }
+            _cancelRunner = true;
+            Disconnect();
         }
-
-        private void Disconnect()
+        catch (Exception ex)
         {
-            if (_listener != null)
-            {
-                if (_listener.Connected)
-                {
-                    _listener.Disconnect(true);
-                }
-                _listener.Close();
-            }
+            Trace.TraceError(ex.Message);
         }
+    }
 
-        public void DisconnectAllClients()
+    private void Disconnect()
+    {
+        if (_listener != null)
         {
-            try
+            if (_listener.Connected)
             {
-                lock (Clients)
-                {
-                    foreach (var cli in Clients)
-                    {
-                        try
-                        {
-                            cli.Shutdown(SocketShutdown.Both);
-                            cli.Close();
-                        }
-                        catch (Exception)
-                        {
-                            // ignore errors
-                        }
-                    }
-                }
+                _listener.Disconnect(true);
             }
-            catch (Exception ex)
-            {
-                Trace.TraceError(ex.Message);
-            }
+            _listener.Close();
         }
+    }
 
-
-        private void Handler(object? param)
+    public void DisconnectAllClients()
+    {
+        try
         {
-            var client = param as Socket;
-            if (client == null) return;
-            
-            if (SystemInfo.Platform == Platform.Windows)
-            {
-                client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
-            }
-            client.LingerState = new LingerOption(false, 0);
-            client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             lock (Clients)
             {
-                Clients.Add(client);
-            }
-
-            ClientConnected?.Invoke(client);
-
-            var rxString = string.Empty;
-            //client.ReceiveTimeout = 30000;
-            while (client.IsBound && client.Connected)
-            {
-                try
+                foreach (var cli in Clients)
                 {
-                    var rxData = new byte[2048];
-                    int rxLen;
                     try
                     {
-                        rxLen = client.Receive(rxData, 0, rxData.Length, SocketFlags.None); 
+                        cli.Shutdown(SocketShutdown.Both);
+                        cli.Close();
                     }
-                    catch (SocketException ex)
+                    catch (Exception)
                     {
-                        Debug.WriteLine(ex.Message);
-                        break;
+                        // ignore errors
                     }
-                    if (rxLen == 0)
-                    {
-                        break;
-                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Trace.TraceError(ex.Message);
+        }
+    }
 
-                    var rxStr = UseEncoding.GetString(rxData, 0, rxLen);
-                    // ReSharper disable once ForCanBeConvertedToForeach
-                    for (var cx = 0; cx < rxStr.Length; cx++)
-                    {
-                        rxString += rxStr[cx];
 
-                        foreach (var eoc in Eoc)
-                        {
-                            if (rxString.IndexOf(eoc, StringComparison.InvariantCulture) == -1) 
-                                continue;
+    private void Handler(object? param)
+    {
+        var client = param as Socket;
+        if (client == null) return;
+            
+        if (SystemInfo.Platform == Platform.Windows)
+        {
+            client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+        }
+        client.LingerState = new LingerOption(false, 0);
+        client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+        lock (Clients)
+        {
+            Clients.Add(client);
+        }
 
-                            rxString = rxString.Replace(eoc, string.Empty);
-                            if (!string.IsNullOrEmpty(StartOfCommand))
-                            {
-                                var start = rxString.IndexOf(StartOfCommand, StringComparison.Ordinal);
-                                rxString = (start >= 0) ? rxString.Substring(start + 1) : string.Empty;
-                            }
-                            if (!string.IsNullOrEmpty(rxString) || HandleEmptyCommands)
-                            {
-                                if (client.Connected)
-                                {
-                                    HandleCommand?.Invoke(client, rxString);
-                                }
-                            }
-                            rxString = string.Empty;
-                            break;
-                        }
-                    }
+        ClientConnected?.Invoke(client);
+
+        var rxString = string.Empty;
+        //client.ReceiveTimeout = 30000;
+        while (client is { IsBound: true, Connected: true })
+        {
+            try
+            {
+                var rxData = new byte[2048];
+                int rxLen;
+                try
+                {
+                    rxLen = client.Receive(rxData, 0, rxData.Length, SocketFlags.None); 
                 }
                 catch (SocketException ex)
                 {
-                    if (ex.SocketErrorCode != SocketError.ConnectionReset)
-                    {
-                        Trace.TraceError(ex.Message);
-                    }
+                    Debug.WriteLine(ex.Message);
                     break;
                 }
-                catch (ObjectDisposedException ex)
+                if (rxLen == 0)
                 {
-                    Trace.TraceError(ex.Message);
                     break;
                 }
-                catch (PlatformNotSupportedException ex)
-                {
-                    Trace.TraceError(ex.Message);
-                    break;
-                }
-                catch(ThreadAbortException ex)
-                {
-                    Trace.TraceError(ex.Message);
-                    break;
-                }
-            }
-            try
-            {
-                client.Shutdown(SocketShutdown.Both);
-                client.Disconnect(false);
-            }
-            catch (SocketException)
-            {
-            }
-            catch (ObjectDisposedException)
-            {
-            }
-            catch (PlatformNotSupportedException)
-            {
-            }
 
-            ClientDisconnected?.Invoke(client);
-            lock (Clients)
+                var rxStr = UseEncoding.GetString(rxData, 0, rxLen);
+                // ReSharper disable once ForCanBeConvertedToForeach
+                for (var cx = 0; cx < rxStr.Length; cx++)
+                {
+                    rxString += rxStr[cx];
+
+                    foreach (var eoc in Eoc)
+                    {
+                        if (rxString.IndexOf(eoc, StringComparison.InvariantCulture) == -1) 
+                            continue;
+
+                        rxString = rxString.Replace(eoc, string.Empty);
+                        if (!string.IsNullOrEmpty(StartOfCommand))
+                        {
+                            var start = rxString.IndexOf(StartOfCommand, StringComparison.Ordinal);
+                            rxString = (start >= 0) ? rxString.Substring(start + 1) : string.Empty;
+                        }
+                        if (!string.IsNullOrEmpty(rxString) || HandleEmptyCommands)
+                        {
+                            if (client.Connected)
+                            {
+                                HandleCommand?.Invoke(client, rxString);
+                            }
+                        }
+                        rxString = string.Empty;
+                        break;
+                    }
+                }
+            }
+            catch (SocketException ex)
             {
-                Clients.Remove(client);
+                if (ex.SocketErrorCode != SocketError.ConnectionReset)
+                {
+                    Trace.TraceError(ex.Message);
+                }
+                break;
+            }
+            catch (ObjectDisposedException ex)
+            {
+                Trace.TraceError(ex.Message);
+                break;
+            }
+            catch (PlatformNotSupportedException ex)
+            {
+                Trace.TraceError(ex.Message);
+                break;
+            }
+            catch(ThreadAbortException ex)
+            {
+                Trace.TraceError(ex.Message);
+                break;
             }
         }
-
-        public void SendToAllClients(byte[] data)
+        try
         {
-            lock (Clients)
+            client.Shutdown(SocketShutdown.Both);
+            client.Disconnect(false);
+        }
+        catch (SocketException)
+        {
+        }
+        catch (ObjectDisposedException)
+        {
+        }
+        catch (PlatformNotSupportedException)
+        {
+        }
+
+        ClientDisconnected?.Invoke(client);
+        lock (Clients)
+        {
+            Clients.Remove(client);
+        }
+    }
+
+    public void SendToAllClients(byte[] data)
+    {
+        lock (Clients)
+        {
+            foreach (var client in Clients)
             {
-                foreach (var client in Clients)
-                {
-                    client.Send(data);
-                }
+                client.Send(data);
             }
         }
     }

@@ -16,7 +16,7 @@ namespace IctBaden.Framework.Network
     /// 
     /// </summary>
     [Obsolete("Please use a REST API instead")]
-    public class SocketCommandClient : IDisposable
+    public sealed class SocketCommandClient : IDisposable
     {
         private readonly string _commandHost;
         private readonly int _commandPort;
@@ -83,6 +83,7 @@ namespace IctBaden.Framework.Network
                     return false;
                 }
 
+                _clientSocket?.Dispose();
                 _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 _clientSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                 

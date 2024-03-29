@@ -11,7 +11,7 @@ namespace IctBaden.Framework.Test.IniFile;
 /// <summary>
 /// Summary description for UnitTest1
 /// </summary>
-public class ProfileTests : IDisposable
+public sealed class ProfileTests : IDisposable
 {
     private readonly string _testFileName;
 

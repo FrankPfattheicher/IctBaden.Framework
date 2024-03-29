@@ -101,7 +101,9 @@ public static class PostMortemDebugging
                         FileName = process,
                         UseShellExecute = true
                     };
+#pragma warning disable IDISP004
                     Process.Start(restart);
+#pragma warning restore IDISP004
                 }
             }
             if (_exitOnFailure || e.IsTerminating)

@@ -7,7 +7,7 @@ namespace IctBaden.Framework.Logging;
 
 public class TronLogger(string name, IConfiguration config) : ILogger
 {
-    private class EmptyScope : IDisposable
+    private sealed class EmptyScope : IDisposable
     {
         public void Dispose() { }
     }

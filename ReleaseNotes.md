@@ -1,4 +1,5 @@
 
+* 3.2.1 - 29.03.2024 Refactoring using IDisposableAnalyzers
 * 3.2.0 - 21.03.2024 ProfileClassLoader reading subtypes from sections
 * 3.1.0 - 15.02.2024 Added Logger.GetLogger<TLogger>, PostMortemDebugging log err to logs folder if exists
 
