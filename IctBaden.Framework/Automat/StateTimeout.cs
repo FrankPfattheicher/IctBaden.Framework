@@ -8,7 +8,7 @@ namespace IctBaden.Framework.Automat
     using System;
     using System.Threading;
 
-    public class StateTimeout : IDisposable
+    public sealed class StateTimeout : IDisposable
     {
         private Timer? _timeout;
         private readonly string _name;

@@ -46,7 +46,9 @@ public static class Logger
             }
 
             Trace.TraceInformation($"No LoggerFactory found. Using console factory.");
+#pragma warning disable IDISP012
             return CreateConsoleAndTronFactory(GetLogConfiguration());
+#pragma warning restore IDISP012
         }
     }
 
@@ -70,7 +72,10 @@ public static class Logger
                     options.TimestampFormat = TimestampFormat;
                 }
             });
-            builder.AddProvider(new TronLoggerProvider(configuration));
+#pragma warning disable IDISP001
+            var tronLoggerProvider = new TronLoggerProvider(configuration);
+#pragma warning restore IDISP001
+            builder.AddProvider(tronLoggerProvider);
             builder.SetMinimumLevel(minimumLogLevel);
         });
         return loggerFactory;
@@ -98,7 +103,7 @@ public static class Logger
 
         foreach (var loggerInfoObject in loggerInformation)
         {
-            var loggerInfo = loggerInfoObject.GetType()
+            var loggerInfo = loggerInfoObject?.GetType()
                 .GetProperty("Logger", BindingFlags.Instance | BindingFlags.Public);
             
             if (loggerInfo?.GetValue(loggerInfoObject) is TLogger foundLogger)

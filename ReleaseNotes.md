@@ -1,4 +1,8 @@
 
+* 4.0.0 - 21.07.2024 Removed net6.0 and netcore 3.1, added Result
+
+* 3.2.1 - 29.03.2024 Refactoring using IDisposableAnalyzers
+* 3.2.0 - 21.03.2024 ProfileClassLoader reading subtypes from sections
 * 3.1.0 - 15.02.2024 Added Logger.GetLogger<TLogger>, PostMortemDebugging log err to logs folder if exists
 
 * 3.0.3 - 29.01.2024 Optionally expand environment variables in ProfileClassLoader

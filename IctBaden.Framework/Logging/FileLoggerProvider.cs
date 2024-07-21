@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace IctBaden.Framework.Logging;
 
-public class FileLoggerProvider(LogFileNameFactory fileNameFactory, string context) : ILoggerProvider
+public sealed class FileLoggerProvider(LogFileNameFactory fileNameFactory, string context) : ILoggerProvider
 {
     private readonly ConcurrentDictionary<string, FileLogger> _loggers = new();
 

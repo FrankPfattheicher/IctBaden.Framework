@@ -12,7 +12,9 @@ public class TestTronLogger
     public TestTronLogger()
     {
         var config = Logger.GetLogConfiguration(LogLevel.Trace);
+#pragma warning disable IDISP004
         _logger = Logger.CreateConsoleAndTronFactory(config).CreateLogger("TronLogger");
+#pragma warning restore IDISP004
         Tron.TronTrace.OnPrint += TronTraceOnOnPrint;
     }
 

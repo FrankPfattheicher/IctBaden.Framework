@@ -15,7 +15,7 @@ namespace IctBaden.Framework.Test.Network;
 // and SocketCommandClient is obsolete 
 
 [CollectionDefinition("TcpClientServerTests", DisableParallelization = true)]
-public class SocketCmdLineTests : IDisposable
+public sealed class SocketCmdLineTests : IDisposable
 {
     private readonly int _testServerPort;
     private readonly SocketCommandLineServer _server;
@@ -60,6 +60,7 @@ public class SocketCmdLineTests : IDisposable
         var reportDisconnected = false;
         _server.ClientDisconnected += _ => { reportDisconnected = true; };
 
+        _client?.Dispose();
         _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
         var connected = _client.Connect();
         Assert.True(connected, "LastResult: " + _client.LastResult);
@@ -82,6 +83,8 @@ public class SocketCmdLineTests : IDisposable
         Assert.True(started, "Could not start server");
 
         Thread.Sleep(100);
+        
+        _client?.Dispose();
         _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
         var connected = _client.Connect();
         Assert.True(connected, "Could not connect to server: " + _client.LastResult);
@@ -191,6 +194,7 @@ public class SocketCmdLineTests : IDisposable
     [PerformanceFact]
     public void ClientConnectShouldTimeoutIfServerNotRunning()
     {
+        _client?.Dispose();
         _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
         var connected = _client.Connect();
@@ -205,6 +209,7 @@ public class SocketCmdLineTests : IDisposable
 
         _server.HandleCommand += (socket, line) => socket.Send(Encoding.ASCII.GetBytes(line)); 
             
+        _client?.Dispose();
         _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
         const string cmd = "TEST*TEST";
@@ -219,6 +224,7 @@ public class SocketCmdLineTests : IDisposable
         var started = _server.Start();
         Assert.True(started, "Could not start server");
 
+        _client?.Dispose();
         _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
         var connected = _client.Connect();
@@ -234,11 +240,13 @@ public class SocketCmdLineTests : IDisposable
         var started = _server.Start();
         Assert.True(started, "Could not start server");
 
+        _client?.Dispose();
         _client = new SocketCommandClient("localhost", _testServerPort, _ => { });
 
         var connected = _client.Connect();
         Assert.True(connected, "LastResult: " + _client.LastResult);
 
+        _cancel?.Dispose();
         _cancel = new CancellationTokenSource();
         _task = Task.Run(() => _client.DoCommand("TEST"), _cancel.Token);
         var completedInTime = Task.WaitAll(new[] { _task }, 5000, _cancel.Token);
@@ -253,6 +261,7 @@ public class SocketCmdLineTests : IDisposable
         var started = _server.Start();
         Assert.True(started, "Could not start server");
 
+        _client?.Dispose();
         _client = new SocketCommandClient("localhost", _testServerPort, _ => { })
         {
             ConnectTimeout = 1000, 
@@ -262,6 +271,7 @@ public class SocketCmdLineTests : IDisposable
         _client.Connect();
         _client.SetReceiveTimeout(1000);
 
+        _cancel?.Dispose();
         _cancel = new CancellationTokenSource();
         _task = Task.Run(() => _client.DoCommand("TEST"), _cancel.Token);
         var completedInTime = Task.WaitAll(new[] { _task }, 6000, _cancel.Token);

@@ -76,6 +76,7 @@ namespace IctBaden.Framework.Tron
             {
                 lock (CheckState)
                 {
+                    _tron?.Dispose();
                     _tron = new NamedPipeClientStream(".", PipeName, PipeDirection.InOut, PipeOptions.Asynchronous);
                     _tron.Connect(10);
                 }
@@ -95,10 +96,8 @@ namespace IctBaden.Framework.Tron
             {
                 lock (CheckState)
                 {
-                    var dispose = _tron;
+                    _tron?.Dispose();
                     _tron = null;
-
-                    dispose?.Dispose();
                 }
             }
             catch
@@ -231,8 +230,6 @@ namespace IctBaden.Framework.Tron
 
         // ReSharper disable once EventNeverSubscribedTo.Global
         public static event Action<string>? OnPrint;
-
-        // TODO: IsOn(TraceIndex)
 
         public static void Print(string text)
         {

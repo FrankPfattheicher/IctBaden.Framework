@@ -9,39 +9,8 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.IniFile;
 
-public class ProfileClassLoaderTests : IDisposable
+public sealed class ProfileClassLoaderTests : IDisposable
 {
-    private class TestSuperClass : TestClass
-    {
-        public int SuperInteger { get; set; }
-    }
-
-    private class TestClass
-    {
-        public bool Boolean1 { get; set; }
-        public bool BooleanTrue { get; set; }
-        public int Integer { get; set; }
-        public float Numeric1 { get; set; }
-        public double Numeric2 { get; set; }
-        public string Text { get; set; } = string.Empty;
-        public List<string> TextList { get; set; } = new();
-        public string[] TextArray { get; set; } = Array.Empty<string>();
-        public List<int> IntList { get; set; } = new();
-    }
-
-    private class TestNullableClass
-    {
-        public bool? Boolean1 { get; set; }
-        public bool? BooleanTrue { get; set; }
-        public int? Integer { get; set; }
-        public float? Numeric1 { get; set; }
-        public double? Numeric2 { get; set; }
-        public string? Text { get; set; }
-        public List<string>? TextList { get; set; }
-        public string[]? TextArray { get; set; }
-        public List<int>? IntList { get; set; }
-    }
-        
     private readonly string _testFileName;
 
     public ProfileClassLoaderTests()
@@ -89,9 +58,9 @@ public class ProfileClassLoaderTests : IDisposable
         Assert.Equal(4.567f, testClass.Numeric1);
         Assert.Equal(4.567, testClass.Numeric2);
         Assert.Equal("a b c", testClass.Text);
-        Assert.Equal(new List<string> {"a","b","c"}, testClass.TextList);
+        Assert.Equal(["a", "b", "c"], testClass.TextList);
         Assert.Equal(new[] {"a","b","c"}, testClass.TextArray);
-        Assert.Equal(new List<int> {1,2,3}, testClass.IntList);
+        Assert.Equal([1, 2, 3], testClass.IntList);
     }
     
     
