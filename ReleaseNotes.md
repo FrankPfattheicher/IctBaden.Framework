@@ -1,4 +1,5 @@
 
+* 4.0.1 - 26.07.2024 Removed locks from TRON
 * 4.0.0 - 21.07.2024 Removed net6.0 and netcore 3.1, added Result
 
 * 3.2.1 - 29.03.2024 Refactoring using IDisposableAnalyzers
