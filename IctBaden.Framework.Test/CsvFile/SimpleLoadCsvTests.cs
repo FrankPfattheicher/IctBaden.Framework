@@ -15,7 +15,7 @@ public class SimpleLoadCsvTests
     [Fact]
     public void LoadFileShouldReadAllLinesAndColumns()
     {
-        var file = new Framework.CsvFile.CsvFile("SimpleTab.csv");
+        var file = new Framework.CsvFile("SimpleTab.csv");
         file.Load();
 
         Assert.Equal(4, file.Columns.Count);
@@ -29,7 +29,7 @@ public class SimpleLoadCsvTests
     [Fact]
     public void LoadFileWithBomShouldReadAllLinesAndColumns()
     {
-        var file = new Framework.CsvFile.CsvFile("Utf8WithBom.csv");
+        var file = new Framework.CsvFile("Utf8WithBom.csv");
         file.Load();
 
         Assert.Equal(4, file.Columns.Count);
@@ -43,7 +43,7 @@ public class SimpleLoadCsvTests
     [Fact]
     public void LoadFileWindowsEncodedWithoutBomShouldReadAllLinesAndColumns()
     {
-        var file = new Framework.CsvFile.CsvFile("WindowsWithoutBom.csv")
+        var file = new Framework.CsvFile("WindowsWithoutBom.csv")
         {
             FileEncoding = Encoding.GetEncoding(1250)
         };
@@ -61,7 +61,7 @@ public class SimpleLoadCsvTests
     [Fact]
     public void LoadFileShouldDetectSeparatorCharacter()
     {
-        var file = new Framework.CsvFile.CsvFile("SimpleSemicolon.csv");
+        var file = new Framework.CsvFile("SimpleSemicolon.csv");
         file.Load();
 
         Assert.Equal(4, file.Columns.Count);
@@ -74,7 +74,7 @@ public class SimpleLoadCsvTests
     [Fact]
     public void LoadFileShouldIncludeQuotes()
     {
-        var file = new Framework.CsvFile.CsvFile("SimpleQuotes.csv");
+        var file = new Framework.CsvFile("SimpleQuotes.csv");
         file.Load();
 
         Assert.True(file.DataRows.All(row => row.Fields.Last().Contains('"')));
@@ -83,7 +83,7 @@ public class SimpleLoadCsvTests
     [Fact]
     public void LoadFileShouldRemoveQuotes()
     {
-        var file = new Framework.CsvFile.CsvFile("SimpleSemicolon.csv") {RemoveQuotes = true};
+        var file = new Framework.CsvFile("SimpleSemicolon.csv") {RemoveQuotes = true};
         file.Load();
 
         Assert.DoesNotContain(file.DataRows, row => row.Fields.Last().Contains('"'));
@@ -92,19 +92,19 @@ public class SimpleLoadCsvTests
     [Fact]
     public void SaveFileNormallyShouldNotContainBom()
     {
-        var file = new Framework.CsvFile.CsvFile("SimpleTab.csv");
+        var file = new Framework.CsvFile("SimpleTab.csv");
         file.Load();
 
         file.SaveAs("Temp.csv");
 
         var text = File.ReadAllBytes("Temp.csv").Take(4).ToArray();
-        Assert.Equal(new[] { (byte)'N', (byte)'u', (byte)'m', (byte)'m' }, text);
+        Assert.Equal("Numm"u8.ToArray(), text);
     }
 
     [Fact]
     public void SaveFileForcingBomShouldContainBom()
     {
-        var file = new Framework.CsvFile.CsvFile("SimpleTab.csv");
+        var file = new Framework.CsvFile("SimpleTab.csv");
         file.Load();
 
         file.WriteBom = true;

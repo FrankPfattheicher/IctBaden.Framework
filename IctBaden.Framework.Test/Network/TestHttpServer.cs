@@ -21,11 +21,13 @@ public partial class SimpleHttpServerTests
 
             if (processor.HttpUrl is "/Test.htm")
             {
-                const string content = @"<html>
-                            <body>
-                                <p>Test äöüß</b>
-                            </body>
-                        </html>";
+                const string content = """
+                                       <html>
+                                           <body>
+                                               <p>Test äöüß</b>
+                                           </body>
+                                       </html>
+                                       """;
                 processor.WriteSuccess(content, "text/html; charset=utf-8");
             }
             else if (processor.HttpUrl is "/Query.htm")

@@ -2,6 +2,9 @@
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable IntroduceOptionalParameters.Global
+
+using System.Globalization;
+
 namespace IctBaden.Framework.Types;
 
 using System;
@@ -66,7 +69,7 @@ public class ValidatedEnum<TEnum> where TEnum : struct
                 break;
         }
 
-        if (long.TryParse(data.ToString(), out var numeric))
+        if (long.TryParse(data.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var numeric))
         {
             Numeric = numeric;
             data = numeric;
@@ -76,7 +79,8 @@ public class ValidatedEnum<TEnum> where TEnum : struct
         {
             HasValue = true;
             Numeric = longData;
-            Text = Enum.GetNames(typeof(TEnum)).FirstOrDefault(name => Convert.ToInt32(Enum.Parse(typeof(TEnum), name)) == Numeric);
+            Text = Enum.GetNames(typeof(TEnum))
+                .FirstOrDefault(name => Convert.ToInt32(Enum.Parse(typeof(TEnum), name), CultureInfo.InvariantCulture) == Numeric);
             if (Text != null)
             {
                 Enumeration = (TEnum)Enum.Parse(typeof(TEnum), Text);
@@ -92,7 +96,7 @@ public class ValidatedEnum<TEnum> where TEnum : struct
         if (Text != null && Enum.TryParse(Text, out TEnum enumeration))
         {
             Enumeration = enumeration;
-            Numeric = Convert.ToInt32(enumeration);
+            Numeric = Convert.ToInt32(enumeration, CultureInfo.InvariantCulture);
             IsValid = true;
             return;
         }
@@ -102,7 +106,7 @@ public class ValidatedEnum<TEnum> where TEnum : struct
         if (Enum.TryParse(Text, out enumeration))
         {
             Enumeration = enumeration;
-            Numeric = Convert.ToInt32(enumeration);
+            Numeric = Convert.ToInt32(enumeration, CultureInfo.InvariantCulture);
             IsValid = true;
             HasValue = true;
             return;

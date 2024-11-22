@@ -81,7 +81,7 @@ namespace IctBaden.Framework.Automat
         {
             if (Automat?.CurrentState == null)
                 return;
-            if (Automat.CurrentStateName != GetType().Name)
+            if (!string.Equals(Automat.CurrentStateName, GetType().Name, System.StringComparison.OrdinalIgnoreCase))
                 return;
             Automat.SetTimeout("####" + Automat.CurrentStateName, timeoutMilliseconds);
         }

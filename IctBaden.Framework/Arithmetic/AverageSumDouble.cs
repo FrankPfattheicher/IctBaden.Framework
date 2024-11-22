@@ -13,7 +13,7 @@ namespace IctBaden.Framework.Arithmetic
 
         public AverageSumDouble(int count = DefaultCount)
         {
-            if (count <= 0) throw new ArgumentException("The count mus be greater than 0");
+            if (count <= 0) throw new ArgumentException("The count mus be greater than 0", nameof(count));
             _averageCount = count;
         }
         public AverageSumDouble(int count, double startValue)

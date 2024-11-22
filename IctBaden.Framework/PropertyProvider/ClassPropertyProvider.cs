@@ -47,9 +47,9 @@ public class ClassPropertyProvider(object targetObject)
             
             var propertyType = property.PropertyType;
                     
-            if (property.PropertyType.Name.StartsWith("Nullable`1"))
+            if (property.PropertyType.Name.StartsWith("Nullable`1", StringComparison.InvariantCultureIgnoreCase))
             {
-                propertyType = property.PropertyType.GenericTypeArguments.First();
+                propertyType = property.PropertyType.GenericTypeArguments[0];
             }
             else if (property.PropertyType.IsArray
                      || (property.PropertyType is { IsGenericType: true, GenericTypeArguments.Length: 1 }
@@ -63,7 +63,7 @@ public class ClassPropertyProvider(object targetObject)
             while(expandEnvironmentVariables && value is string stringValue && stringValue.Contains('%'))
             {
                 value = Environment.ExpandEnvironmentVariables(stringValue);
-                if ((string)value == stringValue) break;
+                if (string.Equals((string)value, stringValue, StringComparison.OrdinalIgnoreCase)) break;
             }
 
             value = UniversalConverter.ConvertToType(value, propertyType, provider);

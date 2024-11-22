@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Management;
 
@@ -19,7 +20,7 @@ public class TemperatureInfoWindows : ITemperatureInfo
             foreach (var baseObject in searcher.Get())
             {
                 var obj = (ManagementObject)baseObject;
-                var temperature = Convert.ToDouble(obj["CurrentTemperature"].ToString());
+                var temperature = Convert.ToDouble(obj["CurrentTemperature"].ToString(), CultureInfo.InvariantCulture);
                 temperature = temperature / 10.0 - 273.15;  // Convert the value to celsius degrees
                 temperatures.Add(temperature);
             }

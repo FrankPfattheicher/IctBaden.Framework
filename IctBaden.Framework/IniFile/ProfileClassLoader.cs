@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using IctBaden.Framework.PropertyProvider;
+
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Framework.IniFile;
@@ -13,21 +14,23 @@ public class ProfileClassLoader
 {
     private readonly IFormatProvider _provider = CultureInfo.CurrentCulture;
     private readonly bool _expandEnvironmentVariables;
-        
+
     // ReSharper disable once UnusedMember.Global
     public ProfileClassLoader()
     {
     }
+
     public ProfileClassLoader(IFormatProvider provider)
     {
         _provider = provider;
     }
+
     public ProfileClassLoader(IFormatProvider provider, bool expandEnvironmentVariables)
     {
         _provider = provider;
         _expandEnvironmentVariables = expandEnvironmentVariables;
     }
-        
+
     /// <summary>
     /// Loads all properties of the target object
     /// from the section with the name of the class.
@@ -54,12 +57,12 @@ public class ProfileClassLoader
         var iniSection = iniFile[sectionName];
         var targetClass = new ClassPropertyProvider(targetObject);
         targetClass.SetProperties(iniSection, _provider, _expandEnvironmentVariables);
-        
+
         // load subtypes from named sections
         var subClasses = targetObject.GetType().GetProperties()
-            .Where(sc => sc.PropertyType.IsClass)
-            .Where(sc => sc.PropertyType.Namespace?.StartsWith("System") != true)
-            .ToArray();
+            .Where(sc =>
+                sc.PropertyType.IsClass &&
+                sc.PropertyType.Namespace?.StartsWith("System", StringComparison.Ordinal) != true).ToArray();
 
         try
         {
@@ -76,5 +79,4 @@ public class ProfileClassLoader
             // ignore
         }
     }
-
 }

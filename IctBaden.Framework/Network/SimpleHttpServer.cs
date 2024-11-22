@@ -49,7 +49,9 @@ public abstract class SimpleHttpServer(int tcpPort) : IDisposable
     public delegate void ConnectionHandler(Socket client);
 
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    public List<Socket> Clients { get; private set; } = new();
+#pragma warning disable MA0016
+    public List<Socket> Clients { get; private set; } = [];
+#pragma warning restore MA0016
 
     public int Connections => Clients.Count;
 

@@ -41,11 +41,9 @@ public sealed partial class SimpleHttpServerTests : IDisposable
 
         try
         {
-            using (var client = new WebClient())
-            {
-                client.Encoding = Encoding.UTF8;
-                response = client.DownloadString($"http://localhost:{_testPort}/Test.htm");
-            }
+            using var client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+            response = client.DownloadString($"http://localhost:{_testPort}/Test.htm");
         }
         catch (Exception ex)
         {
@@ -63,11 +61,9 @@ public sealed partial class SimpleHttpServerTests : IDisposable
 
         try
         {
-            using (var client = new WebClient())
-            {
-                client.Encoding = Encoding.UTF8;
-                response = client.DownloadString($"http://localhost:{_testPort}/Query.htm?a=123&b=x%20y");
-            }
+            using var client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+            response = client.DownloadString($"http://localhost:{_testPort}/Query.htm?a=123&b=x%20y");
         }
         catch (Exception ex)
         {
@@ -86,10 +82,8 @@ public sealed partial class SimpleHttpServerTests : IDisposable
 
         try
         {
-            using (var client = new WebClient())
-            {
-                client.DownloadString($"http://localhost:{_testPort}/Unknown.htm");
-            }
+            using var client = new WebClient();
+            client.DownloadString($"http://localhost:{_testPort}/Unknown.htm");
         }
         catch (Exception ex)
         {
@@ -108,11 +102,9 @@ public sealed partial class SimpleHttpServerTests : IDisposable
 
         try
         {
-            using (var client = new WebClient())
-            {
-                client.Encoding = Encoding.UTF8;
-                response = client.UploadString($"http://localhost:{_testPort}/Write", data);
-            }
+            using var client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+            response = client.UploadString($"http://localhost:{_testPort}/Write", data);
         }
         catch (Exception ex)
         {
@@ -124,7 +116,7 @@ public sealed partial class SimpleHttpServerTests : IDisposable
     }
 
     [Fact]
-    public async void MultipleParallelGetRequests()
+    public async Task MultipleParallelGetRequests()
     {
         var requests = Enumerable.Range(1, 10)
             .Select(_ => Task.Run(GetRequestSuccess))

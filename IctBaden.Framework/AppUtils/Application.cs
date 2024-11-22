@@ -29,8 +29,8 @@ namespace IctBaden.Framework.AppUtils
             using (var processModule = Process.GetCurrentProcess().MainModule)
             {
                     if (processModule != null 
-                        && (processModule.ModuleName != "dotnet")
-                        && (processModule.ModuleName != "dotnet.exe"))
+                        && !string.Equals(processModule.ModuleName, "dotnet", StringComparison.OrdinalIgnoreCase)
+                        && !string.Equals(processModule.ModuleName, "dotnet.exe", StringComparison.OrdinalIgnoreCase))
                     {
                         // started as app.exe (netcore 3.1) or published single file
                         path = Path.GetDirectoryName(processModule.FileName);

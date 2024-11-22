@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 
 // ReSharper disable UnusedMember.Global
@@ -65,7 +66,7 @@ public static class SystemInfo
     private static bool IsRunningOnMac()
     {
         var osName = Environment.OSVersion.VersionString;
-        return osName.ToLower().Contains("darwin");
+        return osName.Contains("darwin", StringComparison.OrdinalIgnoreCase);
     }
 
 

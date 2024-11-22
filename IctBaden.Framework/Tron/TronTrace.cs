@@ -213,7 +213,9 @@ public static class TronTrace
     }
 
     // ReSharper disable once EventNeverSubscribedTo.Global
+#pragma warning disable MA0046
     public static event Action<string>? OnPrint;
+#pragma warning restore MA0046
 
     public static void Print(string text)
     {

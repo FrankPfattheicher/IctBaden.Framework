@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using Microsoft.Extensions.Logging;
@@ -64,19 +65,19 @@ public class FileLogger(LogFileNameFactory fileNameFactory, string context) : IL
             var logLine = new StringBuilder();
             if (_timestamp)
             {
-                logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                logLine.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture));
             }
 
-            logLine.Append("\t");
+            logLine.Append('\t');
             logLine.Append(GetLogLevelString(logLevel));
-            logLine.Append("\t");
+            logLine.Append('\t');
             logLine.Append(context);
-            logLine.Append("\t");
+            logLine.Append('\t');
             if (!string.IsNullOrEmpty(_scopeContext))
             {
                 logLine.Append("=> ");
                 logLine.Append(_scopeContext);
-                logLine.Append("\t");
+                logLine.Append('\t');
             }
 
             logLine.Append(state);
