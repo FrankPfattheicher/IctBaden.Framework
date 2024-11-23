@@ -35,7 +35,7 @@ public class AssemblyInfo
             _contact = new AssemblyContactAttribute();
     }
 
-    public string Version => _assembly.GetName().Version?.ToString() ?? "";
+    public string Version => _assembly.GetName().Version?.ToString() ?? string.Empty;
 
     public string DisplayVersion
     {
@@ -102,13 +102,13 @@ public class AssemblyInfo
 
     public string CompanyName => GetCustomAttribute<AssemblyCompanyAttribute>()?.Company ?? string.Empty;
 
-    public string CompanyAddress => _contact.Address ?? "";
-    public string CompanyCity => _contact.City ?? "";
-    public string CompanyMail => _contact.Mail ?? "";
-    public string CompanyPhone => _contact.Phone ?? "";
-    public string CompanyFax => _contact.Fax ?? "";
-    public string CompanyMobile => _contact.Mobile ?? "";
-    public string CompanyUrl => _contact.Url ?? "";
+    public string CompanyAddress => _contact.Address ?? string.Empty;
+    public string CompanyCity => _contact.City ?? string.Empty;
+    public string CompanyMail => _contact.Mail ?? string.Empty;
+    public string CompanyPhone => _contact.Phone ?? string.Empty;
+    public string CompanyFax => _contact.Fax ?? string.Empty;
+    public string CompanyMobile => _contact.Mobile ?? string.Empty;
+    public string CompanyUrl => _contact.Url ?? string.Empty;
     public string Product => GetCustomAttribute<AssemblyProductAttribute>()?.Product ?? string.Empty;
     public string Copyright => GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright ?? string.Empty;
     public string Trademark => GetCustomAttribute<AssemblyTrademarkAttribute>()?.Trademark ?? string.Empty;
@@ -117,6 +117,6 @@ public class AssemblyInfo
     public string NeutralResourcesLanguage =>
         GetCustomAttribute<NeutralResourcesLanguageAttribute>()?.CultureName ?? string.Empty;
 
-    public bool IsDebugBuild => _assembly.GetCustomAttributes(false).OfType<DebuggableAttribute>()
+    public bool IsDebugBuild => _assembly.GetCustomAttributes(inherit: false).OfType<DebuggableAttribute>()
         .Any(da => da.IsJITTrackingEnabled);
 }

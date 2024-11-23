@@ -2,11 +2,10 @@
 using System.Runtime.InteropServices;
 // ReSharper disable UnusedMember.Global
 
-namespace IctBaden.Framework.AppUtils
+namespace IctBaden.Framework.AppUtils;
+
+[AttributeUsage(AttributeTargets.Assembly), ComVisible(true)]
+public sealed class AssemblyReleaseAttribute : Attribute
 {
-  [AttributeUsage(AttributeTargets.Assembly), ComVisible(true)]
-  public sealed class AssemblyReleaseAttribute : Attribute
-  {
-    public string? Date { get; set; }
-  }
+  public string? Date { get; set; }
 }

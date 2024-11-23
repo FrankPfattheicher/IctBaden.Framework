@@ -11,7 +11,7 @@ namespace IctBaden.Framework.Logging;
 
 public class FileLogger(LogFileNameFactory fileNameFactory, string context) : ILogger
 {
-    private string _scopeContext = "";
+    private string _scopeContext = string.Empty;
     private LogLevel _logLevel;
     private bool _timestamp = true;
 
@@ -27,7 +27,7 @@ public class FileLogger(LogFileNameFactory fileNameFactory, string context) : IL
 
         public void Dispose()
         {
-            _logger._scopeContext = "";
+            _logger._scopeContext = string.Empty;
         }
     }
 

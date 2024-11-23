@@ -1,12 +1,11 @@
-﻿namespace IctBaden.Framework.AppUtils
-{
-    public enum Platform
-    {
-        NotSupported,
+﻿namespace IctBaden.Framework.AppUtils;
 
-        Windows,
-        Linux,
-        // ReSharper disable once InconsistentNaming
-        MacOSX
-    }
+public enum Platform
+{
+    NotSupported,
+
+    Windows,
+    Linux,
+    // ReSharper disable once InconsistentNaming
+    MacOSX
 }

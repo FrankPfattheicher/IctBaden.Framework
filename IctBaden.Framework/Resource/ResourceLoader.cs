@@ -7,48 +7,47 @@ using System.Text;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable ConvertToUsingDeclaration
 
-namespace IctBaden.Framework.Resource
+namespace IctBaden.Framework.Resource;
+
+public static class ResourceLoader
 {
-    public static class ResourceLoader
+    /// <summary>
+    /// Loads resource string by name from
+    /// any assembly of current AppDomain
+    /// </summary>
+    /// <param name="resourceName">Name of the resource. Only base name required, case insensitive.</param>
+    /// <returns></returns>
+    public static string? LoadString(string resourceName)
     {
-        /// <summary>
-        /// Loads resource string by name from
-        /// any assembly of current AppDomain
-        /// </summary>
-        /// <param name="resourceName">Name of the resource. Only base name required, case insensitive.</param>
-        /// <returns></returns>
-        public static string? LoadString(string resourceName)
-        {
-            if(string.IsNullOrEmpty(resourceName)) throw new ArgumentException("must not be null or empty", nameof(resourceName));
+        if(string.IsNullOrEmpty(resourceName)) throw new ArgumentException("must not be null or empty", nameof(resourceName));
             
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic);
-            foreach (var assembly in assemblies)
-            {
-                var assemblyResourceName = assembly.GetManifestResourceNames()
-                    .FirstOrDefault(rn => rn.EndsWith(resourceName, StringComparison.InvariantCultureIgnoreCase));
-                if (assemblyResourceName != null)
-                {
-                    return LoadString(assembly, assemblyResourceName);
-                }
-            }
-            return null;
-        }
-
-        public static string? LoadString(Assembly assembly, string resourceName)
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic);
+        foreach (var assembly in assemblies)
         {
-            string result;
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            var assemblyResourceName = assembly.GetManifestResourceNames()
+                .FirstOrDefault(rn => rn.EndsWith(resourceName, StringComparison.InvariantCultureIgnoreCase));
+            if (assemblyResourceName != null)
             {
-                if (stream == null)
-                    return null;
-
-                // Assembly resources are stored in default (Windows) encoding as the files are.
-                using (var reader = new StreamReader(stream, Encoding.Default))
-                {
-                    result = reader.ReadToEnd();
-                }
+                return LoadString(assembly, assemblyResourceName);
             }
-            return result;
         }
+        return null;
+    }
+
+    public static string? LoadString(Assembly assembly, string resourceName)
+    {
+        string result;
+        using (var stream = assembly.GetManifestResourceStream(resourceName))
+        {
+            if (stream == null)
+                return null;
+
+            // Assembly resources are stored in default (Windows) encoding as the files are.
+            using (var reader = new StreamReader(stream, Encoding.Default))
+            {
+                result = reader.ReadToEnd();
+            }
+        }
+        return result;
     }
 }

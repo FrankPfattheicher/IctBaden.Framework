@@ -42,8 +42,8 @@ public class ValidatedType
     public ValidatedType(string shortName)
     {
         ShortName = shortName;
-        FullName = "";
-        Message = "";
+        FullName = string.Empty;
+        Message = string.Empty;
             
             
         try

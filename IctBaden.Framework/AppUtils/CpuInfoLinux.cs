@@ -24,7 +24,7 @@ public partial class CpuInfoLinux : ICpuInfo
             return 0.0f;
         }
             
-        var info = File.ReadLines(StatInfo).FirstOrDefault() ?? "";
+        var info = File.ReadLines(StatInfo).FirstOrDefault() ?? string.Empty;
         var numbers = RegexNumbers().Split(info).Where(n => !string.IsNullOrWhiteSpace(n))
             .ToArray();
 

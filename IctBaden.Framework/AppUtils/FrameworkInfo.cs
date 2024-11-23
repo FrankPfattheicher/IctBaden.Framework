@@ -14,16 +14,15 @@ public static class FrameworkInfo
     public static string ClrVersion => RuntimeEnvironment.GetSystemVersion();
 
     public static bool IsSelfHosted { get; }
-    public static bool IsNetCore { get; }
+
+    [Obsolete("Classic framework no longer supported")]
+    public static bool IsNetCore => true;
 
         
     static FrameworkInfo()
     {
         var runtimeDirectory = Path.GetFullPath(Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "."));
         IsSelfHosted = string.Equals(runtimeDirectory, ApplicationInfo.ApplicationDirectory, StringComparison.OrdinalIgnoreCase);
-
-        IsNetCore = RuntimeInformation.FrameworkDescription.Contains("Core", StringComparison.OrdinalIgnoreCase) ||
-                    RuntimeInformation.FrameworkDescription.Contains(".NET ", StringComparison.OrdinalIgnoreCase);
     }
         
 }

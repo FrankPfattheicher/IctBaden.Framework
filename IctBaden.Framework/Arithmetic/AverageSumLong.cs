@@ -12,12 +12,12 @@ namespace IctBaden.Framework.Arithmetic
         public const int DefaultCount = 2;
 
         public AverageSumLong(int count = DefaultCount)
+            : this(count, 0)
         {
-            if (count <= 0) throw new ArgumentException("The count mus be greater than 0", nameof(count));
-            _averageCount = count;
         }
         public AverageSumLong(int count, long startValue)
         {
+            if (count <= 0) throw new ArgumentException("The count mus be greater than 0", nameof(count));
             _averageCount = count;
             _averageSum = startValue * (count - 1);
         }

@@ -1,6 +1,6 @@
 namespace IctBaden.Framework.AppUtils;
 
-public interface ITemperatureInfo
+internal interface ITemperatureInfo
 {
     float GetSystemTemperature();
 }

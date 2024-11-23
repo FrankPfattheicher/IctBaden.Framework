@@ -25,7 +25,7 @@
       <PackagePath>.</PackagePath>
       <Visible>True</Visible>    
     </Content>
-    <Content Include="README.md" >
+    <Content Include="../README.md" >
       <Pack>true</Pack>
       <PackagePath>.</PackagePath>
       <Visible>True</Visible>
@@ -51,6 +51,10 @@
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
     <PackageReference Include="System.Management" Version="6.0.2" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="IctBaden.Framework.csproj.DotSettings" />
   </ItemGroup>
 
 </Project>

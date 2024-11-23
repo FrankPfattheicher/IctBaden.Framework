@@ -1,4 +1,6 @@
 
+* 5.0.0 - 23.11.2024 Massive refactoring and optimization, DisplayInfo
+
 * 4.0.1 - 26.07.2024 Removed locks from TRON
 * 4.0.0 - 21.07.2024 Removed net6.0 and netcore 3.1, added Result
 

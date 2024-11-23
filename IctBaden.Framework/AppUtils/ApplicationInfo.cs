@@ -73,7 +73,7 @@ public static class ApplicationInfo
             var assembly = Assembly.GetEntryAssembly();
             if (assembly == null) return false;
 
-            var moduleName = assembly.GetName().Name?.ToLower(CultureInfo.InvariantCulture) ?? "";
+            var moduleName = assembly.GetName().Name?.ToLower(CultureInfo.InvariantCulture) ?? string.Empty;
             return moduleName.Contains("testrunner", StringComparison.OrdinalIgnoreCase) ||
                    moduleName.Contains("testhost", StringComparison.OrdinalIgnoreCase);
         }
