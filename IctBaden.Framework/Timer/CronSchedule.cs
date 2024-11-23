@@ -252,7 +252,7 @@ public partial class CronSchedule
             return [];
 
         return configuration
-            .Split([','], StringSplitOptions.RemoveEmptyEntries)
+            .Split(',', StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse)
             .ToArray();
     }

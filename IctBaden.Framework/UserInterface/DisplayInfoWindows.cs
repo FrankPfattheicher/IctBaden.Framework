@@ -75,7 +75,6 @@ internal partial class DisplayInfoWindows : IDisplayInfo
 
     public Rectangle GetVirtualScreen()
     {
-        // Vollbild über alle Monitore
         var virtualScreen = new Rectangle(int.MaxValue, int.MaxValue, int.MinValue,int.MinValue);
         EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, MonitorEnumProc, IntPtr.Zero);
         return virtualScreen;
