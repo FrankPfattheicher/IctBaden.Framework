@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace IctBaden.Framework.AppUtils;
 
-public partial class CpuInfoLinux : ICpuInfo
+public sealed partial class CpuInfoLinux : ICpuInfo
 {
     private const string StatInfo = "/proc/stat";
 

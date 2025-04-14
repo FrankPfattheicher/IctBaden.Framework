@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>Basic Application Framework</Title>
     <Authors>Frank Pfattheicher</Authors>
-    <Copyright>(C) 2009-2024 ICT Baden GmbH</Copyright>
+    <Copyright>(C) 2009-2025 ICT Baden GmbH</Copyright>
     <Description>Things you will need in your project</Description>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
