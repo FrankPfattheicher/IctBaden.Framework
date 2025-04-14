@@ -3,55 +3,54 @@
 using System;
 using System.Linq;
 
-namespace IctBaden.Framework.Arithmetic
+namespace IctBaden.Framework.Arithmetic;
+
+public class InterpolationDouble
 {
-    public class InterpolationDouble
+    private readonly InterpolationPointDouble[] _points;
+
+    public InterpolationDouble(InterpolationPointDouble[] interpolationPoints)
     {
-        private readonly InterpolationPointDouble[] _points;
+        _points = interpolationPoints;
+    }
 
-        public InterpolationDouble(InterpolationPointDouble[] interpolationPoints)
+    public double InterpolateLinear(double inputValue)
+    {
+        if (_points.Length == 0)
         {
-            _points = interpolationPoints;
+            // no points given
+            return inputValue;
+        }
+        // zu verwendende Wertepaare suchen
+        if (inputValue < _points[0].Input)
+        {
+            return _points[0].Output;
         }
 
-        public double InterpolateLinear(double inputValue)
+        int pos;
+        for (pos = 1; pos < _points.Length; pos++)
         {
-            if (_points.Length == 0)
-            {
-                // no points given
-                return inputValue;
-            }
-            // zu verwendende Wertepaare suchen
-            if (inputValue < _points[0].Input)
-            {
-                return _points[0].Output;
-            }
-
-            int pos;
-            for (pos = 1; pos < _points.Length; pos++)
-            {
-                if (inputValue < _points[pos].Input)
-                    break;
-            }
-
-            return pos < _points.Length
-                ? InterpolateLinear(_points[pos - 1], _points[pos], inputValue)
-                : _points.Last().Output;
+            if (inputValue < _points[pos].Input)
+                break;
         }
 
-        static double InterpolateLinear(InterpolationPointDouble point1, InterpolationPointDouble point2,
-            double inputValue)
-        {
-            // Out = (In - In1) * (Out2 - Out1) / (In2 - In1) + Out1
+        return pos < _points.Length
+            ? InterpolateLinear(_points[pos - 1], _points[pos], inputValue)
+            : _points.Last().Output;
+    }
 
-            var outputValue = inputValue - point1.Input;
-            outputValue *= point2.Output - point1.Output; // * (Out2 - Out1)
-            outputValue /= Math.Abs(point2.Input - point1.Input) < .001
-                ? 1.0
-                : point2.Input - point1.Input; // / (In2 - In1)
-            outputValue += point1.Output; // + Out1
+    static double InterpolateLinear(InterpolationPointDouble point1, InterpolationPointDouble point2,
+        double inputValue)
+    {
+        // Out = (In - In1) * (Out2 - Out1) / (In2 - In1) + Out1
 
-            return outputValue;
-        }
+        var outputValue = inputValue - point1.Input;
+        outputValue *= point2.Output - point1.Output; // * (Out2 - Out1)
+        outputValue /= Math.Abs(point2.Input - point1.Input) < .001
+            ? 1.0
+            : point2.Input - point1.Input; // / (In2 - In1)
+        outputValue += point1.Output; // + Out1
+
+        return outputValue;
     }
 }

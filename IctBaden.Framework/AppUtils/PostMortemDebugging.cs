@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -34,6 +35,7 @@ public static class PostMortemDebugging
         AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long")]
     private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
         if (e.ExceptionObject is OutOfMemoryException)

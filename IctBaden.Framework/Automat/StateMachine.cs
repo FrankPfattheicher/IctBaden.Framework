@@ -12,26 +12,20 @@ using System.Diagnostics;
 
 namespace IctBaden.Framework.Automat;
 
-internal class EmptyStateMachine : StateMachine
-{
-    public EmptyStateMachine() 
-        : base(typeof(object))
-    {
-    }
-}
-    
 public abstract class StateMachine
 {
     public delegate void StateChangedHandler(EventArgs e);
     public delegate void DoneHandler(EventArgs e);
 
+#pragma warning disable MA0046
     public event StateChangedHandler? StateChanged;
     public event StateChangedHandler? Done;
+#pragma warning restore MA0046
 
     public object? Result { get; private set; }
 
     public State? CurrentState { get; private set; }
-    public string CurrentStateName => (CurrentState == null) ? "<null>" : CurrentState.GetType().Name;
+    public string CurrentStateName => CurrentState == null ? "<null>" : CurrentState.GetType().Name;
     protected State? LastState;
     protected StateTimeoutCollection StateTimeouts;
     private readonly State _initialState;
@@ -39,15 +33,15 @@ public abstract class StateMachine
     protected StateMachine(Type initial)
     {
         Result = null;
-        StateTimeouts = new StateTimeoutCollection();
+        StateTimeouts = [];
 
         var state = Activator.CreateInstance(initial) as State;
-        _initialState = state ?? throw new ArgumentException("Could not instantiate initial state");
+        _initialState = state ?? throw new ArgumentException("Could not instantiate initial state", nameof(initial));
     }
 
     public void Start()
     {
-        GoState(_initialState, null);
+        GoState(_initialState, input: null);
     }
 
     public bool IsDone => CurrentState == null;
@@ -55,13 +49,13 @@ public abstract class StateMachine
     public void SetDone(object result)
     {
         Result = result;
-        GoState(null, null);
+        GoState(newState: null, input: null);
     }
 
     protected void GoState<T>() where T : State, new()
     {
         var t = new T();
-        GoState(t, null);
+        GoState(t, input: null);
     }
     public void GoState<T>(object input) where T : State, new()
     {
@@ -81,7 +75,7 @@ public abstract class StateMachine
 
         Trace.TraceInformation($"GoState {GetType().Name}:{CurrentStateName}");
 
-        StateChanged?.Invoke(new EventArgs());
+        StateChanged?.Invoke(EventArgs.Empty);
 
         if (CurrentState != null)
         {
@@ -93,7 +87,7 @@ public abstract class StateMachine
         }
         else
         {
-            Done?.Invoke(new EventArgs());
+            Done?.Invoke(EventArgs.Empty);
         }
     }
 

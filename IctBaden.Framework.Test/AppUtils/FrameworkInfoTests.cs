@@ -25,7 +25,9 @@ public class FrameworkInfoTests
         var core = FrameworkInfo.FrameworkVersion;
         Assert.Contains("8.0.", core);
             
+#pragma warning disable CS0618 // Type or member is obsolete
         Assert.True(FrameworkInfo.IsNetCore);
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     [Fact]

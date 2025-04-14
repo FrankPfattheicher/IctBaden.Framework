@@ -5,9 +5,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>Basic Application Framework</Title>
     <Authors>Frank Pfattheicher</Authors>
-    <Copyright>(C) 2009-2024 ICT Baden GmbH</Copyright>
-    <Description>Not really a framework but more a application companion...</Description>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>(C) 2009-2025 ICT Baden GmbH</Copyright>
+    <Description>Things you will need in your project</Description>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageVersion>3.0.0</PackageVersion>
     <LangVersion>12</LangVersion>
     <AssemblyVersion>3.0.0</AssemblyVersion>
@@ -15,18 +16,32 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TargetFramework>net8.0</TargetFramework>
+    <PackageIcon>ICT.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\LICENSE">
+    <Content Include="LICENSE.txt">
       <Pack>true</Pack>
       <PackagePath>.</PackagePath>
       <Visible>True</Visible>    
     </Content>
+    <Content Include="../README.md" >
+      <Pack>true</Pack>
+      <PackagePath>.</PackagePath>
+      <Visible>True</Visible>
+    </Content>
+    <Content Include="ICT.png" >
+      <Pack>true</Pack>
+      <PackagePath>.</PackagePath>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IDisposableAnalyzers" Version="4.0.7">
+    <PackageReference Include="IDisposableAnalyzers" Version="4.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.180">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -36,6 +51,10 @@
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
     <PackageReference Include="System.Management" Version="6.0.2" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="IctBaden.Framework.csproj.DotSettings" />
   </ItemGroup>
 
 </Project>

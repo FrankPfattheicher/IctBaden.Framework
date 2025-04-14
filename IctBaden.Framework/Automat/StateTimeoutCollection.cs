@@ -11,7 +11,9 @@ public class StateTimeoutCollection : List<StateTimeout>
     {
         lock (_accessLock)
         {
-            var timers = (from timer in this where timer.Name == timerName select timer).ToList();
+            var timers = this
+                .Where(timer => string.Equals(timer.Name, timerName, System.StringComparison.Ordinal))
+                .ToList();
             foreach (var t in timers)
             {
                 Remove(t);
@@ -24,7 +26,7 @@ public class StateTimeoutCollection : List<StateTimeout>
     {
         lock (_accessLock)
         {
-            return this.Any(timer => timer.Name == timerName);
+            return this.Any(timer => string.Equals(timer.Name, timerName, System.StringComparison.Ordinal));
         }
     }
 

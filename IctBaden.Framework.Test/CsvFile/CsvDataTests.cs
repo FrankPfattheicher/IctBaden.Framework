@@ -1,4 +1,3 @@
-using IctBaden.Framework.CsvFile;
 using Xunit;
 
 namespace IctBaden.Framework.Test.CsvFile;
@@ -36,8 +35,8 @@ public class CsvDataTests
         // ReSharper disable once LoopCanBeConvertedToQuery
         foreach (var propertyInfo in type.GetProperties())
         {
-            var aValue = propertyInfo.GetValue(a)?.ToString() ?? "";
-            var bValue = propertyInfo.GetValue(b)?.ToString() ?? "";
+            var aValue = propertyInfo.GetValue(a)?.ToString() ?? string.Empty;
+            var bValue = propertyInfo.GetValue(b)?.ToString() ?? string.Empty;
             if (aValue != bValue) return false;
         }
             

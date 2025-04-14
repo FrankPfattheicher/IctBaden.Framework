@@ -1,4 +1,6 @@
-﻿namespace IctBaden.Framework.AppUtils;
+﻿using System;
+
+namespace IctBaden.Framework.AppUtils;
 
 internal interface ICpuInfo
 {

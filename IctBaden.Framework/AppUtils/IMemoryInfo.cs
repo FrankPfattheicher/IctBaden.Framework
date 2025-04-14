@@ -1,10 +1,9 @@
-﻿namespace IctBaden.Framework.AppUtils
+﻿namespace IctBaden.Framework.AppUtils;
+
+internal interface IMemoryInfo
 {
-    internal interface IMemoryInfo
-    {
-        ulong GetSystemRamInstalled();
-        float GetSystemRamUsage();
-        ulong GetSystemTotalVirtualMemory();
-        float GetSystemVirtualMemoryUsage();
-    }
+    ulong GetSystemRamInstalled();
+    float GetSystemRamUsage();
+    ulong GetSystemTotalVirtualMemory();
+    float GetSystemVirtualMemoryUsage();
 }

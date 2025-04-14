@@ -9,7 +9,7 @@ public static class UsbInfo
     {
         return SystemInfo.Platform switch
         {
-            Platform.Windows => Array.Empty<UsbDevice>(),
+            Platform.Windows => [],
             Platform.Linux => new UsbInfoLinux().GetDeviceList(),
             _ => throw new PlatformNotSupportedException("UsbInfo")
         };

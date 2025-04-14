@@ -1,18 +1,19 @@
-﻿namespace IctBaden.Framework.Types
+﻿namespace IctBaden.Framework.Types;
+
+public static class TextEscaping
 {
-    public static class TextEscaping
+    public static string RemoveQuotes(string text)
     {
-        public static string RemoveQuotes(string text)
+        if (text.StartsWith("\"", System.StringComparison.OrdinalIgnoreCase) && 
+            text.EndsWith("\"", System.StringComparison.OrdinalIgnoreCase))
         {
-            if (text.StartsWith("\"") && text.EndsWith("\""))
-            {
-                return text.Substring(1, text.Length - 2);
-            }
-            if (text.StartsWith("'") && text.EndsWith("'"))
-            {
-                return text.Substring(1, text.Length - 2);
-            }
-            return text;
+            return text.Substring(1, text.Length - 2);
         }
+        if (text.StartsWith("'", System.StringComparison.OrdinalIgnoreCase) && 
+            text.EndsWith("'", System.StringComparison.OrdinalIgnoreCase))
+        {
+            return text.Substring(1, text.Length - 2);
+        }
+        return text;
     }
 }

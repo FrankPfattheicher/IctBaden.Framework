@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,7 +22,7 @@ public class SimpleHttpProcessor(Socket socket, SimpleHttpServer server)
 
     public string? HttpMethod;
     public string? HttpUrl;
-    public Dictionary<string, string>? QueryParameters;
+    public IDictionary<string, string>? QueryParameters;
     public string? HttpProtocolVersionString;
     public readonly Hashtable HttpHeaders = new Hashtable();
 
@@ -39,11 +40,11 @@ public class SimpleHttpProcessor(Socket socket, SimpleHttpServer server)
 
             ParseRequest(inputStream);
             ReadHeaders(inputStream);
-            if (HttpMethod == "GET")
+            if (string.Equals(HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
                 HandleGetRequest();
             }
-            else if (HttpMethod == "POST")
+            else if (string.Equals(HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
             {
                 HandlePostRequest(inputStream);
             }
@@ -84,11 +85,11 @@ public class SimpleHttpProcessor(Socket socket, SimpleHttpServer server)
         {
             throw new Exception("invalid http request line");
         }
-        HttpMethod = tokens[0].ToUpper();
+        HttpMethod = tokens[0].ToUpper(CultureInfo.InvariantCulture);
         var route = tokens[1];
         HttpProtocolVersionString = tokens[2];
 
-        if (route.Contains("?"))
+        if (route.Contains('?'))
         {
             var parts = route.Split('?');
             HttpUrl = parts[0];
@@ -97,7 +98,7 @@ public class SimpleHttpProcessor(Socket socket, SimpleHttpServer server)
             {
                 QueryParameters = queryString.Split('&')
                     .Select(param => param.Split('='))
-                    .ToDictionary(kv => kv.First(), kv => kv.Last());
+                    .ToDictionary(kv => kv[0], kv => kv[^1], StringComparer.OrdinalIgnoreCase);
             }
             catch (Exception ex)
             {
@@ -137,7 +138,7 @@ public class SimpleHttpProcessor(Socket socket, SimpleHttpServer server)
 
             var value = line.Substring(pos, line.Length - pos);
             Console.WriteLine("header: {0}:{1}", name, value);
-            HttpHeaders[name.ToLower()] = value;
+            HttpHeaders[name.ToLower(CultureInfo.InvariantCulture)] = value;
         }
     }
 
@@ -163,7 +164,7 @@ public class SimpleHttpProcessor(Socket socket, SimpleHttpServer server)
         var toRead = 0;
         if (HttpHeaders.ContainsKey("content-length"))
         {
-            var contentLen = Convert.ToInt32(HttpHeaders["content-length"]);
+            var contentLen = Convert.ToInt32(HttpHeaders["content-length"], CultureInfo.InvariantCulture);
             if (contentLen > MaxPostSize)
             {
                 throw new Exception($"POST Content-Length({contentLen}) too big for this simple server");
@@ -227,7 +228,7 @@ public class SimpleHttpProcessor(Socket socket, SimpleHttpServer server)
 
     public void WriteStringResponse(HttpStatusCode statusCode, string? body, string? contentType)
     {
-        if (Socket == null) return;
+        if (Socket is not { Connected: true }) return;
             
         using var outputStream = new StreamWriter(new NetworkStream(Socket, FileAccess.Write), new UTF8Encoding(false));
         outputStream.NewLine = "\r\n";

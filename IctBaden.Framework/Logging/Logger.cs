@@ -13,14 +13,18 @@ namespace IctBaden.Framework.Logging;
 
 public static class Logger
 {
+#pragma warning disable MA0069
+#pragma warning disable CA2211
     public static string? TimestampFormat = null;
     public static LogLevel LogLevel = LogLevel.Warning;
+#pragma warning restore CA2211
+#pragma warning restore MA0069
     public static IConfiguration GetLogConfiguration() => GetLogConfiguration(LogLevel);
 
     public static IConfiguration GetLogConfiguration(LogLevel level) => new ConfigurationBuilder()
         .Add(new MemoryConfigurationSource
         {
-            InitialData = new[] { new KeyValuePair<string, string>("LogLevel", level.ToString()) }
+            InitialData = [new KeyValuePair<string, string>("LogLevel", level.ToString())]
         })
         .Build();
 

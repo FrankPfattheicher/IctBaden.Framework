@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable ReplaceSubstringWithRangeIndexer
 
 namespace IctBaden.Framework.Types;
 
@@ -23,14 +25,14 @@ public static class NamingConverter
             return string.Empty;
 
         var builder = new StringBuilder();
-        builder.Append(char.ToLower(str.First()));
+        builder.Append(char.ToLower(str.First(), CultureInfo.InvariantCulture));
 
         foreach (var c in str.Skip(1))
         {
             if (char.IsUpper(c))
             {
                 builder.Append(delimiter);
-                builder.Append(char.ToLower(c));
+                builder.Append(char.ToLower(c, CultureInfo.InvariantCulture));
             }
             else
             {
@@ -57,7 +59,7 @@ public static class NamingConverter
             return string.Empty;
 
         var builder = new StringBuilder();
-        builder.Append(char.ToUpper(str.First()));
+        builder.Append(char.ToUpper(str.First(), CultureInfo.InvariantCulture));
 
         var dash = false;
         foreach (var c in str.Skip(1))
@@ -68,7 +70,7 @@ public static class NamingConverter
             }
             else if (dash)
             {
-                builder.Append(char.ToUpper(c));
+                builder.Append(char.ToUpper(c, CultureInfo.InvariantCulture));
                 dash = false;
             }
             else
@@ -82,12 +84,12 @@ public static class NamingConverter
 
     public static string ToCamelCase(string str)
     {
-        return str.Substring(0, 1).ToLower() + str.Substring(1);
+        return str.Substring(0, 1).ToLower(CultureInfo.InvariantCulture) + str.Substring(1);
     }
 
     public static string ToPascalCase(string str)
     {
-        return str.Substring(0, 1).ToUpper() + str.Substring(1);
+        return str.Substring(0, 1).ToUpper(CultureInfo.InvariantCulture) + str.Substring(1);
     }
         
     /// <summary>
@@ -97,7 +99,7 @@ public static class NamingConverter
     public static string ToPascalIdentifier(string text)
     {
         // Replace all non-letter and non-digits with an underscore and lowercase the rest.
-        var parts = string.Join("", text.Select(c => char.IsLetterOrDigit(c) ? c.ToString().ToLower() : "_").ToArray());
+        var parts = string.Join("", text.Select(c => char.IsLetterOrDigit(c) ? c.ToString().ToLower(CultureInfo.InvariantCulture) : "_").ToArray());
 
         // Split the resulting string by underscore
         // Select first character, uppercase it and concatenate with the rest of the string

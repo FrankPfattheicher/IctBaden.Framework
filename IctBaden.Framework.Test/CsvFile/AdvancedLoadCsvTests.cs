@@ -8,7 +8,7 @@ public class AdvancedLoadCsvTests
     [Fact]
     public void LoadFileShouldDetectSeparatorCharacterWithLineBreaks()
     {
-        var file = new Framework.CsvFile.CsvFile("QuotedWithLineBreaks.csv")
+        var file = new Framework.CsvFile("QuotedWithLineBreaks.csv")
         {
             RemoveQuotes = true
         };
@@ -25,7 +25,7 @@ public class AdvancedLoadCsvTests
     [Fact]
     public void LoadFileShouldDetectSeparatorCharacterInQuotedHeader()
     {
-        var file = new Framework.CsvFile.CsvFile("QuotedHeaderAndFields.csv")
+        var file = new Framework.CsvFile("QuotedHeaderAndFields.csv")
         {
             RemoveQuotes = true
         };
@@ -42,7 +42,7 @@ public class AdvancedLoadCsvTests
     [Fact]
     public void LoadObjectsShouldDeserializeProperties()
     {
-        var file = new Framework.CsvFile.CsvFile("CsvDataObjects.csv")
+        var file = new Framework.CsvFile("CsvDataObjects.csv")
         {
             RemoveQuotes = true
         };
@@ -50,6 +50,5 @@ public class AdvancedLoadCsvTests
 
         Assert.Equal(4, dataObjects.Count);
     }
-        
 
 }

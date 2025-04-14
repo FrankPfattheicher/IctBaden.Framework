@@ -6,97 +6,96 @@ using IctBaden.Framework.Types;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable AssignNullToNotNullAttribute
 
-namespace IctBaden.Framework.Tron
+namespace IctBaden.Framework.Tron;
+
+public class ColorConsoleTraceListener : TextWriterTraceListener
 {
-    public class ColorConsoleTraceListener : TextWriterTraceListener
+    private readonly Dictionary<TraceEventType, ConsoleColor> _typeColors;
+    public ConsoleColor CurrentColor { get; private set; }
+
+    public static ConsoleColor GetConsoleColor(Color color)
     {
-        private readonly Dictionary<TraceEventType, ConsoleColor> _typeColors;
-        public ConsoleColor CurrentColor { get; private set; }
+        ConsoleColorConverter.TryGetConsoleColor(color, out var cc);
+        return cc;
+    }
 
-        public static ConsoleColor GetConsoleColor(Color color)
+    public ColorConsoleTraceListener()
+    {
+        _typeColors = new Dictionary<TraceEventType, ConsoleColor>
         {
-            ConsoleColorConverter.TryGetConsoleColor(color, out var cc);
-            return cc;
+            { TraceEventType.Critical, ConsoleColor.Red },
+            { TraceEventType.Error, ConsoleColor.Red },
+            { TraceEventType.Warning, ConsoleColor.Yellow },
+            { TraceEventType.Information, ConsoleColor.White },
+            { TraceEventType.Verbose, ConsoleColor.Gray },
+            { TraceEventType.Start, ConsoleColor.Green },
+            { TraceEventType.Stop, ConsoleColor.Green },
+            { TraceEventType.Suspend, ConsoleColor.DarkBlue },
+            { TraceEventType.Resume, ConsoleColor.Blue },
+            { TraceEventType.Transfer, ConsoleColor.DarkGray }
+        };
+
+        Writer = Console.Out;
+    }
+
+    private void SetColorOnEventType(TraceEventType eventType)
+    {
+        var color = _typeColors[eventType];
+        if (color == CurrentColor) return;
+
+        CurrentColor = color;
+        Console.ForegroundColor = color;
+    }
+
+    public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? format, params object?[]? args)
+    {
+        try
+        {
+            SetColorOnEventType(eventType);
+            base.TraceEvent(eventCache, source, eventType, id, format, args);
         }
-
-        public ColorConsoleTraceListener()
+        catch
         {
-            _typeColors = new Dictionary<TraceEventType, ConsoleColor>
-            {
-                { TraceEventType.Critical, ConsoleColor.Red },
-                { TraceEventType.Error, ConsoleColor.Red },
-                { TraceEventType.Warning, ConsoleColor.Yellow },
-                { TraceEventType.Information, ConsoleColor.White },
-                { TraceEventType.Verbose, ConsoleColor.Gray },
-                { TraceEventType.Start, ConsoleColor.Green },
-                { TraceEventType.Stop, ConsoleColor.Green },
-                { TraceEventType.Suspend, ConsoleColor.DarkBlue },
-                { TraceEventType.Resume, ConsoleColor.Blue },
-                { TraceEventType.Transfer, ConsoleColor.DarkGray }
-            };
-
-            Writer = Console.Out;
+            // ignore
         }
+    }
 
-        private void SetColorOnEventType(TraceEventType eventType)
+    public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? message)
+    {
+        try
         {
-            var color = _typeColors[eventType];
-            if (color == CurrentColor) return;
-
-            CurrentColor = color;
-            Console.ForegroundColor = color;
+            SetColorOnEventType(eventType);
+            base.TraceEvent(eventCache, source, eventType, id, message);
         }
-
-        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? format, params object?[]? args)
+        catch
         {
-            try
-            {
-                SetColorOnEventType(eventType);
-                base.TraceEvent(eventCache, source, eventType, id, format, args);
-            }
-            catch
-            {
-                // ignore
-            }
+            // ignore
         }
+    }
 
-        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? message)
+    public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id)
+    {
+        try
         {
-            try
-            {
-                SetColorOnEventType(eventType);
-                base.TraceEvent(eventCache, source, eventType, id, message);
-            }
-            catch
-            {
-                // ignore
-            }
+            SetColorOnEventType(eventType);
+            base.TraceEvent(eventCache, source, eventType, id);
         }
-
-        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id)
+        catch
         {
-            try
-            {
-                SetColorOnEventType(eventType);
-                base.TraceEvent(eventCache, source, eventType, id);
-            }
-            catch
-            {
-                // ignore
-            }
+            // ignore
         }
+    }
 
-        public override void TraceTransfer(TraceEventCache? eventCache, string source, int id, string? message, Guid relatedActivityId)
+    public override void TraceTransfer(TraceEventCache? eventCache, string source, int id, string? message, Guid relatedActivityId)
+    {
+        try
         {
-            try
-            {
-                SetColorOnEventType(TraceEventType.Transfer);
-                base.TraceTransfer(eventCache, source, id, message, relatedActivityId);
-            }
-            catch
-            {
-                // ignore
-            }
+            SetColorOnEventType(TraceEventType.Transfer);
+            base.TraceTransfer(eventCache, source, id, message, relatedActivityId);
+        }
+        catch
+        {
+            // ignore
         }
     }
 }

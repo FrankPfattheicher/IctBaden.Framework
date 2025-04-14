@@ -4,24 +4,23 @@ using System.Linq;
 
 // ReSharper disable UnusedMember.Global
 
-namespace IctBaden.Framework.PropertyProvider
+namespace IctBaden.Framework.PropertyProvider;
+
+public class CommandlinePropertyProvider : PropertyBag
 {
-    public class CommandlinePropertyProvider : PropertyBag
+    public CommandlinePropertyProvider()
+        : this(Environment.GetCommandLineArgs().Skip(1))
     {
-        public CommandlinePropertyProvider()
-            : this(Environment.GetCommandLineArgs().Skip(1))
-        {
-        }
+    }
 
-        public CommandlinePropertyProvider(IEnumerable<string> args)
+    public CommandlinePropertyProvider(IEnumerable<string> args)
+    {
+        foreach (var arg in args)
         {
-            foreach (var arg in args)
-            {
-                var setting = arg.Split('=');
-                if (setting.Length != 2) continue;
+            var setting = arg.Split('=');
+            if (setting.Length != 2) continue;
 
-                Set(setting[0], setting[1]);
-            }
+            Set(setting[0], setting[1]);
         }
     }
 }

@@ -2,58 +2,57 @@
 using System.IO;
 // ReSharper disable UnusedMember.Global
 
-namespace IctBaden.Framework.Tron
+namespace IctBaden.Framework.Tron;
+
+public class LogFile
 {
-    public class LogFile
+    private readonly string _path;
+    private readonly string _fileName;
+
+    private int _oldDay;
+
+    public bool AddTimeStamp { get; set; } = false;
+
+    public LogFile(string path, string fileName)
     {
-        private readonly string _path;
-        private readonly string _fileName;
+        _path = path;
+        _fileName = fileName;
+    }
 
-        private int _oldDay;
+    public static LogFile DailyLog(string path, string prefix)
+    {
+        if (!string.IsNullOrEmpty(prefix)) prefix += "-";
+        return new LogFile(path, prefix + "{YEAR}-{MONTH}-{DAY}.log");
+    }
+    public static LogFile MontlyLog(string path, string prefix)
+    {
+        if (!string.IsNullOrEmpty(prefix)) prefix += "-";
+        return new LogFile(path, prefix + "{YEAR}-{MONTH}.log");
+    }
 
-        public bool AddTimeStamp { get; set; } = false;
+    public string CurrentFileName => _fileName
+        .Replace("{YEAR}", $"{DateTime.Now.Year:D4}")
+        .Replace("{MONTH}", $"{DateTime.Now.Month:D2}")
+        .Replace("{DAY}", $"{DateTime.Now.Day:D2}");
 
-        public LogFile(string path, string fileName)
+    public void Write(string message)
+    {
+        var fileName = Path.Combine(_path, CurrentFileName);
+        if (AddTimeStamp)
         {
-            _path = path;
-            _fileName = fileName;
-        }
+            message = $"{DateTime.Now:T}.{DateTime.Now.Millisecond:D3}  " + message;
 
-        public static LogFile DailyLog(string path, string prefix)
-        {
-            if (!string.IsNullOrEmpty(prefix)) prefix += "-";
-            return new LogFile(path, prefix + "{YEAR}-{MONTH}-{DAY}.log");
-        }
-        public static LogFile MontlyLog(string path, string prefix)
-        {
-            if (!string.IsNullOrEmpty(prefix)) prefix += "-";
-            return new LogFile(path, prefix + "{YEAR}-{MONTH}.log");
-        }
-
-        public string CurrentFileName => _fileName
-            .Replace("{YEAR}", $"{DateTime.Now.Year:D4}")
-            .Replace("{MONTH}", $"{DateTime.Now.Month:D2}")
-            .Replace("{DAY}", $"{DateTime.Now.Day:D2}");
-
-        public void Write(string message)
-        {
-            var fileName = Path.Combine(_path, CurrentFileName);
-            if (AddTimeStamp)
+            if (DateTime.Now.Day != _oldDay)
             {
-                message = $"{DateTime.Now:T}.{DateTime.Now.Millisecond:D3}  " + message;
-
-                if (DateTime.Now.Day != _oldDay)
-                {
-                    _oldDay = DateTime.Now.Day;
-                    File.AppendAllText(fileName, Environment.NewLine + $"TRACEDATE {DateTime.Now:d}" + Environment.NewLine);
-                }
+                _oldDay = DateTime.Now.Day;
+                File.AppendAllText(fileName, Environment.NewLine + $"TRACEDATE {DateTime.Now:d}" + Environment.NewLine);
             }
-            File.AppendAllText(fileName, message);
         }
+        File.AppendAllText(fileName, message);
+    }
 
-        public void WriteLine(string message)
-        {
-            Write(message + Environment.NewLine);
-        }
+    public void WriteLine(string message)
+    {
+        Write(message + Environment.NewLine);
     }
 }

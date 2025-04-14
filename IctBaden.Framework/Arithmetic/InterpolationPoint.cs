@@ -1,10 +1,9 @@
 ﻿// ReSharper disable UnassignedField.Global
-namespace IctBaden.Framework.Arithmetic
+namespace IctBaden.Framework.Arithmetic;
+
+// ReSharper disable once ClassNeverInstantiated.Global
+public class InterpolationPoint
 {
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class InterpolationPoint
-    {
-        public long Input;
-        public long Output;
-    }
+    public long Input;
+    public long Output;
 }
