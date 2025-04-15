@@ -11,6 +11,7 @@ public static class SystemInfo
     private static readonly IMemoryInfo MemoryInfo;
     private static readonly ICpuInfo CpuInfo;
     private static readonly ITemperatureInfo TemperatureInfo;
+    private static readonly IEnvironmentInfo EnvironmentInfo;
 
     static SystemInfo()
     {
@@ -20,11 +21,13 @@ public static class SystemInfo
                 MemoryInfo = new MemoryInfoWindows();
                 CpuInfo = new CpuInfoWindows();
                 TemperatureInfo = new TemperatureInfoWindows();
+                EnvironmentInfo = new EnvironmentInfoWindows();
                 break;
             case Platform.Linux:
                 MemoryInfo = new MemoryInfoLinux();
                 CpuInfo = new CpuInfoLinux();
                 TemperatureInfo = new TemperatureInfoLinux();
+                EnvironmentInfo = new EnvironmentInfoLinux();
                 break;
             default:
                 throw new PlatformNotSupportedException("SystemInfo");
@@ -102,6 +105,11 @@ public static class SystemInfo
     public static float GetSystemTemperature()
     {
         return TemperatureInfo.GetSystemTemperature();
+    }
+
+    public static bool CanAccessDesktop()
+    {
+        return EnvironmentInfo.CanAccessDesktop();
     }
 
 }

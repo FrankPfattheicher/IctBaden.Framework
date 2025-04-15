@@ -1,4 +1,5 @@
 
+* 5.0.2 - 15.04.2025 Added SystemInfo.CanAccessDesktop()
 * 5.0.1 - 14.04.2025 Packages updated, fixed CpuInfoWindows using background thread
 * 5.0.0 - 23.11.2024 Massive refactoring and optimization, DisplayInfo
 
