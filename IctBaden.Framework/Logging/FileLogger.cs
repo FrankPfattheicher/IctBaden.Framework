@@ -9,11 +9,19 @@ using Microsoft.Extensions.Logging;
 
 namespace IctBaden.Framework.Logging;
 
-public class FileLogger(LogFileNameFactory fileNameFactory, string context) : ILogger
+public class FileLogger : ILogger
 {
     private string _scopeContext = string.Empty;
     private LogLevel _logLevel;
     private bool _timestamp = true;
+    private readonly LogFileNameFactory _fileNameFactory;
+    private readonly string _context;
+
+    public FileLogger(LogFileNameFactory fileNameFactory, string context)
+    {
+        _fileNameFactory = fileNameFactory;
+        _context = context;
+    }
 
     private sealed class LogScope : IDisposable
     {
@@ -59,8 +67,9 @@ public class FileLogger(LogFileNameFactory fileNameFactory, string context) : IL
         try
         {
             if (!IsEnabled(logLevel)) return;
+            if (_fileNameFactory.Cycle == LogFileCycle.None) return;
 
-            var fileName = fileNameFactory.GetLogFileName();
+            var fileName = _fileNameFactory.GetLogFileName();
 
             var logLine = new StringBuilder();
             if (_timestamp)
@@ -71,7 +80,7 @@ public class FileLogger(LogFileNameFactory fileNameFactory, string context) : IL
             logLine.Append('\t');
             logLine.Append(GetLogLevelString(logLevel));
             logLine.Append('\t');
-            logLine.Append(context);
+            logLine.Append(_context);
             logLine.Append('\t');
             if (!string.IsNullOrEmpty(_scopeContext))
             {

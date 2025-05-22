@@ -9,7 +9,7 @@ namespace IctBaden.Framework.Logging;
 public class LogFileNameFactory
 {
     private readonly string _path;
-    private readonly LogFileCycle _cycle;
+    public readonly LogFileCycle Cycle;
     private readonly string _name;
     private readonly string _extension;
         
@@ -19,7 +19,7 @@ public class LogFileNameFactory
     public LogFileNameFactory(string path, LogFileCycle cycle, string name, string extension)
     {
         _path = path;
-        _cycle = cycle;
+        Cycle = cycle;
         _name = name;
         _extension = extension;
     }
@@ -30,11 +30,11 @@ public class LogFileNameFactory
         if (now.Day == _lastDay) return _lastFileName;
             
         _lastDay = now.Day; 
-        var name = _cycle == LogFileCycle.OneFile
+        var name = Cycle == LogFileCycle.OneFile
             ? _name
             : (string.IsNullOrEmpty(_name) ? "" : _name + "_");
 
-        var period = _cycle switch
+        var period = Cycle switch
         {
             LogFileCycle.Daily => $"{now.Year:D4}{now.Month:D2}{now.Day:D2}",
             LogFileCycle.Weekly => $"{Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday):D2}",

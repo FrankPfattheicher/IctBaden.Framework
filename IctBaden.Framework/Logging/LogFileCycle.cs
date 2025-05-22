@@ -1,11 +1,12 @@
-namespace IctBaden.Framework.Logging
+namespace IctBaden.Framework.Logging;
+
+public enum LogFileCycle
 {
-    public enum LogFileCycle
-    {
-        OneFile,
-        Daily,
-        Weekly,
-        Monthly,
-        Yearly
-    }
+    /// Do NOT write files
+    None = -1,
+    OneFile,
+    Daily,
+    Weekly,
+    Monthly,
+    Yearly
 }
