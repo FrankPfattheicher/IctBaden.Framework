@@ -146,7 +146,7 @@ public static partial class UniversalConverter
                                      && m.GetParameters()[1].ParameterType == typeof(IFormatProvider));
             if (parseMethod != null)
             {
-                value = parseMethod.Invoke(null, [value, provider]);
+                value = parseMethod.Invoke(null, [$"{value}", provider]);
                 return value;
             }
             parseMethod = parseMethods
@@ -250,7 +250,7 @@ public static partial class UniversalConverter
     {
         if (string.IsNullOrEmpty(txt))
         {
-            return new TimeSpan();
+            return TimeSpan.Zero;
         }
 
         var negative = txt.StartsWith('-');
@@ -279,7 +279,7 @@ public static partial class UniversalConverter
             return negative ? -result : result;
         }
 
-        return new TimeSpan();
+        return TimeSpan.Zero;
     }
 
     [GeneratedRegex("^([0-9]+)$")]

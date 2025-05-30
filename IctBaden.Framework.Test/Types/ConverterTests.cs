@@ -77,5 +77,28 @@ public class ConverterTests
         Assert.Equal(TestEnum.Three, UniversalConverter.ConvertToType(3, typeof(TestEnum)));
     }
         
-        
+    [Fact]
+    public void UniversalConverterShouldConvertUlongObjectToUlong()
+    {
+        var expected = (object)(ulong)123;
+        var value = UniversalConverter.ConvertTo<ulong>(expected);
+        Assert.Equal((ulong)expected, value);
+    }
+
+    [Fact]
+    public void UniversalConverterShouldConvertStringObjectToUlong()
+    {
+        var expected = (object)"123";
+        var value = UniversalConverter.ConvertTo<ulong>(expected);
+        Assert.Equal((ulong)123, value);
+    }
+
+    [Fact]
+    public void UniversalConverterShouldConvertUIntToUlong()
+    {
+        var expected = (object)(uint)123;
+        var value = UniversalConverter.ConvertTo<ulong>(expected);
+        Assert.Equal((uint)expected, value);
+    }
+
 }
