@@ -146,7 +146,8 @@ public static partial class UniversalConverter
                                      && m.GetParameters()[1].ParameterType == typeof(IFormatProvider));
             if (parseMethod != null)
             {
-                value = parseMethod.Invoke(null, [$"{value}", provider]);
+                var strValue = string.Format(provider, "{0}", value); 
+                value = parseMethod.Invoke(null, [strValue, provider]);
                 return value;
             }
             parseMethod = parseMethods

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using IctBaden.Framework.Types;
 using Xunit;
@@ -99,6 +101,14 @@ public class ConverterTests
         var expected = (object)(uint)123;
         var value = UniversalConverter.ConvertTo<ulong>(expected);
         Assert.Equal((uint)expected, value);
+    }
+
+    [Fact]
+    public void UniversalConverterShouldConvertDoubleToFloat()
+    {
+        var expected = (object)44.439999999999998;
+        var value = (float)(UniversalConverter.ConvertToType(expected,typeof(float), CultureInfo.InvariantCulture) ?? 0.0f);
+        Assert.Equal((double)expected, value, 2, MidpointRounding.AwayFromZero);
     }
 
 }
