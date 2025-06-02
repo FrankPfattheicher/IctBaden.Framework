@@ -1,4 +1,5 @@
 
+* 5.0.5 - 02.06.2025 UniversalConverter fix Double to Float
 * 5.0.4 - 30.05.2025 UniversalConverter fix UInt32 to UInt64 cast error
 * 5.0.3 - 22.04.2025 Added LogFileCycle.None
 * 5.0.2 - 15.04.2025 Added SystemInfo.CanAccessDesktop()
