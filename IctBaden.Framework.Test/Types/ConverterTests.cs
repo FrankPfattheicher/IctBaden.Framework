@@ -111,4 +111,14 @@ public class ConverterTests
         Assert.Equal((double)expected, value, 2, MidpointRounding.AwayFromZero);
     }
 
+        [Fact]
+        public void UniversalConverterShouldConvertStringToBool()
+        {
+            var value = (bool)(UniversalConverter.ConvertToType("0", typeof(bool), new CultureInfo("DE-de")) ?? true);
+            Assert.False(value);
+            
+            value = (bool)(UniversalConverter.ConvertToType("1", typeof(bool), new CultureInfo("DE-de")) ?? false);
+            Assert.True(value);
+        }
+
 }
