@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace IctBaden.Framework;
 
@@ -16,7 +17,7 @@ public class Result<TResult>
     /// Signals operation was completed successfully
     /// and Data contains result data.
     /// </summary>
-    public bool Success { get; }
+    public bool Success { get; init; }
 
     /// <summary>
     /// List of error messages from operation.
@@ -35,17 +36,14 @@ public class Result<TResult>
     /// </summary>
     public Exception? FailureException { get; }
 
-    private readonly TResult? _data;
+    private TResult? _data;
     /// <summary>
     /// Result data from successful execution.
     /// </summary>
     public TResult Data
     {
-        get
-        {
-            if (_data == null) throw new InvalidDataException();
-            return _data;
-        }
+        get => _data!;
+        init => _data = value;
     }
 
 
@@ -59,6 +57,11 @@ public class Result<TResult>
     /// </summary>
     public bool IsException => FailureException != null;
 
+
+    public Result()
+    {
+        // serialization
+    }
 
     private Result(TResult data)
     {

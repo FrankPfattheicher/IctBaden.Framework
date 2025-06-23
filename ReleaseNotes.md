@@ -1,4 +1,5 @@
 
+* 5.1.0 - 23.06.2025 Refactor Result<T> to be serializable
 * 5.0.5 - 02.06.2025 UniversalConverter fix Double to Float
 * 5.0.4 - 30.05.2025 UniversalConverter fix UInt32 to UInt64 cast error
 * 5.0.3 - 22.04.2025 Added LogFileCycle.None
