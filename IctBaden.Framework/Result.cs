@@ -28,15 +28,16 @@ public class Result<TResult>
     /// <summary>
     /// List of error messages combined in one text
     /// </summary>
+    [JsonIgnore]
     public string Errors => 
         string.Join("; ", ErrorMessages.Where(m => !string.IsNullOrEmpty(m)));
 
     /// <summary>
     /// Complete exception information on exception failure.
     /// </summary>
-    public Exception? FailureException { get; }
+    public Exception? FailureException { get; init; }
 
-    private TResult? _data;
+    private readonly TResult? _data;
     /// <summary>
     /// Result data from successful execution.
     /// </summary>
@@ -50,6 +51,7 @@ public class Result<TResult>
     /// <summary>
     /// Signals failed execution
     /// </summary>
+    [JsonIgnore]
     public bool IsFailed => !Success;
 
     /// <summary>
@@ -72,7 +74,7 @@ public class Result<TResult>
     private Result(string message)
     {
         Success = false;
-        ErrorMessages = new[] { message };
+        ErrorMessages = [message];
     }
 
     private Result(string[] messages)
@@ -85,7 +87,7 @@ public class Result<TResult>
     {
         Success = false;
         FailureException = ex;
-        ErrorMessages = new[] { ex.Message };
+        ErrorMessages = [ex.Message];
     }
 
 
