@@ -37,19 +37,28 @@ public static class Logger
     {
         get
         {
-            // find static field of type ILoggerFactory in entry assembly
+            // find a static field of type ILoggerFactory in the entry assembly
             var entry = Assembly.GetEntryAssembly();
             foreach (var entryType in entry!.DefinedTypes)
             {
-                var fieldInfo = entryType.DeclaredFields.FirstOrDefault(f => f.FieldType == typeof(ILoggerFactory));
-                var loggerFactory = (ILoggerFactory?)fieldInfo?.GetValue(null);
-                if (loggerFactory == null) continue;
+                try
+                {
+                    var fieldInfo = entryType.DeclaredFields
+                        .Where(f => f.IsStatic)
+                        .FirstOrDefault(f => f.FieldType == typeof(ILoggerFactory));
+                    var loggerFactory = (ILoggerFactory?)fieldInfo?.GetValue(null);
+                    if (loggerFactory == null) continue;
 
-                Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
-                return loggerFactory;
+                    Trace.TraceInformation($"Using LoggerFactory '{fieldInfo?.Name}' of type '{entryType.Name}'.");
+                    return loggerFactory;
+                }
+                catch
+                {
+                    // ignore
+                }
             }
 
-            Trace.TraceInformation($"No LoggerFactory found. Using console factory.");
+            Trace.TraceInformation("No LoggerFactory found. Using console factory.");
 #pragma warning disable IDISP012
             return CreateConsoleAndTronFactory(GetLogConfiguration());
 #pragma warning restore IDISP012

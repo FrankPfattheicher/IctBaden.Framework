@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using IctBaden.Framework.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -5,12 +6,13 @@ using Xunit;
 
 namespace IctBaden.Framework.Test.Logging;
 
+[SuppressMessage("IDisposableAnalyzers.Correctness", "IDISP007:Don\'t dispose injected")]
 public class LoggerFactoryTests
 {
     [Fact]
     public void DefaultFactoryShouldReturnInstance()
     {
-        var defaultFactory = Logger.DefaultFactory;
+        using var defaultFactory = Logger.DefaultFactory;
             
         Assert.NotNull(defaultFactory);
     }
@@ -18,7 +20,7 @@ public class LoggerFactoryTests
     [Fact]
     public void DefaultLoggerShouldContainTronLogger()
     {
-        var defaultFactory = Logger.DefaultFactory;
+        using var defaultFactory = Logger.DefaultFactory;
         var logger = defaultFactory.CreateLogger("Test");
         var tronLogger = logger.GetLogger<TronLogger>();
 
@@ -28,7 +30,7 @@ public class LoggerFactoryTests
     [Fact]
     public void DefaultFactoryShouldBeAbleToCreateLogger()
     {
-        var defaultFactory = Logger.DefaultFactory;
+        using var defaultFactory = Logger.DefaultFactory;
         var logger = defaultFactory.CreateLogger("Test");
 
         Assert.NotNull(logger);
@@ -37,7 +39,7 @@ public class LoggerFactoryTests
     [Fact]
     public void LoggerShouldBeAbleToLogToTron()
     {
-        var defaultFactory = Logger.DefaultFactory;
+        using var defaultFactory = Logger.DefaultFactory;
         var logger = defaultFactory.CreateLogger("Test");
 
         logger.Log(LogLevel.Information, "Test information");

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace IctBaden.Framework.UserInterface;
 
-internal partial class DisplayInfoWindows : IDisplayInfo
+internal class DisplayInfoWindows : IDisplayInfo
 {
     private delegate bool MonitorEnumProc(IntPtr hMonitor, IntPtr hdcMonitor, IntPtr lprcMonitor, IntPtr dwData);
 
@@ -30,7 +30,9 @@ internal partial class DisplayInfoWindows : IDisplayInfo
     {
         MDT_EFFECTIVE_DPI = 0,
         MDT_ANGULAR_DPI = 1,
+        // ReSharper disable once UnusedMember.Local
         MDT_RAW_DPI = 2,
+        // ReSharper disable once UnusedMember.Local
         MDT_DEFAULT = MDT_EFFECTIVE_DPI
     }
 

@@ -37,7 +37,7 @@ internal sealed partial class CpuInfoWindows : ICpuInfo
         };
         _pollThread.Start();
         
-        AppDomain.CurrentDomain.ProcessExit += (sender, args) =>
+        AppDomain.CurrentDomain.ProcessExit += (_, _) =>
         {
             _pollThread = null;
         };
