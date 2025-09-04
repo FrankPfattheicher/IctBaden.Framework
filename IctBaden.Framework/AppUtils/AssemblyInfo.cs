@@ -28,8 +28,8 @@ public class AssemblyInfo
     public AssemblyInfo(Assembly infoAssembly)
     {
         _assembly = infoAssembly;
-        if ((_assembly.GetCustomAttributes(typeof(AssemblyContactAttribute), true) is AssemblyContactAttribute[]
-                contacts) && (contacts.Length > 0))
+        if (_assembly.GetCustomAttributes(typeof(AssemblyContactAttribute), true) is AssemblyContactAttribute[]
+                contacts && contacts.Length > 0)
             _contact = contacts[0];
         else
             _contact = new AssemblyContactAttribute();
@@ -68,22 +68,10 @@ public class AssemblyInfo
         return (T?)attribute;
     }
 
+    // Warning IL3000: 'System.Reflection.Assembly.Location' always returns an empty string for assemblies embedded in a single-file app.
     public string ExeBaseName => Path.GetFileNameWithoutExtension(_assembly.Location);
 
-    public string ExePath
-    {
-        get
-        {
-            var location = _assembly.Location;
-            if (string.IsNullOrEmpty(location))
-            {
-                // NET 5 and up packed applications
-                return AppContext.BaseDirectory;
-            }
-
-            return Path.GetDirectoryName(_assembly.Location) ?? ".";
-        }
-    }
+    public string ExePath => ApplicationInfo.ApplicationDirectory;
 
     private string GetPath(string name) => Path.Combine(ApplicationInfo.ApplicationDirectory, name);
     public string DataPath => GetPath("Data");

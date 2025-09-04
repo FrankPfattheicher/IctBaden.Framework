@@ -2,7 +2,9 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+// ReSharper disable MemberCanBePrivate.Global
 
 // ReSharper disable UnusedMember.Global
 
@@ -60,9 +62,31 @@ public static class ApplicationInfo
                 }
             }
 
-            return path != null && Directory.Exists(path)
+            path = Environment.ProcessPath != null 
+                ? Path.GetDirectoryName(Environment.ProcessPath)
+                : null;
+            if (path != null && Directory.Exists(path))
+            {
+                return path;
+            }
+
+            path = AppContext.BaseDirectory;
+            return Directory.Exists(path)
                 ? path
                 : Environment.CurrentDirectory; // fallback
+        }
+    }
+
+    /// <summary>
+    /// Full path to the application executable.
+    /// </summary>
+    public static string ApplicationExeName
+    {
+        get
+        {
+            var fullExePath = Environment.GetCommandLineArgs().FirstOrDefault() 
+                              ?? Process.GetCurrentProcess().MainModule?.FileName;
+            return fullExePath ?? string.Empty;
         }
     }
 
@@ -78,4 +102,8 @@ public static class ApplicationInfo
                    moduleName.Contains("testhost", StringComparison.OrdinalIgnoreCase);
         }
     }
+    
+    public static string ReleaseDate => File.GetCreationTime(ApplicationExeName).Date.ToString("d", new CultureInfo("de"));
+    public static string ProductVersion => FileVersionInfo.GetVersionInfo(ApplicationExeName).ProductVersion ?? "<unknown>";
+
 }
