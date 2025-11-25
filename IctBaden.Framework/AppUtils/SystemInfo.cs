@@ -47,7 +47,7 @@ public static class SystemInfo
                     return Platform.MacOSX;
 
                 case PlatformID.Unix:
-                case (PlatformID)128:   // Framework (1.0 and 1.1) didn't include any PlatformID value for Unix, so Mono used the value 128.
+                case (PlatformID)128:   // Framework (1.0 and 1.1) didn't include any PlatformID value for Unix, so Mono used value 128.
                     return IsRunningOnMac()
                         ? Platform.MacOSX
                         : Platform.Linux;
