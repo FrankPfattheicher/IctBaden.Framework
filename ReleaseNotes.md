@@ -1,4 +1,5 @@
 
+* 5.1.4 - 02.12.2025 Packages updated
 * 5.1.3 - 04.09.2025 ApplicationInfo ReleaseDate and ProductVersion
 * 5.1.2 - 02.09.2025 Fixed ILoggerFactory DefaultFactory exception
 * 5.1.1 - 24.06.2025 Improve Result<T> serialization
