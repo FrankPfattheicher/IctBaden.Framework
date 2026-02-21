@@ -24,7 +24,7 @@ public static class Logger
     public static IConfiguration GetLogConfiguration(LogLevel level) => new ConfigurationBuilder()
         .Add(new MemoryConfigurationSource
         {
-            InitialData = [new KeyValuePair<string, string>("LogLevel", level.ToString())]
+            InitialData = [new KeyValuePair<string, string?>("LogLevel", level.ToString())]
         })
         .Build();
 

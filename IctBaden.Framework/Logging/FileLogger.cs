@@ -39,9 +39,9 @@ public class FileLogger : ILogger
         }
     }
 
-    public IDisposable BeginScope<TState>(TState state)
+    public IDisposable BeginScope<TState>(TState state) where TState : notnull 
     {
-        return new LogScope(this, state?.ToString() ?? "");
+        return new LogScope(this, state.ToString() ?? "");
     }
 
     public bool IsEnabled(LogLevel logLevel) => logLevel >= _logLevel;

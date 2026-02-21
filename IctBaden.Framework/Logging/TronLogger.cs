@@ -11,7 +11,7 @@ public class TronLogger(string name, IConfiguration config) : ILogger
     {
         public void Dispose() { }
     }
-    public IDisposable BeginScope<TState>(TState state) => new EmptyScope();
+    public IDisposable BeginScope<TState>(TState state) where TState : notnull => new EmptyScope();
 
     public bool IsEnabled(LogLevel logLevel) =>
         logLevel >= config.GetValue("LogLevel", LogLevel.Information);
