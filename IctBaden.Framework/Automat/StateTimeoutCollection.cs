@@ -1,11 +1,13 @@
-﻿namespace IctBaden.Framework.Automat;
+﻿using System.Threading;
+
+namespace IctBaden.Framework.Automat;
 
 using System.Collections.Generic;
 using System.Linq;
 
 public class StateTimeoutCollection : List<StateTimeout>
 {
-    private readonly object _accessLock = new object();
+    private readonly Lock _accessLock = new();
 
     internal void Stop(string timerName)
     {

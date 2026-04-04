@@ -1,16 +1,17 @@
 using System;
+using System.Runtime.CompilerServices;
 using Xunit;
 
-namespace IctBaden.Framework.Test
+namespace IctBaden.Framework.Test;
+
+public sealed class PerformanceFactAttribute : FactAttribute
 {
-    public sealed class PerformanceFactAttribute : FactAttribute
+    public PerformanceFactAttribute([CallerFilePath] string? sourceFilePath = null, [CallerLineNumber] int sourceLineNumber = -1)
+        : base(sourceFilePath, sourceLineNumber)
     {
-        public PerformanceFactAttribute()
+        if (Environment.GetEnvironmentVariable("SkipPerformanceTests") == "true")
         {
-            if (Environment.GetEnvironmentVariable("SkipPerformanceTests") == "true")
-            {
-                Skip = "Ignored Performance Testing Fact";
-            }
+            Skip = "Ignored Performance Testing Fact";
         }
     }
 }

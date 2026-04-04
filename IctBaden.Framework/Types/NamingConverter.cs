@@ -13,11 +13,48 @@ namespace IctBaden.Framework.Types;
 /// PascalCase or UpperCamelCase
 /// kebab-case
 /// snake_case
+/// UPPER_SNAKE_CASE or SCREAMING_SNAKE_CASE
 /// </summary>
 public static class NamingConverter
 {
     public static string PascalToKebabCase(string str) => PascalToKebabCase(str, '-');
     public static string PascalToSnakeCase(string str) => PascalToKebabCase(str, '_');
+    public static string PascalToUpperSnakeCase(string str) => PascalToKebabCase(str, '_').ToUpperInvariant();
+    
+    public static string KebabToPascalCase(string str) => ToPascalCase(str, '-');
+
+    public static string SnakeToPascalCase(string str) => ToPascalCase(str, '_');
+
+    public static string ToCamelCase(string str) => string
+        .Concat(str.Substring(0, 1)
+            .ToLower(CultureInfo.InvariantCulture), str.AsSpan(1));
+
+    public static string ToPascalCase(string str) => string
+        .Concat(str.Substring(0, 1)
+            .ToUpper(CultureInfo.InvariantCulture), str.AsSpan(1));
+
+    /// <summary>
+    /// Converts a string to Pascal case identifier
+    /// </summary>
+    /// <param name="text">Text to convert</param>
+    public static string ToPascalIdentifier(string text)
+    {
+        // Replace all non-letter and non-digits with an underscore and lowercase the rest.
+        var parts = string.Join("", text.Select(c => char.IsLetterOrDigit(c) ? c.ToString().ToLower(CultureInfo.InvariantCulture) : "_").ToArray());
+
+        // Split the resulting string by underscore
+        // Select first character, uppercase it and concatenate with the rest of the string
+        var arr = parts
+            .Split(['_'], StringSplitOptions.RemoveEmptyEntries)
+            .Select(ToPascalCase);
+
+        // Join the resulting collection
+        parts = string.Join("", arr);
+
+        return parts;
+    }
+
+
     
     private static string PascalToKebabCase(string str, char delimiter)
     {
@@ -41,16 +78,6 @@ public static class NamingConverter
         }
 
         return builder.ToString();
-    }
-
-    public static string KebabToPascalCase(string str)
-    {
-        return ToPascalCase(str, '-');
-    }
-
-    public static string SnakeToPascalCase(string str)
-    {
-        return ToPascalCase(str, '_');
     }
 
     private static string ToPascalCase(string str, char delimiter)
@@ -82,35 +109,4 @@ public static class NamingConverter
         return builder.ToString();
     }
 
-    public static string ToCamelCase(string str)
-    {
-        return str.Substring(0, 1).ToLower(CultureInfo.InvariantCulture) + str.Substring(1);
-    }
-
-    public static string ToPascalCase(string str)
-    {
-        return str.Substring(0, 1).ToUpper(CultureInfo.InvariantCulture) + str.Substring(1);
-    }
-        
-    /// <summary>
-    /// Converts a string to Pascal case identifier
-    /// </summary>
-    /// <param name="text">Text to convert</param>
-    public static string ToPascalIdentifier(string text)
-    {
-        // Replace all non-letter and non-digits with an underscore and lowercase the rest.
-        var parts = string.Join("", text.Select(c => char.IsLetterOrDigit(c) ? c.ToString().ToLower(CultureInfo.InvariantCulture) : "_").ToArray());
-
-        // Split the resulting string by underscore
-        // Select first character, uppercase it and concatenate with the rest of the string
-        var arr = parts
-            .Split(new []{'_'}, StringSplitOptions.RemoveEmptyEntries)
-            .Select(ToPascalCase);
-
-        // Join the resulting collection
-        parts = string.Join("", arr);
-
-        return parts;
-    }
-        
 }

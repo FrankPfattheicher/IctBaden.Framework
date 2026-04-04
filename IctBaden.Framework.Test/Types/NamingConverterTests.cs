@@ -9,6 +9,7 @@ public class NamingConverterTests
     private const string Camel = "thisIsTheTestString";
     private const string Kebab = "this-is-the-test-string";
     private const string Snake = "this_is_the_test_string";
+    private const string UpperSnake = "THIS_IS_THE_TEST_STRING";
         
     [Fact]
     public void UpperPascalToKebab()
@@ -29,6 +30,13 @@ public class NamingConverterTests
     {
         var result = NamingConverter.PascalToSnakeCase(Camel);
         Assert.Equal(Snake, result);
+    }
+
+    [Fact]
+    public void CamelToUpperSnake()
+    {
+        var result = NamingConverter.PascalToUpperSnakeCase(Camel);
+        Assert.Equal(UpperSnake, result);
     }
 
     [Fact]

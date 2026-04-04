@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using IctBaden.Framework.AppUtils;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace IctBaden.Framework.Test.AppUtils;
 
@@ -31,7 +30,7 @@ public class SystemInfoTest
     public async Task GetCpuUsageShouldReturnPercentage()
     {
         SystemInfo.GetCpuUsage();
-        await Task.Delay(2000);
+        await Task.Delay(2000, TestContext.Current.CancellationToken);
         var usage = SystemInfo.GetCpuUsage();
 
         _testOutputHelper.WriteLine($"CPU Usage: {usage}%");

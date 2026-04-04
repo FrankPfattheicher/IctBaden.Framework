@@ -1,4 +1,6 @@
 
+* 10.0.0 - 04.04.2026 net10
+
 * 5.1.5 - 21.02.2026 Packages updated
 * 5.1.4 - 02.12.2025 Packages updated
 * 5.1.3 - 04.09.2025 ApplicationInfo ReleaseDate and ProductVersion
@@ -22,7 +24,7 @@
 * 3.0.3 - 29.01.2024 Optionally expand environment variables in ProfileClassLoader
 * 3.0.2 - 29.01.2024 Optionally expand environment variables in ClassPropertyProvider
 * 3.0.1 - 09.01.2024 Hysteresis.Get using double
-* 3.0.0 - 06.01.2024 Added net8.0 support and Hysteresis
+* 3.0.0 - 06.01.2024 Added net10.0 support and Hysteresis
 * 2.2.5 - 14.11.2023 Fixed CsvFile separator detection in quoted headers
 * 2.2.4 - 23.10.2023 ClassPropertyProvider supports Nullable properties, Console logger using AddSimpleConsole
 * 2.2.3 - 18.10.2023 Revert netcore3.1 support - too many changes

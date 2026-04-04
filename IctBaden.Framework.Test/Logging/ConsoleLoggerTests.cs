@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using IctBaden.Framework.Logging;
 using Microsoft.Extensions.Logging;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace IctBaden.Framework.Test.Logging;
 

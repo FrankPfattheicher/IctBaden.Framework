@@ -6,10 +6,10 @@ namespace IctBaden.Framework.Test.AppUtils;
 public class FrameworkInfoTests
 {
     [Fact]
-    public void CurrentClrVersionShouldBe40X()
+    public void CurrentClrVersionShouldBe10X()
     {
         var clr = FrameworkInfo.ClrVersion;
-        Assert.Contains("v8.0.", clr);
+        Assert.Contains("v10.0.", clr);
     }
         
     [Fact]
@@ -20,10 +20,10 @@ public class FrameworkInfoTests
     }
 
     [Fact]
-    public void FrameworkVersionShouldBeNet8()
+    public void FrameworkVersionShouldBeNet10()
     {
         var core = FrameworkInfo.FrameworkVersion;
-        Assert.Contains("8.0.", core);
+        Assert.Contains("10.0.", core);
             
 #pragma warning disable CS0618 // Type or member is obsolete
         Assert.True(FrameworkInfo.IsNetCore);
